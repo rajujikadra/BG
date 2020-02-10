@@ -11,10 +11,10 @@ namespace BG.Controllers
     public class BaseController : Controller
     {
         public ClaimsPrincipal CurrentUser => User as ClaimsPrincipal;
-        // GET: Base
-        public ActionResult Index()
-        {
-            return View();
-        }
+        //// GET: Base
+        //public ActionResult Index()
+        //{
+        //    return View();
+        //}
     }
 }

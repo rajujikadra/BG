@@ -6,10 +6,14 @@ using System.Web.Mvc;
 
 namespace BG.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         public ActionResult Index()
         {
+            if (!CurrentUser.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account");
+            }
             return View();
         }
 

@@ -54,6 +54,7 @@
 @section scripts {
     <script type="text/javascript">
         $("#btnLogin").on('click', function () {
+            
             var form = $('#formLogin');
             if (formValidate(form) === false) {
                 return false;
@@ -64,10 +65,11 @@
                 method: "Post",
                 data: form.serialize(),
                 success: function (data) {
+                    debugger;
                     if (data.StatusCode == 200) {                       
                         location.href = "/";
                     } else if (data.StatusCode == 404) {
-
+                        swal("Error", data.Messages.join(), "error");
                     }
                     HoldOn.close();
                 },
