@@ -1,50 +1,43 @@
-﻿using BG.Helper;
+﻿using BG.Common;
+using BG.Helper;
 using BG.Models;
+using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Security.Claims;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
 namespace BG.Controllers
 {
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
-        // GET: Account
-        public ActionResult Index()
-        {
-            return View();
-        }
-
         // GET: /Account/Login
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            if (CurrentUser != null && CurrentUser.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Account", "Login");
+            }
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
-        // POST: /Account/Login
-        //[HttpPost]
-        //[AllowAnonymous]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Login(LoginViewModel model, string returnUrl)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return View(model);
-        //    }
-        //    return View();
-        //}
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public ActionResult Login(LoginViewModel model, string returnUrl)
         {
             if (!ModelState.IsValid)
-                return Json(new DefaultResponse().SetErrorMessages(this).AsDefault());
+                return Json(new DefaultResponse().SetErrorMessages(this).AsDefault(), JsonRequestBehavior.AllowGet);
             try
             {
                 var token = ApiHelper.Login(model);
@@ -66,7 +59,8 @@ namespace BG.Controllers
                         new Claim("currentTime", DateTime.Now.ToString()),
                         new Claim(ClaimTypes.Name, token.userName),
                         new Claim(ClaimTypes.Email, token.email),
-                        new Claim("AcessToken", $"{token.token_type} {token.access_token}"),
+                        new Claim("AcessToken", $"{token.access_token}"),
+                        //new Claim("AcessToken", $"{token.token_type} {token.access_token}"),
                         // new Claim("Expires_in", "30"),
                     };
 
@@ -76,17 +70,43 @@ namespace BG.Controllers
 
                     Request.GetOwinContext().Authentication.SignIn(options, identity);
                     string[] message = new string[] { "success", returnUrl };
-                    return Json(new DefaultResponse(HttpStatusCode.OK, message));
+                    return Json(new DefaultResponse(HttpStatusCode.OK, message), JsonRequestBehavior.AllowGet);
                 }
                 else
                 {
-                    return Json(new DefaultResponse(HttpStatusCode.NotFound, "Invalid email or password."));
+                    return Json(new DefaultResponse(HttpStatusCode.NotFound, "Invalid email or password."), JsonRequestBehavior.AllowGet);
                 }
             }
             catch (Exception ex)
             {
                 return Json(new DefaultResponse(HttpStatusCode.NotFound, "Invalid email or password."));
             }
+        }
+
+        // POST: /Account/LogOff
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> LogOff()
+        {
+            //api/Account/Logout
+            if (CurrentUser != null && CurrentUser.Identity.IsAuthenticated)
+            {
+                string token = ApiHelper.GetToken();
+                if (!string.IsNullOrEmpty(token))
+                {
+                    using (var client = new HttpClient())
+                    {
+                        client.BaseAddress = new Uri(Config.API);
+                        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(Config.TokenType, token);
+                        var responseTask = client.PostAsync(Config.logout, null);
+                        responseTask.Wait();
+                        var result = responseTask.Result;
+                        string responseContent = await result.Content.ReadAsStringAsync();
+                    }
+                }
+            }
+            Request.GetOwinContext().Authentication.SignOut("ApplicationCookie");
+            return RedirectToAction("Login");
         }
     }
 }
