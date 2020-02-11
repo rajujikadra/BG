@@ -26,7 +26,7 @@ namespace BG.Controllers
         {
             if (CurrentUser != null && CurrentUser.Identity.IsAuthenticated)
             {
-                return RedirectToAction("Account", "Login");
+                return RedirectToAction("Login", "Account");
             }
             ViewBag.ReturnUrl = returnUrl;
             return View();
