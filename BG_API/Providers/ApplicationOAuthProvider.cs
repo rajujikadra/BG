@@ -29,57 +29,51 @@ namespace BG_API.Providers
 
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
-            //https://forums.asp.net/t/2094291.aspx?ASP+NET+Identity+Lockout+features
             var userManager = context.OwinContext.GetUserManager<ApplicationUserManager>();
 
-            var user = await userManager.FindByNameAsync(context.UserName);
+            ApplicationUser user = await userManager.FindByNameAsync(context.UserName);
 
             if (user == null)
             {
-                context.SetError("invalid_grant", "Wrong username or password."); //user not found
+                context.SetError("invalid_grant. The user name or password is incorrect.");
                 return;
             }
-
+            // check if account is lock or not
             if (await userManager.IsLockedOutAsync(user.Id))
             {
-                context.SetError("locked_out", "User is locked out");
+                context.SetError("locked_out. User is locked out");
                 return;
             }
-
             var check = await userManager.CheckPasswordAsync(user, context.Password);
-
             if (!check)
             {
-                await userManager.AccessFailedAsync(user.Id);
-                if (await userManager.IsLockedOutAsync(user.Id))
-                {
-                    // message = string.Format("Your account has been locked out for {0} minutes due to multiple failed login attempts.", ConfigurationManager.AppSettings["DefaultAccountLockoutTimeSpan"].ToString());
-                    context.SetError("invalid_grant", "Wrong username or password."); //wrong password
-                }
+                userManager.MaxFailedAccessAttemptsBeforeLockout = 4;
+                int accessFailedCount = await userManager.GetAccessFailedCountAsync(user.Id);
+                int attemptsLeft = userManager.MaxFailedAccessAttemptsBeforeLockout - accessFailedCount;
+                if (attemptsLeft > 0)
+                    await userManager.AccessFailedAsync(user.Id);
                 else
                 {
-                    int accessFailedCount = await userManager.GetAccessFailedCountAsync(user.Id);
-
-                    int attemptsLeft = 5 - accessFailedCount;
-
-                    string message = string.Format("Invalid credentials. You have {0} more attempt(s) before your account gets locked out.", attemptsLeft);
-                    context.SetError(message);
+                    var result = await userManager.SetLockoutEnabledAsync(user.Id, true);
+                    if (result.Succeeded)
+                    {
+                        context.SetError(string.Format("Your account has been locked now. Please contact system admin.")); 
+                        return;
+                    }
                 }
-                context.SetError("invalid_grant", "Wrong username or password."); //wrong password
+                string message = string.Format("Invalid credentials. You have {0} more attempt(s) before your account gets locked out.", attemptsLeft);
+                context.SetError(message); 
                 return;
             }
-
             await userManager.ResetAccessFailedCountAsync(user.Id);
 
-            ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(userManager,
-               OAuthDefaults.AuthenticationType);
-            ClaimsIdentity cookiesIdentity = await user.GenerateUserIdentityAsync(userManager,
-                CookieAuthenticationDefaults.AuthenticationType);
-
+            ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(userManager, OAuthDefaults.AuthenticationType);
+            ClaimsIdentity cookiesIdentity = await user.GenerateUserIdentityAsync(userManager, CookieAuthenticationDefaults.AuthenticationType);
             AuthenticationProperties properties = CreateProperties(user.UserName);
             AuthenticationTicket ticket = new AuthenticationTicket(oAuthIdentity, properties);
             context.Validated(ticket);
             context.Request.Context.Authentication.SignIn(cookiesIdentity);
+
             //var userManager = context.OwinContext.GetUserManager<ApplicationUserManager>();
 
             //ApplicationUser user = await userManager.FindAsync(context.UserName, context.Password);
@@ -97,17 +91,15 @@ namespace BG_API.Providers
             //var check = await userManager.CheckPasswordAsync(user, context.Password);
             //if (!check)
             //{
+            //    userManager.MaxFailedAccessAttemptsBeforeLockout = 5;
             //    await userManager.AccessFailedAsync(user.Id);
             //    context.SetError("invalid_grant", "Wrong username or password."); //wrong password
             //    return;
             //}
             //await userManager.ResetAccessFailedCountAsync(user.Id);
 
-            //ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(userManager,
-            //   OAuthDefaults.AuthenticationType);
-            //ClaimsIdentity cookiesIdentity = await user.GenerateUserIdentityAsync(userManager,
-            //    CookieAuthenticationDefaults.AuthenticationType);
-
+            //ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(userManager, OAuthDefaults.AuthenticationType);
+            //ClaimsIdentity cookiesIdentity = await user.GenerateUserIdentityAsync(userManager, CookieAuthenticationDefaults.AuthenticationType);
             //AuthenticationProperties properties = CreateProperties(user.UserName);
             //AuthenticationTicket ticket = new AuthenticationTicket(oAuthIdentity, properties);
             //context.Validated(ticket);

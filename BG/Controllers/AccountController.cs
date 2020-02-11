@@ -74,7 +74,7 @@ namespace BG.Controllers
                 }
                 else
                 {
-                    return Json(new DefaultResponse(HttpStatusCode.NotFound, "Invalid email or password."), JsonRequestBehavior.AllowGet);
+                    return Json(new DefaultResponse(HttpStatusCode.NotFound, token.error), JsonRequestBehavior.AllowGet);
                 }
             }
             catch (Exception ex)
