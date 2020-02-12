@@ -41,28 +41,30 @@ namespace BG_API.Providers
             // check if account is lock or not
             if (await userManager.IsLockedOutAsync(user.Id))
             {
-                context.SetError("locked_out. User is locked out");
+                context.SetError("Your account has been locked. Please contact system admin.");
                 return;
             }
             var check = await userManager.CheckPasswordAsync(user, context.Password);
             if (!check)
             {
-                userManager.MaxFailedAccessAttemptsBeforeLockout = 4;
                 int accessFailedCount = await userManager.GetAccessFailedCountAsync(user.Id);
-                int attemptsLeft = userManager.MaxFailedAccessAttemptsBeforeLockout - accessFailedCount;
-                if (attemptsLeft > 0)
-                    await userManager.AccessFailedAsync(user.Id);
-                else
+                int attemptsLeft = userManager.MaxFailedAccessAttemptsBeforeLockout - (accessFailedCount + 1);
+                if (attemptsLeft == 0)
                 {
                     var result = await userManager.SetLockoutEnabledAsync(user.Id, true);
                     if (result.Succeeded)
                     {
-                        context.SetError(string.Format("Your account has been locked now. Please contact system admin.")); 
+                        await userManager.SetLockoutEndDateAsync(user.Id, DateTime.Now.AddYears(1));
+                        context.SetError(string.Format("Your account has been locked as a result of too many unsuccessful attempts. Please contact system admin to unloack your account."));
                         return;
                     }
                 }
+                else
+                {
+                    await userManager.AccessFailedAsync(user.Id);
+                }
                 string message = string.Format("Invalid credentials. You have {0} more attempt(s) before your account gets locked out.", attemptsLeft);
-                context.SetError(message); 
+                context.SetError(message);
                 return;
             }
             await userManager.ResetAccessFailedCountAsync(user.Id);
