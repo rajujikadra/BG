@@ -30,5 +30,17 @@ namespace BG_DataModel.DataModel
         public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
+        public virtual DbSet<CertificateMst> CertificateMsts { get; set; }
+        public virtual DbSet<ColorMst> ColorMsts { get; set; }
+        public virtual DbSet<CutMst> CutMsts { get; set; }
+        public virtual DbSet<FancyColorMst> FancyColorMsts { get; set; }
+        public virtual DbSet<FancyOTMst> FancyOTMsts { get; set; }
+        public virtual DbSet<FlouMst> FlouMsts { get; set; }
+        public virtual DbSet<HAMst> HAMsts { get; set; }
+        public virtual DbSet<PurityMst> PurityMsts { get; set; }
+        public virtual DbSet<ShapeMst> ShapeMsts { get; set; }
+        public virtual DbSet<CompanyMst> CompanyMsts { get; set; }
+        public virtual DbSet<PartyMst> PartyMsts { get; set; }
+        public virtual DbSet<SizeMst> SizeMsts { get; set; }
     }
 }
