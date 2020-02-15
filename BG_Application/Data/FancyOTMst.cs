@@ -7,16 +7,15 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BG_DataModel
+namespace BG_Application.Data
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class HAMst
+    public partial class FancyOTMst
     {
-        public int HACode { get; set; }
-        public string HAName { get; set; }
-        public string HAAliasName { get; set; }
+        public int FancyOTCode { get; set; }
+        public string FancyOTName { get; set; }
         public Nullable<int> SortID { get; set; }
         public Nullable<int> Logid { get; set; }
         public string Pcid { get; set; }

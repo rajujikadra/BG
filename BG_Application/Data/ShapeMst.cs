@@ -7,16 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BG_DataModel
+namespace BG_Application.Data
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class CutMst
+    public partial class ShapeMst
     {
-        public int CutCode { get; set; }
-        public string CutName { get; set; }
-        public string CutAliasName { get; set; }
+        public int ShapeCode { get; set; }
+        public string ShapeName { get; set; }
+        public string ShapeAliasName { get; set; }
         public Nullable<int> SortID { get; set; }
         public Nullable<int> Logid { get; set; }
         public string Pcid { get; set; }

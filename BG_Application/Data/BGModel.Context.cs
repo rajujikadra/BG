@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BG_DataModel
+namespace BG_Application.Data
 {
     using System;
     using System.Data.Entity;

@@ -7,20 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BG_DataModel
+namespace BG_Application.Data
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class CertificateMst
+    public partial class C__MigrationHistory
     {
-        public int CertificateCode { get; set; }
-        public string CertificateName { get; set; }
-        public Nullable<int> SortID { get; set; }
-        public Nullable<int> Logid { get; set; }
-        public string Pcid { get; set; }
-        public Nullable<System.DateTime> Sdate { get; set; }
-        public Nullable<int> CompanyCode { get; set; }
-        public Nullable<bool> Active { get; set; }
+        public string MigrationId { get; set; }
+        public string ContextKey { get; set; }
+        public byte[] Model { get; set; }
+        public string ProductVersion { get; set; }
     }
 }

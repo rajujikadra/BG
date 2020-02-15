@@ -7,32 +7,21 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BG_DataModel
+namespace BG_Application.Data
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class PartyMst
+    public partial class FlouMst
     {
-        public int PartyCode { get; set; }
-        public string PartyName { get; set; }
-        public string Add1 { get; set; }
-        public string Add2 { get; set; }
-        public string Add3 { get; set; }
-        public string City { get; set; }
-        public string PhNo1 { get; set; }
-        public string PhNo2 { get; set; }
-        public string MobNo1 { get; set; }
-        public string MobNo2 { get; set; }
-        public string FaxNo { get; set; }
-        public string Email { get; set; }
-        public string PanNo { get; set; }
+        public int FlouCode { get; set; }
+        public string FlouName { get; set; }
+        public string FlouAliasName { get; set; }
         public Nullable<int> SortID { get; set; }
-        public string Active { get; set; }
         public Nullable<int> Logid { get; set; }
         public string Pcid { get; set; }
         public Nullable<System.DateTime> Sdate { get; set; }
         public Nullable<int> CompanyCode { get; set; }
-        public Nullable<int> TypeCode { get; set; }
+        public Nullable<bool> Active { get; set; }
     }
 }

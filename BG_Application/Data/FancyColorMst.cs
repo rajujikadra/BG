@@ -7,17 +7,20 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BG_DataModel
+namespace BG_Application.Data
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class AspNetUserLogin
+    public partial class FancyColorMst
     {
-        public string LoginProvider { get; set; }
-        public string ProviderKey { get; set; }
-        public string UserId { get; set; }
-    
-        public virtual AspNetUser AspNetUser { get; set; }
+        public int FancyColorCode { get; set; }
+        public string FancyColorName { get; set; }
+        public Nullable<int> SortID { get; set; }
+        public Nullable<int> Logid { get; set; }
+        public string Pcid { get; set; }
+        public Nullable<System.DateTime> Sdate { get; set; }
+        public Nullable<int> CompanyCode { get; set; }
+        public Nullable<bool> Active { get; set; }
     }
 }

@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BG_Application.CustomDTO;
-using BG_DataModel;
+using BG_Application.Data;
+
 
 namespace BG_Application.Applications
 {

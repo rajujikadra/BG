@@ -7,18 +7,21 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BG_DataModel
+namespace BG_Application.Data
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class AspNetUserClaim
+    public partial class HAMst
     {
-        public int Id { get; set; }
-        public string UserId { get; set; }
-        public string ClaimType { get; set; }
-        public string ClaimValue { get; set; }
-    
-        public virtual AspNetUser AspNetUser { get; set; }
+        public int HACode { get; set; }
+        public string HAName { get; set; }
+        public string HAAliasName { get; set; }
+        public Nullable<int> SortID { get; set; }
+        public Nullable<int> Logid { get; set; }
+        public string Pcid { get; set; }
+        public Nullable<System.DateTime> Sdate { get; set; }
+        public Nullable<int> CompanyCode { get; set; }
+        public Nullable<bool> Active { get; set; }
     }
 }

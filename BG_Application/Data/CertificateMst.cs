@@ -7,15 +7,15 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BG_DataModel
+namespace BG_Application.Data
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class FancyColorMst
+    public partial class CertificateMst
     {
-        public int FancyColorCode { get; set; }
-        public string FancyColorName { get; set; }
+        public int CertificateCode { get; set; }
+        public string CertificateName { get; set; }
         public Nullable<int> SortID { get; set; }
         public Nullable<int> Logid { get; set; }
         public string Pcid { get; set; }

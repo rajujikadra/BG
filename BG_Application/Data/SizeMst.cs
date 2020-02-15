@@ -7,16 +7,17 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BG_DataModel
+namespace BG_Application.Data
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class ColorMst
+    public partial class SizeMst
     {
-        public int ColorCode { get; set; }
-        public string ColorName { get; set; }
-        public string ColorAliasName { get; set; }
+        public int SizeMstID { get; set; }
+        public Nullable<decimal> FromSize { get; set; }
+        public Nullable<decimal> ToSize { get; set; }
+        public string SizeAlias { get; set; }
         public Nullable<int> SortID { get; set; }
         public Nullable<int> Logid { get; set; }
         public string Pcid { get; set; }
