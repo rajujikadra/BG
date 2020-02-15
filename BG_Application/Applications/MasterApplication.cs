@@ -11,6 +11,11 @@ namespace BG_Application.Applications
     public class MasterApplication
     {
         private readonly BG_DBEntities _DB;
+        public MasterApplication()
+        {
+            _DB = new BG_DBEntities();
+        }
+
 
         #region Color Master
         public List<ColorViewModel> GetAllColorMaster()
