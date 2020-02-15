@@ -1,0 +1,1067 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BG_DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="CertificateMst">
+          <Key>
+            <PropertyRef Name="CertificateCode" />
+          </Key>
+          <Property Name="CertificateCode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CertificateName" Type="nvarchar" MaxLength="50" />
+          <Property Name="SortID" Type="int" />
+          <Property Name="Logid" Type="int" />
+          <Property Name="Pcid" Type="nvarchar" MaxLength="50" />
+          <Property Name="Sdate" Type="datetime" />
+          <Property Name="CompanyCode" Type="int" />
+          <Property Name="Active" Type="bit" />
+        </EntityType>
+        <EntityType Name="ColorMst">
+          <Key>
+            <PropertyRef Name="ColorCode" />
+          </Key>
+          <Property Name="ColorCode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ColorName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ColorAliasName" Type="nvarchar" MaxLength="100" />
+          <Property Name="SortID" Type="int" />
+          <Property Name="Logid" Type="int" />
+          <Property Name="Pcid" Type="nvarchar" MaxLength="50" />
+          <Property Name="Sdate" Type="datetime" />
+          <Property Name="CompanyCode" Type="int" />
+          <Property Name="Active" Type="bit" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'BG_DB.dbo.CompanyMst' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="CompanyMst">
+          <Key>
+            <PropertyRef Name="CompanyMstId" />
+            <PropertyRef Name="CompanyCode" />
+            <PropertyRef Name="CompanyName" />
+            <PropertyRef Name="AlName" />
+            <PropertyRef Name="Add1" />
+          </Key>
+          <Property Name="CompanyMstId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyCode" Type="int" Nullable="false" />
+          <Property Name="Cdate" Type="datetime" />
+          <Property Name="CompanyName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AlName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Add1" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Add2" Type="nvarchar" MaxLength="50" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" />
+          <Property Name="State" Type="nvarchar" MaxLength="50" />
+          <Property Name="PhNo1" Type="nvarchar" MaxLength="15" />
+          <Property Name="PhNo2" Type="nvarchar" MaxLength="15" />
+          <Property Name="FaxNo" Type="nvarchar" MaxLength="15" />
+          <Property Name="MobNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="GST" Type="nvarchar" MaxLength="50" />
+          <Property Name="CST" Type="nvarchar" MaxLength="50" />
+          <Property Name="LST" Type="nvarchar" MaxLength="50" />
+          <Property Name="PAN" Type="nvarchar" MaxLength="50" />
+          <Property Name="TAN" Type="nvarchar" MaxLength="50" />
+          <Property Name="FDate" Type="datetime" />
+          <Property Name="TDate" Type="datetime" />
+          <Property Name="Logid" Type="int" />
+          <Property Name="Pcid" Type="nvarchar" MaxLength="50" />
+          <Property Name="Sdate" Type="datetime" />
+          <Property Name="CompanyLogo" Type="image" />
+          <Property Name="CPATH" Type="nvarchar(max)" />
+          <Property Name="Active" Type="bit" />
+        </EntityType>
+        <EntityType Name="CutMst">
+          <Key>
+            <PropertyRef Name="CutCode" />
+          </Key>
+          <Property Name="CutCode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CutName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CutAliasName" Type="nvarchar" MaxLength="100" />
+          <Property Name="SortID" Type="int" />
+          <Property Name="Logid" Type="int" />
+          <Property Name="Pcid" Type="nvarchar" MaxLength="50" />
+          <Property Name="Sdate" Type="datetime" />
+          <Property Name="CompanyCode" Type="int" />
+          <Property Name="Active" Type="bit" />
+        </EntityType>
+        <EntityType Name="FancyColorMst">
+          <Key>
+            <PropertyRef Name="FancyColorCode" />
+          </Key>
+          <Property Name="FancyColorCode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FancyColorName" Type="nvarchar" MaxLength="50" />
+          <Property Name="SortID" Type="int" />
+          <Property Name="Logid" Type="int" />
+          <Property Name="Pcid" Type="nvarchar" MaxLength="50" />
+          <Property Name="Sdate" Type="datetime" />
+          <Property Name="CompanyCode" Type="int" />
+          <Property Name="Active" Type="bit" />
+        </EntityType>
+        <EntityType Name="FancyOTMst">
+          <Key>
+            <PropertyRef Name="FancyOTCode" />
+          </Key>
+          <Property Name="FancyOTCode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FancyOTName" Type="nvarchar" MaxLength="50" />
+          <Property Name="SortID" Type="int" />
+          <Property Name="Logid" Type="int" />
+          <Property Name="Pcid" Type="nvarchar" MaxLength="50" />
+          <Property Name="Sdate" Type="datetime" />
+          <Property Name="CompanyCode" Type="int" />
+          <Property Name="Active" Type="bit" />
+        </EntityType>
+        <EntityType Name="FlouMst">
+          <Key>
+            <PropertyRef Name="FlouCode" />
+          </Key>
+          <Property Name="FlouCode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FlouName" Type="nvarchar" MaxLength="50" />
+          <Property Name="FlouAliasName" Type="nvarchar" MaxLength="100" />
+          <Property Name="SortID" Type="int" />
+          <Property Name="Logid" Type="int" />
+          <Property Name="Pcid" Type="nvarchar" MaxLength="50" />
+          <Property Name="Sdate" Type="datetime" />
+          <Property Name="CompanyCode" Type="int" />
+          <Property Name="Active" Type="bit" />
+        </EntityType>
+        <EntityType Name="HAMst">
+          <Key>
+            <PropertyRef Name="HACode" />
+          </Key>
+          <Property Name="HACode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HAName" Type="nvarchar" MaxLength="50" />
+          <Property Name="HAAliasName" Type="nvarchar" MaxLength="100" />
+          <Property Name="SortID" Type="int" />
+          <Property Name="Logid" Type="int" />
+          <Property Name="Pcid" Type="nvarchar" MaxLength="50" />
+          <Property Name="Sdate" Type="datetime" />
+          <Property Name="CompanyCode" Type="int" />
+          <Property Name="Active" Type="bit" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'BG_DB.dbo.PartyMst' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="PartyMst">
+          <Key>
+            <PropertyRef Name="PartyCode" />
+          </Key>
+          <Property Name="PartyCode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PartyName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Add1" Type="nvarchar" MaxLength="50" />
+          <Property Name="Add2" Type="nvarchar" MaxLength="50" />
+          <Property Name="Add3" Type="nvarchar" MaxLength="50" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" />
+          <Property Name="PhNo1" Type="nvarchar" MaxLength="15" />
+          <Property Name="PhNo2" Type="nvarchar" MaxLength="15" />
+          <Property Name="MobNo1" Type="nvarchar" MaxLength="15" />
+          <Property Name="MobNo2" Type="nvarchar" MaxLength="15" />
+          <Property Name="FaxNo" Type="nvarchar" MaxLength="15" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="PanNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="SortID" Type="int" />
+          <Property Name="Active" Type="nchar" MaxLength="1" />
+          <Property Name="Logid" Type="int" />
+          <Property Name="Pcid" Type="nvarchar" MaxLength="50" />
+          <Property Name="Sdate" Type="datetime" />
+          <Property Name="CompanyCode" Type="int" />
+          <Property Name="TypeCode" Type="int" />
+        </EntityType>
+        <EntityType Name="PurityMst">
+          <Key>
+            <PropertyRef Name="PurityCode" />
+          </Key>
+          <Property Name="PurityCode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PurityName" Type="nvarchar" MaxLength="50" />
+          <Property Name="PurityAliasName" Type="nvarchar" MaxLength="100" />
+          <Property Name="SortID" Type="int" />
+          <Property Name="Logid" Type="int" />
+          <Property Name="Pcid" Type="nvarchar" MaxLength="50" />
+          <Property Name="Sdate" Type="datetime" />
+          <Property Name="CompanyCode" Type="int" />
+          <Property Name="Active" Type="bit" />
+        </EntityType>
+        <EntityType Name="ShapeMst">
+          <Key>
+            <PropertyRef Name="ShapeCode" />
+          </Key>
+          <Property Name="ShapeCode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ShapeName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ShapeAliasName" Type="nvarchar" MaxLength="100" />
+          <Property Name="SortID" Type="int" />
+          <Property Name="Logid" Type="int" />
+          <Property Name="Pcid" Type="nvarchar" MaxLength="50" />
+          <Property Name="Sdate" Type="datetime" />
+          <Property Name="CompanyCode" Type="int" />
+          <Property Name="Active" Type="bit" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'BG_DB.dbo.SizeMst' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="SizeMst">
+          <Key>
+            <PropertyRef Name="SizeMstID" />
+          </Key>
+          <Property Name="SizeMstID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FromSize" Type="numeric" Precision="18" Scale="3" />
+          <Property Name="ToSize" Type="numeric" Precision="18" Scale="3" />
+          <Property Name="SizeAlias" Type="nvarchar" MaxLength="20" />
+          <Property Name="SortID" Type="int" />
+          <Property Name="Logid" Type="int" />
+          <Property Name="Pcid" Type="nvarchar" MaxLength="50" />
+          <Property Name="Sdate" Type="datetime" />
+          <Property Name="CompanyCode" Type="int" />
+          <Property Name="Active" Type="bit" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'BG_DB.dbo.TypeMst' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="TypeMst">
+          <Property Name="TypeCode" Type="int" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" />
+          <Property Name="Active" Type="bit" />
+        </EntityType>-->
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BG_DBModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CertificateMst" EntityType="Self.CertificateMst" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ColorMst" EntityType="Self.ColorMst" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CutMst" EntityType="Self.CutMst" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FancyColorMst" EntityType="Self.FancyColorMst" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FancyOTMst" EntityType="Self.FancyOTMst" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FlouMst" EntityType="Self.FlouMst" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HAMst" EntityType="Self.HAMst" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PurityMst" EntityType="Self.PurityMst" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ShapeMst" EntityType="Self.ShapeMst" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CompanyMst" EntityType="Self.CompanyMst" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [CompanyMst].[CompanyMstId] AS [CompanyMstId], 
+    [CompanyMst].[CompanyCode] AS [CompanyCode], 
+    [CompanyMst].[Cdate] AS [Cdate], 
+    [CompanyMst].[CompanyName] AS [CompanyName], 
+    [CompanyMst].[AlName] AS [AlName], 
+    [CompanyMst].[Add1] AS [Add1], 
+    [CompanyMst].[Add2] AS [Add2], 
+    [CompanyMst].[City] AS [City], 
+    [CompanyMst].[State] AS [State], 
+    [CompanyMst].[PhNo1] AS [PhNo1], 
+    [CompanyMst].[PhNo2] AS [PhNo2], 
+    [CompanyMst].[FaxNo] AS [FaxNo], 
+    [CompanyMst].[MobNo] AS [MobNo], 
+    [CompanyMst].[Email] AS [Email], 
+    [CompanyMst].[GST] AS [GST], 
+    [CompanyMst].[CST] AS [CST], 
+    [CompanyMst].[LST] AS [LST], 
+    [CompanyMst].[PAN] AS [PAN], 
+    [CompanyMst].[TAN] AS [TAN], 
+    [CompanyMst].[FDate] AS [FDate], 
+    [CompanyMst].[TDate] AS [TDate], 
+    [CompanyMst].[Logid] AS [Logid], 
+    [CompanyMst].[Pcid] AS [Pcid], 
+    [CompanyMst].[Sdate] AS [Sdate], 
+    [CompanyMst].[CompanyLogo] AS [CompanyLogo], 
+    [CompanyMst].[CPATH] AS [CPATH], 
+    [CompanyMst].[Active] AS [Active]
+    FROM [dbo].[CompanyMst] AS [CompanyMst]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="PartyMst" EntityType="Self.PartyMst" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [PartyMst].[PartyCode] AS [PartyCode], 
+    [PartyMst].[PartyName] AS [PartyName], 
+    [PartyMst].[Add1] AS [Add1], 
+    [PartyMst].[Add2] AS [Add2], 
+    [PartyMst].[Add3] AS [Add3], 
+    [PartyMst].[City] AS [City], 
+    [PartyMst].[PhNo1] AS [PhNo1], 
+    [PartyMst].[PhNo2] AS [PhNo2], 
+    [PartyMst].[MobNo1] AS [MobNo1], 
+    [PartyMst].[MobNo2] AS [MobNo2], 
+    [PartyMst].[FaxNo] AS [FaxNo], 
+    [PartyMst].[Email] AS [Email], 
+    [PartyMst].[PanNo] AS [PanNo], 
+    [PartyMst].[SortID] AS [SortID], 
+    [PartyMst].[Active] AS [Active], 
+    [PartyMst].[Logid] AS [Logid], 
+    [PartyMst].[Pcid] AS [Pcid], 
+    [PartyMst].[Sdate] AS [Sdate], 
+    [PartyMst].[CompanyCode] AS [CompanyCode], 
+    [PartyMst].[TypeCode] AS [TypeCode]
+    FROM [dbo].[PartyMst] AS [PartyMst]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="SizeMst" EntityType="Self.SizeMst" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [SizeMst].[SizeMstID] AS [SizeMstID], 
+    [SizeMst].[FromSize] AS [FromSize], 
+    [SizeMst].[ToSize] AS [ToSize], 
+    [SizeMst].[SizeAlias] AS [SizeAlias], 
+    [SizeMst].[SortID] AS [SortID], 
+    [SizeMst].[Logid] AS [Logid], 
+    [SizeMst].[Pcid] AS [Pcid], 
+    [SizeMst].[Sdate] AS [Sdate], 
+    [SizeMst].[CompanyCode] AS [CompanyCode], 
+    [SizeMst].[Active] AS [Active]
+    FROM [dbo].[SizeMst] AS [SizeMst]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BG_DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogin">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+          <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+        </EntityType>
+        <EntityType Name="CertificateMst">
+          <Key>
+            <PropertyRef Name="CertificateCode" />
+          </Key>
+          <Property Name="CertificateCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CertificateName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SortID" Type="Int32" />
+          <Property Name="Logid" Type="Int32" />
+          <Property Name="Pcid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Sdate" Type="DateTime" Precision="3" />
+          <Property Name="CompanyCode" Type="Int32" />
+          <Property Name="Active" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="ColorMst">
+          <Key>
+            <PropertyRef Name="ColorCode" />
+          </Key>
+          <Property Name="ColorCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ColorName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ColorAliasName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SortID" Type="Int32" />
+          <Property Name="Logid" Type="Int32" />
+          <Property Name="Pcid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Sdate" Type="DateTime" Precision="3" />
+          <Property Name="CompanyCode" Type="Int32" />
+          <Property Name="Active" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="CutMst">
+          <Key>
+            <PropertyRef Name="CutCode" />
+          </Key>
+          <Property Name="CutCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CutName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CutAliasName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SortID" Type="Int32" />
+          <Property Name="Logid" Type="Int32" />
+          <Property Name="Pcid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Sdate" Type="DateTime" Precision="3" />
+          <Property Name="CompanyCode" Type="Int32" />
+          <Property Name="Active" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="FancyColorMst">
+          <Key>
+            <PropertyRef Name="FancyColorCode" />
+          </Key>
+          <Property Name="FancyColorCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FancyColorName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SortID" Type="Int32" />
+          <Property Name="Logid" Type="Int32" />
+          <Property Name="Pcid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Sdate" Type="DateTime" Precision="3" />
+          <Property Name="CompanyCode" Type="Int32" />
+          <Property Name="Active" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="FancyOTMst">
+          <Key>
+            <PropertyRef Name="FancyOTCode" />
+          </Key>
+          <Property Name="FancyOTCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FancyOTName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SortID" Type="Int32" />
+          <Property Name="Logid" Type="Int32" />
+          <Property Name="Pcid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Sdate" Type="DateTime" Precision="3" />
+          <Property Name="CompanyCode" Type="Int32" />
+          <Property Name="Active" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="FlouMst">
+          <Key>
+            <PropertyRef Name="FlouCode" />
+          </Key>
+          <Property Name="FlouCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FlouName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FlouAliasName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SortID" Type="Int32" />
+          <Property Name="Logid" Type="Int32" />
+          <Property Name="Pcid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Sdate" Type="DateTime" Precision="3" />
+          <Property Name="CompanyCode" Type="Int32" />
+          <Property Name="Active" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="HAMst">
+          <Key>
+            <PropertyRef Name="HACode" />
+          </Key>
+          <Property Name="HACode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HAName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HAAliasName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SortID" Type="Int32" />
+          <Property Name="Logid" Type="Int32" />
+          <Property Name="Pcid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Sdate" Type="DateTime" Precision="3" />
+          <Property Name="CompanyCode" Type="Int32" />
+          <Property Name="Active" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="PurityMst">
+          <Key>
+            <PropertyRef Name="PurityCode" />
+          </Key>
+          <Property Name="PurityCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PurityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PurityAliasName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SortID" Type="Int32" />
+          <Property Name="Logid" Type="Int32" />
+          <Property Name="Pcid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Sdate" Type="DateTime" Precision="3" />
+          <Property Name="CompanyCode" Type="Int32" />
+          <Property Name="Active" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="ShapeMst">
+          <Key>
+            <PropertyRef Name="ShapeCode" />
+          </Key>
+          <Property Name="ShapeCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ShapeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ShapeAliasName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SortID" Type="Int32" />
+          <Property Name="Logid" Type="Int32" />
+          <Property Name="Pcid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Sdate" Type="DateTime" Precision="3" />
+          <Property Name="CompanyCode" Type="Int32" />
+          <Property Name="Active" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="CompanyMst">
+          <Key>
+            <PropertyRef Name="CompanyMstId" />
+            <PropertyRef Name="CompanyCode" />
+            <PropertyRef Name="CompanyName" />
+            <PropertyRef Name="AlName" />
+            <PropertyRef Name="Add1" />
+          </Key>
+          <Property Name="CompanyMstId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyCode" Type="Int32" Nullable="false" />
+          <Property Name="Cdate" Type="DateTime" Precision="3" />
+          <Property Name="CompanyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AlName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Add1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Add2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PhNo1" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="PhNo2" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="FaxNo" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="MobNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GST" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CST" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LST" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PAN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TAN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FDate" Type="DateTime" Precision="3" />
+          <Property Name="TDate" Type="DateTime" Precision="3" />
+          <Property Name="Logid" Type="Int32" />
+          <Property Name="Pcid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Sdate" Type="DateTime" Precision="3" />
+          <Property Name="CompanyLogo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="CPATH" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="PartyMst">
+          <Key>
+            <PropertyRef Name="PartyCode" />
+          </Key>
+          <Property Name="PartyCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PartyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Add1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Add2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Add3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PhNo1" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="PhNo2" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="MobNo1" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="MobNo2" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="FaxNo" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PanNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SortID" Type="Int32" />
+          <Property Name="Active" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="Logid" Type="Int32" />
+          <Property Name="Pcid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Sdate" Type="DateTime" Precision="3" />
+          <Property Name="CompanyCode" Type="Int32" />
+          <Property Name="TypeCode" Type="Int32" />
+        </EntityType>
+        <EntityType Name="SizeMst">
+          <Key>
+            <PropertyRef Name="SizeMstID" />
+          </Key>
+          <Property Name="SizeMstID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FromSize" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="ToSize" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="SizeAlias" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="SortID" Type="Int32" />
+          <Property Name="Logid" Type="Int32" />
+          <Property Name="Pcid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Sdate" Type="DateTime" Precision="3" />
+          <Property Name="CompanyCode" Type="Int32" />
+          <Property Name="Active" Type="Boolean" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="BG_DBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
+          <EntitySet Name="CertificateMsts" EntityType="Self.CertificateMst" />
+          <EntitySet Name="ColorMsts" EntityType="Self.ColorMst" />
+          <EntitySet Name="CutMsts" EntityType="Self.CutMst" />
+          <EntitySet Name="FancyColorMsts" EntityType="Self.FancyColorMst" />
+          <EntitySet Name="FancyOTMsts" EntityType="Self.FancyOTMst" />
+          <EntitySet Name="FlouMsts" EntityType="Self.FlouMst" />
+          <EntitySet Name="HAMsts" EntityType="Self.HAMst" />
+          <EntitySet Name="PurityMsts" EntityType="Self.PurityMst" />
+          <EntitySet Name="ShapeMsts" EntityType="Self.ShapeMst" />
+          <EntitySet Name="CompanyMsts" EntityType="Self.CompanyMst" />
+          <EntitySet Name="PartyMsts" EntityType="Self.PartyMst" />
+          <EntitySet Name="SizeMsts" EntityType="Self.SizeMst" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BG_DBModelStoreContainer" CdmEntityContainer="BG_DBEntities">
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="BG_DBModel.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="BG_DBModel.AspNetRole">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="BG_DBModel.AspNetUserClaim">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="BG_DBModel.AspNetUserLogin">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="BG_DBModel.AspNetUser">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CertificateMsts">
+            <EntityTypeMapping TypeName="BG_DBModel.CertificateMst">
+              <MappingFragment StoreEntitySet="CertificateMst">
+                <ScalarProperty Name="CertificateCode" ColumnName="CertificateCode" />
+                <ScalarProperty Name="CertificateName" ColumnName="CertificateName" />
+                <ScalarProperty Name="SortID" ColumnName="SortID" />
+                <ScalarProperty Name="Logid" ColumnName="Logid" />
+                <ScalarProperty Name="Pcid" ColumnName="Pcid" />
+                <ScalarProperty Name="Sdate" ColumnName="Sdate" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ColorMsts">
+            <EntityTypeMapping TypeName="BG_DBModel.ColorMst">
+              <MappingFragment StoreEntitySet="ColorMst">
+                <ScalarProperty Name="ColorCode" ColumnName="ColorCode" />
+                <ScalarProperty Name="ColorName" ColumnName="ColorName" />
+                <ScalarProperty Name="ColorAliasName" ColumnName="ColorAliasName" />
+                <ScalarProperty Name="SortID" ColumnName="SortID" />
+                <ScalarProperty Name="Logid" ColumnName="Logid" />
+                <ScalarProperty Name="Pcid" ColumnName="Pcid" />
+                <ScalarProperty Name="Sdate" ColumnName="Sdate" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CutMsts">
+            <EntityTypeMapping TypeName="BG_DBModel.CutMst">
+              <MappingFragment StoreEntitySet="CutMst">
+                <ScalarProperty Name="CutCode" ColumnName="CutCode" />
+                <ScalarProperty Name="CutName" ColumnName="CutName" />
+                <ScalarProperty Name="CutAliasName" ColumnName="CutAliasName" />
+                <ScalarProperty Name="SortID" ColumnName="SortID" />
+                <ScalarProperty Name="Logid" ColumnName="Logid" />
+                <ScalarProperty Name="Pcid" ColumnName="Pcid" />
+                <ScalarProperty Name="Sdate" ColumnName="Sdate" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FancyColorMsts">
+            <EntityTypeMapping TypeName="BG_DBModel.FancyColorMst">
+              <MappingFragment StoreEntitySet="FancyColorMst">
+                <ScalarProperty Name="FancyColorCode" ColumnName="FancyColorCode" />
+                <ScalarProperty Name="FancyColorName" ColumnName="FancyColorName" />
+                <ScalarProperty Name="SortID" ColumnName="SortID" />
+                <ScalarProperty Name="Logid" ColumnName="Logid" />
+                <ScalarProperty Name="Pcid" ColumnName="Pcid" />
+                <ScalarProperty Name="Sdate" ColumnName="Sdate" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FancyOTMsts">
+            <EntityTypeMapping TypeName="BG_DBModel.FancyOTMst">
+              <MappingFragment StoreEntitySet="FancyOTMst">
+                <ScalarProperty Name="FancyOTCode" ColumnName="FancyOTCode" />
+                <ScalarProperty Name="FancyOTName" ColumnName="FancyOTName" />
+                <ScalarProperty Name="SortID" ColumnName="SortID" />
+                <ScalarProperty Name="Logid" ColumnName="Logid" />
+                <ScalarProperty Name="Pcid" ColumnName="Pcid" />
+                <ScalarProperty Name="Sdate" ColumnName="Sdate" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FlouMsts">
+            <EntityTypeMapping TypeName="BG_DBModel.FlouMst">
+              <MappingFragment StoreEntitySet="FlouMst">
+                <ScalarProperty Name="FlouCode" ColumnName="FlouCode" />
+                <ScalarProperty Name="FlouName" ColumnName="FlouName" />
+                <ScalarProperty Name="FlouAliasName" ColumnName="FlouAliasName" />
+                <ScalarProperty Name="SortID" ColumnName="SortID" />
+                <ScalarProperty Name="Logid" ColumnName="Logid" />
+                <ScalarProperty Name="Pcid" ColumnName="Pcid" />
+                <ScalarProperty Name="Sdate" ColumnName="Sdate" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HAMsts">
+            <EntityTypeMapping TypeName="BG_DBModel.HAMst">
+              <MappingFragment StoreEntitySet="HAMst">
+                <ScalarProperty Name="HACode" ColumnName="HACode" />
+                <ScalarProperty Name="HAName" ColumnName="HAName" />
+                <ScalarProperty Name="HAAliasName" ColumnName="HAAliasName" />
+                <ScalarProperty Name="SortID" ColumnName="SortID" />
+                <ScalarProperty Name="Logid" ColumnName="Logid" />
+                <ScalarProperty Name="Pcid" ColumnName="Pcid" />
+                <ScalarProperty Name="Sdate" ColumnName="Sdate" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PurityMsts">
+            <EntityTypeMapping TypeName="BG_DBModel.PurityMst">
+              <MappingFragment StoreEntitySet="PurityMst">
+                <ScalarProperty Name="PurityCode" ColumnName="PurityCode" />
+                <ScalarProperty Name="PurityName" ColumnName="PurityName" />
+                <ScalarProperty Name="PurityAliasName" ColumnName="PurityAliasName" />
+                <ScalarProperty Name="SortID" ColumnName="SortID" />
+                <ScalarProperty Name="Logid" ColumnName="Logid" />
+                <ScalarProperty Name="Pcid" ColumnName="Pcid" />
+                <ScalarProperty Name="Sdate" ColumnName="Sdate" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ShapeMsts">
+            <EntityTypeMapping TypeName="BG_DBModel.ShapeMst">
+              <MappingFragment StoreEntitySet="ShapeMst">
+                <ScalarProperty Name="ShapeCode" ColumnName="ShapeCode" />
+                <ScalarProperty Name="ShapeName" ColumnName="ShapeName" />
+                <ScalarProperty Name="ShapeAliasName" ColumnName="ShapeAliasName" />
+                <ScalarProperty Name="SortID" ColumnName="SortID" />
+                <ScalarProperty Name="Logid" ColumnName="Logid" />
+                <ScalarProperty Name="Pcid" ColumnName="Pcid" />
+                <ScalarProperty Name="Sdate" ColumnName="Sdate" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CompanyMsts">
+            <EntityTypeMapping TypeName="BG_DBModel.CompanyMst">
+              <MappingFragment StoreEntitySet="CompanyMst">
+                <ScalarProperty Name="CompanyMstId" ColumnName="CompanyMstId" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="Cdate" ColumnName="Cdate" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="AlName" ColumnName="AlName" />
+                <ScalarProperty Name="Add1" ColumnName="Add1" />
+                <ScalarProperty Name="Add2" ColumnName="Add2" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="PhNo1" ColumnName="PhNo1" />
+                <ScalarProperty Name="PhNo2" ColumnName="PhNo2" />
+                <ScalarProperty Name="FaxNo" ColumnName="FaxNo" />
+                <ScalarProperty Name="MobNo" ColumnName="MobNo" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="GST" ColumnName="GST" />
+                <ScalarProperty Name="CST" ColumnName="CST" />
+                <ScalarProperty Name="LST" ColumnName="LST" />
+                <ScalarProperty Name="PAN" ColumnName="PAN" />
+                <ScalarProperty Name="TAN" ColumnName="TAN" />
+                <ScalarProperty Name="FDate" ColumnName="FDate" />
+                <ScalarProperty Name="TDate" ColumnName="TDate" />
+                <ScalarProperty Name="Logid" ColumnName="Logid" />
+                <ScalarProperty Name="Pcid" ColumnName="Pcid" />
+                <ScalarProperty Name="Sdate" ColumnName="Sdate" />
+                <ScalarProperty Name="CompanyLogo" ColumnName="CompanyLogo" />
+                <ScalarProperty Name="CPATH" ColumnName="CPATH" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PartyMsts">
+            <EntityTypeMapping TypeName="BG_DBModel.PartyMst">
+              <MappingFragment StoreEntitySet="PartyMst">
+                <ScalarProperty Name="PartyCode" ColumnName="PartyCode" />
+                <ScalarProperty Name="PartyName" ColumnName="PartyName" />
+                <ScalarProperty Name="Add1" ColumnName="Add1" />
+                <ScalarProperty Name="Add2" ColumnName="Add2" />
+                <ScalarProperty Name="Add3" ColumnName="Add3" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="PhNo1" ColumnName="PhNo1" />
+                <ScalarProperty Name="PhNo2" ColumnName="PhNo2" />
+                <ScalarProperty Name="MobNo1" ColumnName="MobNo1" />
+                <ScalarProperty Name="MobNo2" ColumnName="MobNo2" />
+                <ScalarProperty Name="FaxNo" ColumnName="FaxNo" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PanNo" ColumnName="PanNo" />
+                <ScalarProperty Name="SortID" ColumnName="SortID" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Logid" ColumnName="Logid" />
+                <ScalarProperty Name="Pcid" ColumnName="Pcid" />
+                <ScalarProperty Name="Sdate" ColumnName="Sdate" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="TypeCode" ColumnName="TypeCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SizeMsts">
+            <EntityTypeMapping TypeName="BG_DBModel.SizeMst">
+              <MappingFragment StoreEntitySet="SizeMst">
+                <ScalarProperty Name="SizeMstID" ColumnName="SizeMstID" />
+                <ScalarProperty Name="FromSize" ColumnName="FromSize" />
+                <ScalarProperty Name="ToSize" ColumnName="ToSize" />
+                <ScalarProperty Name="SizeAlias" ColumnName="SizeAlias" />
+                <ScalarProperty Name="SortID" ColumnName="SortID" />
+                <ScalarProperty Name="Logid" ColumnName="Logid" />
+                <ScalarProperty Name="Pcid" ColumnName="Pcid" />
+                <ScalarProperty Name="Sdate" ColumnName="Sdate" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="BG_DBModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetRoles">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="AspNetUsers">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -4,8 +4,9 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using BG_Application.Applications;
 using BG_Application.CustomDTO;
+using BG_Application.Service;
+using BG_Application.ServiceContract;
 
 namespace BG_API.Controllers
 {
@@ -13,20 +14,12 @@ namespace BG_API.Controllers
     [RoutePrefix("api/master")]
     public class MasterController : ApiController
     {
-        private readonly MasterApplication _masterApplication;
+
+        private IMaster_Repository _IMaster_Repository;
         public MasterController()
         {
-            _masterApplication = new MasterApplication();
+            this._IMaster_Repository = new Master_Repository(new BG_Application.Data.BG_DBEntities());
         }
-        //private readonly MasterApplication _masterApplication;
-        //public MasterController(MasterApplication masterApplication)
-        //{
-        //    this._masterApplication = masterApplication;
-        //}
-        //public MasterController()
-        //{
-
-        //}
 
         #region Color Master
         [HttpGet]
@@ -35,7 +28,9 @@ namespace BG_API.Controllers
         {
             try
             {
-                var colors = _masterApplication.GetAllColorMaster();
+                Models.BG_DBEntities g = new Models.BG_DBEntities();
+                var d = g.ColorMsts.ToList();
+                var colors = _IMaster_Repository.GetAllColorMaster();
                 return Ok(colors);
             }
             catch (Exception ex)
@@ -52,7 +47,7 @@ namespace BG_API.Controllers
         {
             try
             {
-                var Certificate = _masterApplication.GetAllCertificateMaster();
+                var Certificate = _IMaster_Repository.GetAllCertificateMaster();
                 return Ok(Certificate);
             }
             catch (Exception ex)
@@ -69,7 +64,7 @@ namespace BG_API.Controllers
         {
             try
             {
-                var Company = _masterApplication.GetAllCompanyMaster();
+                var Company = _IMaster_Repository.GetAllCompanyMaster();
                 return Ok(Company);
             }
             catch (Exception ex)
@@ -86,7 +81,7 @@ namespace BG_API.Controllers
         {
             try
             {
-                var Cut = _masterApplication.GetAllCutMaster();
+                var Cut = _IMaster_Repository.GetAllCutMaster();
                 return Ok(Cut);
             }
             catch (Exception ex)
@@ -103,7 +98,7 @@ namespace BG_API.Controllers
         {
             try
             {
-                var FColor = _masterApplication.GetAllFancyColorMaster();
+                var FColor = _IMaster_Repository.GetAllFancyColorMaster();
                 return Ok(FColor);
             }
             catch (Exception ex)
@@ -120,7 +115,7 @@ namespace BG_API.Controllers
         {
             try
             {
-                var FOT = _masterApplication.GetAllFancyOTMaster();
+                var FOT = _IMaster_Repository.GetAllFancyOTMaster();
                 return Ok(FOT);
             }
             catch (Exception ex)
@@ -137,7 +132,7 @@ namespace BG_API.Controllers
         {
             try
             {
-                var Flou = _masterApplication.GetAllFlouMaster();
+                var Flou = _IMaster_Repository.GetAllFlouMaster();
                 return Ok(Flou);
             }
             catch (Exception ex)
@@ -154,7 +149,7 @@ namespace BG_API.Controllers
         {
             try
             {
-                var HA = _masterApplication.GetAllHAMaster();
+                var HA = _IMaster_Repository.GetAllHAMaster();
                 return Ok(HA);
             }
             catch (Exception ex)
@@ -171,7 +166,7 @@ namespace BG_API.Controllers
         {
             try
             {
-                var Party = _masterApplication.GetAllPartyMaster();
+                var Party = _IMaster_Repository.GetAllPartyMaster();
                 return Ok(Party);
             }
             catch (Exception ex)
@@ -188,7 +183,7 @@ namespace BG_API.Controllers
         {
             try
             {
-                var Purity = _masterApplication.GetAllPurityMaster();
+                var Purity = _IMaster_Repository.GetAllPurityMaster();
                 return Ok(Purity);
             }
             catch (Exception ex)
@@ -205,7 +200,7 @@ namespace BG_API.Controllers
         {
             try
             {
-                var Shap = _masterApplication.GetAllShapMaster();
+                var Shap = _IMaster_Repository.GetAllShapMaster();
                 return Ok(Shap);
             }
             catch (Exception ex)
@@ -222,7 +217,7 @@ namespace BG_API.Controllers
         {
             try
             {
-                var Size = _masterApplication.GetAllSizeMaster();
+                var Size = _IMaster_Repository.GetAllSizeMaster();
                 return Ok(Size);
             }
             catch (Exception ex)
@@ -239,7 +234,7 @@ namespace BG_API.Controllers
         {
             try
             {
-                var Type = _masterApplication.GetAllTypeMaster();
+                var Type = _IMaster_Repository.GetAllTypeMaster();
                 return Ok(Type);
             }
             catch (Exception ex)
