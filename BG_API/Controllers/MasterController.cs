@@ -10,7 +10,7 @@ using BG_Application.ServiceContract;
 
 namespace BG_API.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [RoutePrefix("api/master")]
     public class MasterController : ApiController
     {
@@ -28,8 +28,6 @@ namespace BG_API.Controllers
         {
             try
             {
-                Models.BG_DBEntities g = new Models.BG_DBEntities();
-                var d = g.ColorMsts.ToList();
                 var colors = _IMaster_Repository.GetAllColorMaster();
                 return Ok(colors);
             }
