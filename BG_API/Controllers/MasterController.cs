@@ -14,14 +14,19 @@ namespace BG_API.Controllers
     public class MasterController : ApiController
     {
         private readonly MasterApplication _masterApplication;
-        public MasterController(MasterApplication masterApplication)
-        {
-            this._masterApplication = masterApplication;
-        }
         public MasterController()
         {
-
+            _masterApplication = new MasterApplication();
         }
+        //private readonly MasterApplication _masterApplication;
+        //public MasterController(MasterApplication masterApplication)
+        //{
+        //    this._masterApplication = masterApplication;
+        //}
+        //public MasterController()
+        //{
+
+        //}
 
         #region Color Master
         [HttpGet]
