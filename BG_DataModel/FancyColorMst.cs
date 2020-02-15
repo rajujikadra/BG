@@ -7,16 +7,15 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BG_DataModel.DataModel
+namespace BG_DataModel
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class ShapeMst
+    public partial class FancyColorMst
     {
-        public int ShapeCode { get; set; }
-        public string ShapeName { get; set; }
-        public string ShapeAliasName { get; set; }
+        public int FancyColorCode { get; set; }
+        public string FancyColorName { get; set; }
         public Nullable<int> SortID { get; set; }
         public Nullable<int> Logid { get; set; }
         public string Pcid { get; set; }

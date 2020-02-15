@@ -7,16 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BG_DataModel.DataModel
+namespace BG_DataModel
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class FlouMst
+    public partial class CutMst
     {
-        public int FlouCode { get; set; }
-        public string FlouName { get; set; }
-        public string FlouAliasName { get; set; }
+        public int CutCode { get; set; }
+        public string CutName { get; set; }
+        public string CutAliasName { get; set; }
         public Nullable<int> SortID { get; set; }
         public Nullable<int> Logid { get; set; }
         public string Pcid { get; set; }

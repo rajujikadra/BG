@@ -7,17 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BG_DataModel.DataModel
+namespace BG_DataModel
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class SizeMst
+    public partial class HAMst
     {
-        public int SizeMstID { get; set; }
-        public Nullable<decimal> FromSize { get; set; }
-        public Nullable<decimal> ToSize { get; set; }
-        public string SizeAlias { get; set; }
+        public int HACode { get; set; }
+        public string HAName { get; set; }
+        public string HAAliasName { get; set; }
         public Nullable<int> SortID { get; set; }
         public Nullable<int> Logid { get; set; }
         public string Pcid { get; set; }

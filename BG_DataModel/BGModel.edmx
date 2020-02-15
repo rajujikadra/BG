@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="BG_DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="BG_DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -65,6 +65,7 @@
           <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
           <Property Name="AccessFailedCount" Type="int" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="CertificateMst">
           <Key>
@@ -436,7 +437,8 @@ warning 6013: The table/view 'BG_DB.dbo.TypeMst' does not have a primary key def
             <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BG_DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -495,74 +497,11 @@ warning 6013: The table/view 'BG_DB.dbo.TypeMst' does not have a primary key def
           <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
           <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
           <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
           <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
           <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
-          <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
-        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
-          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaim" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUsers">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AspNetUserClaims">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
-          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogin" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUsers">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AspNetUserLogins">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="AspNetUserRoles">
-          <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
-          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
-        </Association>
-        <EntityContainer Name="BG_DBEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
-          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
-          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
-          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
-          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
-          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
-          </AssociationSet>
-          <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
-            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-          </AssociationSet>
-          <EntitySet Name="CertificateMsts" EntityType="BG_DBModel.CertificateMst" />
-          <EntitySet Name="ColorMsts" EntityType="BG_DBModel.ColorMst" />
-          <EntitySet Name="CutMsts" EntityType="BG_DBModel.CutMst" />
-          <EntitySet Name="FancyColorMsts" EntityType="BG_DBModel.FancyColorMst" />
-          <EntitySet Name="FancyOTMsts" EntityType="BG_DBModel.FancyOTMst" />
-          <EntitySet Name="FlouMsts" EntityType="BG_DBModel.FlouMst" />
-          <EntitySet Name="HAMsts" EntityType="BG_DBModel.HAMst" />
-          <EntitySet Name="PurityMsts" EntityType="BG_DBModel.PurityMst" />
-          <EntitySet Name="ShapeMsts" EntityType="BG_DBModel.ShapeMst" />
-          <EntitySet Name="CompanyMsts" EntityType="BG_DBModel.CompanyMst" />
-          <EntitySet Name="PartyMsts" EntityType="BG_DBModel.PartyMst" />
-          <EntitySet Name="SizeMsts" EntityType="BG_DBModel.SizeMst" />
-        </EntityContainer>
         <EntityType Name="CertificateMst">
           <Key>
             <PropertyRef Name="CertificateCode" />
@@ -697,9 +636,9 @@ warning 6013: The table/view 'BG_DB.dbo.TypeMst' does not have a primary key def
           <Property Name="CompanyMstId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CompanyCode" Type="Int32" Nullable="false" />
           <Property Name="Cdate" Type="DateTime" Precision="3" />
-          <Property Name="CompanyName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="AlName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Add1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AlName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Add1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Add2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -762,6 +701,69 @@ warning 6013: The table/view 'BG_DB.dbo.TypeMst' does not have a primary key def
           <Property Name="CompanyCode" Type="Int32" />
           <Property Name="Active" Type="Boolean" />
         </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="BG_DBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
+          <EntitySet Name="CertificateMsts" EntityType="Self.CertificateMst" />
+          <EntitySet Name="ColorMsts" EntityType="Self.ColorMst" />
+          <EntitySet Name="CutMsts" EntityType="Self.CutMst" />
+          <EntitySet Name="FancyColorMsts" EntityType="Self.FancyColorMst" />
+          <EntitySet Name="FancyOTMsts" EntityType="Self.FancyOTMst" />
+          <EntitySet Name="FlouMsts" EntityType="Self.FlouMst" />
+          <EntitySet Name="HAMsts" EntityType="Self.HAMst" />
+          <EntitySet Name="PurityMsts" EntityType="Self.PurityMst" />
+          <EntitySet Name="ShapeMsts" EntityType="Self.ShapeMst" />
+          <EntitySet Name="CompanyMsts" EntityType="Self.CompanyMst" />
+          <EntitySet Name="PartyMsts" EntityType="Self.PartyMst" />
+          <EntitySet Name="SizeMsts" EntityType="Self.SizeMst" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -820,6 +822,214 @@ warning 6013: The table/view 'BG_DB.dbo.TypeMst' does not have a primary key def
                 <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
                 <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CertificateMsts">
+            <EntityTypeMapping TypeName="BG_DBModel.CertificateMst">
+              <MappingFragment StoreEntitySet="CertificateMst">
+                <ScalarProperty Name="CertificateCode" ColumnName="CertificateCode" />
+                <ScalarProperty Name="CertificateName" ColumnName="CertificateName" />
+                <ScalarProperty Name="SortID" ColumnName="SortID" />
+                <ScalarProperty Name="Logid" ColumnName="Logid" />
+                <ScalarProperty Name="Pcid" ColumnName="Pcid" />
+                <ScalarProperty Name="Sdate" ColumnName="Sdate" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ColorMsts">
+            <EntityTypeMapping TypeName="BG_DBModel.ColorMst">
+              <MappingFragment StoreEntitySet="ColorMst">
+                <ScalarProperty Name="ColorCode" ColumnName="ColorCode" />
+                <ScalarProperty Name="ColorName" ColumnName="ColorName" />
+                <ScalarProperty Name="ColorAliasName" ColumnName="ColorAliasName" />
+                <ScalarProperty Name="SortID" ColumnName="SortID" />
+                <ScalarProperty Name="Logid" ColumnName="Logid" />
+                <ScalarProperty Name="Pcid" ColumnName="Pcid" />
+                <ScalarProperty Name="Sdate" ColumnName="Sdate" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CutMsts">
+            <EntityTypeMapping TypeName="BG_DBModel.CutMst">
+              <MappingFragment StoreEntitySet="CutMst">
+                <ScalarProperty Name="CutCode" ColumnName="CutCode" />
+                <ScalarProperty Name="CutName" ColumnName="CutName" />
+                <ScalarProperty Name="CutAliasName" ColumnName="CutAliasName" />
+                <ScalarProperty Name="SortID" ColumnName="SortID" />
+                <ScalarProperty Name="Logid" ColumnName="Logid" />
+                <ScalarProperty Name="Pcid" ColumnName="Pcid" />
+                <ScalarProperty Name="Sdate" ColumnName="Sdate" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FancyColorMsts">
+            <EntityTypeMapping TypeName="BG_DBModel.FancyColorMst">
+              <MappingFragment StoreEntitySet="FancyColorMst">
+                <ScalarProperty Name="FancyColorCode" ColumnName="FancyColorCode" />
+                <ScalarProperty Name="FancyColorName" ColumnName="FancyColorName" />
+                <ScalarProperty Name="SortID" ColumnName="SortID" />
+                <ScalarProperty Name="Logid" ColumnName="Logid" />
+                <ScalarProperty Name="Pcid" ColumnName="Pcid" />
+                <ScalarProperty Name="Sdate" ColumnName="Sdate" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FancyOTMsts">
+            <EntityTypeMapping TypeName="BG_DBModel.FancyOTMst">
+              <MappingFragment StoreEntitySet="FancyOTMst">
+                <ScalarProperty Name="FancyOTCode" ColumnName="FancyOTCode" />
+                <ScalarProperty Name="FancyOTName" ColumnName="FancyOTName" />
+                <ScalarProperty Name="SortID" ColumnName="SortID" />
+                <ScalarProperty Name="Logid" ColumnName="Logid" />
+                <ScalarProperty Name="Pcid" ColumnName="Pcid" />
+                <ScalarProperty Name="Sdate" ColumnName="Sdate" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FlouMsts">
+            <EntityTypeMapping TypeName="BG_DBModel.FlouMst">
+              <MappingFragment StoreEntitySet="FlouMst">
+                <ScalarProperty Name="FlouCode" ColumnName="FlouCode" />
+                <ScalarProperty Name="FlouName" ColumnName="FlouName" />
+                <ScalarProperty Name="FlouAliasName" ColumnName="FlouAliasName" />
+                <ScalarProperty Name="SortID" ColumnName="SortID" />
+                <ScalarProperty Name="Logid" ColumnName="Logid" />
+                <ScalarProperty Name="Pcid" ColumnName="Pcid" />
+                <ScalarProperty Name="Sdate" ColumnName="Sdate" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HAMsts">
+            <EntityTypeMapping TypeName="BG_DBModel.HAMst">
+              <MappingFragment StoreEntitySet="HAMst">
+                <ScalarProperty Name="HACode" ColumnName="HACode" />
+                <ScalarProperty Name="HAName" ColumnName="HAName" />
+                <ScalarProperty Name="HAAliasName" ColumnName="HAAliasName" />
+                <ScalarProperty Name="SortID" ColumnName="SortID" />
+                <ScalarProperty Name="Logid" ColumnName="Logid" />
+                <ScalarProperty Name="Pcid" ColumnName="Pcid" />
+                <ScalarProperty Name="Sdate" ColumnName="Sdate" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PurityMsts">
+            <EntityTypeMapping TypeName="BG_DBModel.PurityMst">
+              <MappingFragment StoreEntitySet="PurityMst">
+                <ScalarProperty Name="PurityCode" ColumnName="PurityCode" />
+                <ScalarProperty Name="PurityName" ColumnName="PurityName" />
+                <ScalarProperty Name="PurityAliasName" ColumnName="PurityAliasName" />
+                <ScalarProperty Name="SortID" ColumnName="SortID" />
+                <ScalarProperty Name="Logid" ColumnName="Logid" />
+                <ScalarProperty Name="Pcid" ColumnName="Pcid" />
+                <ScalarProperty Name="Sdate" ColumnName="Sdate" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ShapeMsts">
+            <EntityTypeMapping TypeName="BG_DBModel.ShapeMst">
+              <MappingFragment StoreEntitySet="ShapeMst">
+                <ScalarProperty Name="ShapeCode" ColumnName="ShapeCode" />
+                <ScalarProperty Name="ShapeName" ColumnName="ShapeName" />
+                <ScalarProperty Name="ShapeAliasName" ColumnName="ShapeAliasName" />
+                <ScalarProperty Name="SortID" ColumnName="SortID" />
+                <ScalarProperty Name="Logid" ColumnName="Logid" />
+                <ScalarProperty Name="Pcid" ColumnName="Pcid" />
+                <ScalarProperty Name="Sdate" ColumnName="Sdate" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CompanyMsts">
+            <EntityTypeMapping TypeName="BG_DBModel.CompanyMst">
+              <MappingFragment StoreEntitySet="CompanyMst">
+                <ScalarProperty Name="CompanyMstId" ColumnName="CompanyMstId" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="Cdate" ColumnName="Cdate" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="AlName" ColumnName="AlName" />
+                <ScalarProperty Name="Add1" ColumnName="Add1" />
+                <ScalarProperty Name="Add2" ColumnName="Add2" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="PhNo1" ColumnName="PhNo1" />
+                <ScalarProperty Name="PhNo2" ColumnName="PhNo2" />
+                <ScalarProperty Name="FaxNo" ColumnName="FaxNo" />
+                <ScalarProperty Name="MobNo" ColumnName="MobNo" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="GST" ColumnName="GST" />
+                <ScalarProperty Name="CST" ColumnName="CST" />
+                <ScalarProperty Name="LST" ColumnName="LST" />
+                <ScalarProperty Name="PAN" ColumnName="PAN" />
+                <ScalarProperty Name="TAN" ColumnName="TAN" />
+                <ScalarProperty Name="FDate" ColumnName="FDate" />
+                <ScalarProperty Name="TDate" ColumnName="TDate" />
+                <ScalarProperty Name="Logid" ColumnName="Logid" />
+                <ScalarProperty Name="Pcid" ColumnName="Pcid" />
+                <ScalarProperty Name="Sdate" ColumnName="Sdate" />
+                <ScalarProperty Name="CompanyLogo" ColumnName="CompanyLogo" />
+                <ScalarProperty Name="CPATH" ColumnName="CPATH" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PartyMsts">
+            <EntityTypeMapping TypeName="BG_DBModel.PartyMst">
+              <MappingFragment StoreEntitySet="PartyMst">
+                <ScalarProperty Name="PartyCode" ColumnName="PartyCode" />
+                <ScalarProperty Name="PartyName" ColumnName="PartyName" />
+                <ScalarProperty Name="Add1" ColumnName="Add1" />
+                <ScalarProperty Name="Add2" ColumnName="Add2" />
+                <ScalarProperty Name="Add3" ColumnName="Add3" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="PhNo1" ColumnName="PhNo1" />
+                <ScalarProperty Name="PhNo2" ColumnName="PhNo2" />
+                <ScalarProperty Name="MobNo1" ColumnName="MobNo1" />
+                <ScalarProperty Name="MobNo2" ColumnName="MobNo2" />
+                <ScalarProperty Name="FaxNo" ColumnName="FaxNo" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PanNo" ColumnName="PanNo" />
+                <ScalarProperty Name="SortID" ColumnName="SortID" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Logid" ColumnName="Logid" />
+                <ScalarProperty Name="Pcid" ColumnName="Pcid" />
+                <ScalarProperty Name="Sdate" ColumnName="Sdate" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="TypeCode" ColumnName="TypeCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SizeMsts">
+            <EntityTypeMapping TypeName="BG_DBModel.SizeMst">
+              <MappingFragment StoreEntitySet="SizeMst">
+                <ScalarProperty Name="SizeMstID" ColumnName="SizeMstID" />
+                <ScalarProperty Name="FromSize" ColumnName="FromSize" />
+                <ScalarProperty Name="ToSize" ColumnName="ToSize" />
+                <ScalarProperty Name="SizeAlias" ColumnName="SizeAlias" />
+                <ScalarProperty Name="SortID" ColumnName="SortID" />
+                <ScalarProperty Name="Logid" ColumnName="Logid" />
+                <ScalarProperty Name="Pcid" ColumnName="Pcid" />
+                <ScalarProperty Name="Sdate" ColumnName="Sdate" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -831,213 +1041,6 @@ warning 6013: The table/view 'BG_DB.dbo.TypeMst' does not have a primary key def
               <ScalarProperty Name="Id" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
-          <EntitySetMapping Name="CertificateMsts">
-            <EntityTypeMapping TypeName="BG_DBModel.CertificateMst">
-              <MappingFragment StoreEntitySet="CertificateMst">
-                <ScalarProperty Name="Active" ColumnName="Active" />
-                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
-                <ScalarProperty Name="Sdate" ColumnName="Sdate" />
-                <ScalarProperty Name="Pcid" ColumnName="Pcid" />
-                <ScalarProperty Name="Logid" ColumnName="Logid" />
-                <ScalarProperty Name="SortID" ColumnName="SortID" />
-                <ScalarProperty Name="CertificateName" ColumnName="CertificateName" />
-                <ScalarProperty Name="CertificateCode" ColumnName="CertificateCode" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ColorMsts">
-            <EntityTypeMapping TypeName="BG_DBModel.ColorMst">
-              <MappingFragment StoreEntitySet="ColorMst">
-                <ScalarProperty Name="Active" ColumnName="Active" />
-                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
-                <ScalarProperty Name="Sdate" ColumnName="Sdate" />
-                <ScalarProperty Name="Pcid" ColumnName="Pcid" />
-                <ScalarProperty Name="Logid" ColumnName="Logid" />
-                <ScalarProperty Name="SortID" ColumnName="SortID" />
-                <ScalarProperty Name="ColorAliasName" ColumnName="ColorAliasName" />
-                <ScalarProperty Name="ColorName" ColumnName="ColorName" />
-                <ScalarProperty Name="ColorCode" ColumnName="ColorCode" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CutMsts">
-            <EntityTypeMapping TypeName="BG_DBModel.CutMst">
-              <MappingFragment StoreEntitySet="CutMst">
-                <ScalarProperty Name="Active" ColumnName="Active" />
-                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
-                <ScalarProperty Name="Sdate" ColumnName="Sdate" />
-                <ScalarProperty Name="Pcid" ColumnName="Pcid" />
-                <ScalarProperty Name="Logid" ColumnName="Logid" />
-                <ScalarProperty Name="SortID" ColumnName="SortID" />
-                <ScalarProperty Name="CutAliasName" ColumnName="CutAliasName" />
-                <ScalarProperty Name="CutName" ColumnName="CutName" />
-                <ScalarProperty Name="CutCode" ColumnName="CutCode" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="FancyColorMsts">
-            <EntityTypeMapping TypeName="BG_DBModel.FancyColorMst">
-              <MappingFragment StoreEntitySet="FancyColorMst">
-                <ScalarProperty Name="Active" ColumnName="Active" />
-                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
-                <ScalarProperty Name="Sdate" ColumnName="Sdate" />
-                <ScalarProperty Name="Pcid" ColumnName="Pcid" />
-                <ScalarProperty Name="Logid" ColumnName="Logid" />
-                <ScalarProperty Name="SortID" ColumnName="SortID" />
-                <ScalarProperty Name="FancyColorName" ColumnName="FancyColorName" />
-                <ScalarProperty Name="FancyColorCode" ColumnName="FancyColorCode" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="FancyOTMsts">
-            <EntityTypeMapping TypeName="BG_DBModel.FancyOTMst">
-              <MappingFragment StoreEntitySet="FancyOTMst">
-                <ScalarProperty Name="Active" ColumnName="Active" />
-                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
-                <ScalarProperty Name="Sdate" ColumnName="Sdate" />
-                <ScalarProperty Name="Pcid" ColumnName="Pcid" />
-                <ScalarProperty Name="Logid" ColumnName="Logid" />
-                <ScalarProperty Name="SortID" ColumnName="SortID" />
-                <ScalarProperty Name="FancyOTName" ColumnName="FancyOTName" />
-                <ScalarProperty Name="FancyOTCode" ColumnName="FancyOTCode" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="FlouMsts">
-            <EntityTypeMapping TypeName="BG_DBModel.FlouMst">
-              <MappingFragment StoreEntitySet="FlouMst">
-                <ScalarProperty Name="Active" ColumnName="Active" />
-                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
-                <ScalarProperty Name="Sdate" ColumnName="Sdate" />
-                <ScalarProperty Name="Pcid" ColumnName="Pcid" />
-                <ScalarProperty Name="Logid" ColumnName="Logid" />
-                <ScalarProperty Name="SortID" ColumnName="SortID" />
-                <ScalarProperty Name="FlouAliasName" ColumnName="FlouAliasName" />
-                <ScalarProperty Name="FlouName" ColumnName="FlouName" />
-                <ScalarProperty Name="FlouCode" ColumnName="FlouCode" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="HAMsts">
-            <EntityTypeMapping TypeName="BG_DBModel.HAMst">
-              <MappingFragment StoreEntitySet="HAMst">
-                <ScalarProperty Name="Active" ColumnName="Active" />
-                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
-                <ScalarProperty Name="Sdate" ColumnName="Sdate" />
-                <ScalarProperty Name="Pcid" ColumnName="Pcid" />
-                <ScalarProperty Name="Logid" ColumnName="Logid" />
-                <ScalarProperty Name="SortID" ColumnName="SortID" />
-                <ScalarProperty Name="HAAliasName" ColumnName="HAAliasName" />
-                <ScalarProperty Name="HAName" ColumnName="HAName" />
-                <ScalarProperty Name="HACode" ColumnName="HACode" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PurityMsts">
-            <EntityTypeMapping TypeName="BG_DBModel.PurityMst">
-              <MappingFragment StoreEntitySet="PurityMst">
-                <ScalarProperty Name="Active" ColumnName="Active" />
-                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
-                <ScalarProperty Name="Sdate" ColumnName="Sdate" />
-                <ScalarProperty Name="Pcid" ColumnName="Pcid" />
-                <ScalarProperty Name="Logid" ColumnName="Logid" />
-                <ScalarProperty Name="SortID" ColumnName="SortID" />
-                <ScalarProperty Name="PurityAliasName" ColumnName="PurityAliasName" />
-                <ScalarProperty Name="PurityName" ColumnName="PurityName" />
-                <ScalarProperty Name="PurityCode" ColumnName="PurityCode" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ShapeMsts">
-            <EntityTypeMapping TypeName="BG_DBModel.ShapeMst">
-              <MappingFragment StoreEntitySet="ShapeMst">
-                <ScalarProperty Name="Active" ColumnName="Active" />
-                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
-                <ScalarProperty Name="Sdate" ColumnName="Sdate" />
-                <ScalarProperty Name="Pcid" ColumnName="Pcid" />
-                <ScalarProperty Name="Logid" ColumnName="Logid" />
-                <ScalarProperty Name="SortID" ColumnName="SortID" />
-                <ScalarProperty Name="ShapeAliasName" ColumnName="ShapeAliasName" />
-                <ScalarProperty Name="ShapeName" ColumnName="ShapeName" />
-                <ScalarProperty Name="ShapeCode" ColumnName="ShapeCode" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CompanyMsts">
-            <EntityTypeMapping TypeName="BG_DBModel.CompanyMst">
-              <MappingFragment StoreEntitySet="CompanyMst">
-                <ScalarProperty Name="Active" ColumnName="Active" />
-                <ScalarProperty Name="CPATH" ColumnName="CPATH" />
-                <ScalarProperty Name="CompanyLogo" ColumnName="CompanyLogo" />
-                <ScalarProperty Name="Sdate" ColumnName="Sdate" />
-                <ScalarProperty Name="Pcid" ColumnName="Pcid" />
-                <ScalarProperty Name="Logid" ColumnName="Logid" />
-                <ScalarProperty Name="TDate" ColumnName="TDate" />
-                <ScalarProperty Name="FDate" ColumnName="FDate" />
-                <ScalarProperty Name="TAN" ColumnName="TAN" />
-                <ScalarProperty Name="PAN" ColumnName="PAN" />
-                <ScalarProperty Name="LST" ColumnName="LST" />
-                <ScalarProperty Name="CST" ColumnName="CST" />
-                <ScalarProperty Name="GST" ColumnName="GST" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="MobNo" ColumnName="MobNo" />
-                <ScalarProperty Name="FaxNo" ColumnName="FaxNo" />
-                <ScalarProperty Name="PhNo2" ColumnName="PhNo2" />
-                <ScalarProperty Name="PhNo1" ColumnName="PhNo1" />
-                <ScalarProperty Name="State" ColumnName="State" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="Add2" ColumnName="Add2" />
-                <ScalarProperty Name="Add1" ColumnName="Add1" />
-                <ScalarProperty Name="AlName" ColumnName="AlName" />
-                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
-                <ScalarProperty Name="Cdate" ColumnName="Cdate" />
-                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
-                <ScalarProperty Name="CompanyMstId" ColumnName="CompanyMstId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PartyMsts">
-            <EntityTypeMapping TypeName="BG_DBModel.PartyMst">
-              <MappingFragment StoreEntitySet="PartyMst">
-                <ScalarProperty Name="TypeCode" ColumnName="TypeCode" />
-                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
-                <ScalarProperty Name="Sdate" ColumnName="Sdate" />
-                <ScalarProperty Name="Pcid" ColumnName="Pcid" />
-                <ScalarProperty Name="Logid" ColumnName="Logid" />
-                <ScalarProperty Name="Active" ColumnName="Active" />
-                <ScalarProperty Name="SortID" ColumnName="SortID" />
-                <ScalarProperty Name="PanNo" ColumnName="PanNo" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="FaxNo" ColumnName="FaxNo" />
-                <ScalarProperty Name="MobNo2" ColumnName="MobNo2" />
-                <ScalarProperty Name="MobNo1" ColumnName="MobNo1" />
-                <ScalarProperty Name="PhNo2" ColumnName="PhNo2" />
-                <ScalarProperty Name="PhNo1" ColumnName="PhNo1" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="Add3" ColumnName="Add3" />
-                <ScalarProperty Name="Add2" ColumnName="Add2" />
-                <ScalarProperty Name="Add1" ColumnName="Add1" />
-                <ScalarProperty Name="PartyName" ColumnName="PartyName" />
-                <ScalarProperty Name="PartyCode" ColumnName="PartyCode" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SizeMsts">
-            <EntityTypeMapping TypeName="BG_DBModel.SizeMst">
-              <MappingFragment StoreEntitySet="SizeMst">
-                <ScalarProperty Name="Active" ColumnName="Active" />
-                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
-                <ScalarProperty Name="Sdate" ColumnName="Sdate" />
-                <ScalarProperty Name="Pcid" ColumnName="Pcid" />
-                <ScalarProperty Name="Logid" ColumnName="Logid" />
-                <ScalarProperty Name="SortID" ColumnName="SortID" />
-                <ScalarProperty Name="SizeAlias" ColumnName="SizeAlias" />
-                <ScalarProperty Name="ToSize" ColumnName="ToSize" />
-                <ScalarProperty Name="FromSize" ColumnName="FromSize" />
-                <ScalarProperty Name="SizeMstID" ColumnName="SizeMstID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

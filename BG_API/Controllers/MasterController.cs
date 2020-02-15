@@ -9,7 +9,7 @@ using BG_Application.CustomDTO;
 
 namespace BG_API.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [RoutePrefix("api/master")]
     public class MasterController : ApiController
     {
@@ -217,7 +217,7 @@ namespace BG_API.Controllers
 
         #region Size Master
         [HttpGet]
-        [Route("shap-master")]
+        [Route("size-master")]
         public IHttpActionResult GetAllSizeMst()
         {
             try

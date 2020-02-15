@@ -7,20 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BG_DataModel.DataModel
+namespace BG_DataModel
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class FancyOTMst
+    public partial class C__MigrationHistory
     {
-        public int FancyOTCode { get; set; }
-        public string FancyOTName { get; set; }
-        public Nullable<int> SortID { get; set; }
-        public Nullable<int> Logid { get; set; }
-        public string Pcid { get; set; }
-        public Nullable<System.DateTime> Sdate { get; set; }
-        public Nullable<int> CompanyCode { get; set; }
-        public Nullable<bool> Active { get; set; }
+        public string MigrationId { get; set; }
+        public string ContextKey { get; set; }
+        public byte[] Model { get; set; }
+        public string ProductVersion { get; set; }
     }
 }

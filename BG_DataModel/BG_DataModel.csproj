@@ -11,6 +11,7 @@
     <AssemblyName>BG_DataModel</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -49,101 +50,99 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataModel\AspNetRole.cs">
+    <Compile Include="AspNetRole.cs">
       <DependentUpon>BGModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataModel\AspNetUser.cs">
+    <Compile Include="AspNetUser.cs">
       <DependentUpon>BGModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataModel\AspNetUserClaim.cs">
+    <Compile Include="AspNetUserClaim.cs">
       <DependentUpon>BGModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataModel\AspNetUserLogin.cs">
+    <Compile Include="AspNetUserLogin.cs">
       <DependentUpon>BGModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataModel\BGModel.Context.cs">
+    <Compile Include="BGModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>BGModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataModel\BGModel.cs">
+    <Compile Include="BGModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>BGModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataModel\BGModel.Designer.cs">
+    <Compile Include="BGModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>BGModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="DataModel\CertificateMst.cs">
+    <Compile Include="CertificateMst.cs">
       <DependentUpon>BGModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataModel\ColorMst.cs">
+    <Compile Include="ColorMst.cs">
       <DependentUpon>BGModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataModel\CompanyMst.cs">
+    <Compile Include="CompanyMst.cs">
       <DependentUpon>BGModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataModel\CutMst.cs">
+    <Compile Include="CutMst.cs">
       <DependentUpon>BGModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataModel\C__MigrationHistory.cs">
+    <Compile Include="C__MigrationHistory.cs">
       <DependentUpon>BGModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataModel\FancyColorMst.cs">
+    <Compile Include="FancyColorMst.cs">
       <DependentUpon>BGModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataModel\FancyOTMst.cs">
+    <Compile Include="FancyOTMst.cs">
       <DependentUpon>BGModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataModel\FlouMst.cs">
+    <Compile Include="FlouMst.cs">
       <DependentUpon>BGModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataModel\HAMst.cs">
+    <Compile Include="HAMst.cs">
       <DependentUpon>BGModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataModel\PartyMst.cs">
-      <DependentUpon>BGModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataModel\PurityMst.cs">
-      <DependentUpon>BGModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataModel\ShapeMst.cs">
-      <DependentUpon>BGModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataModel\SizeMst.cs">
+    <Compile Include="PartyMst.cs">
       <DependentUpon>BGModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <EntityDeploy Include="DataModel\BGModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>BGModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
+    <Compile Include="PurityMst.cs">
+      <DependentUpon>BGModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ShapeMst.cs">
+      <DependentUpon>BGModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SizeMst.cs">
+      <DependentUpon>BGModel.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
-    <None Include="DataModel\BGModel.edmx.diagram">
+    <EntityDeploy Include="BGModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>BGModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="BGModel.edmx.diagram">
       <DependentUpon>BGModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DataModel\BGModel.Context.tt">
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="BGModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>BGModel.Context.cs</LastGenOutput>
       <DependentUpon>BGModel.edmx</DependentUpon>
+      <LastGenOutput>BGModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="DataModel\BGModel.tt">
+    <Content Include="BGModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>BGModel.edmx</DependentUpon>
       <LastGenOutput>BGModel.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
