@@ -2540,7 +2540,7 @@ function init_DataTables() {
         scroller: true
     });
 
-    $('#datatable-fixed-header').DataTable({
+    $('#datatable-color-master').DataTable({
         fixedHeader: true
     });
 

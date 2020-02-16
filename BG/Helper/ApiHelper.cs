@@ -23,7 +23,7 @@ namespace BG.Helper
                 token = user.FindFirst("AcessToken").Value;
             return token;
         }
-        private static HttpClient GetHttpClient()
+        public static HttpClient GetHttpClient()
         {
             var myHttpClient = new HttpClient();
             string token = null;

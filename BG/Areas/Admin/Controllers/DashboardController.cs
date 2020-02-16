@@ -7,9 +7,12 @@ using System.Web.Mvc;
 
 namespace BG.Areas.Admin.Controllers
 {
+    [RouteArea("Admin", AreaPrefix = "admin")]
+    [RoutePrefix("dashboard")]
     public class DashboardController : BaseController
     {
         // GET: Admin/Dashboard
+        [Route]
         public ActionResult Index()
         {
             if (!CurrentUser.Identity.IsAuthenticated)

@@ -199,6 +199,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
+    <Compile Include="Areas\Admin\Controllers\MasterController.cs" />
     <Compile Include="Areas\Admin\Controllers\SalesPersonController.cs" />
     <Compile Include="Common\Config.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -4975,6 +4976,7 @@
     <Content Include="Areas\Admin\Views\Dashboard\Index.cshtml" />
     <Content Include="Areas\Admin\Views\SalesPerson\Index.cshtml" />
     <Content Include="Areas\Admin\Views\SalesPerson\New.cshtml" />
+    <Content Include="Areas\Admin\Views\Master\GetAllColorMst.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\ClientJS\common.js" />
     <Content Include="Scripts\HoldOn.js" />
@@ -5032,6 +5034,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BG_Application\BG_Application.csproj">
+      <Project>{D94D7F44-34C0-430D-AEC3-20FC2471BD4F}</Project>
+      <Name>BG_Application</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

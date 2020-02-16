@@ -14,5 +14,8 @@ namespace BG.Common
 
         // API URL
         public static readonly string logout = "api/Account/Logout";
+
+
+        public static readonly string color_master = "api/maste/color-master";
     }
 }

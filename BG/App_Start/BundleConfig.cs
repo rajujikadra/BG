@@ -41,6 +41,12 @@ namespace BG
                      "~/Areas/Admin/vendors/nprogress/nprogress.css",
                      //iCheck
                      "~/Areas/Admin/vendors/iCheck/skins/flat/green.css",
+                      //Data-table
+                      "~/Areas/Admin/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css",
+                      "~/Areas/Admin/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css",
+                      "~/Areas/Admin/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css",
+                      "~/Areas/Admin/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css",
+                      "~/Areas/Admin/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css",
                      //bootstrap-progressbar
                      "~/Areas/Admin/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css",
                      //JQVMap
@@ -67,6 +73,14 @@ namespace BG
                       "~/Areas/Admin/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js",
                       //iCheck
                       "~/Areas/Admin/vendors/iCheck/icheck.min.js",
+                     //Data-table
+                     "~/Areas/Admin/vendors/datatables.net/js/jquery.dataTables.min.js",
+                     "~/Areas/Admin/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js",
+                     "~/Areas/Admin/vendors/datatables.net-buttons/js/dataTables.buttons.min.js",
+                     "~/Areas/Admin/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js",
+                     "~/Areas/Admin/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js",
+                     "~/Areas/Admin/vendors/datatables.net-responsive/js/dataTables.responsive.min.js",
+                     "~/Areas/Admin/vendors/datatables.net-scroller/js/dataTables.scroller.min.js",
                       //Skycons
                       "~/Areas/Admin/vendors/skycons/skycons.js",
                       //Flot
@@ -89,7 +103,7 @@ namespace BG
                       "~/Areas/Admin/vendors/moment/min/moment.min.js",
                       "~/Areas/Admin/vendors/bootstrap-daterangepicker/daterangepicker.js",
                       //Custom Theme Scripts
-                      "~/Areas/Admin/build/js/custom.min.js"));
+                      "~/Areas/Admin/build/js/custom.js"));
         }
     }
 }
