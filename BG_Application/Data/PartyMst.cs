@@ -28,7 +28,7 @@ namespace BG_Application.Data
         public string Email { get; set; }
         public string PanNo { get; set; }
         public Nullable<int> SortID { get; set; }
-        public string Active { get; set; }
+        public Nullable<bool> Active { get; set; }
         public Nullable<int> Logid { get; set; }
         public string Pcid { get; set; }
         public Nullable<System.DateTime> Sdate { get; set; }

@@ -22,6 +22,7 @@ namespace BG.Areas.Admin.Controllers
             return View();
         }
 
+        #region color master
         [Route("color-master")]
         public ActionResult GetAllColorMst()
         {
@@ -34,5 +35,111 @@ namespace BG.Areas.Admin.Controllers
             }
             return View(model);
         }
+        #endregion
+
+        #region certificate master
+        [Route("certificate-master")]
+        public ActionResult GetAllCertificateMst()
+        {
+            var model = new List<CertificateViewModel>();
+            using (var httpClient = ApiHelper.GetHttpClient())
+            {
+                var result = httpClient.GetAsync(Config.certificate_master).Result;
+                var resultContent = result.Content.ReadAsStringAsync().Result;
+                model = JsonConvert.DeserializeObject<List<CertificateViewModel>>(resultContent);
+            }
+            return View(model);
+        }
+        #endregion
+
+        #region cut master
+        [Route("cut-master")]
+        public ActionResult GetAllCutMst()
+        {
+            var model = new List<CutViewModel>();
+            using (var httpClient = ApiHelper.GetHttpClient())
+            {
+                var result = httpClient.GetAsync(Config.cut_master).Result;
+                var resultContent = result.Content.ReadAsStringAsync().Result;
+                model = JsonConvert.DeserializeObject<List<CutViewModel>>(resultContent);
+            }
+            return View(model);
+        }
+        #endregion
+
+        #region purity master
+        [Route("purity-master")]
+        public ActionResult GetAllPurityMst()
+        {
+            var model = new List<PurityViewModel>();
+            using (var httpClient = ApiHelper.GetHttpClient())
+            {
+                var result = httpClient.GetAsync(Config.purity_master).Result;
+                var resultContent = result.Content.ReadAsStringAsync().Result;
+                model = JsonConvert.DeserializeObject<List<PurityViewModel>>(resultContent);
+            }
+            return View(model);
+        }
+        #endregion
+
+        #region flou master
+        [Route("flou-master")]
+        public ActionResult GetAllFlouMst()
+        {
+            var model = new List<FlouViewModel>();
+            using (var httpClient = ApiHelper.GetHttpClient())
+            {
+                var result = httpClient.GetAsync(Config.flou_master).Result;
+                var resultContent = result.Content.ReadAsStringAsync().Result;
+                model = JsonConvert.DeserializeObject<List<FlouViewModel>>(resultContent);
+            }
+            return View(model);
+        }
+        #endregion
+
+        #region size master
+        [Route("size-master")]
+        public ActionResult GetAllSizeMst()
+        {
+            var model = new List<SizeViewModel>();
+            using (var httpClient = ApiHelper.GetHttpClient())
+            {
+                var result = httpClient.GetAsync(Config.size_master).Result;
+                var resultContent = result.Content.ReadAsStringAsync().Result;
+                model = JsonConvert.DeserializeObject<List<SizeViewModel>>(resultContent);
+            }
+            return View(model);
+        }
+        #endregion
+
+        #region party master
+        [Route("party-master")]
+        public ActionResult GetAllPartyMst()
+        {
+            var model = new List<PartyViewModel>();
+            using (var httpClient = ApiHelper.GetHttpClient())
+            {
+                var result = httpClient.GetAsync(Config.party_master).Result;
+                var resultContent = result.Content.ReadAsStringAsync().Result;
+                model = JsonConvert.DeserializeObject<List<PartyViewModel>>(resultContent);
+            }
+            return View(model);
+        }
+        #endregion
+
+        #region fancy color master
+        [Route("fancy-color-master")]
+        public ActionResult GetAllFancyColorMst()
+        {
+            var model = new List<FancyColorViewModel>();
+            using (var httpClient = ApiHelper.GetHttpClient())
+            {
+                var result = httpClient.GetAsync(Config.fancy_color_master).Result;
+                var resultContent = result.Content.ReadAsStringAsync().Result;
+                model = JsonConvert.DeserializeObject<List<FancyColorViewModel>>(resultContent);
+            }
+            return View(model);
+        }
+        #endregion
     }
 }

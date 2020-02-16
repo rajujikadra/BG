@@ -16,6 +16,13 @@ namespace BG.Common
         public static readonly string logout = "api/Account/Logout";
 
 
-        public static readonly string color_master = "api/maste/color-master";
+        public static readonly string color_master = "api/master/color-master";
+        public static readonly string certificate_master = "api/master/certificate-master";
+        public static readonly string cut_master = "api/master/cut-master";
+        public static readonly string purity_master = "api/master/purity-master";
+        public static readonly string flou_master = "api/master/flou-master";
+        public static readonly string size_master = "api/master/size-master";
+        public static readonly string party_master = "api/master/party-master";
+        public static readonly string fancy_color_master = "api/master/fancy-color-master";
     }
 }

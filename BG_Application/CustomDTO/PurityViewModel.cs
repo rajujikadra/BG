@@ -17,5 +17,7 @@ namespace BG_Application.CustomDTO
         public Nullable<System.DateTime> Sdate { get; set; }
         public Nullable<int> CompanyCode { get; set; }
         public Nullable<bool> Active { get; set; }
+
+        public string CompanyName { get; set; }
     }
 }

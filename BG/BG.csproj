@@ -4977,6 +4977,13 @@
     <Content Include="Areas\Admin\Views\SalesPerson\Index.cshtml" />
     <Content Include="Areas\Admin\Views\SalesPerson\New.cshtml" />
     <Content Include="Areas\Admin\Views\Master\GetAllColorMst.cshtml" />
+    <Content Include="Areas\Admin\Views\Master\GetAllCertificateMst.cshtml" />
+    <Content Include="Areas\Admin\Views\Master\GetAllCutMst.cshtml" />
+    <Content Include="Areas\Admin\Views\Master\GetAllPurityMst.cshtml" />
+    <Content Include="Areas\Admin\Views\Master\GetAllFlouMst.cshtml" />
+    <Content Include="Areas\Admin\Views\Master\GetAllSizeMst.cshtml" />
+    <Content Include="Areas\Admin\Views\Master\GetAllPartyMst.cshtml" />
+    <Content Include="Areas\Admin\Views\Master\GetAllFancyColorMst.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\ClientJS\common.js" />
     <Content Include="Scripts\HoldOn.js" />

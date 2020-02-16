@@ -74,7 +74,7 @@ namespace BG_API.Controllers
 
         #region Cut Master
         [HttpGet]
-        [Route("cut_master")]
+        [Route("cut-master")]
         public IHttpActionResult GetAllCutMst()
         {
             try

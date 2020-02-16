@@ -1,15 +1,16 @@
-﻿@model List<BG_Application.CustomDTO.ColorViewModel>
+﻿@model List<BG_Application.CustomDTO.CertificateViewModel>
 @{
-    ViewBag.Title = "Color Master";
+    ViewBag.Title = "Certificate Master";
     Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
 }
+
 <div class="">
     <div class="clearfix"></div>
     <div class="row">
         <div class="col-md-12 col-sm-12 ">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Colors</h2>
+                    <h2>Certificate</h2>
 
                     <div class="clearfix"></div>
                 </div>
@@ -17,21 +18,21 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="card-box table-responsive">
-                                <table id="datatable-color-master" class="table table-striped table-bordered" style="width:100%">
+                                <table id="datatable-certificate-master" class="table table-striped table-bordered" style="width:100%">
                                     <thead>
                                         <tr>
                                             <th>Code</th>
                                             <th>Name</th>
-                                            <th>Alias Name</th>
+                                            <th>Company</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach (var C in Model)
                                         {
                                             <tr>
-                                                <td>@C.ColorCode</td>
-                                                <td>@C.ColorName</td>
-                                                <td>@C.ColorAliasName</td>
+                                                <td>@C.CertificateCode</td>
+                                                <td>@C.CertificateName</td>
+                                                <td>@C.CompanyName</td>
                                             </tr>
                                         }
                                     </tbody>
@@ -44,3 +45,13 @@
         </div>
     </div>
 </div>
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $('#datatable-certificate-master').DataTable({
+                fixedHeader: true
+            });
+
+        });
+    </script>
+}

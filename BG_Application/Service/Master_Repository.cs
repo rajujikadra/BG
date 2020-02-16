@@ -27,7 +27,8 @@ namespace BG_Application.Service
                 Logid = y.Logid,
                 Pcid = y.Pcid,
                 Sdate = y.Sdate,
-                SortID = y.SortID
+                SortID = y.SortID,
+                CompanyName = DB.CompanyMsts.FirstOrDefault(x => x.CompanyCode == y.CompanyCode).CompanyName
             }).ToList();
         }
 
@@ -93,7 +94,8 @@ namespace BG_Application.Service
                 Logid = y.Logid,
                 Pcid = y.Pcid,
                 Sdate = y.Sdate,
-                SortID = y.SortID
+                SortID = y.SortID,
+                CompanyName = DB.CompanyMsts.FirstOrDefault(x => x.CompanyCode == y.CompanyCode).CompanyName
             }).ToList();
         }
 
@@ -108,7 +110,8 @@ namespace BG_Application.Service
                 Logid = y.Logid,
                 Pcid = y.Pcid,
                 Sdate = y.Sdate,
-                SortID = y.SortID
+                SortID = y.SortID,
+                CompanyName = DB.CompanyMsts.FirstOrDefault(x => x.CompanyCode == y.CompanyCode).CompanyName
             }).ToList();
         }
 
@@ -139,7 +142,8 @@ namespace BG_Application.Service
                 Logid = y.Logid,
                 Pcid = y.Pcid,
                 Sdate = y.Sdate,
-                SortID = y.SortID
+                SortID = y.SortID,
+                CompanyName = DB.CompanyMsts.FirstOrDefault(x => x.CompanyCode == y.CompanyCode).CompanyName
             }).ToList();
         }
 
@@ -161,7 +165,7 @@ namespace BG_Application.Service
 
         public List<PartyViewModel> GetAllPartyMaster()
         {
-            return DB.PartyMsts.Where(x => x.Active.Equals(1)).Select(y => new PartyViewModel()
+            return DB.PartyMsts.Where(x => x.Active == true).Select(y => new PartyViewModel()
             {
                 Active = y.Active,
                 Add1 = y.Add1,
@@ -182,7 +186,8 @@ namespace BG_Application.Service
                 PhNo2 = y.PhNo2,
                 Sdate = y.Sdate,
                 SortID = y.SortID,
-                TypeCode = y.TypeCode
+                TypeCode = y.TypeCode,
+                CompanyName = DB.CompanyMsts.FirstOrDefault(x => x.CompanyCode == y.CompanyCode).CompanyName
             }).ToList();
         }
 
@@ -198,7 +203,8 @@ namespace BG_Application.Service
                 PurityCode = y.PurityCode,
                 PurityName = y.PurityName,
                 Sdate = y.Sdate,
-                SortID = y.SortID
+                SortID = y.SortID,
+                CompanyName = DB.CompanyMsts.FirstOrDefault(x => x.CompanyCode == y.CompanyCode).CompanyName
             }).ToList();
         }
 
@@ -231,7 +237,8 @@ namespace BG_Application.Service
                 Sdate = y.Sdate,
                 SizeMstID = y.SizeMstID,
                 SortID = y.SortID,
-                ToSize = y.ToSize
+                ToSize = y.ToSize,
+                CompanyName = DB.CompanyMsts.FirstOrDefault(x => x.CompanyCode == y.CompanyCode).CompanyName
             }).ToList();
         }
 

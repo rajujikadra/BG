@@ -32,7 +32,7 @@ namespace BG.Helper
                 token = user.FindFirst("AcessToken").Value;
             myHttpClient.BaseAddress = new Uri(Config.API);
             if (!string.IsNullOrEmpty(token))
-                myHttpClient.DefaultRequestHeaders.Add("Authorization", token);
+                myHttpClient.DefaultRequestHeaders.Add("Authorization", Config.TokenType + " " + token);
             return myHttpClient;
         }
         public static Token Login(LoginViewModel model)

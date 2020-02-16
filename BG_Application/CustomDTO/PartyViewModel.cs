@@ -22,11 +22,12 @@ namespace BG_Application.CustomDTO
         public string Email { get; set; }
         public string PanNo { get; set; }
         public Nullable<int> SortID { get; set; }
-        public string Active { get; set; }
+        public bool? Active { get; set; }
         public Nullable<int> Logid { get; set; }
         public string Pcid { get; set; }
         public Nullable<System.DateTime> Sdate { get; set; }
         public Nullable<int> CompanyCode { get; set; }
         public Nullable<int> TypeCode { get; set; }
+        public string CompanyName { get; set; }
     }
 }

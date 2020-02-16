@@ -47,15 +47,15 @@
                                     <ul class="nav child_menu">
                                         <li><a href="/admin/master/color-master">Color</a></li>
                                         <li><a href="/admin/master/certificate-master">Certificate</a></li>
-                                        <li><a href="#">Cut</a></li>
-                                        <li><a href="#">Purity</a></li>
-                                        <li><a href="#">Flou</a></li>
-                                        <li><a href="#">Size</a></li>
-                                        <li><a href="#">Party</a></li>
+                                        <li><a href="/admin/master/cut-master">Cut</a></li>
+                                        <li><a href="/admin/master/purity-master">Purity</a></li>
+                                        <li><a href="/admin/master/flou-master">Flou</a></li>
+                                        <li><a href="/admin/master/size-master">Size</a></li>
+                                        <li><a href="/admin/master/party-master">Party</a></li>
                                         <li><a href="#">Company</a></li>
-                                        <li><a href="#">Fancy Color</a></li>
-                                        <li><a href="#">Fancy OT</a></li>
-                                        <li><a href="#">Shape</a></li>
+                                        <li><a href="/admin/master/fancy-color-master">Fancy Color</a></li>
+                                        <li><a href="/admin/master/fancy-ot-master">Fancy OT</a></li>
+                                        <li><a href="/admin/master/shape-master">Shape</a></li>
                                     </ul>
                                 </li>
                                 <li>
@@ -285,5 +285,6 @@
         </div>
     </div>
     @Scripts.Render("~/Admin/JS")
+    @RenderSection("scripts", required: false)
 </body>
 </html>

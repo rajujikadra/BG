@@ -40,7 +40,7 @@ namespace BG_Application.Data
         public virtual DbSet<PurityMst> PurityMsts { get; set; }
         public virtual DbSet<ShapeMst> ShapeMsts { get; set; }
         public virtual DbSet<CompanyMst> CompanyMsts { get; set; }
-        public virtual DbSet<PartyMst> PartyMsts { get; set; }
         public virtual DbSet<SizeMst> SizeMsts { get; set; }
+        public virtual DbSet<PartyMst> PartyMsts { get; set; }
     }
 }
