@@ -200,6 +200,29 @@ warning 6002: The table/view 'BG_DB.dbo.CompanyMst' does not have a primary key 
           <Property Name="CompanyCode" Type="int" />
           <Property Name="Active" Type="bit" />
         </EntityType>
+        <EntityType Name="MainMenuMst">
+          <Key>
+            <PropertyRef Name="MainMenuMstID" />
+          </Key>
+          <Property Name="MainMenuMstID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MainMenuName" Type="varchar" MaxLength="50" />
+          <Property Name="Icon" Type="varchar" MaxLength="150" />
+          <Property Name="SortId" Type="int" />
+          <Property Name="Active" Type="bit" />
+          <Property Name="URL" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="MenuMst">
+          <Key>
+            <PropertyRef Name="MenuMstId" />
+          </Key>
+          <Property Name="MenuMstId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MainMenuMstId" Type="int" />
+          <Property Name="MenuName" Type="varchar" MaxLength="50" />
+          <Property Name="SortId" Type="int" />
+          <Property Name="Active" Type="bit" />
+          <Property Name="Icon" Type="varchar" MaxLength="150" />
+          <Property Name="URL" Type="varchar" MaxLength="200" />
+        </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'BG_DB.dbo.PartyMst' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="PartyMst">
@@ -335,6 +358,18 @@ warning 6013: The table/view 'BG_DB.dbo.TypeMst' does not have a primary key def
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_menuid">
+          <End Role="MainMenuMst" Type="Self.MainMenuMst" Multiplicity="0..1" />
+          <End Role="MenuMst" Type="Self.MenuMst" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MainMenuMst">
+              <PropertyRef Name="MainMenuMstID" />
+            </Principal>
+            <Dependent Role="MenuMst">
+              <PropertyRef Name="MainMenuMstId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="BG_DBModelStoreContainer">
           <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
@@ -349,6 +384,8 @@ warning 6013: The table/view 'BG_DB.dbo.TypeMst' does not have a primary key def
           <EntitySet Name="FancyOTMst" EntityType="Self.FancyOTMst" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FlouMst" EntityType="Self.FlouMst" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HAMst" EntityType="Self.HAMst" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MainMenuMst" EntityType="Self.MainMenuMst" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MenuMst" EntityType="Self.MenuMst" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PurityMst" EntityType="Self.PurityMst" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ShapeMst" EntityType="Self.ShapeMst" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CompanyMst" EntityType="Self.CompanyMst" store:Type="Tables" store:Schema="dbo">
@@ -435,6 +472,10 @@ warning 6013: The table/view 'BG_DB.dbo.TypeMst' does not have a primary key def
           <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_menuid" Association="Self.FK_menuid">
+            <End Role="MainMenuMst" EntitySet="MainMenuMst" />
+            <End Role="MenuMst" EntitySet="MenuMst" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -737,6 +778,12 @@ warning 6013: The table/view 'BG_DB.dbo.TypeMst' does not have a primary key def
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
           <EntitySet Name="PartyMsts" EntityType="BG_DBModel.PartyMst" />
+          <EntitySet Name="MainMenuMsts" EntityType="BG_DBModel.MainMenuMst" />
+          <EntitySet Name="MenuMsts" EntityType="BG_DBModel.MenuMst" />
+          <AssociationSet Name="FK_menuid" Association="BG_DBModel.FK_menuid">
+            <End Role="MainMenuMst" EntitySet="MainMenuMsts" />
+            <End Role="MenuMst" EntitySet="MenuMsts" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="PartyMst">
           <Key>
@@ -763,6 +810,43 @@ warning 6013: The table/view 'BG_DB.dbo.TypeMst' does not have a primary key def
           <Property Name="CompanyCode" Type="Int32" />
           <Property Name="TypeCode" Type="Int32" />
         </EntityType>
+        <EntityType Name="MainMenuMst">
+          <Key>
+            <PropertyRef Name="MainMenuMstID" />
+          </Key>
+          <Property Name="MainMenuMstID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MainMenuName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Icon" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="SortId" Type="Int32" />
+          <Property Name="Active" Type="Boolean" />
+          <Property Name="URL" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="MenuMsts" Relationship="BG_DBModel.FK_menuid" FromRole="MainMenuMst" ToRole="MenuMst" />
+        </EntityType>
+        <EntityType Name="MenuMst">
+          <Key>
+            <PropertyRef Name="MenuMstId" />
+          </Key>
+          <Property Name="MenuMstId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MainMenuMstId" Type="Int32" />
+          <Property Name="MenuName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SortId" Type="Int32" />
+          <Property Name="Active" Type="Boolean" />
+          <Property Name="Icon" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="URL" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="MainMenuMst" Relationship="BG_DBModel.FK_menuid" FromRole="MenuMst" ToRole="MainMenuMst" />
+        </EntityType>
+        <Association Name="FK_menuid">
+          <End Type="BG_DBModel.MainMenuMst" Role="MainMenuMst" Multiplicity="0..1" />
+          <End Type="BG_DBModel.MenuMst" Role="MenuMst" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MainMenuMst">
+              <PropertyRef Name="MainMenuMstID" />
+            </Principal>
+            <Dependent Role="MenuMst">
+              <PropertyRef Name="MainMenuMstId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1037,6 +1121,31 @@ warning 6013: The table/view 'BG_DB.dbo.TypeMst' does not have a primary key def
                 <ScalarProperty Name="Add1" ColumnName="Add1" />
                 <ScalarProperty Name="PartyName" ColumnName="PartyName" />
                 <ScalarProperty Name="PartyCode" ColumnName="PartyCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MainMenuMsts">
+            <EntityTypeMapping TypeName="BG_DBModel.MainMenuMst">
+              <MappingFragment StoreEntitySet="MainMenuMst">
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="SortId" ColumnName="SortId" />
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
+                <ScalarProperty Name="MainMenuName" ColumnName="MainMenuName" />
+                <ScalarProperty Name="MainMenuMstID" ColumnName="MainMenuMstID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MenuMsts">
+            <EntityTypeMapping TypeName="BG_DBModel.MenuMst">
+              <MappingFragment StoreEntitySet="MenuMst">
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="SortId" ColumnName="SortId" />
+                <ScalarProperty Name="MenuName" ColumnName="MenuName" />
+                <ScalarProperty Name="MainMenuMstId" ColumnName="MainMenuMstId" />
+                <ScalarProperty Name="MenuMstId" ColumnName="MenuMstId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

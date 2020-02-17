@@ -3,26 +3,25 @@
     ViewBag.Title = "Color Master";
     Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
 }
-<div class="">
-    <div class="clearfix"></div>
-    <div class="row">
-        <div class="col-md-12 col-sm-12 ">
-            <div class="x_panel">
-                <div class="x_title">
-                    <h2>Colors</h2>
-
-                    <div class="clearfix"></div>
-                </div>
-                <div class="x_content">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="card-box table-responsive">
-                                <table id="datatable-color-master" class="table table-striped table-bordered" style="width:100%">
+<div class="main-content">
+    <section class="section">
+        <div class="section-body">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Color Master</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-hover" id="color-master-table" style="width:100%;">
                                     <thead>
                                         <tr>
                                             <th>Code</th>
                                             <th>Name</th>
                                             <th>Alias Name</th>
+                                            <th>Order By</th>
+                                            <th>Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -32,6 +31,18 @@
                                                 <td>@C.ColorCode</td>
                                                 <td>@C.ColorName</td>
                                                 <td>@C.ColorAliasName</td>
+                                                <td>@C.SortID</td>
+                                                <td>
+                                                    @{ if (C.Active == true)
+                                                        {
+                                                            <div class="badge badge-success badge-shadow">Active</div>
+                                                        }
+                                                        else
+                                                        {
+                                                            <div class="badge badge-danger badge-shadow">InActive</div>
+                                                        }
+                                                    }
+                                                </td>
                                             </tr>
                                         }
                                     </tbody>
@@ -42,5 +53,5 @@
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 </div>

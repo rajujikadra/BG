@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using BG.Common;
 using BG.Helper;
 using BG_Application.CustomDTO;
+using BG_Application.Data;
 using Newtonsoft.Json;
 
 namespace BG.Areas.Admin.Controllers
@@ -139,6 +140,61 @@ namespace BG.Areas.Admin.Controllers
                 model = JsonConvert.DeserializeObject<List<FancyColorViewModel>>(resultContent);
             }
             return View(model);
+        }
+        #endregion
+
+        #region fancy ot master
+        [Route("fancy-ot-master")]
+        public ActionResult GetAllFancyOTMst()
+        {
+            var model = new List<FancyOTViewModel>();
+            using (var httpClient = ApiHelper.GetHttpClient())
+            {
+                var result = httpClient.GetAsync(Config.fancy_ot_master).Result;
+                var resultContent = result.Content.ReadAsStringAsync().Result;
+                model = JsonConvert.DeserializeObject<List<FancyOTViewModel>>(resultContent);
+            }
+            return View(model);
+        }
+        #endregion
+
+        #region shape master
+        [Route("shape-master")]
+        public ActionResult GetAllShapeMst()
+        {
+            var model = new List<ShapViewModel>();
+            using (var httpClient = ApiHelper.GetHttpClient())
+            {
+                var result = httpClient.GetAsync(Config.shape_master).Result;
+                var resultContent = result.Content.ReadAsStringAsync().Result;
+                model = JsonConvert.DeserializeObject<List<ShapViewModel>>(resultContent);
+            }
+            return View(model);
+        }
+        #endregion
+
+        #region menu
+        [ChildActionOnly]
+        public PartialViewResult GetMenu()
+        {
+            var DB = new BG_DBEntities();
+            var menu = DB.MainMenuMsts.Where(x => x.Active == true).Select(y => new MenuViewModel()
+            {
+                MainMenuName = y.MainMenuName,
+                URL = y.URL,
+                Icon = y.Icon,
+                MainMenuMstID = y.MainMenuMstID,
+                Active = y.Active,
+                SubMenu = y.MenuMsts.Where(v => v.Active == true).Select(c => new SubMenuViewModel()
+                {
+                    MenuName = c.MenuName,
+                    URL = c.URL,
+                    Active = c.Active,
+                    Icon = c.Icon,
+                    MenuMstId = c.MenuMstId
+                }).ToList()
+            }).ToList();
+            return PartialView("_MenuPartial", menu);
         }
         #endregion
     }

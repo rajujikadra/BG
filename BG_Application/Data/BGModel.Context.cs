@@ -42,5 +42,7 @@ namespace BG_Application.Data
         public virtual DbSet<CompanyMst> CompanyMsts { get; set; }
         public virtual DbSet<SizeMst> SizeMsts { get; set; }
         public virtual DbSet<PartyMst> PartyMsts { get; set; }
+        public virtual DbSet<MainMenuMst> MainMenuMsts { get; set; }
+        public virtual DbSet<MenuMst> MenuMsts { get; set; }
     }
 }

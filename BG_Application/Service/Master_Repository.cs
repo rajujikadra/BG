@@ -18,7 +18,7 @@ namespace BG_Application.Service
 
         public List<CertificateViewModel> GetAllCertificateMaster()
         {
-            return DB.CertificateMsts.Where(x => x.Active == true).Select(y => new CertificateViewModel()
+            return DB.CertificateMsts.Select(y => new CertificateViewModel()
             {
                 Active = y.Active,
                 CertificateCode = y.CertificateCode,
@@ -27,14 +27,13 @@ namespace BG_Application.Service
                 Logid = y.Logid,
                 Pcid = y.Pcid,
                 Sdate = y.Sdate,
-                SortID = y.SortID,
-                CompanyName = DB.CompanyMsts.FirstOrDefault(x => x.CompanyCode == y.CompanyCode).CompanyName
+                SortID = y.SortID
             }).ToList();
         }
 
         public List<ColorViewModel> GetAllColorMaster()
         {
-            return DB.ColorMsts.Where(x => x.Active == true).Select(y => new ColorViewModel()
+            return DB.ColorMsts.Select(y => new ColorViewModel()
             {
                 ColorCode = y.ColorCode,
                 Active = y.Active,
@@ -50,7 +49,7 @@ namespace BG_Application.Service
 
         public List<CompanyViewModel> GetAllCompanyMaster()
         {
-            return DB.CompanyMsts.Where(x => x.Active == true).Select(y => new CompanyViewModel()
+            return DB.CompanyMsts.Select(y => new CompanyViewModel()
             {
                 Active = y.Active,
                 Add1 = y.Add1,
@@ -84,7 +83,7 @@ namespace BG_Application.Service
 
         public List<CutViewModel> GetAllCutMaster()
         {
-            return DB.CutMsts.Where(x => x.Active == true).Select(y => new CutViewModel()
+            return DB.CutMsts.Select(y => new CutViewModel()
             {
                 Active = y.Active,
                 CompanyCode = y.CompanyCode,
@@ -94,14 +93,13 @@ namespace BG_Application.Service
                 Logid = y.Logid,
                 Pcid = y.Pcid,
                 Sdate = y.Sdate,
-                SortID = y.SortID,
-                CompanyName = DB.CompanyMsts.FirstOrDefault(x => x.CompanyCode == y.CompanyCode).CompanyName
+                SortID = y.SortID
             }).ToList();
         }
 
         public List<FancyColorViewModel> GetAllFancyColorMaster()
         {
-            return DB.FancyColorMsts.Where(x => x.Active == true).Select(y => new FancyColorViewModel()
+            return DB.FancyColorMsts.Select(y => new FancyColorViewModel()
             {
                 Active = y.Active,
                 CompanyCode = y.CompanyCode,
@@ -110,14 +108,13 @@ namespace BG_Application.Service
                 Logid = y.Logid,
                 Pcid = y.Pcid,
                 Sdate = y.Sdate,
-                SortID = y.SortID,
-                CompanyName = DB.CompanyMsts.FirstOrDefault(x => x.CompanyCode == y.CompanyCode).CompanyName
+                SortID = y.SortID
             }).ToList();
         }
 
         public List<FancyOTViewModel> GetAllFancyOTMaster()
         {
-            return DB.FancyOTMsts.Where(x => x.Active == true).Select(y => new FancyOTViewModel()
+            return DB.FancyOTMsts.Select(y => new FancyOTViewModel()
             {
                 Active = y.Active,
                 CompanyCode = y.CompanyCode,
@@ -132,7 +129,7 @@ namespace BG_Application.Service
 
         public List<FlouViewModel> GetAllFlouMaster()
         {
-            return DB.FlouMsts.Where(x => x.Active == true).Select(y => new FlouViewModel()
+            return DB.FlouMsts.Select(y => new FlouViewModel()
             {
                 Active = y.Active,
                 CompanyCode = y.CompanyCode,
@@ -142,14 +139,13 @@ namespace BG_Application.Service
                 Logid = y.Logid,
                 Pcid = y.Pcid,
                 Sdate = y.Sdate,
-                SortID = y.SortID,
-                CompanyName = DB.CompanyMsts.FirstOrDefault(x => x.CompanyCode == y.CompanyCode).CompanyName
+                SortID = y.SortID
             }).ToList();
         }
 
         public List<HAViewModel> GetAllHAMaster()
         {
-            return DB.HAMsts.Where(x => x.Active == true).Select(y => new HAViewModel()
+            return DB.HAMsts.Select(y => new HAViewModel()
             {
                 Active = y.Active,
                 CompanyCode = y.CompanyCode,
@@ -165,7 +161,7 @@ namespace BG_Application.Service
 
         public List<PartyViewModel> GetAllPartyMaster()
         {
-            return DB.PartyMsts.Where(x => x.Active == true).Select(y => new PartyViewModel()
+            return DB.PartyMsts.Select(y => new PartyViewModel()
             {
                 Active = y.Active,
                 Add1 = y.Add1,
@@ -186,14 +182,13 @@ namespace BG_Application.Service
                 PhNo2 = y.PhNo2,
                 Sdate = y.Sdate,
                 SortID = y.SortID,
-                TypeCode = y.TypeCode,
-                CompanyName = DB.CompanyMsts.FirstOrDefault(x => x.CompanyCode == y.CompanyCode).CompanyName
+                TypeCode = y.TypeCode
             }).ToList();
         }
 
         public List<PurityViewModel> GetAllPurityMaster()
         {
-            return DB.PurityMsts.Where(x => x.Active == true).Select(y => new PurityViewModel()
+            return DB.PurityMsts.Select(y => new PurityViewModel()
             {
                 Active = y.Active,
                 CompanyCode = y.CompanyCode,
@@ -203,14 +198,13 @@ namespace BG_Application.Service
                 PurityCode = y.PurityCode,
                 PurityName = y.PurityName,
                 Sdate = y.Sdate,
-                SortID = y.SortID,
-                CompanyName = DB.CompanyMsts.FirstOrDefault(x => x.CompanyCode == y.CompanyCode).CompanyName
+                SortID = y.SortID
             }).ToList();
         }
 
         public List<ShapViewModel> GetAllShapMaster()
         {
-            return DB.ShapeMsts.Where(x => x.Active == true).Select(y => new ShapViewModel()
+            return DB.ShapeMsts.Select(y => new ShapViewModel()
             {
                 Active = y.Active,
                 CompanyCode = y.CompanyCode,
@@ -226,7 +220,7 @@ namespace BG_Application.Service
 
         public List<SizeViewModel> GetAllSizeMaster()
         {
-            return DB.SizeMsts.Where(x => x.Active == true).Select(y => new SizeViewModel()
+            return DB.SizeMsts.Select(y => new SizeViewModel()
             {
                 Active = y.Active,
                 CompanyCode = y.CompanyCode,
@@ -237,8 +231,7 @@ namespace BG_Application.Service
                 Sdate = y.Sdate,
                 SizeMstID = y.SizeMstID,
                 SortID = y.SortID,
-                ToSize = y.ToSize,
-                CompanyName = DB.CompanyMsts.FirstOrDefault(x => x.CompanyCode == y.CompanyCode).CompanyName
+                ToSize = y.ToSize
             }).ToList();
         }
 

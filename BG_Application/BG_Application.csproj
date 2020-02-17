@@ -64,6 +64,7 @@
     <Compile Include="CustomDTO\FancyOTViewModel.cs" />
     <Compile Include="CustomDTO\FlouViewModel.cs" />
     <Compile Include="CustomDTO\HAViewModel.cs" />
+    <Compile Include="CustomDTO\MenuViewModel.cs" />
     <Compile Include="CustomDTO\PartyViewModel.cs" />
     <Compile Include="CustomDTO\PurityViewModel.cs" />
     <Compile Include="CustomDTO\ShapViewModel.cs" />
@@ -121,6 +122,12 @@
       <DependentUpon>BGModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\HAMst.cs">
+      <DependentUpon>BGModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\MainMenuMst.cs">
+      <DependentUpon>BGModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\MenuMst.cs">
       <DependentUpon>BGModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\PartyMst.cs">

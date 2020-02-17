@@ -33,77 +33,24 @@ namespace BG
                       "~/Content/sweetalert.min.css",
                       "~/Content/HoldOn.css"));
             bundles.Add(new StyleBundle("~/Admin/css").Include(
-                     //Bootstrap
-                     "~/Areas/Admin/vendors/bootstrap/dist/css/bootstrap.min.css",
-                     //Font Awesome
-                     "~/Areas/Admin/vendors/font-awesome/css/font-awesome.min.css",
-                     //NProgress
-                     "~/Areas/Admin/vendors/nprogress/nprogress.css",
-                     //iCheck
-                     "~/Areas/Admin/vendors/iCheck/skins/flat/green.css",
-                      //Data-table
-                      "~/Areas/Admin/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css",
-                      "~/Areas/Admin/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css",
-                      "~/Areas/Admin/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css",
-                      "~/Areas/Admin/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css",
-                      "~/Areas/Admin/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css",
-                     //bootstrap-progressbar
-                     "~/Areas/Admin/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css",
-                     //JQVMap
-                     "~/Areas/Admin/vendors/jqvmap/dist/jqvmap.min.css",
-                     //bootstrap-daterangepicker
-                     "~/Areas/Admin/vendors/bootstrap-daterangepicker/daterangepicker.css",
-                     //Custom Theme Style
-                     "~/Areas/Admin/build/css/custom.min.css"));
+                "~/Areas/Admin/assets/css/app.min.css",
+                "~/Areas/Admin/assets/css/style.css",
+                "~/Areas/Admin/assets/css/components.css",
+                "~/Areas/Admin/assets/css/custom.css",
+                "~/Areas/Admin/assets/bundles/datatables/datatables.min.css",
+                "~/Areas/Admin/assets/bundles/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css"));
 
             bundles.Add(new ScriptBundle("~/Admin/JS").Include(
-                      //jQuery
-                      "~/Areas/Admin/vendors/jquery/dist/jquery.min.js",
-                      //Bootstrap
-                      "~/Areas/Admin/vendors/bootstrap/dist/js/bootstrap.bundle.min.js",
-                      //FastClick
-                      "~/Areas/Admin/vendors/fastclick/lib/fastclick.js",
-                      //NProgress
-                      "~/Areas/Admin/vendors/nprogress/nprogress.js",
-                      //Chart.js
-                      "~/Areas/Admin/vendors/Chart.js/dist/Chart.min.js",
-                      //gauge.js
-                      "~/Areas/Admin/vendors/gauge.js/dist/gauge.min.js",
-                      //bootstrap-progressbar
-                      "~/Areas/Admin/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js",
-                      //iCheck
-                      "~/Areas/Admin/vendors/iCheck/icheck.min.js",
-                     //Data-table
-                     "~/Areas/Admin/vendors/datatables.net/js/jquery.dataTables.min.js",
-                     "~/Areas/Admin/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js",
-                     "~/Areas/Admin/vendors/datatables.net-buttons/js/dataTables.buttons.min.js",
-                     "~/Areas/Admin/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js",
-                     "~/Areas/Admin/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js",
-                     "~/Areas/Admin/vendors/datatables.net-responsive/js/dataTables.responsive.min.js",
-                     "~/Areas/Admin/vendors/datatables.net-scroller/js/dataTables.scroller.min.js",
-                      //Skycons
-                      "~/Areas/Admin/vendors/skycons/skycons.js",
-                      //Flot
-                      "~/Areas/Admin/vendors/Flot/jquery.flot.js",
-                      "~/Areas/Admin/vendors/Flot/jquery.flot.pie.js",
-                      "~/Areas/Admin/vendors/Flot/jquery.flot.time.js",
-                      "~/Areas/Admin/vendors/Flot/jquery.flot.stack.js",
-                      "~/Areas/Admin/vendors/Flot/jquery.flot.resize.js",
-                      //Flot plugins
-                      "~/Areas/Admin/vendors/flot.orderbars/js/jquery.flot.orderBars.js",
-                      "~/Areas/Admin/vendors/flot-spline/js/jquery.flot.spline.min.js",
-                      "~/Areas/Admin/vendors/flot.curvedlines/curvedLines.js",
-                      //DateJS
-                      "~/Areas/Admin/vendors/DateJS/build/date.js",
-                      //JQVMap
-                      "~/Areas/Admin/vendors/jqvmap/dist/jquery.vmap.js",
-                      "~/Areas/Admin/vendors/jqvmap/dist/maps/jquery.vmap.world.js",
-                      "~/Areas/Admin/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js",
-                      //bootstrap-daterangepicker
-                      "~/Areas/Admin/vendors/moment/min/moment.min.js",
-                      "~/Areas/Admin/vendors/bootstrap-daterangepicker/daterangepicker.js",
-                      //Custom Theme Scripts
-                      "~/Areas/Admin/build/js/custom.js"));
+                "~/Areas/Admin/assets/bundles/jquery-ui/jquery-ui.min.js",
+                "~/Areas/Admin/assets/js/app.min.js",
+                "~/Areas/Admin/assets/bundles/apexcharts/apexcharts.min.js",
+                "~/Areas/Admin/assets/js/page/index.js",
+                "~/Areas/Admin/assets/js/scripts.js",
+                "~/Areas/Admin/assets/bundles/datatables/datatables.min.js",
+                "~/Areas/Admin/assets/bundles/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js",
+                "~/Areas/Admin/assets/js/page/datatables.js",
+                "~/Areas/Admin/assets/js/scripts.js",
+                "~/Areas/Admin/assets/js/custom.js"));
         }
     }
 }

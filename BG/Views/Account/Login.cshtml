@@ -65,7 +65,6 @@
                 method: "Post",
                 data: form.serialize(),
                 success: function (data) {
-                    debugger;
                     if (data.StatusCode == 200) {                       
                         location.href = "/";
                     } else if (data.StatusCode == 404) {

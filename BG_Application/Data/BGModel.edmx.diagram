@@ -25,6 +25,9 @@
         <AssociationConnector Association="BG_DBModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="BG_DBModel.AspNetUserRoles" ManuallyRouted="false" />
         <EntityTypeShape EntityType="BG_DBModel.PartyMst" Width="1.5" PointX="5.375" PointY="10.75" />
+        <EntityTypeShape EntityType="BG_DBModel.MainMenuMst" Width="1.5" PointX="11.375" PointY="12" />
+        <EntityTypeShape EntityType="BG_DBModel.MenuMst" Width="1.5" PointX="13.625" PointY="12" />
+        <AssociationConnector Association="BG_DBModel.FK_menuid" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
