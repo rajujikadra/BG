@@ -29,7 +29,6 @@ namespace BG_Application.Data
         public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
         public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
-        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<CertificateMst> CertificateMsts { get; set; }
         public virtual DbSet<ColorMst> ColorMsts { get; set; }
         public virtual DbSet<CutMst> CutMsts { get; set; }
@@ -44,5 +43,9 @@ namespace BG_Application.Data
         public virtual DbSet<PartyMst> PartyMsts { get; set; }
         public virtual DbSet<MainMenuMst> MainMenuMsts { get; set; }
         public virtual DbSet<MenuMst> MenuMsts { get; set; }
+        public virtual DbSet<CountryMst> CountryMsts { get; set; }
+        public virtual DbSet<StateMst> StateMsts { get; set; }
+        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
+        public virtual DbSet<CityMst> CityMsts { get; set; }
     }
 }

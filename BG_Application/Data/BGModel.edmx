@@ -66,6 +66,18 @@
           <Property Name="AccessFailedCount" Type="int" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
           <Property Name="FirstName" Type="varchar" MaxLength="100" />
+          <Property Name="LastName" Type="varchar" MaxLength="100" />
+          <Property Name="UserCityId" Type="int" />
+          <Property Name="Mobile" Type="varchar" MaxLength="50" />
+          <Property Name="CompanyName" Type="varchar" MaxLength="150" />
+          <Property Name="ContactPerson" Type="varchar" MaxLength="150" />
+          <Property Name="CompanyAddress" Type="varchar(max)" />
+          <Property Name="CompanyCityId" Type="int" />
+          <Property Name="CompanyZipcode" Type="varchar" MaxLength="10" />
+          <Property Name="RefName" Type="varchar" MaxLength="150" />
+          <Property Name="RefMobile" Type="varchar" MaxLength="50" />
+          <Property Name="RefBusiness" Type="varchar" MaxLength="50" />
+          <Property Name="Active" Type="bit" />
         </EntityType>
         <EntityType Name="CertificateMst">
           <Key>
@@ -78,6 +90,15 @@
           <Property Name="Pcid" Type="nvarchar" MaxLength="50" />
           <Property Name="Sdate" Type="datetime" />
           <Property Name="CompanyCode" Type="int" />
+          <Property Name="Active" Type="bit" />
+        </EntityType>
+        <EntityType Name="CityMst">
+          <Key>
+            <PropertyRef Name="CityId" />
+          </Key>
+          <Property Name="CityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StateId" Type="int" />
+          <Property Name="CityName" Type="varchar" MaxLength="50" />
           <Property Name="Active" Type="bit" />
         </EntityType>
         <EntityType Name="ColorMst">
@@ -130,6 +151,15 @@ warning 6002: The table/view 'BG_DB.dbo.CompanyMst' does not have a primary key 
           <Property Name="Sdate" Type="datetime" />
           <Property Name="CompanyLogo" Type="image" />
           <Property Name="CPATH" Type="nvarchar(max)" />
+          <Property Name="Active" Type="bit" />
+        </EntityType>
+        <EntityType Name="CountryMst">
+          <Key>
+            <PropertyRef Name="CountryId" />
+          </Key>
+          <Property Name="CountryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CountryCode" Type="varchar" MaxLength="8" />
+          <Property Name="CountryName" Type="varchar" MaxLength="50" />
           <Property Name="Active" Type="bit" />
         </EntityType>
         <EntityType Name="CutMst">
@@ -295,6 +325,15 @@ warning 6002: The table/view 'BG_DB.dbo.SizeMst' does not have a primary key def
           <Property Name="CompanyCode" Type="int" />
           <Property Name="Active" Type="bit" />
         </EntityType>
+        <EntityType Name="StateMst">
+          <Key>
+            <PropertyRef Name="StateId" />
+          </Key>
+          <Property Name="StateId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CountryId" Type="int" />
+          <Property Name="StateName" Type="varchar" MaxLength="50" />
+          <Property Name="Active" Type="bit" />
+        </EntityType>
         <!--Errors Found During Generation:
 warning 6013: The table/view 'BG_DB.dbo.TypeMst' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
         <EntityType Name="TypeMst">
@@ -302,6 +341,30 @@ warning 6013: The table/view 'BG_DB.dbo.TypeMst' does not have a primary key def
           <Property Name="Type" Type="nvarchar" MaxLength="50" />
           <Property Name="Active" Type="bit" />
         </EntityType>-->
+        <Association Name="FK_CompanyCityId">
+          <End Role="CityMst" Type="Self.CityMst" Multiplicity="0..1" />
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CityMst">
+              <PropertyRef Name="CityId" />
+            </Principal>
+            <Dependent Role="AspNetUsers">
+              <PropertyRef Name="CompanyCityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CountrtId">
+          <End Role="CountryMst" Type="Self.CountryMst" Multiplicity="0..1" />
+          <End Role="StateMst" Type="Self.StateMst" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CountryMst">
+              <PropertyRef Name="CountryId" />
+            </Principal>
+            <Dependent Role="StateMst">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -370,6 +433,30 @@ warning 6013: The table/view 'BG_DB.dbo.TypeMst' does not have a primary key def
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_State">
+          <End Role="StateMst" Type="Self.StateMst" Multiplicity="0..1" />
+          <End Role="CityMst" Type="Self.CityMst" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StateMst">
+              <PropertyRef Name="StateId" />
+            </Principal>
+            <Dependent Role="CityMst">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserCityId">
+          <End Role="CityMst" Type="Self.CityMst" Multiplicity="0..1" />
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CityMst">
+              <PropertyRef Name="CityId" />
+            </Principal>
+            <Dependent Role="AspNetUsers">
+              <PropertyRef Name="UserCityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="BG_DBModelStoreContainer">
           <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
@@ -378,7 +465,9 @@ warning 6013: The table/view 'BG_DB.dbo.TypeMst' does not have a primary key def
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CertificateMst" EntityType="Self.CertificateMst" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CityMst" EntityType="Self.CityMst" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ColorMst" EntityType="Self.ColorMst" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CountryMst" EntityType="Self.CountryMst" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CutMst" EntityType="Self.CutMst" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FancyColorMst" EntityType="Self.FancyColorMst" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FancyOTMst" EntityType="Self.FancyOTMst" Schema="dbo" store:Type="Tables" />
@@ -388,6 +477,7 @@ warning 6013: The table/view 'BG_DB.dbo.TypeMst' does not have a primary key def
           <EntitySet Name="MenuMst" EntityType="Self.MenuMst" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PurityMst" EntityType="Self.PurityMst" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ShapeMst" EntityType="Self.ShapeMst" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StateMst" EntityType="Self.StateMst" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CompanyMst" EntityType="Self.CompanyMst" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [CompanyMst].[CompanyMstId] AS [CompanyMstId], 
@@ -457,6 +547,14 @@ warning 6013: The table/view 'BG_DB.dbo.TypeMst' does not have a primary key def
     [SizeMst].[Active] AS [Active]
     FROM [dbo].[SizeMst] AS [SizeMst]</DefiningQuery>
           </EntitySet>
+          <AssociationSet Name="FK_CompanyCityId" Association="Self.FK_CompanyCityId">
+            <End Role="CityMst" EntitySet="CityMst" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CountrtId" Association="Self.FK_CountrtId">
+            <End Role="CountryMst" EntitySet="CountryMst" />
+            <End Role="StateMst" EntitySet="StateMst" />
+          </AssociationSet>
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
@@ -476,6 +574,14 @@ warning 6013: The table/view 'BG_DB.dbo.TypeMst' does not have a primary key def
           <AssociationSet Name="FK_menuid" Association="Self.FK_menuid">
             <End Role="MainMenuMst" EntitySet="MainMenuMst" />
             <End Role="MenuMst" EntitySet="MenuMst" />
+          </AssociationSet>
+          <AssociationSet Name="FK_State" Association="Self.FK_State">
+            <End Role="StateMst" EntitySet="StateMst" />
+            <End Role="CityMst" EntitySet="CityMst" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserCityId" Association="Self.FK_UserCityId">
+            <End Role="CityMst" EntitySet="CityMst" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -498,7 +604,7 @@ warning 6013: The table/view 'BG_DB.dbo.TypeMst' does not have a primary key def
           </Key>
           <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+          <NavigationProperty Name="AspNetUsers" Relationship="BG_DBModel.AspNetUserRoles" FromRole="AspNetRole" ToRole="AspNetUser" />
         </EntityType>
         <EntityType Name="AspNetUserClaim">
           <Key>
@@ -508,7 +614,7 @@ warning 6013: The table/view 'BG_DB.dbo.TypeMst' does not have a primary key def
           <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+          <NavigationProperty Name="AspNetUser" Relationship="BG_DBModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaim" ToRole="AspNetUser" />
         </EntityType>
         <EntityType Name="AspNetUserLogin">
           <Key>
@@ -519,28 +625,7 @@ warning 6013: The table/view 'BG_DB.dbo.TypeMst' does not have a primary key def
           <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
-        </EntityType>
-        <EntityType Name="AspNetUser">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
-          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
-          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
-          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
-          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
-          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
-          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
-          <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
-          <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+          <NavigationProperty Name="AspNetUser" Relationship="BG_DBModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogin" ToRole="AspNetUser" />
         </EntityType>
         <EntityType Name="CertificateMst">
           <Key>
@@ -716,44 +801,11 @@ warning 6013: The table/view 'BG_DB.dbo.TypeMst' does not have a primary key def
           <Property Name="CompanyCode" Type="Int32" />
           <Property Name="Active" Type="Boolean" />
         </EntityType>
-        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
-          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaim" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUsers">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AspNetUserClaims">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
-          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogin" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUsers">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AspNetUserLogins">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="AspNetUserRoles">
-          <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
-          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
-        </Association>
         <EntityContainer Name="BG_DBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
-          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
           <EntitySet Name="CertificateMsts" EntityType="Self.CertificateMst" />
           <EntitySet Name="ColorMsts" EntityType="Self.ColorMst" />
           <EntitySet Name="CutMsts" EntityType="Self.CutMst" />
@@ -765,18 +817,6 @@ warning 6013: The table/view 'BG_DB.dbo.TypeMst' does not have a primary key def
           <EntitySet Name="ShapeMsts" EntityType="Self.ShapeMst" />
           <EntitySet Name="CompanyMsts" EntityType="Self.CompanyMst" />
           <EntitySet Name="SizeMsts" EntityType="Self.SizeMst" />
-          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
-          </AssociationSet>
-          <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
-            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-          </AssociationSet>
           <EntitySet Name="PartyMsts" EntityType="BG_DBModel.PartyMst" />
           <EntitySet Name="MainMenuMsts" EntityType="BG_DBModel.MainMenuMst" />
           <EntitySet Name="MenuMsts" EntityType="BG_DBModel.MenuMst" />
@@ -784,7 +824,39 @@ warning 6013: The table/view 'BG_DB.dbo.TypeMst' does not have a primary key def
             <End Role="MainMenuMst" EntitySet="MainMenuMsts" />
             <End Role="MenuMst" EntitySet="MenuMsts" />
           </AssociationSet>
-        </EntityContainer>
+          <EntitySet Name="CountryMsts" EntityType="BG_DBModel.CountryMst" />
+          <EntitySet Name="StateMsts" EntityType="BG_DBModel.StateMst" />
+          <AssociationSet Name="FK_CountrtId" Association="BG_DBModel.FK_CountrtId">
+            <End Role="CountryMst" EntitySet="CountryMsts" />
+            <End Role="StateMst" EntitySet="StateMsts" />
+          </AssociationSet>
+          <EntitySet Name="AspNetUsers" EntityType="BG_DBModel.AspNetUser" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="BG_DBModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaim" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="BG_DBModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="BG_DBModel.AspNetUserRoles">
+            <End Role="AspNetRole" EntitySet="AspNetRoles" />
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <EntitySet Name="CityMsts" EntityType="BG_DBModel.CityMst" />
+          <AssociationSet Name="FK_CompanyCityId" Association="BG_DBModel.FK_CompanyCityId">
+            <End Role="CityMst" EntitySet="CityMsts" />
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserCityId" Association="BG_DBModel.FK_UserCityId">
+            <End Role="CityMst" EntitySet="CityMsts" />
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_State" Association="BG_DBModel.FK_State">
+            <End Role="StateMst" EntitySet="StateMsts" />
+            <End Role="CityMst" EntitySet="CityMsts" />
+          </AssociationSet>
+          </EntityContainer>
         <EntityType Name="PartyMst">
           <Key>
             <PropertyRef Name="PartyCode" />
@@ -847,7 +919,155 @@ warning 6013: The table/view 'BG_DB.dbo.TypeMst' does not have a primary key def
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        <EntityType Name="CountryMst">
+          <Key>
+            <PropertyRef Name="CountryId" />
+          </Key>
+          <Property Name="CountryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CountryCode" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="CountryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Active" Type="Boolean" />
+          <NavigationProperty Name="StateMsts" Relationship="BG_DBModel.FK_CountrtId" FromRole="CountryMst" ToRole="StateMst" />
+        </EntityType>
+        <EntityType Name="StateMst">
+          <Key>
+            <PropertyRef Name="StateId" />
+          </Key>
+          <Property Name="StateId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CountryId" Type="Int32" />
+          <Property Name="StateName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Active" Type="Boolean" />
+          <NavigationProperty Name="CountryMst" Relationship="BG_DBModel.FK_CountrtId" FromRole="StateMst" ToRole="CountryMst" />
+          <NavigationProperty Name="CityMsts" Relationship="BG_DBModel.FK_State" FromRole="StateMst" ToRole="CityMst" />
+        </EntityType>
+        <Association Name="FK_CountrtId">
+          <End Type="BG_DBModel.CountryMst" Role="CountryMst" Multiplicity="0..1" />
+          <End Type="BG_DBModel.StateMst" Role="StateMst" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CountryMst">
+              <PropertyRef Name="CountryId" />
+            </Principal>
+            <Dependent Role="StateMst">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="UserCityId" Type="Int32" />
+          <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CompanyName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="ContactPerson" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="CompanyAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CompanyCityId" Type="Int32" />
+          <Property Name="CompanyZipcode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="RefName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="RefMobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RefBusiness" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Active" Type="Boolean" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="BG_DBModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="BG_DBModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
+          <NavigationProperty Name="AspNetRoles" Relationship="BG_DBModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
+          <NavigationProperty Name="CityMst" Relationship="BG_DBModel.FK_CompanyCityId" FromRole="AspNetUser" ToRole="CityMst" />
+          <NavigationProperty Name="CityMst1" Relationship="BG_DBModel.FK_UserCityId" FromRole="AspNetUser" ToRole="CityMst" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Type="BG_DBModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="BG_DBModel.AspNetUserClaim" Role="AspNetUserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaim">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Type="BG_DBModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="BG_DBModel.AspNetUserLogin" Role="AspNetUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogin">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Type="BG_DBModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
+          <End Type="BG_DBModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+        </Association>
+        <EntityType Name="CityMst">
+          <Key>
+            <PropertyRef Name="CityId" />
+          </Key>
+          <Property Name="CityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StateId" Type="Int32" />
+          <Property Name="CityName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Active" Type="Boolean" />
+          <NavigationProperty Name="AspNetUsers" Relationship="BG_DBModel.FK_CompanyCityId" FromRole="CityMst" ToRole="AspNetUser" />
+          <NavigationProperty Name="AspNetUsers1" Relationship="BG_DBModel.FK_UserCityId" FromRole="CityMst" ToRole="AspNetUser" />
+          <NavigationProperty Name="StateMst" Relationship="BG_DBModel.FK_State" FromRole="CityMst" ToRole="StateMst" />
+        </EntityType>
+        <Association Name="FK_CompanyCityId">
+          <End Type="BG_DBModel.CityMst" Role="CityMst" Multiplicity="0..1" />
+          <End Type="BG_DBModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CityMst">
+              <PropertyRef Name="CityId" />
+            </Principal>
+            <Dependent Role="AspNetUser">
+              <PropertyRef Name="CompanyCityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserCityId">
+          <End Type="BG_DBModel.CityMst" Role="CityMst" Multiplicity="0..1" />
+          <End Type="BG_DBModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CityMst">
+              <PropertyRef Name="CityId" />
+            </Principal>
+            <Dependent Role="AspNetUser">
+              <PropertyRef Name="UserCityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_State">
+          <End Type="BG_DBModel.StateMst" Role="StateMst" Multiplicity="0..1" />
+          <End Type="BG_DBModel.CityMst" Role="CityMst" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StateMst">
+              <PropertyRef Name="StateId" />
+            </Principal>
+            <Dependent Role="CityMst">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -887,25 +1107,6 @@ warning 6013: The table/view 'BG_DB.dbo.TypeMst' does not have a primary key def
                 <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
                 <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AspNetUsers">
-            <EntityTypeMapping TypeName="BG_DBModel.AspNetUser">
-              <MappingFragment StoreEntitySet="AspNetUsers">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
-                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
-                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
-                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
-                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
-                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
-                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
-                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1090,14 +1291,6 @@ warning 6013: The table/view 'BG_DB.dbo.TypeMst' does not have a primary key def
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="AspNetUserRoles" TypeName="BG_DBModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
-            <EndProperty Name="AspNetRoles">
-              <ScalarProperty Name="Id" ColumnName="RoleId" />
-            </EndProperty>
-            <EndProperty Name="AspNetUsers">
-              <ScalarProperty Name="Id" ColumnName="UserId" />
-            </EndProperty>
-          </AssociationSetMapping>
           <EntitySetMapping Name="PartyMsts">
             <EntityTypeMapping TypeName="BG_DBModel.PartyMst">
               <MappingFragment StoreEntitySet="PartyMst">
@@ -1146,6 +1339,75 @@ warning 6013: The table/view 'BG_DB.dbo.TypeMst' does not have a primary key def
                 <ScalarProperty Name="MenuName" ColumnName="MenuName" />
                 <ScalarProperty Name="MainMenuMstId" ColumnName="MainMenuMstId" />
                 <ScalarProperty Name="MenuMstId" ColumnName="MenuMstId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CountryMsts">
+            <EntityTypeMapping TypeName="BG_DBModel.CountryMst">
+              <MappingFragment StoreEntitySet="CountryMst">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+                <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StateMsts">
+            <EntityTypeMapping TypeName="BG_DBModel.StateMst">
+              <MappingFragment StoreEntitySet="StateMst">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="StateName" ColumnName="StateName" />
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="BG_DBModel.AspNetUser">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="RefBusiness" ColumnName="RefBusiness" />
+                <ScalarProperty Name="RefMobile" ColumnName="RefMobile" />
+                <ScalarProperty Name="RefName" ColumnName="RefName" />
+                <ScalarProperty Name="CompanyZipcode" ColumnName="CompanyZipcode" />
+                <ScalarProperty Name="CompanyCityId" ColumnName="CompanyCityId" />
+                <ScalarProperty Name="CompanyAddress" ColumnName="CompanyAddress" />
+                <ScalarProperty Name="ContactPerson" ColumnName="ContactPerson" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="UserCityId" ColumnName="UserCityId" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="BG_DBModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetUser">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+            <EndProperty Name="AspNetRole">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="CityMsts">
+            <EntityTypeMapping TypeName="BG_DBModel.CityMst">
+              <MappingFragment StoreEntitySet="CityMst">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -9,8 +9,7 @@
         <EntityTypeShape EntityType="BG_DBModel.AspNetRole" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
         <EntityTypeShape EntityType="BG_DBModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="BG_DBModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BG_DBModel.AspNetUser" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="BG_DBModel.CertificateMst" Width="1.5" PointX="2.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BG_DBModel.CertificateMst" Width="1.5" PointX="2.375" PointY="7.75" IsExpanded="true" />
         <EntityTypeShape EntityType="BG_DBModel.ColorMst" Width="1.5" PointX="4.75" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="BG_DBModel.CutMst" Width="1.5" PointX="6.75" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="BG_DBModel.FancyColorMst" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
@@ -21,13 +20,21 @@
         <EntityTypeShape EntityType="BG_DBModel.ShapeMst" Width="1.5" PointX="2.75" PointY="10.75" IsExpanded="true" />
         <EntityTypeShape EntityType="BG_DBModel.CompanyMst" Width="1.5" PointX="10.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="BG_DBModel.SizeMst" Width="1.5" PointX="11.75" PointY="0.75" IsExpanded="true" />
-        <AssociationConnector Association="BG_DBModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
-        <AssociationConnector Association="BG_DBModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
-        <AssociationConnector Association="BG_DBModel.AspNetUserRoles" ManuallyRouted="false" />
         <EntityTypeShape EntityType="BG_DBModel.PartyMst" Width="1.5" PointX="5.375" PointY="10.75" />
         <EntityTypeShape EntityType="BG_DBModel.MainMenuMst" Width="1.5" PointX="11.375" PointY="12" />
         <EntityTypeShape EntityType="BG_DBModel.MenuMst" Width="1.5" PointX="13.625" PointY="12" />
         <AssociationConnector Association="BG_DBModel.FK_menuid" />
+        <EntityTypeShape EntityType="BG_DBModel.CountryMst" Width="1.5" PointX="13.375" PointY="5" />
+        <EntityTypeShape EntityType="BG_DBModel.StateMst" Width="1.5" PointX="15.625" PointY="4.875" />
+        <AssociationConnector Association="BG_DBModel.FK_CountrtId" />
+        <EntityTypeShape EntityType="BG_DBModel.AspNetUser" Width="1.5" PointX="20.125" PointY="1.5" />
+        <AssociationConnector Association="BG_DBModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="BG_DBModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="BG_DBModel.AspNetUserRoles" />
+        <EntityTypeShape EntityType="BG_DBModel.CityMst" Width="1.5" PointX="17.875" PointY="4.75" />
+        <AssociationConnector Association="BG_DBModel.FK_CompanyCityId" />
+        <AssociationConnector Association="BG_DBModel.FK_UserCityId" />
+        <AssociationConnector Association="BG_DBModel.FK_State" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

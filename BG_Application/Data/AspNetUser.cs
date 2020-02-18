@@ -35,6 +35,18 @@ namespace BG_Application.Data
         public int AccessFailedCount { get; set; }
         public string UserName { get; set; }
         public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public Nullable<int> UserCityId { get; set; }
+        public string Mobile { get; set; }
+        public string CompanyName { get; set; }
+        public string ContactPerson { get; set; }
+        public string CompanyAddress { get; set; }
+        public Nullable<int> CompanyCityId { get; set; }
+        public string CompanyZipcode { get; set; }
+        public string RefName { get; set; }
+        public string RefMobile { get; set; }
+        public string RefBusiness { get; set; }
+        public Nullable<bool> Active { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetUserClaim> AspNetUserClaims { get; set; }
@@ -42,5 +54,7 @@ namespace BG_Application.Data
         public virtual ICollection<AspNetUserLogin> AspNetUserLogins { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetRole> AspNetRoles { get; set; }
+        public virtual CityMst CityMst { get; set; }
+        public virtual CityMst CityMst1 { get; set; }
     }
 }
