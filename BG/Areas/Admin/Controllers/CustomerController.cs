@@ -39,5 +39,13 @@ namespace BG.Areas.Admin.Controllers
             return View(model);
         }
         #endregion
+        #region customer details
+        [HttpGet]
+        [Route("customer/{userid}")]
+        public ActionResult CustomeDetails(string userid)
+        {
+            return View();
+        }
+        #endregion
     }
 }

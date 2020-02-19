@@ -1061,6 +1061,7 @@
     <Content Include="Areas\Admin\Views\Master\GetAllFancyOTMst.cshtml" />
     <Content Include="Areas\Admin\Views\Master\GetAllShapeMst.cshtml" />
     <Content Include="Areas\Admin\Views\Customer\GetNewCustomers.cshtml" />
+    <Content Include="Areas\Admin\Views\Customer\CustomeDetails.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\ClientJS\common.js" />
     <Content Include="Scripts\HoldOn.js" />

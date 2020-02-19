@@ -22,6 +22,7 @@ namespace BG_API.Models
         public string RefMobile { get; set; }
         public string RefBusiness { get; set; }
         public Nullable<bool> Active { get; set; }
+        public string Address { get; set; }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager, string authenticationType)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType

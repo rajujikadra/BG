@@ -67,6 +67,7 @@
           <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
           <Property Name="FirstName" Type="varchar" MaxLength="100" />
           <Property Name="LastName" Type="varchar" MaxLength="100" />
+          <Property Name="Address" Type="varchar(max)" />
           <Property Name="UserCityId" Type="int" />
           <Property Name="Mobile" Type="varchar" MaxLength="50" />
           <Property Name="CompanyName" Type="varchar" MaxLength="150" />
@@ -334,13 +335,6 @@ warning 6002: The table/view 'BG_DB.dbo.SizeMst' does not have a primary key def
           <Property Name="StateName" Type="varchar" MaxLength="50" />
           <Property Name="Active" Type="bit" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'BG_DB.dbo.TypeMst' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="TypeMst">
-          <Property Name="TypeCode" Type="int" />
-          <Property Name="Type" Type="nvarchar" MaxLength="50" />
-          <Property Name="Active" Type="bit" />
-        </EntityType>-->
         <Association Name="FK_CompanyCityId">
           <End Role="CityMst" Type="Self.CityMst" Multiplicity="0..1" />
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
@@ -986,6 +980,7 @@ warning 6013: The table/view 'BG_DB.dbo.TypeMst' does not have a primary key def
           <NavigationProperty Name="AspNetRoles" Relationship="BG_DBModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
           <NavigationProperty Name="CityMst" Relationship="BG_DBModel.FK_CompanyCityId" FromRole="AspNetUser" ToRole="CityMst" />
           <NavigationProperty Name="CityMst1" Relationship="BG_DBModel.FK_UserCityId" FromRole="AspNetUser" ToRole="CityMst" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Type="BG_DBModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
@@ -1365,6 +1360,7 @@ warning 6013: The table/view 'BG_DB.dbo.TypeMst' does not have a primary key def
           <EntitySetMapping Name="AspNetUsers">
             <EntityTypeMapping TypeName="BG_DBModel.AspNetUser">
               <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="Active" ColumnName="Active" />
                 <ScalarProperty Name="RefBusiness" ColumnName="RefBusiness" />
                 <ScalarProperty Name="RefMobile" ColumnName="RefMobile" />

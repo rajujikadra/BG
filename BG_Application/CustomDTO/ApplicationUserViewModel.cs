@@ -28,6 +28,8 @@ namespace BG_Application.CustomDTO
         public string CompanyAddress { get; set; }
         public Nullable<int> CompanyCityId { get; set; }
         public string CompanyCityName { get; set; }
+        public string CompanyStateName { get; set; }
+        public string CompanyCountryName { get; set; }
         public string CompanyZipcode { get; set; }
         public string RefName { get; set; }
         public string RefMobile { get; set; }
@@ -35,5 +37,8 @@ namespace BG_Application.CustomDTO
         public Nullable<bool> Active { get; set; }
         public Nullable<int> UserCityId { get; set; }
         public string UserCityName { get; set; }
+        public string UserState { get; set; }
+        public string UserCountry { get; set; }
+        public string Address { get; set; }
     }
 }

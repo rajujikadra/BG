@@ -46,7 +46,7 @@ $('#save-stage').DataTable({
 });
 $('#new-customer-table').DataTable({
     "columnDefs": [
-        { "sortable": false, "targets": [0, 11] }
+        { "sortable": false, "targets": [0] }
     ],
     order: [[1, "asc"]], //column indexes is zero based
     dom: 'Bfrtip',
