@@ -22,12 +22,12 @@ namespace BG_API.Controllers
 
         #region get new customers
         [HttpGet]
-        [Route("new-customers")]
-        public IHttpActionResult GetAllColorMst()
+        [Route("customers/{active}")]
+        public IHttpActionResult GetAllColorMst(string active)
         {
             try
             {
-                var users = _ICustomer_Repository.GetInActiveCustomers();
+                var users = _ICustomer_Repository.GetInActiveCustomers(active == EnumTypes.CustomerType.New.ToString().ToLower() ? false : true);
                 return Ok(users);
             }
             catch (Exception ex)

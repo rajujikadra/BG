@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace BG.Controllers
 {
+    [Authorize]
     public class HomeController : BaseController
     {
         public ActionResult Index()
@@ -32,27 +33,5 @@ namespace BG.Controllers
 
             return View();
         }
-        //[ChildActionOnly]
-        //public PartialViewResult GetMenu()
-        //{
-        //    var DB = new BG_DBEntities();
-        //    var menu = DB.MainMenuMsts.Where(x => x.Active == true).Select(y => new MenuViewModel()
-        //    {
-        //        MainMenuName = y.MainMenuName,
-        //        URL = y.URL,
-        //        Icon = y.Icon,
-        //        MainMenuMstID = y.MainMenuMstID,
-        //        Active = y.Active,
-        //        SubMenu = y.MenuMsts.Where(v => v.Active == true).Select(c => new SubMenuViewModel()
-        //        {
-        //            MenuName = c.MenuName,
-        //            URL = c.URL,
-        //            Active = c.Active,
-        //            Icon = c.Icon,
-        //            MenuMstId = c.MenuMstId
-        //        }).ToList()
-        //    }).ToList();
-        //    return PartialView("_MenuPartial", menu);
-        //}
     }
 }

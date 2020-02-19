@@ -4,6 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using BG.Common;
+using BG.Helper;
+using BG_Application.CustomDTO;
+using BG_Application.Data;
+using Newtonsoft.Json;
 
 namespace BG.Areas.Admin.Controllers
 {
@@ -19,7 +24,14 @@ namespace BG.Areas.Admin.Controllers
             {
                 return RedirectToAction("Login", "Account", new { area = "" });
             }
-            return View();
+            var model = new AdminDashboardViewModel();
+            using (var httpClient = ApiHelper.GetHttpClient())
+            {
+                var result = httpClient.GetAsync(Config.dashboard).Result;
+                var resultContent = result.Content.ReadAsStringAsync().Result;
+                model = JsonConvert.DeserializeObject<AdminDashboardViewModel>(resultContent);
+            }
+            return View(model);
         }
     }
 }

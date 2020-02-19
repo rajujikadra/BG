@@ -8,41 +8,24 @@ using System.Threading.Tasks;
 
 namespace BG_Application.Service
 {
-    public class Customer_Repository : ICustomer_Repository, IDisposable
+    public class Dashboard_Repository : IDashboard_Repository, IDisposable
     {
         private BG_Application.Data.BG_DBEntities DB;
-        public Customer_Repository(BG_Application.Data.BG_DBEntities _DB)
+        public Dashboard_Repository(BG_Application.Data.BG_DBEntities _DB)
         {
             DB = _DB;
         }
-        public List<ApplicationUserViewModel> GetInActiveCustomers(bool active)
+        public AdminDashboardViewModel GetAdminDashboard()
         {
-            var Users = DB.AspNetUsers.Where(x => x.Active == active).Select(y => new ApplicationUserViewModel()
-            {
-                Id = y.Id,
-                FirstName = y.FirstName,
-                LastName = y.LastName,
-                Email = y.Email,
-                CompanyAddress = y.CompanyAddress,
-                CompanyCityId = y.CompanyCityId,
-                CompanyName = y.CompanyName,
-                CompanyZipcode = y.CompanyZipcode,
-                CompanyCityName = y.CityMst.CityName,
-                ContactPerson = y.ContactPerson,
-                Mobile = y.Mobile,
-                RefBusiness = y.RefBusiness,
-                RefMobile = y.RefMobile,
-                RefName = y.RefName,
-                UserCityName = y.CityMst1.CityName,
-                Active = y.Active
-
-            }).ToList();
-            return Users;
+            var model = new AdminDashboardViewModel();
+            model.TilesCount.NewCustomers_Count = DB.AspNetUsers.Count(x => x.Active == false);
+            model.TilesCount.Customers_Count = DB.AspNetUsers.Count(x => x.Active == true);
+            return model;
         }
+
 
         #region IDisposable Support
         private bool disposedValue = false; // To detect redundant calls
-
         protected virtual void Dispose(bool disposing)
         {
             if (!disposedValue)

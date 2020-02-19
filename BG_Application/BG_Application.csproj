@@ -56,11 +56,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="CustomDTO\AdminDashboardViewModel.cs" />
     <Compile Include="CustomDTO\ApplicationUserViewModel.cs" />
     <Compile Include="CustomDTO\CertificateViewModel.cs" />
     <Compile Include="CustomDTO\ColorViewModel.cs" />
     <Compile Include="CustomDTO\CompanyViewModel.cs" />
     <Compile Include="CustomDTO\CutViewModel.cs" />
+    <Compile Include="CustomDTO\EnumTypes.cs" />
     <Compile Include="CustomDTO\FancyColorViewModel.cs" />
     <Compile Include="CustomDTO\FancyOTViewModel.cs" />
     <Compile Include="CustomDTO\FlouViewModel.cs" />
@@ -154,8 +156,10 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceContract\ICustomer_Repository.cs" />
+    <Compile Include="ServiceContract\IDashboard_Repository.cs" />
     <Compile Include="ServiceContract\IMaster_Repository.cs" />
     <Compile Include="Service\Customer_Repository.cs" />
+    <Compile Include="Service\Dashboard_Repository.cs" />
     <Compile Include="Service\Master_Repository.cs" />
   </ItemGroup>
   <ItemGroup>

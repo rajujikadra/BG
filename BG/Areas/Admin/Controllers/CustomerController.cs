@@ -9,6 +9,8 @@ using BG.Helper;
 using BG_Application.CustomDTO;
 using BG_Application.Data;
 using Newtonsoft.Json;
+
+
 namespace BG.Areas.Admin.Controllers
 {
     [Authorize]
@@ -24,13 +26,13 @@ namespace BG.Areas.Admin.Controllers
 
         #region get new customers
         [HttpGet]
-        [Route("new-customers")]
-        public ActionResult GetNewCustomers()
+        [Route("customers/{active}")]
+        public ActionResult GetNewCustomers(string active)
         {
             var model = new List<ApplicationUserViewModel>();
             using (var httpClient = ApiHelper.GetHttpClient())
             {
-                var result = httpClient.GetAsync(Config.new_customers).Result;
+                var result = httpClient.GetAsync(Config.new_customers + "/" + active).Result;
                 var resultContent = result.Content.ReadAsStringAsync().Result;
                 model = JsonConvert.DeserializeObject<List<ApplicationUserViewModel>>(resultContent);
             }

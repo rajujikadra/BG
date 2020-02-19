@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace BG_Application.ServiceContract
 {
-    public interface ICustomer_Repository
+    public interface IDashboard_Repository
     {
-        List<ApplicationUserViewModel> GetInActiveCustomers(bool active);
+        AdminDashboardViewModel GetAdminDashboard();
     }
 }

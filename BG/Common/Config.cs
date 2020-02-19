@@ -27,6 +27,7 @@ namespace BG.Common
         public static readonly string fancy_ot_master = "api/master/fancy-ot-master";
         public static readonly string shape_master = "api/master/shap-master";
 
-        public static readonly string new_customers = "api/customer/new-customers";
-    }
+        public static readonly string new_customers = "api/customer/customers";
+        public static readonly string dashboard = "api/dashboard";
+    }  
 }
