@@ -36,5 +36,22 @@ namespace BG_API.Controllers
             }
         }
         #endregion
+
+        #region get customer details
+        [HttpGet]
+        [Route("details/{UserId}")]
+        public IHttpActionResult GetCustomerDetails(string UserId)
+        {
+            try
+            {
+                var users = _ICustomer_Repository.GetCustomerDetails(UserId);
+                return Ok(users);
+            }
+            catch (Exception ex)
+            {
+                return NotFound();
+            }
+        }
+        #endregion
     }
 }

@@ -39,7 +39,29 @@ namespace BG_Application.Service
             }).ToList();
             return Users;
         }
-
+        public ApplicationUserViewModel GetCustomerDetails(string UserId)
+        {
+            return DB.AspNetUsers.Where(x => x.Id == UserId).Select(y => new ApplicationUserViewModel()
+            {
+                Id = y.Id,
+                FirstName = y.FirstName,
+                LastName = y.LastName,
+                Email = y.Email,
+                CompanyAddress = y.CompanyAddress,
+                CompanyCityId = y.CompanyCityId,
+                CompanyName = y.CompanyName,
+                CompanyZipcode = y.CompanyZipcode,
+                CompanyCityName = y.CityMst.CityName,
+                ContactPerson = y.ContactPerson,
+                Mobile = y.Mobile,
+                RefBusiness = y.RefBusiness,
+                RefMobile = y.RefMobile,
+                RefName = y.RefName,
+                UserCityName = y.CityMst1.CityName,
+                Active = y.Active,
+                Address = y.Address
+            }).FirstOrDefault();
+        }
         #region IDisposable Support
         private bool disposedValue = false; // To detect redundant calls
 

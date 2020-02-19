@@ -44,7 +44,14 @@ namespace BG.Areas.Admin.Controllers
         [Route("customer/{userid}")]
         public ActionResult CustomeDetails(string userid)
         {
-            return View();
+            var model = new ApplicationUserViewModel();
+            using (var httpClient = ApiHelper.GetHttpClient())
+            {
+                var result = httpClient.GetAsync(Config.get_customer_detail + "/" + userid).Result;
+                var resultContent = result.Content.ReadAsStringAsync().Result;
+                model = JsonConvert.DeserializeObject<ApplicationUserViewModel>(resultContent);
+            }
+            return View(model);
         }
         #endregion
     }

@@ -10,5 +10,6 @@ namespace BG_Application.ServiceContract
     public interface ICustomer_Repository
     {
         List<ApplicationUserViewModel> GetInActiveCustomers(bool active);
+        ApplicationUserViewModel GetCustomerDetails(string UserId);
     }
 }
