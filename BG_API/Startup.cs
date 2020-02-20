@@ -16,18 +16,18 @@ namespace BG_API
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
-            CreateRolesandUsers();
+            //CreateRolesandUsers();
         }
-        private void CreateRolesandUsers()
-        {
-            var context = new ApplicationDbContext();
-            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+        //private void CreateRolesandUsers()
+        //{
+        //    var context = new ApplicationDbContext();
+        //    var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
 
-            if (!roleManager.RoleExists("BROKER"))
-            {
-                var role = new IdentityRole { Name = "BROKER" };
-                roleManager.Create(role);
-            }
-        }
+        //    if (!roleManager.RoleExists("BROKER"))
+        //    {
+        //        var role = new IdentityRole { Name = "BROKER" };
+        //        roleManager.Create(role);
+        //    }
+        //}
     }
 }
