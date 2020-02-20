@@ -35,6 +35,9 @@
         <AssociationConnector Association="BG_DBModel.FK_CompanyCityId" />
         <AssociationConnector Association="BG_DBModel.FK_UserCityId" />
         <AssociationConnector Association="BG_DBModel.FK_State" />
+        <EntityTypeShape EntityType="BG_DBModel.PolishMst" Width="1.5" PointX="7.75" PointY="12.75" />
+        <EntityTypeShape EntityType="BG_DBModel.SymmetryMst" Width="1.5" PointX="14.75" PointY="0.75" />
+        <EntityTypeShape EntityType="BG_DBModel.DiamondStock" Width="1.5" PointX="0.75" PointY="14.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

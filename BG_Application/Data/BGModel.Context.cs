@@ -47,5 +47,8 @@ namespace BG_Application.Data
         public virtual DbSet<StateMst> StateMsts { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<CityMst> CityMsts { get; set; }
+        public virtual DbSet<PolishMst> PolishMsts { get; set; }
+        public virtual DbSet<SymmetryMst> SymmetryMsts { get; set; }
+        public virtual DbSet<DiamondStock> DiamondStocks { get; set; }
     }
 }

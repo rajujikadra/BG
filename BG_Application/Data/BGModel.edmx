@@ -177,6 +177,63 @@ warning 6002: The table/view 'BG_DB.dbo.CompanyMst' does not have a primary key 
           <Property Name="CompanyCode" Type="int" />
           <Property Name="Active" Type="bit" />
         </EntityType>
+        <EntityType Name="DiamondStock">
+          <Key>
+            <PropertyRef Name="StockMSTID" />
+          </Key>
+          <Property Name="StockMSTID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StoneID" Type="nvarchar" MaxLength="50" />
+          <Property Name="Cts" Type="numeric" Precision="18" Scale="3" />
+          <Property Name="Location" Type="nvarchar" MaxLength="50" />
+          <Property Name="ReportNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="CertificateCode" Type="int" />
+          <Property Name="ShapeCode" Type="int" />
+          <Property Name="SizeCode" Type="int" />
+          <Property Name="ColorCode" Type="int" />
+          <Property Name="PurityCode" Type="int" />
+          <Property Name="CutCode" Type="int" />
+          <Property Name="PolishCode" Type="int" />
+          <Property Name="SymmetryCode" Type="int" />
+          <Property Name="FlouCode" Type="int" />
+          <Property Name="Rap" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="Disc" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="Asking" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="Amount" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="SPer" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="SRate" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="SAmount" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="Length" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="Width" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="Depth" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="DepthPer" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="TablePer" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="CrownAngle" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="CrownHeight" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="PavAngle" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="PavHeight" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="KeytoSymbol" Type="nvarchar" MaxLength="50" />
+          <Property Name="VideoLink" Type="nvarchar" MaxLength="200" />
+          <Property Name="EyeClean" Type="nvarchar" MaxLength="50" />
+          <Property Name="Comments" Type="nvarchar(max)" />
+          <Property Name="Girdle" Type="nvarchar" MaxLength="50" />
+          <Property Name="Culet" Type="nvarchar" MaxLength="50" />
+          <Property Name="Star" Type="nvarchar" MaxLength="50" />
+          <Property Name="Lower" Type="nvarchar" MaxLength="50" />
+          <Property Name="Milky" Type="nvarchar" MaxLength="50" />
+          <Property Name="TBlack" Type="nvarchar" MaxLength="50" />
+          <Property Name="SBlack" Type="nvarchar" MaxLength="50" />
+          <Property Name="TWhite" Type="nvarchar" MaxLength="50" />
+          <Property Name="SWhite" Type="nvarchar" MaxLength="50" />
+          <Property Name="HA" Type="nvarchar" MaxLength="50" />
+          <Property Name="ResultVerify" Type="bit" />
+          <Property Name="ReportDate" Type="datetime" />
+          <Property Name="Inscription" Type="nvarchar" MaxLength="100" />
+          <Property Name="Sale" Type="bit" />
+          <Property Name="Broker" Type="bit" />
+          <Property Name="Hold" Type="bit" />
+          <Property Name="Basket" Type="bit" />
+          <Property Name="Inquiry" Type="bit" />
+        </EntityType>
         <EntityType Name="FancyColorMst">
           <Key>
             <PropertyRef Name="FancyColorCode" />
@@ -281,6 +338,20 @@ warning 6002: The table/view 'BG_DB.dbo.PartyMst' does not have a primary key de
           <Property Name="CompanyCode" Type="int" />
           <Property Name="TypeCode" Type="int" />
         </EntityType>
+        <EntityType Name="PolishMst">
+          <Key>
+            <PropertyRef Name="PolishCode" />
+          </Key>
+          <Property Name="PolishCode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PolishName" Type="nvarchar" MaxLength="50" />
+          <Property Name="PolishAliasName" Type="nvarchar" MaxLength="100" />
+          <Property Name="SortID" Type="int" />
+          <Property Name="Logid" Type="int" />
+          <Property Name="Pcid" Type="nvarchar" MaxLength="50" />
+          <Property Name="Sdate" Type="datetime" />
+          <Property Name="CompanyCode" Type="int" />
+          <Property Name="Active" Type="bit" />
+        </EntityType>
         <EntityType Name="PurityMst">
           <Key>
             <PropertyRef Name="PurityCode" />
@@ -333,6 +404,20 @@ warning 6002: The table/view 'BG_DB.dbo.SizeMst' does not have a primary key def
           <Property Name="StateId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CountryId" Type="int" />
           <Property Name="StateName" Type="varchar" MaxLength="50" />
+          <Property Name="Active" Type="bit" />
+        </EntityType>
+        <EntityType Name="SymmetryMst">
+          <Key>
+            <PropertyRef Name="SymmetryCode" />
+          </Key>
+          <Property Name="SymmetryCode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SymmetryName" Type="nvarchar" MaxLength="50" />
+          <Property Name="SymmetryAliasName" Type="nvarchar" MaxLength="100" />
+          <Property Name="SortID" Type="int" />
+          <Property Name="Logid" Type="int" />
+          <Property Name="Pcid" Type="nvarchar" MaxLength="50" />
+          <Property Name="Sdate" Type="datetime" />
+          <Property Name="CompanyCode" Type="int" />
           <Property Name="Active" Type="bit" />
         </EntityType>
         <Association Name="FK_CompanyCityId">
@@ -463,15 +548,18 @@ warning 6002: The table/view 'BG_DB.dbo.SizeMst' does not have a primary key def
           <EntitySet Name="ColorMst" EntityType="Self.ColorMst" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CountryMst" EntityType="Self.CountryMst" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CutMst" EntityType="Self.CutMst" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DiamondStock" EntityType="Self.DiamondStock" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FancyColorMst" EntityType="Self.FancyColorMst" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FancyOTMst" EntityType="Self.FancyOTMst" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FlouMst" EntityType="Self.FlouMst" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HAMst" EntityType="Self.HAMst" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MainMenuMst" EntityType="Self.MainMenuMst" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MenuMst" EntityType="Self.MenuMst" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PolishMst" EntityType="Self.PolishMst" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PurityMst" EntityType="Self.PurityMst" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ShapeMst" EntityType="Self.ShapeMst" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StateMst" EntityType="Self.StateMst" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SymmetryMst" EntityType="Self.SymmetryMst" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CompanyMst" EntityType="Self.CompanyMst" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [CompanyMst].[CompanyMstId] AS [CompanyMstId], 
@@ -850,6 +938,9 @@ warning 6002: The table/view 'BG_DB.dbo.SizeMst' does not have a primary key def
             <End Role="StateMst" EntitySet="StateMsts" />
             <End Role="CityMst" EntitySet="CityMsts" />
           </AssociationSet>
+          <EntitySet Name="PolishMsts" EntityType="BG_DBModel.PolishMst" />
+          <EntitySet Name="SymmetryMsts" EntityType="BG_DBModel.SymmetryMst" />
+          <EntitySet Name="DiamondStocks" EntityType="BG_DBModel.DiamondStock" />
           </EntityContainer>
         <EntityType Name="PartyMst">
           <Key>
@@ -1062,6 +1153,91 @@ warning 6002: The table/view 'BG_DB.dbo.SizeMst' does not have a primary key def
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="PolishMst">
+          <Key>
+            <PropertyRef Name="PolishCode" />
+          </Key>
+          <Property Name="PolishCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PolishName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PolishAliasName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SortID" Type="Int32" />
+          <Property Name="Logid" Type="Int32" />
+          <Property Name="Pcid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Sdate" Type="DateTime" Precision="3" />
+          <Property Name="CompanyCode" Type="Int32" />
+          <Property Name="Active" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="SymmetryMst">
+          <Key>
+            <PropertyRef Name="SymmetryCode" />
+          </Key>
+          <Property Name="SymmetryCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SymmetryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SymmetryAliasName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SortID" Type="Int32" />
+          <Property Name="Logid" Type="Int32" />
+          <Property Name="Pcid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Sdate" Type="DateTime" Precision="3" />
+          <Property Name="CompanyCode" Type="Int32" />
+          <Property Name="Active" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="DiamondStock">
+          <Key>
+            <PropertyRef Name="StockMSTID" />
+          </Key>
+          <Property Name="StockMSTID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StoneID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Cts" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ReportNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CertificateCode" Type="Int32" />
+          <Property Name="ShapeCode" Type="Int32" />
+          <Property Name="SizeCode" Type="Int32" />
+          <Property Name="ColorCode" Type="Int32" />
+          <Property Name="PurityCode" Type="Int32" />
+          <Property Name="CutCode" Type="Int32" />
+          <Property Name="PolishCode" Type="Int32" />
+          <Property Name="SymmetryCode" Type="Int32" />
+          <Property Name="FlouCode" Type="Int32" />
+          <Property Name="Rap" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Disc" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Asking" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="SPer" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="SRate" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="SAmount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Length" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Width" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Depth" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="DepthPer" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="TablePer" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="CrownAngle" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="CrownHeight" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="PavAngle" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="PavHeight" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="KeytoSymbol" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="VideoLink" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="EyeClean" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Girdle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Culet" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Star" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Lower" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Milky" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TBlack" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SBlack" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TWhite" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SWhite" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ResultVerify" Type="Boolean" />
+          <Property Name="ReportDate" Type="DateTime" Precision="3" />
+          <Property Name="Inscription" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Sale" Type="Boolean" />
+          <Property Name="Broker" Type="Boolean" />
+          <Property Name="Hold" Type="Boolean" />
+          <Property Name="Basket" Type="Boolean" />
+          <Property Name="Inquiry" Type="Boolean" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1404,6 +1580,94 @@ warning 6002: The table/view 'BG_DB.dbo.SizeMst' does not have a primary key def
                 <ScalarProperty Name="CityName" ColumnName="CityName" />
                 <ScalarProperty Name="StateId" ColumnName="StateId" />
                 <ScalarProperty Name="CityId" ColumnName="CityId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PolishMsts">
+            <EntityTypeMapping TypeName="BG_DBModel.PolishMst">
+              <MappingFragment StoreEntitySet="PolishMst">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="Sdate" ColumnName="Sdate" />
+                <ScalarProperty Name="Pcid" ColumnName="Pcid" />
+                <ScalarProperty Name="Logid" ColumnName="Logid" />
+                <ScalarProperty Name="SortID" ColumnName="SortID" />
+                <ScalarProperty Name="PolishAliasName" ColumnName="PolishAliasName" />
+                <ScalarProperty Name="PolishName" ColumnName="PolishName" />
+                <ScalarProperty Name="PolishCode" ColumnName="PolishCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SymmetryMsts">
+            <EntityTypeMapping TypeName="BG_DBModel.SymmetryMst">
+              <MappingFragment StoreEntitySet="SymmetryMst">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="Sdate" ColumnName="Sdate" />
+                <ScalarProperty Name="Pcid" ColumnName="Pcid" />
+                <ScalarProperty Name="Logid" ColumnName="Logid" />
+                <ScalarProperty Name="SortID" ColumnName="SortID" />
+                <ScalarProperty Name="SymmetryAliasName" ColumnName="SymmetryAliasName" />
+                <ScalarProperty Name="SymmetryName" ColumnName="SymmetryName" />
+                <ScalarProperty Name="SymmetryCode" ColumnName="SymmetryCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DiamondStocks">
+            <EntityTypeMapping TypeName="BG_DBModel.DiamondStock">
+              <MappingFragment StoreEntitySet="DiamondStock">
+                <ScalarProperty Name="Inquiry" ColumnName="Inquiry" />
+                <ScalarProperty Name="Basket" ColumnName="Basket" />
+                <ScalarProperty Name="Hold" ColumnName="Hold" />
+                <ScalarProperty Name="Broker" ColumnName="Broker" />
+                <ScalarProperty Name="Sale" ColumnName="Sale" />
+                <ScalarProperty Name="Inscription" ColumnName="Inscription" />
+                <ScalarProperty Name="ReportDate" ColumnName="ReportDate" />
+                <ScalarProperty Name="ResultVerify" ColumnName="ResultVerify" />
+                <ScalarProperty Name="HA" ColumnName="HA" />
+                <ScalarProperty Name="SWhite" ColumnName="SWhite" />
+                <ScalarProperty Name="TWhite" ColumnName="TWhite" />
+                <ScalarProperty Name="SBlack" ColumnName="SBlack" />
+                <ScalarProperty Name="TBlack" ColumnName="TBlack" />
+                <ScalarProperty Name="Milky" ColumnName="Milky" />
+                <ScalarProperty Name="Lower" ColumnName="Lower" />
+                <ScalarProperty Name="Star" ColumnName="Star" />
+                <ScalarProperty Name="Culet" ColumnName="Culet" />
+                <ScalarProperty Name="Girdle" ColumnName="Girdle" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="EyeClean" ColumnName="EyeClean" />
+                <ScalarProperty Name="VideoLink" ColumnName="VideoLink" />
+                <ScalarProperty Name="KeytoSymbol" ColumnName="KeytoSymbol" />
+                <ScalarProperty Name="PavHeight" ColumnName="PavHeight" />
+                <ScalarProperty Name="PavAngle" ColumnName="PavAngle" />
+                <ScalarProperty Name="CrownHeight" ColumnName="CrownHeight" />
+                <ScalarProperty Name="CrownAngle" ColumnName="CrownAngle" />
+                <ScalarProperty Name="TablePer" ColumnName="TablePer" />
+                <ScalarProperty Name="DepthPer" ColumnName="DepthPer" />
+                <ScalarProperty Name="Depth" ColumnName="Depth" />
+                <ScalarProperty Name="Width" ColumnName="Width" />
+                <ScalarProperty Name="Length" ColumnName="Length" />
+                <ScalarProperty Name="SAmount" ColumnName="SAmount" />
+                <ScalarProperty Name="SRate" ColumnName="SRate" />
+                <ScalarProperty Name="SPer" ColumnName="SPer" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Asking" ColumnName="Asking" />
+                <ScalarProperty Name="Disc" ColumnName="Disc" />
+                <ScalarProperty Name="Rap" ColumnName="Rap" />
+                <ScalarProperty Name="FlouCode" ColumnName="FlouCode" />
+                <ScalarProperty Name="SymmetryCode" ColumnName="SymmetryCode" />
+                <ScalarProperty Name="PolishCode" ColumnName="PolishCode" />
+                <ScalarProperty Name="CutCode" ColumnName="CutCode" />
+                <ScalarProperty Name="PurityCode" ColumnName="PurityCode" />
+                <ScalarProperty Name="ColorCode" ColumnName="ColorCode" />
+                <ScalarProperty Name="SizeCode" ColumnName="SizeCode" />
+                <ScalarProperty Name="ShapeCode" ColumnName="ShapeCode" />
+                <ScalarProperty Name="CertificateCode" ColumnName="CertificateCode" />
+                <ScalarProperty Name="ReportNo" ColumnName="ReportNo" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Cts" ColumnName="Cts" />
+                <ScalarProperty Name="StoneID" ColumnName="StoneID" />
+                <ScalarProperty Name="StockMSTID" ColumnName="StockMSTID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

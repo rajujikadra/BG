@@ -61,3 +61,18 @@ $('#color-master-table, #certificate-master-table, #cut-master-table, #fancy-col
     "scrollX": true,
     stateSave: true
 });
+
+
+$('#stock-master-table').DataTable({
+    "sScrollX": "100%",
+    "sScrollXInner": "110%",
+    "bScrollCollapse": true,
+    "colReorder": true,
+    lengthMenu: [100, 200, 500],
+    "columnDefs": [
+        { "sortable": false, "targets": [0, 1, 2] }
+    ],
+    order: [[1, "asc"]], //column indexes is zero based
+    dom: 'Bfrtip',
+    buttons: ['copy', 'csv', 'excel']
+});
