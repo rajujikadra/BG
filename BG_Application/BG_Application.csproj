@@ -189,7 +189,9 @@
     </None>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="SQLScript\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Data\BGModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
