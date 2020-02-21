@@ -60,11 +60,16 @@ namespace BG.Controllers
                         new Claim(ClaimTypes.Name, token.userName),
                         new Claim(ClaimTypes.Email, token.email),
                         new Claim("AcessToken", $"{token.access_token}"),
+                        //new Claim(ClaimTypes.Role, token.role),
                         //new Claim("AcessToken", $"{token.token_type} {token.access_token}"),
                         // new Claim("Expires_in", "30"),
                     };
-
-                    //claims.AddRange(token.role.Split(',').Select(r => new Claim(ClaimTypes.Role, r)));
+                    //var Roles = token.role.Split(',');
+                    //foreach (string roleName in Roles)
+                    //{
+                    //    claims.Add(new Claim(ClaimTypes.Role, roleName.Trim()));
+                    //}
+                    claims.AddRange(token.role.Split(',').Select(r => new Claim(ClaimTypes.Role, r)));
                     //Session["accessToken"] = token.access_token;
                     var identity = new ClaimsIdentity(claims, "ApplicationCookie");
 

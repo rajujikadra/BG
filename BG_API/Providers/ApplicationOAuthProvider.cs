@@ -29,6 +29,7 @@ namespace BG_API.Providers
 
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
+            ApplicationDbContext db = new ApplicationDbContext();
             var userManager = context.OwinContext.GetUserManager<ApplicationUserManager>();
 
             ApplicationUser user = await userManager.FindByNameAsync(context.UserName);
@@ -69,9 +70,19 @@ namespace BG_API.Providers
             }
             await userManager.ResetAccessFailedCountAsync(user.Id);
 
+            //Add role in token
+            var roleid = user.Roles.Where(x => x.UserId == user.Id).Select(y => y.RoleId).ToList();
+            var roleStore = new RoleStore<IdentityRole>(db);
+            var roleMngr = new RoleManager<IdentityRole>(roleStore);
+            var role = roleMngr.Roles.Where(x => roleid.Contains(x.Id)).Select(y => y.Name).ToList();
+            //var role = roleMngr.Roles.Where(x => x.Id == roleid).Select(y => y.Name).ToList();
+            string Roles = string.Join(",", role);
+
             ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(userManager, OAuthDefaults.AuthenticationType);
             ClaimsIdentity cookiesIdentity = await user.GenerateUserIdentityAsync(userManager, CookieAuthenticationDefaults.AuthenticationType);
             AuthenticationProperties properties = CreateProperties(user.UserName);
+
+            properties.Dictionary.Add("role", Roles);
             AuthenticationTicket ticket = new AuthenticationTicket(oAuthIdentity, properties);
             context.Validated(ticket);
             context.Request.Context.Authentication.SignIn(cookiesIdentity);
