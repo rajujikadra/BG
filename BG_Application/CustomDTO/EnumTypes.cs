@@ -13,5 +13,14 @@ namespace BG_Application.CustomDTO
             New,
             Register
         }
+
+        public enum RoleList
+        {
+            ADMIN,
+            SALESPERSON,
+            BROKER,
+            USER,
+            SITE
+        }
     }
 }

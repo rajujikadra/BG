@@ -31,5 +31,6 @@ namespace BG.Common
         public static readonly string get_customer_detail = "api/customer/details";
         public static readonly string dashboard = "api/dashboard";
         public static readonly string get_stock = "api/stock";
+        public static readonly string get_broker = "api/broker";
     }  
 }

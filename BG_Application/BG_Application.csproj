@@ -165,10 +165,12 @@
       <DependentUpon>BGModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceContract\IBroker_Repository.cs" />
     <Compile Include="ServiceContract\ICustomer_Repository.cs" />
     <Compile Include="ServiceContract\IDashboard_Repository.cs" />
     <Compile Include="ServiceContract\IMaster_Repository.cs" />
     <Compile Include="ServiceContract\IStock_Repository.cs" />
+    <Compile Include="Service\Broker_Repository.cs" />
     <Compile Include="Service\Customer_Repository.cs" />
     <Compile Include="Service\Dashboard_Repository.cs" />
     <Compile Include="Service\Master_Repository.cs" />

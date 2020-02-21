@@ -198,6 +198,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\BrokerController.cs" />
     <Compile Include="Areas\Admin\Controllers\CustomerController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Admin\Controllers\MasterController.cs" />
@@ -1064,6 +1065,7 @@
     <Content Include="Areas\Admin\Views\Customer\GetNewCustomers.cshtml" />
     <Content Include="Areas\Admin\Views\Customer\CustomeDetails.cshtml" />
     <Content Include="Areas\Admin\Views\Stock\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Broker\GetAllBrokers.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\ClientJS\common.js" />
     <Content Include="Scripts\HoldOn.js" />
