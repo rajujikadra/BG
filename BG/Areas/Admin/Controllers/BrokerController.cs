@@ -1,6 +1,7 @@
 ﻿using BG.Common;
 using BG.Helper;
 using BG_Application.CustomDTO;
+using BG_Application.Data;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -33,9 +34,56 @@ namespace BG.Areas.Admin.Controllers
                 {
                     var resultContent = result.Content.ReadAsStringAsync().Result;
                     model = JsonConvert.DeserializeObject<List<ApplicationUserViewModel>>(resultContent);
-                }               
+                }
             }
             return View(model);
+        }
+        #endregion
+
+        #region get broker columns
+        [HttpGet]
+        [Route("brokercolumn")]
+        public ActionResult GetAllBrokerColumn(string UserID)
+        {
+            var DB = new BG_DBEntities();
+            var User = DB.AspNetUsers.Where(x => x.Id == UserID).Select(y => new ApplicationUserViewModel() { FirstName = y.FirstName, LastName = y.LastName }).FirstOrDefault();
+            ViewBag.BrokerName = User.FirstName + " " + User.LastName;
+            ViewBag.BrokerID = UserID;
+            var model = new List<BrokerColumnsViewModel>();
+            model = DB.BrokerColumnNames.Select(x => new BrokerColumnsViewModel()
+            {
+                ColumnName = x.ColumnName,
+                ColumnId = x.ColumnId,
+                IsDisplay = x.BrokerColumnMappingMsts.Count(c => c.UserId == UserID) > 0 ? true : false,
+                UserId = UserID
+            }).ToList();
+            return PartialView("_BrokerColumns", model);
+        }
+        #endregion
+
+        #region set broker permission
+        public ActionResult SetPerimission(string UserID, int?[] BrokerID)
+        {
+            if (BrokerID != null)
+            {
+                var DB = new BG_DBEntities();
+                var BrkCol = DB.BrokerColumnMappingMsts.Where(x => x.UserId == UserID).ToList();
+                BrkCol = BrkCol.Where(x => !BrokerID.Contains(x.ColumnId)).ToList();
+                DB.BrokerColumnMappingMsts.RemoveRange(BrkCol);
+                DB.SaveChanges();
+                foreach (var c in BrokerID)
+                {
+                    var Col = DB.BrokerColumnMappingMsts.FirstOrDefault(x => x.UserId == UserID && x.ColumnId == c);
+                    if (Col == null)
+                    {
+                        var obj = new BrokerColumnMappingMst { ColumnId = c, UserId = UserID };
+                        DB.BrokerColumnMappingMsts.Add(obj);
+                        DB.SaveChanges();
+                    }
+                }
+                return Json(true, JsonRequestBehavior.AllowGet);
+            }
+            return Json(false, JsonRequestBehavior.AllowGet);
         }
         #endregion
     }

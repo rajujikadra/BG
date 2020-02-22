@@ -80,6 +80,21 @@
           <Property Name="RefBusiness" Type="varchar" MaxLength="50" />
           <Property Name="Active" Type="bit" />
         </EntityType>
+        <EntityType Name="BrokerColumnMappingMst">
+          <Key>
+            <PropertyRef Name="BrokerColMapId" />
+          </Key>
+          <Property Name="BrokerColMapId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" />
+          <Property Name="ColumnId" Type="int" />
+        </EntityType>
+        <EntityType Name="BrokerColumnName">
+          <Key>
+            <PropertyRef Name="ColumnId" />
+          </Key>
+          <Property Name="ColumnId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ColumnName" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="CertificateMst">
           <Key>
             <PropertyRef Name="CertificateCode" />
@@ -420,6 +435,37 @@ warning 6002: The table/view 'BG_DB.dbo.SizeMst' does not have a primary key def
           <Property Name="CompanyCode" Type="int" />
           <Property Name="Active" Type="bit" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'BG_DB.dbo.TypeMst' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="TypeMst">
+          <Property Name="TypeCode" Type="int" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" />
+          <Property Name="Active" Type="bit" />
+        </EntityType>-->
+        <Association Name="FK_BrokerColumns">
+          <End Role="BrokerColumnName" Type="Self.BrokerColumnName" Multiplicity="0..1" />
+          <End Role="BrokerColumnMappingMst" Type="Self.BrokerColumnMappingMst" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BrokerColumnName">
+              <PropertyRef Name="ColumnId" />
+            </Principal>
+            <Dependent Role="BrokerColumnMappingMst">
+              <PropertyRef Name="ColumnId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BrokerUser">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="BrokerColumnMappingMst" Type="Self.BrokerColumnMappingMst" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BrokerColumnMappingMst">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_CompanyCityId">
           <End Role="CityMst" Type="Self.CityMst" Multiplicity="0..1" />
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
@@ -543,6 +589,8 @@ warning 6002: The table/view 'BG_DB.dbo.SizeMst' does not have a primary key def
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BrokerColumnMappingMst" EntityType="Self.BrokerColumnMappingMst" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BrokerColumnName" EntityType="Self.BrokerColumnName" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CertificateMst" EntityType="Self.CertificateMst" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CityMst" EntityType="Self.CityMst" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ColorMst" EntityType="Self.ColorMst" Schema="dbo" store:Type="Tables" />
@@ -629,6 +677,14 @@ warning 6002: The table/view 'BG_DB.dbo.SizeMst' does not have a primary key def
     [SizeMst].[Active] AS [Active]
     FROM [dbo].[SizeMst] AS [SizeMst]</DefiningQuery>
           </EntitySet>
+          <AssociationSet Name="FK_BrokerColumns" Association="Self.FK_BrokerColumns">
+            <End Role="BrokerColumnName" EntitySet="BrokerColumnName" />
+            <End Role="BrokerColumnMappingMst" EntitySet="BrokerColumnMappingMst" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BrokerUser" Association="Self.FK_BrokerUser">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="BrokerColumnMappingMst" EntitySet="BrokerColumnMappingMst" />
+          </AssociationSet>
           <AssociationSet Name="FK_CompanyCityId" Association="Self.FK_CompanyCityId">
             <End Role="CityMst" EntitySet="CityMst" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -941,6 +997,16 @@ warning 6002: The table/view 'BG_DB.dbo.SizeMst' does not have a primary key def
           <EntitySet Name="PolishMsts" EntityType="BG_DBModel.PolishMst" />
           <EntitySet Name="SymmetryMsts" EntityType="BG_DBModel.SymmetryMst" />
           <EntitySet Name="DiamondStocks" EntityType="BG_DBModel.DiamondStock" />
+          <EntitySet Name="BrokerColumnMappingMsts" EntityType="BG_DBModel.BrokerColumnMappingMst" />
+          <EntitySet Name="BrokerColumnNames" EntityType="BG_DBModel.BrokerColumnName" />
+          <AssociationSet Name="FK_BrokerUser" Association="BG_DBModel.FK_BrokerUser">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="BrokerColumnMappingMst" EntitySet="BrokerColumnMappingMsts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BrokerColumns" Association="BG_DBModel.FK_BrokerColumns">
+            <End Role="BrokerColumnName" EntitySet="BrokerColumnNames" />
+            <End Role="BrokerColumnMappingMst" EntitySet="BrokerColumnMappingMsts" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="PartyMst">
           <Key>
@@ -1072,6 +1138,7 @@ warning 6002: The table/view 'BG_DB.dbo.SizeMst' does not have a primary key def
           <NavigationProperty Name="CityMst" Relationship="BG_DBModel.FK_CompanyCityId" FromRole="AspNetUser" ToRole="CityMst" />
           <NavigationProperty Name="CityMst1" Relationship="BG_DBModel.FK_UserCityId" FromRole="AspNetUser" ToRole="CityMst" />
           <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="BrokerColumnMappingMsts" Relationship="BG_DBModel.FK_BrokerUser" FromRole="AspNetUser" ToRole="BrokerColumnMappingMst" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Type="BG_DBModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
@@ -1238,6 +1305,48 @@ warning 6002: The table/view 'BG_DB.dbo.SizeMst' does not have a primary key def
           <Property Name="Basket" Type="Boolean" />
           <Property Name="Inquiry" Type="Boolean" />
         </EntityType>
+        <EntityType Name="BrokerColumnMappingMst">
+          <Key>
+            <PropertyRef Name="BrokerColMapId" />
+          </Key>
+          <Property Name="BrokerColMapId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ColumnId" Type="Int32" />
+          <NavigationProperty Name="AspNetUser" Relationship="BG_DBModel.FK_BrokerUser" FromRole="BrokerColumnMappingMst" ToRole="AspNetUser" />
+          <NavigationProperty Name="BrokerColumnName" Relationship="BG_DBModel.FK_BrokerColumns" FromRole="BrokerColumnMappingMst" ToRole="BrokerColumnName" />
+        </EntityType>
+        <EntityType Name="BrokerColumnName">
+          <Key>
+            <PropertyRef Name="ColumnId" />
+          </Key>
+          <Property Name="ColumnId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ColumnName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="BrokerColumnMappingMsts" Relationship="BG_DBModel.FK_BrokerColumns" FromRole="BrokerColumnName" ToRole="BrokerColumnMappingMst" />
+        </EntityType>
+        <Association Name="FK_BrokerUser">
+          <End Type="BG_DBModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
+          <End Type="BG_DBModel.BrokerColumnMappingMst" Role="BrokerColumnMappingMst" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BrokerColumnMappingMst">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BrokerColumns">
+          <End Type="BG_DBModel.BrokerColumnName" Role="BrokerColumnName" Multiplicity="0..1" />
+          <End Type="BG_DBModel.BrokerColumnMappingMst" Role="BrokerColumnMappingMst" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BrokerColumnName">
+              <PropertyRef Name="ColumnId" />
+            </Principal>
+            <Dependent Role="BrokerColumnMappingMst">
+              <PropertyRef Name="ColumnId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1668,6 +1777,23 @@ warning 6002: The table/view 'BG_DB.dbo.SizeMst' does not have a primary key def
                 <ScalarProperty Name="Cts" ColumnName="Cts" />
                 <ScalarProperty Name="StoneID" ColumnName="StoneID" />
                 <ScalarProperty Name="StockMSTID" ColumnName="StockMSTID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BrokerColumnMappingMsts">
+            <EntityTypeMapping TypeName="BG_DBModel.BrokerColumnMappingMst">
+              <MappingFragment StoreEntitySet="BrokerColumnMappingMst">
+                <ScalarProperty Name="ColumnId" ColumnName="ColumnId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="BrokerColMapId" ColumnName="BrokerColMapId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BrokerColumnNames">
+            <EntityTypeMapping TypeName="BG_DBModel.BrokerColumnName">
+              <MappingFragment StoreEntitySet="BrokerColumnName">
+                <ScalarProperty Name="ColumnName" ColumnName="ColumnName" />
+                <ScalarProperty Name="ColumnId" ColumnName="ColumnId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

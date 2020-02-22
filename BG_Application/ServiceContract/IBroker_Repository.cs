@@ -10,5 +10,6 @@ namespace BG_Application.ServiceContract
     public interface IBroker_Repository
     {
         List<ApplicationUserViewModel> GetBrokerList();
+        List<BrokerColumnsViewModel> GetBrokerColumn();
     }
 }

@@ -38,6 +38,10 @@
         <EntityTypeShape EntityType="BG_DBModel.PolishMst" Width="1.5" PointX="7.75" PointY="12.75" />
         <EntityTypeShape EntityType="BG_DBModel.SymmetryMst" Width="1.5" PointX="14.75" PointY="0.75" />
         <EntityTypeShape EntityType="BG_DBModel.DiamondStock" Width="1.5" PointX="0.75" PointY="14.75" />
+        <EntityTypeShape EntityType="BG_DBModel.BrokerColumnMappingMst" Width="1.5" PointX="22.375" PointY="4.125" />
+        <EntityTypeShape EntityType="BG_DBModel.BrokerColumnName" Width="1.5" PointX="20.125" PointY="11.25" />
+        <AssociationConnector Association="BG_DBModel.FK_BrokerUser" />
+        <AssociationConnector Association="BG_DBModel.FK_BrokerColumns" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

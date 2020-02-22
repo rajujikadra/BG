@@ -20,6 +20,7 @@ namespace BG_Application.Data
             this.AspNetUserClaims = new HashSet<AspNetUserClaim>();
             this.AspNetUserLogins = new HashSet<AspNetUserLogin>();
             this.AspNetRoles = new HashSet<AspNetRole>();
+            this.BrokerColumnMappingMsts = new HashSet<BrokerColumnMappingMst>();
         }
     
         public string Id { get; set; }
@@ -57,5 +58,7 @@ namespace BG_Application.Data
         public virtual ICollection<AspNetRole> AspNetRoles { get; set; }
         public virtual CityMst CityMst { get; set; }
         public virtual CityMst CityMst1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BrokerColumnMappingMst> BrokerColumnMappingMsts { get; set; }
     }
 }

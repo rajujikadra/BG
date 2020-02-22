@@ -48,7 +48,9 @@
                                                 <td>@U.RefMobile</td>
                                                 <td>
                                                     <a href="/admin/customer/@U.Id" class="btn btn-primary"><i class="fa fa-eye"></i> View</a>
-                                                    <button type="button" class="btn btn-info"> Columns</button>
+                                                    <button type="button" onclick="AssignColumns('@U.Id');" class="btn btn-info">
+                                                        Columns
+                                                    </button>
                                                 </td>
                                             </tr>
                                         }
@@ -62,3 +64,41 @@
         </div>
     </section>
 </div>
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#broker-table').DataTable({
+                "columnDefs": [
+                    { "sortable": false, "targets": [10] }
+                ],
+                order: [[1, "asc"]], //column indexes is zero based
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ]
+            });
+        });
+        function AssignColumns(UserId) {
+             $.ajax({
+                 async: true,
+                 type: "Get",
+                 url: '@Url.Action("GetAllBrokerColumn","broker", new { area = "admin"} )',
+                 data: { 'UserID': UserId },
+                 beforeSend: function () {
+                     $('.loader').show();
+                 },
+                 complete: function () {
+                     $('.loader').hide();
+                 },
+                 success: function (response) {
+                     $("#ModalCenter").empty();
+                     $("#ModalCenter").html(response);
+                     $("#ModalCenter").modal('show');
+                 },
+                 error: function (response) {
+                     alert(response.responseText);
+                 }
+              });
+        }
+    </script>
+}

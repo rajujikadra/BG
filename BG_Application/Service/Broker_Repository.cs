@@ -39,6 +39,21 @@ namespace BG_Application.Service
             }).ToList();
         }
 
+        public List<BrokerColumnsViewModel> GetBrokerColumn()
+        {
+            return (from c in DB.BrokerColumnNames
+                    join m in DB.BrokerColumnMappingMsts on c.ColumnId equals m.ColumnId into Col
+                    from Column in Col.DefaultIfEmpty()
+                    select new BrokerColumnsViewModel()
+                    {
+                        BrokerName = Column.AspNetUser.FirstName + " " + Column.AspNetUser.LastName,
+                        ColumnName = Column.BrokerColumnName.ColumnName,
+                        IsDisplay = Column != null ? true : false,
+                        UserId = Column.UserId
+                    }).ToList();
+
+        }
+
         #region IDisposable Support
         private bool disposedValue = false; // To detect redundant calls
         protected virtual void Dispose(bool disposing)

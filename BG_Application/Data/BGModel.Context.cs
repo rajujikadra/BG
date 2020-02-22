@@ -50,5 +50,7 @@ namespace BG_Application.Data
         public virtual DbSet<PolishMst> PolishMsts { get; set; }
         public virtual DbSet<SymmetryMst> SymmetryMsts { get; set; }
         public virtual DbSet<DiamondStock> DiamondStocks { get; set; }
+        public virtual DbSet<BrokerColumnMappingMst> BrokerColumnMappingMsts { get; set; }
+        public virtual DbSet<BrokerColumnName> BrokerColumnNames { get; set; }
     }
 }

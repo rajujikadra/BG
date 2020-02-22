@@ -58,6 +58,7 @@
     <Compile Include="Class1.cs" />
     <Compile Include="CustomDTO\AdminDashboardViewModel.cs" />
     <Compile Include="CustomDTO\ApplicationUserViewModel.cs" />
+    <Compile Include="CustomDTO\BrokerColumnsViewModel.cs" />
     <Compile Include="CustomDTO\CertificateViewModel.cs" />
     <Compile Include="CustomDTO\ColorViewModel.cs" />
     <Compile Include="CustomDTO\CompanyViewModel.cs" />
@@ -100,6 +101,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>BGModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Data\BrokerColumnMappingMst.cs">
+      <DependentUpon>BGModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\BrokerColumnName.cs">
+      <DependentUpon>BGModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\CertificateMst.cs">
       <DependentUpon>BGModel.tt</DependentUpon>
