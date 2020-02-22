@@ -28,8 +28,11 @@ namespace BG.Areas.Admin.Controllers
             using (var httpClient = ApiHelper.GetHttpClient())
             {
                 var result = httpClient.GetAsync(Config.dashboard).Result;
-                var resultContent = result.Content.ReadAsStringAsync().Result;
-                model = JsonConvert.DeserializeObject<AdminDashboardViewModel>(resultContent);
+                if (result.IsSuccessStatusCode)
+                {
+                    var resultContent = result.Content.ReadAsStringAsync().Result;
+                    model = JsonConvert.DeserializeObject<AdminDashboardViewModel>(resultContent);
+                }
             }
             return View(model);
         }

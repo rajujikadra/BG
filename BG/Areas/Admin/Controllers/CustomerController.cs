@@ -33,8 +33,11 @@ namespace BG.Areas.Admin.Controllers
             using (var httpClient = ApiHelper.GetHttpClient())
             {
                 var result = httpClient.GetAsync(Config.new_customers).Result;
-                var resultContent = result.Content.ReadAsStringAsync().Result;
-                model = JsonConvert.DeserializeObject<List<ApplicationUserViewModel>>(resultContent);
+                if (result.IsSuccessStatusCode)
+                {
+                    var resultContent = result.Content.ReadAsStringAsync().Result;
+                    model = JsonConvert.DeserializeObject<List<ApplicationUserViewModel>>(resultContent);
+                }
             }
             return View(model);
         }
@@ -49,8 +52,11 @@ namespace BG.Areas.Admin.Controllers
             using (var httpClient = ApiHelper.GetHttpClient())
             {
                 var result = httpClient.GetAsync(Config.Register_customers).Result;
-                var resultContent = result.Content.ReadAsStringAsync().Result;
-                model = JsonConvert.DeserializeObject<List<ApplicationUserViewModel>>(resultContent);
+                if (result.IsSuccessStatusCode)
+                {
+                    var resultContent = result.Content.ReadAsStringAsync().Result;
+                    model = JsonConvert.DeserializeObject<List<ApplicationUserViewModel>>(resultContent);
+                }
             }
             return View(model);
         }
@@ -65,8 +71,11 @@ namespace BG.Areas.Admin.Controllers
             using (var httpClient = ApiHelper.GetHttpClient())
             {
                 var result = httpClient.GetAsync(Config.get_customer_detail + "/" + userid).Result;
-                var resultContent = result.Content.ReadAsStringAsync().Result;
-                model = JsonConvert.DeserializeObject<ApplicationUserViewModel>(resultContent);
+                if (result.IsSuccessStatusCode)
+                {
+                    var resultContent = result.Content.ReadAsStringAsync().Result;
+                    model = JsonConvert.DeserializeObject<ApplicationUserViewModel>(resultContent);
+                }
             }
             return View(model);
         }
@@ -81,8 +90,11 @@ namespace BG.Areas.Admin.Controllers
             using (var httpClient = ApiHelper.GetHttpClient())
             {
                 var result = httpClient.GetAsync(Config.customer_deactivate + "/" + Email + "/").Result;
-                var resultContent = result.Content.ReadAsStringAsync().Result;
-                status = JsonConvert.DeserializeObject<bool>(resultContent);
+                if (result.IsSuccessStatusCode)
+                {
+                    var resultContent = result.Content.ReadAsStringAsync().Result;
+                    status = JsonConvert.DeserializeObject<bool>(resultContent);
+                }
             }
             return Json(status, JsonRequestBehavior.AllowGet);
         }
@@ -97,8 +109,11 @@ namespace BG.Areas.Admin.Controllers
             using (var httpClient = ApiHelper.GetHttpClient())
             {
                 var result = httpClient.GetAsync(Config.customer_activate + "/" + Email + "/").Result;
-                var resultContent = result.Content.ReadAsStringAsync().Result;
-                status = JsonConvert.DeserializeObject<bool>(resultContent);
+                if (result.IsSuccessStatusCode)
+                {
+                    var resultContent = result.Content.ReadAsStringAsync().Result;
+                    status = JsonConvert.DeserializeObject<bool>(resultContent);
+                }
             }
             return Json(status, JsonRequestBehavior.AllowGet);
         }
@@ -113,8 +128,11 @@ namespace BG.Areas.Admin.Controllers
             using (var httpClient = ApiHelper.GetHttpClient())
             {
                 var result = httpClient.GetAsync(Config.new_customer_activate + "/" + Email + "/").Result;
-                var resultContent = result.Content.ReadAsStringAsync().Result;
-                status = JsonConvert.DeserializeObject<bool>(resultContent);
+                if (result.IsSuccessStatusCode)
+                {
+                    var resultContent = result.Content.ReadAsStringAsync().Result;
+                    status = JsonConvert.DeserializeObject<bool>(resultContent);
+                }
             }
             return Json(status, JsonRequestBehavior.AllowGet);
         }

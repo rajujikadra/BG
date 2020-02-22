@@ -31,8 +31,11 @@ namespace BG.Areas.Admin.Controllers
             using (var httpClient = ApiHelper.GetHttpClient())
             {
                 var result = httpClient.GetAsync(Config.color_master).Result;
-                var resultContent = result.Content.ReadAsStringAsync().Result;
-                model = JsonConvert.DeserializeObject<List<ColorViewModel>>(resultContent);
+                if (result.IsSuccessStatusCode)
+                {
+                    var resultContent = result.Content.ReadAsStringAsync().Result;
+                    model = JsonConvert.DeserializeObject<List<ColorViewModel>>(resultContent);
+                }
             }
             return View(model);
         }
@@ -46,8 +49,11 @@ namespace BG.Areas.Admin.Controllers
             using (var httpClient = ApiHelper.GetHttpClient())
             {
                 var result = httpClient.GetAsync(Config.certificate_master).Result;
-                var resultContent = result.Content.ReadAsStringAsync().Result;
-                model = JsonConvert.DeserializeObject<List<CertificateViewModel>>(resultContent);
+                if (result.IsSuccessStatusCode)
+                {
+                    var resultContent = result.Content.ReadAsStringAsync().Result;
+                    model = JsonConvert.DeserializeObject<List<CertificateViewModel>>(resultContent);
+                }
             }
             return View(model);
         }
@@ -61,8 +67,11 @@ namespace BG.Areas.Admin.Controllers
             using (var httpClient = ApiHelper.GetHttpClient())
             {
                 var result = httpClient.GetAsync(Config.cut_master).Result;
-                var resultContent = result.Content.ReadAsStringAsync().Result;
-                model = JsonConvert.DeserializeObject<List<CutViewModel>>(resultContent);
+                if (result.IsSuccessStatusCode)
+                {
+                    var resultContent = result.Content.ReadAsStringAsync().Result;
+                    model = JsonConvert.DeserializeObject<List<CutViewModel>>(resultContent);
+                }
             }
             return View(model);
         }
@@ -76,8 +85,11 @@ namespace BG.Areas.Admin.Controllers
             using (var httpClient = ApiHelper.GetHttpClient())
             {
                 var result = httpClient.GetAsync(Config.purity_master).Result;
-                var resultContent = result.Content.ReadAsStringAsync().Result;
-                model = JsonConvert.DeserializeObject<List<PurityViewModel>>(resultContent);
+                if (result.IsSuccessStatusCode)
+                {
+                    var resultContent = result.Content.ReadAsStringAsync().Result;
+                    model = JsonConvert.DeserializeObject<List<PurityViewModel>>(resultContent);
+                }
             }
             return View(model);
         }
@@ -91,8 +103,11 @@ namespace BG.Areas.Admin.Controllers
             using (var httpClient = ApiHelper.GetHttpClient())
             {
                 var result = httpClient.GetAsync(Config.flou_master).Result;
-                var resultContent = result.Content.ReadAsStringAsync().Result;
-                model = JsonConvert.DeserializeObject<List<FlouViewModel>>(resultContent);
+                if (result.IsSuccessStatusCode)
+                {
+                    var resultContent = result.Content.ReadAsStringAsync().Result;
+                    model = JsonConvert.DeserializeObject<List<FlouViewModel>>(resultContent);
+                }
             }
             return View(model);
         }
@@ -106,8 +121,11 @@ namespace BG.Areas.Admin.Controllers
             using (var httpClient = ApiHelper.GetHttpClient())
             {
                 var result = httpClient.GetAsync(Config.size_master).Result;
-                var resultContent = result.Content.ReadAsStringAsync().Result;
-                model = JsonConvert.DeserializeObject<List<SizeViewModel>>(resultContent);
+                if (result.IsSuccessStatusCode)
+                {
+                    var resultContent = result.Content.ReadAsStringAsync().Result;
+                    model = JsonConvert.DeserializeObject<List<SizeViewModel>>(resultContent);
+                }
             }
             return View(model);
         }
@@ -121,8 +139,11 @@ namespace BG.Areas.Admin.Controllers
             using (var httpClient = ApiHelper.GetHttpClient())
             {
                 var result = httpClient.GetAsync(Config.party_master).Result;
-                var resultContent = result.Content.ReadAsStringAsync().Result;
-                model = JsonConvert.DeserializeObject<List<PartyViewModel>>(resultContent);
+                if (result.IsSuccessStatusCode)
+                {
+                    var resultContent = result.Content.ReadAsStringAsync().Result;
+                    model = JsonConvert.DeserializeObject<List<PartyViewModel>>(resultContent);
+                }
             }
             return View(model);
         }
@@ -136,8 +157,11 @@ namespace BG.Areas.Admin.Controllers
             using (var httpClient = ApiHelper.GetHttpClient())
             {
                 var result = httpClient.GetAsync(Config.fancy_color_master).Result;
-                var resultContent = result.Content.ReadAsStringAsync().Result;
-                model = JsonConvert.DeserializeObject<List<FancyColorViewModel>>(resultContent);
+                if (result.IsSuccessStatusCode)
+                {
+                    var resultContent = result.Content.ReadAsStringAsync().Result;
+                    model = JsonConvert.DeserializeObject<List<FancyColorViewModel>>(resultContent);
+                }
             }
             return View(model);
         }
@@ -151,8 +175,11 @@ namespace BG.Areas.Admin.Controllers
             using (var httpClient = ApiHelper.GetHttpClient())
             {
                 var result = httpClient.GetAsync(Config.fancy_ot_master).Result;
-                var resultContent = result.Content.ReadAsStringAsync().Result;
-                model = JsonConvert.DeserializeObject<List<FancyOTViewModel>>(resultContent);
+                if (result.IsSuccessStatusCode)
+                {
+                    var resultContent = result.Content.ReadAsStringAsync().Result;
+                    model = JsonConvert.DeserializeObject<List<FancyOTViewModel>>(resultContent);
+                }
             }
             return View(model);
         }
@@ -166,8 +193,11 @@ namespace BG.Areas.Admin.Controllers
             using (var httpClient = ApiHelper.GetHttpClient())
             {
                 var result = httpClient.GetAsync(Config.shape_master).Result;
-                var resultContent = result.Content.ReadAsStringAsync().Result;
-                model = JsonConvert.DeserializeObject<List<ShapViewModel>>(resultContent);
+                if (result.IsSuccessStatusCode)
+                {
+                    var resultContent = result.Content.ReadAsStringAsync().Result;
+                    model = JsonConvert.DeserializeObject<List<ShapViewModel>>(resultContent);
+                }
             }
             return View(model);
         }
