@@ -1,7 +1,64 @@
-﻿
+﻿@model List<BG_Application.CustomDTO.ApplicationUserViewModel>
 @{
     ViewBag.Title = "GetAllBrokers";
     Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
 }
 
 
+<div class="main-content">
+    <section class="section">
+        <div class="section-body">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Brokers</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-hover" id="broker-table" style="width:100%;">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Mobile</th>
+                                            <th>City</th>
+                                            <th>Company</th>
+                                            <th>Company Address</th>
+                                            <th>Company City</th>
+                                            <th>Contact Person</th>
+                                            <th>Reference</th>
+                                            <th>Reference Mobile</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var U in Model)
+                                        {
+                                            <tr>
+                                                <td>@U.FirstName @U.LastName</td>
+                                                <td>@U.Email</td>
+                                                <td>@U.Mobile</td>
+                                                <td>@U.UserCityName</td>
+                                                <td>@U.CompanyName</td>
+                                                <td>@U.CompanyAddress</td>
+                                                <td>@U.CompanyCityName</td>
+                                                <td>@U.ContactPerson</td>
+                                                <td>@U.RefName</td>
+                                                <td>@U.RefMobile</td>
+                                                <td>
+                                                    <a href="/admin/customer/@U.Id" class="btn btn-primary"><i class="fa fa-eye"></i> View</a>
+                                                    <button type="button" class="btn btn-info"> Columns</button>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

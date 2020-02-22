@@ -27,10 +27,21 @@ namespace BG.Common
         public static readonly string fancy_ot_master = "api/master/fancy-ot-master";
         public static readonly string shape_master = "api/master/shap-master";
 
-        public static readonly string new_customers = "api/customer/customers";
+        // Customer API
+        public static readonly string new_customers = "api/customer/new";
+        public static readonly string Register_customers = "api/customer/register";
         public static readonly string get_customer_detail = "api/customer/details";
+        public static readonly string customer_deactivate = "api/customer/deactivate";
+        public static readonly string customer_activate = "api/customer/activate";
+        public static readonly string new_customer_activate = "api/customer/new-customer-activate";
+
+        // Dashboard API
         public static readonly string dashboard = "api/dashboard";
+
+        // Stock API
         public static readonly string get_stock = "api/stock";
+
+        // Broker API
         public static readonly string get_broker = "api/broker";
-    }  
+    }
 }

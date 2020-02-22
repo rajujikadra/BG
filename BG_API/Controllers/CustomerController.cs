@@ -22,12 +22,29 @@ namespace BG_API.Controllers
 
         #region get new customers
         [HttpGet]
-        [Route("customers/{active}")]
-        public IHttpActionResult GetAllColorMst(string active)
+        [Route("new")]
+        public IHttpActionResult GetAllNewCutomer()
         {
             try
             {
-                var users = _ICustomer_Repository.GetInActiveCustomers(active == EnumTypes.CustomerType.New.ToString().ToLower() ? false : true);
+                var users = _ICustomer_Repository.GetInActiveCustomers();
+                return Ok(users);
+            }
+            catch (Exception ex)
+            {
+                return NotFound();
+            }
+        }
+        #endregion
+
+        #region get register customers
+        [HttpGet]
+        [Route("register")]
+        public IHttpActionResult GetAllRegisterCustomer()
+        {
+            try
+            {
+                var users = _ICustomer_Repository.GetRegisterCustomers();
                 return Ok(users);
             }
             catch (Exception ex)
@@ -46,6 +63,54 @@ namespace BG_API.Controllers
             {
                 var users = _ICustomer_Repository.GetCustomerDetails(UserId);
                 return Ok(users);
+            }
+            catch (Exception ex)
+            {
+                return NotFound();
+            }
+        }
+        #endregion
+
+        #region customer deactivate
+        [HttpGet]
+        [Route("deactivate/{Email}/")]
+        public IHttpActionResult DeactivateCustomer(string Email)
+        {
+            try
+            {
+                return Ok(_ICustomer_Repository.CustomerDeactivate(Email));
+            }
+            catch (Exception ex)
+            {
+                return NotFound();
+            }
+        }
+        #endregion
+
+        #region customer activate
+        [HttpGet]
+        [Route("activate/{Email}")]
+        public IHttpActionResult ActivateCustomer(string Email)
+        {
+            try
+            {
+                return Ok(_ICustomer_Repository.CustomerActivate(Email));
+            }
+            catch (Exception ex)
+            {
+                return NotFound();
+            }
+        }
+        #endregion
+
+        #region new customer activate
+        [HttpGet]
+        [Route("new-customer-activate/{Email}")]
+        public IHttpActionResult NewCustomerActivate(string Email)
+        {
+            try
+            {
+                return Ok(_ICustomer_Repository.NewCustomerActivate(Email));
             }
             catch (Exception ex)
             {

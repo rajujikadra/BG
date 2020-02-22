@@ -57,7 +57,7 @@ namespace BG_API.Providers
                     {
                         await userManager.SetLockoutEndDateAsync(user.Id, DateTime.Now.AddYears(1));
                         context.SetError(string.Format("Your account has been locked as a result of too many unsuccessful attempts. Please contact system admin to unloack your account."));
-                        return;
+                        
                     }
                 }
                 else
@@ -66,6 +66,11 @@ namespace BG_API.Providers
                 }
                 string message = string.Format("Invalid credentials. You have {0} more attempt(s) before your account gets locked out.", attemptsLeft);
                 context.SetError(message);
+                return;
+            }
+            if (!await userManager.IsEmailConfirmedAsync(user.Id))
+            {
+                context.SetError(string.Format("Your account has been not activated. Please contact system admin to activate your account."));
                 return;
             }
             await userManager.ResetAccessFailedCountAsync(user.Id);

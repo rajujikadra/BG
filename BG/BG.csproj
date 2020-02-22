@@ -1066,6 +1066,7 @@
     <Content Include="Areas\Admin\Views\Customer\CustomeDetails.cshtml" />
     <Content Include="Areas\Admin\Views\Stock\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Broker\GetAllBrokers.cshtml" />
+    <Content Include="Areas\Admin\Views\Customer\GetRegisterCustomers.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\ClientJS\common.js" />
     <Content Include="Scripts\HoldOn.js" />

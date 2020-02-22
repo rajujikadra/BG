@@ -1,4 +1,5 @@
 ﻿@model List<BG_Application.CustomDTO.MenuViewModel>
+@using BG_Application.CustomDTO
     <ul class="sidebar-menu">
         <li class="menu-header">Main</li>
         @if (Model.Count() > 0)
@@ -23,7 +24,12 @@
                 count++;
             }
         }
-    
+        @if (User.IsInRole(EnumTypes.RoleList.BROKER.ToString()))
+        {
+            <li class="dropdown">
+                <a href="/admin/broker" class="nav-link"><i data-feather="grid"></i><span>Broker</span></a>
+            </li>
+        }
         @*<li class="dropdown active">
             <a href="/admin/dashboard" class="nav-link"><i data-feather="monitor"></i><span>Dashboard</span></a>
         </li>

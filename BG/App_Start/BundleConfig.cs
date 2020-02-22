@@ -46,6 +46,8 @@ namespace BG
                 "~/Areas/Admin/assets/bundles/apexcharts/apexcharts.min.js",
                 "~/Areas/Admin/assets/js/page/index.js",
                 "~/Areas/Admin/assets/js/scripts.js",
+                "~/Areas/Admin/assets/bundles/sweetalert/sweetalert.min.js",
+                "~/Areas/Admin/assets/js/page/sweetalert.js",
                 "~/Areas/Admin/assets/bundles/datatables/datatables.min.js",
                 "~/Areas/Admin/assets/bundles/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js",
                 "~/Areas/Admin/assets/js/page/datatables.js",

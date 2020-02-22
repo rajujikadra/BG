@@ -15,10 +15,36 @@ namespace BG_Application.Service
         {
             DB = _DB;
         }
-        public List<ApplicationUserViewModel> GetInActiveCustomers(bool active)
+        public List<ApplicationUserViewModel> GetInActiveCustomers()
         {
-            var Users = DB.AspNetUsers.Where(x => x.Active == active).Select(y => new ApplicationUserViewModel()
+            var Users = DB.AspNetUsers.Where(x => x.Active == false).Select(y => new ApplicationUserViewModel()
             {
+                EmailConfirmed = y.EmailConfirmed,
+                Id = y.Id,
+                FirstName = y.FirstName,
+                LastName = y.LastName,
+                Email = y.Email,
+                CompanyAddress = y.CompanyAddress,
+                CompanyCityId = y.CompanyCityId,
+                CompanyName = y.CompanyName,
+                CompanyZipcode = y.CompanyZipcode,
+                CompanyCityName = y.CityMst.CityName,
+                ContactPerson = y.ContactPerson,
+                Mobile = y.Mobile,
+                RefBusiness = y.RefBusiness,
+                RefMobile = y.RefMobile,
+                RefName = y.RefName,
+                UserCityName = y.CityMst1.CityName,
+                Active = y.Active
+
+            }).ToList();
+            return Users;
+        }
+        public List<ApplicationUserViewModel> GetRegisterCustomers()
+        {
+            var Users = DB.AspNetUsers.Where(x => x.Active == true).Select(y => new ApplicationUserViewModel()
+            {
+                EmailConfirmed = y.EmailConfirmed,
                 Id = y.Id,
                 FirstName = y.FirstName,
                 LastName = y.LastName,
@@ -61,6 +87,42 @@ namespace BG_Application.Service
                 Active = y.Active,
                 Address = y.Address
             }).FirstOrDefault();
+        }
+        public bool CustomerDeactivate(string Email)
+        {
+            var user = DB.AspNetUsers.FirstOrDefault(x => x.Email == Email);
+            if (user != null)
+            {
+                user.EmailConfirmed = false;
+                DB.SaveChanges();
+                return true;
+            }
+            return false;
+        }
+
+        public bool CustomerActivate(string Email)
+        {
+            var user = DB.AspNetUsers.FirstOrDefault(x => x.Email == Email);
+            if (user != null)
+            {
+                user.EmailConfirmed = true;
+                DB.SaveChanges();
+                return true;
+            }
+            return false;
+        }
+
+        public bool NewCustomerActivate(string Email)
+        {
+            var user = DB.AspNetUsers.FirstOrDefault(x => x.Email == Email);
+            if (user != null)
+            {
+                user.EmailConfirmed = true;
+                user.Active = true;
+                DB.SaveChanges();
+                return true;
+            }
+            return false;
         }
         #region IDisposable Support
         private bool disposedValue = false; // To detect redundant calls
