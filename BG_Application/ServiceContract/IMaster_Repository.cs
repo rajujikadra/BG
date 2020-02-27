@@ -22,5 +22,10 @@ namespace BG_Application.ServiceContract
         List<ShapViewModel> GetAllShapMaster();
         List<SizeViewModel> GetAllSizeMaster();
         List<TypeViewModel> GetAllTypeMaster();
+
+
+        bool InsertColorMaster(ColorViewModel model);
+        bool IsColorExist(string ColorName);
+        bool DeleteColorMaster(int ID);
     }
 }

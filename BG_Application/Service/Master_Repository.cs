@@ -1,4 +1,5 @@
 ﻿using BG_Application.CustomDTO;
+using BG_Application.Data;
 using BG_Application.ServiceContract;
 using System;
 using System.Collections.Generic;
@@ -238,6 +239,67 @@ namespace BG_Application.Service
         public List<TypeViewModel> GetAllTypeMaster()
         {
             return DB.Database.SqlQuery<TypeViewModel>("SELECT * FROM TypeMst").ToList();
+        }
+
+        public bool IsColorExist(string ColorName)
+        {
+            return DB.ColorMsts.Any(x => x.ColorName.ToUpper().Equals(ColorName.ToUpper()));
+        }
+        public bool DeleteColorMaster(int ID)
+        {
+            try
+            {
+                var Color = DB.ColorMsts.FirstOrDefault(x => x.ColorCode == ID);
+                if (Color != null)
+                {
+                    Color.Active = false;
+                    DB.SaveChanges();
+                }
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public bool InsertColorMaster(ColorViewModel model)
+        {
+            try
+            {
+                if (model.ColorCode != 0)
+                {
+                    var color = DB.ColorMsts.FirstOrDefault(x => x.ColorCode == model.ColorCode);
+                    if (color != null)
+                    {
+                        color.ColorName = model.ColorName.ToUpper();
+                        color.ColorAliasName = model.ColorAliasName.ToUpper();
+                        color.Active = model.Active ?? true;
+                        DB.SaveChanges();
+                    }
+                }
+                else
+                {
+                    var obj = new ColorMst
+                    {
+                        Active = model.Active,
+                        ColorAliasName = model.ColorAliasName.ToUpper(),
+                        ColorName = model.ColorName.ToUpper(),
+                        CompanyCode = 1,
+                        Logid = model.Logid,
+                        Pcid = model.Pcid,
+                        Sdate = DateTime.Now,
+                        SortID = model.SortID
+                    };
+                    DB.ColorMsts.Add(obj);
+                    DB.SaveChanges();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
 
         #region IDisposable Support

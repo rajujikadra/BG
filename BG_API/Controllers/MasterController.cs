@@ -36,6 +36,49 @@ namespace BG_API.Controllers
                 return NotFound();
             }
         }
+
+        [HttpPost]
+        [Route("save-color-master")]
+        public IHttpActionResult AddEditColorMaster(ColorViewModel model)
+        {
+            try
+            {
+                if (!_IMaster_Repository.IsColorExist(model.ColorName))
+                {
+                    bool status = _IMaster_Repository.InsertColorMaster(model);
+                    if (status)
+                        return Ok(model.ColorCode != 0 ? "Successfully updated" : "Successfully added");
+                    else
+                        return BadRequest("Opps! Something problem in your data");
+                }
+                else
+                {
+                    return BadRequest(model.ColorName + " color is already exist");
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Opps! Something went wrong");
+            }
+        }
+
+        [HttpDelete]
+        [Route("delete-color-master/{ID}")]
+        public IHttpActionResult DeleteColorMaster(int ID)
+        {
+            try
+            {
+                bool status = _IMaster_Repository.DeleteColorMaster(ID);
+                if (status)
+                    return Ok("Successfully deleted");
+                else
+                    return BadRequest("Opps! Something went wrong");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Opps! Something went wrong");
+            }
+        }
         #endregion
 
         #region Certificate Master
