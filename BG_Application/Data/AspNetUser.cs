@@ -21,6 +21,7 @@ namespace BG_Application.Data
             this.AspNetUserLogins = new HashSet<AspNetUserLogin>();
             this.AspNetRoles = new HashSet<AspNetRole>();
             this.BrokerColumnMappingMsts = new HashSet<BrokerColumnMappingMst>();
+            this.UserMenuPermissionMsts = new HashSet<UserMenuPermissionMst>();
         }
     
         public string Id { get; set; }
@@ -60,5 +61,7 @@ namespace BG_Application.Data
         public virtual CityMst CityMst1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BrokerColumnMappingMst> BrokerColumnMappingMsts { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UserMenuPermissionMst> UserMenuPermissionMsts { get; set; }
     }
 }

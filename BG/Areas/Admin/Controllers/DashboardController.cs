@@ -34,6 +34,9 @@ namespace BG.Areas.Admin.Controllers
                     model = JsonConvert.DeserializeObject<AdminDashboardViewModel>(resultContent);
                 }
             }
+            var DB = new BG_DBEntities();
+            string UserID = DB.AspNetUsers.FirstOrDefault(x => x.Email == User.Identity.Name).Id;
+            ViewBag.IsMenuPErmission = DB.UserMenuPermissionMsts.Any(x => x.UserId == UserID);
             return View(model);
         }
     }

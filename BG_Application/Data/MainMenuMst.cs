@@ -18,6 +18,7 @@ namespace BG_Application.Data
         public MainMenuMst()
         {
             this.MenuMsts = new HashSet<MenuMst>();
+            this.UserMenuPermissionMsts = new HashSet<UserMenuPermissionMst>();
         }
     
         public int MainMenuMstID { get; set; }
@@ -29,5 +30,7 @@ namespace BG_Application.Data
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MenuMst> MenuMsts { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UserMenuPermissionMst> UserMenuPermissionMsts { get; set; }
     }
 }

@@ -11,5 +11,10 @@ namespace BG_Application.ServiceContract
     {
         List<ApplicationUserViewModel> GetBrokerList();
         List<BrokerColumnsViewModel> GetBrokerColumn();
+        List<DiamondStockViewModel> GetStock();
+
+        string GetUserIdByEmail(string Email);
+
+        List<string> GetBrokerColumnByUserId(string UserID);
     }
 }

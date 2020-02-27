@@ -58,7 +58,7 @@ function chart1() {
                 show: false
             }
         },
-        colors: ["#786BED", "#999b9c"],
+        colors: ["#786BED", "#999b9c", "#54ca68"],
         dataLabels: {
             enabled: true
         },
@@ -72,6 +72,10 @@ function chart1() {
         {
             name: "Low - 2019",
             data: [7, 11, 30, 18, 25, 13]
+        },
+        {
+            name: "Medium - 2019",
+            data: [7, 25, 15, 35, 40, 60]
         }
         ],
         grid: {
@@ -102,8 +106,8 @@ function chart1() {
                     color: "#9aa0ac"
                 }
             },
-            min: 5,
-            max: 40
+            min: 0,
+            max: 100
         },
         legend: {
             position: "top",

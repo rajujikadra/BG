@@ -442,6 +442,15 @@ warning 6013: The table/view 'BG_DB.dbo.TypeMst' does not have a primary key def
           <Property Name="Type" Type="nvarchar" MaxLength="50" />
           <Property Name="Active" Type="bit" />
         </EntityType>-->
+        <EntityType Name="UserMenuPermissionMst">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MainMenuMstId" Type="int" />
+          <Property Name="MenuMstId" Type="int" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" />
+        </EntityType>
         <Association Name="FK_BrokerColumns">
           <End Role="BrokerColumnName" Type="Self.BrokerColumnName" Multiplicity="0..1" />
           <End Role="BrokerColumnMappingMst" Type="Self.BrokerColumnMappingMst" Multiplicity="*" />
@@ -546,6 +555,30 @@ warning 6013: The table/view 'BG_DB.dbo.TypeMst' does not have a primary key def
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_MainMenu">
+          <End Role="MainMenuMst" Type="Self.MainMenuMst" Multiplicity="0..1" />
+          <End Role="UserMenuPermissionMst" Type="Self.UserMenuPermissionMst" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MainMenuMst">
+              <PropertyRef Name="MainMenuMstID" />
+            </Principal>
+            <Dependent Role="UserMenuPermissionMst">
+              <PropertyRef Name="MainMenuMstId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Menu">
+          <End Role="MenuMst" Type="Self.MenuMst" Multiplicity="0..1" />
+          <End Role="UserMenuPermissionMst" Type="Self.UserMenuPermissionMst" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MenuMst">
+              <PropertyRef Name="MenuMstId" />
+            </Principal>
+            <Dependent Role="UserMenuPermissionMst">
+              <PropertyRef Name="MenuMstId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_menuid">
           <End Role="MainMenuMst" Type="Self.MainMenuMst" Multiplicity="0..1" />
           <End Role="MenuMst" Type="Self.MenuMst" Multiplicity="*" />
@@ -567,6 +600,18 @@ warning 6013: The table/view 'BG_DB.dbo.TypeMst' does not have a primary key def
             </Principal>
             <Dependent Role="CityMst">
               <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USer">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="UserMenuPermissionMst" Type="Self.UserMenuPermissionMst" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserMenuPermissionMst">
+              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -608,6 +653,7 @@ warning 6013: The table/view 'BG_DB.dbo.TypeMst' does not have a primary key def
           <EntitySet Name="ShapeMst" EntityType="Self.ShapeMst" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StateMst" EntityType="Self.StateMst" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SymmetryMst" EntityType="Self.SymmetryMst" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserMenuPermissionMst" EntityType="Self.UserMenuPermissionMst" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CompanyMst" EntityType="Self.CompanyMst" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [CompanyMst].[CompanyMstId] AS [CompanyMstId], 
@@ -709,6 +755,14 @@ warning 6013: The table/view 'BG_DB.dbo.TypeMst' does not have a primary key def
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
           </AssociationSet>
+          <AssociationSet Name="FK_MainMenu" Association="Self.FK_MainMenu">
+            <End Role="MainMenuMst" EntitySet="MainMenuMst" />
+            <End Role="UserMenuPermissionMst" EntitySet="UserMenuPermissionMst" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Menu" Association="Self.FK_Menu">
+            <End Role="MenuMst" EntitySet="MenuMst" />
+            <End Role="UserMenuPermissionMst" EntitySet="UserMenuPermissionMst" />
+          </AssociationSet>
           <AssociationSet Name="FK_menuid" Association="Self.FK_menuid">
             <End Role="MainMenuMst" EntitySet="MainMenuMst" />
             <End Role="MenuMst" EntitySet="MenuMst" />
@@ -716,6 +770,10 @@ warning 6013: The table/view 'BG_DB.dbo.TypeMst' does not have a primary key def
           <AssociationSet Name="FK_State" Association="Self.FK_State">
             <End Role="StateMst" EntitySet="StateMst" />
             <End Role="CityMst" EntitySet="CityMst" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USer" Association="Self.FK_USer">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="UserMenuPermissionMst" EntitySet="UserMenuPermissionMst" />
           </AssociationSet>
           <AssociationSet Name="FK_UserCityId" Association="Self.FK_UserCityId">
             <End Role="CityMst" EntitySet="CityMst" />
@@ -1007,6 +1065,19 @@ warning 6013: The table/view 'BG_DB.dbo.TypeMst' does not have a primary key def
             <End Role="BrokerColumnName" EntitySet="BrokerColumnNames" />
             <End Role="BrokerColumnMappingMst" EntitySet="BrokerColumnMappingMsts" />
           </AssociationSet>
+          <EntitySet Name="UserMenuPermissionMsts" EntityType="BG_DBModel.UserMenuPermissionMst" />
+          <AssociationSet Name="FK_USer" Association="BG_DBModel.FK_USer">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="UserMenuPermissionMst" EntitySet="UserMenuPermissionMsts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MainMenu" Association="BG_DBModel.FK_MainMenu">
+            <End Role="MainMenuMst" EntitySet="MainMenuMsts" />
+            <End Role="UserMenuPermissionMst" EntitySet="UserMenuPermissionMsts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Menu" Association="BG_DBModel.FK_Menu">
+            <End Role="MenuMst" EntitySet="MenuMsts" />
+            <End Role="UserMenuPermissionMst" EntitySet="UserMenuPermissionMsts" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="PartyMst">
           <Key>
@@ -1044,6 +1115,7 @@ warning 6013: The table/view 'BG_DB.dbo.TypeMst' does not have a primary key def
           <Property Name="Active" Type="Boolean" />
           <Property Name="URL" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="MenuMsts" Relationship="BG_DBModel.FK_menuid" FromRole="MainMenuMst" ToRole="MenuMst" />
+          <NavigationProperty Name="UserMenuPermissionMsts" Relationship="BG_DBModel.FK_MainMenu" FromRole="MainMenuMst" ToRole="UserMenuPermissionMst" />
         </EntityType>
         <EntityType Name="MenuMst">
           <Key>
@@ -1057,6 +1129,7 @@ warning 6013: The table/view 'BG_DB.dbo.TypeMst' does not have a primary key def
           <Property Name="Icon" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="URL" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="MainMenuMst" Relationship="BG_DBModel.FK_menuid" FromRole="MenuMst" ToRole="MainMenuMst" />
+          <NavigationProperty Name="UserMenuPermissionMsts" Relationship="BG_DBModel.FK_Menu" FromRole="MenuMst" ToRole="UserMenuPermissionMst" />
         </EntityType>
         <Association Name="FK_menuid">
           <End Type="BG_DBModel.MainMenuMst" Role="MainMenuMst" Multiplicity="0..1" />
@@ -1139,6 +1212,7 @@ warning 6013: The table/view 'BG_DB.dbo.TypeMst' does not have a primary key def
           <NavigationProperty Name="CityMst1" Relationship="BG_DBModel.FK_UserCityId" FromRole="AspNetUser" ToRole="CityMst" />
           <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="BrokerColumnMappingMsts" Relationship="BG_DBModel.FK_BrokerUser" FromRole="AspNetUser" ToRole="BrokerColumnMappingMst" />
+          <NavigationProperty Name="UserMenuPermissionMsts" Relationship="BG_DBModel.FK_USer" FromRole="AspNetUser" ToRole="UserMenuPermissionMst" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Type="BG_DBModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
@@ -1344,6 +1418,54 @@ warning 6013: The table/view 'BG_DB.dbo.TypeMst' does not have a primary key def
             </Principal>
             <Dependent Role="BrokerColumnMappingMst">
               <PropertyRef Name="ColumnId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="UserMenuPermissionMst">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MainMenuMstId" Type="Int32" />
+          <Property Name="MenuMstId" Type="Int32" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="BG_DBModel.FK_USer" FromRole="UserMenuPermissionMst" ToRole="AspNetUser" />
+          <NavigationProperty Name="MainMenuMst" Relationship="BG_DBModel.FK_MainMenu" FromRole="UserMenuPermissionMst" ToRole="MainMenuMst" />
+          <NavigationProperty Name="MenuMst" Relationship="BG_DBModel.FK_Menu" FromRole="UserMenuPermissionMst" ToRole="MenuMst" />
+        </EntityType>
+        <Association Name="FK_USer">
+          <End Type="BG_DBModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
+          <End Type="BG_DBModel.UserMenuPermissionMst" Role="UserMenuPermissionMst" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserMenuPermissionMst">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MainMenu">
+          <End Type="BG_DBModel.MainMenuMst" Role="MainMenuMst" Multiplicity="0..1" />
+          <End Type="BG_DBModel.UserMenuPermissionMst" Role="UserMenuPermissionMst" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MainMenuMst">
+              <PropertyRef Name="MainMenuMstID" />
+            </Principal>
+            <Dependent Role="UserMenuPermissionMst">
+              <PropertyRef Name="MainMenuMstId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Menu">
+          <End Type="BG_DBModel.MenuMst" Role="MenuMst" Multiplicity="0..1" />
+          <End Type="BG_DBModel.UserMenuPermissionMst" Role="UserMenuPermissionMst" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MenuMst">
+              <PropertyRef Name="MenuMstId" />
+            </Principal>
+            <Dependent Role="UserMenuPermissionMst">
+              <PropertyRef Name="MenuMstId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1794,6 +1916,16 @@ warning 6013: The table/view 'BG_DB.dbo.TypeMst' does not have a primary key def
               <MappingFragment StoreEntitySet="BrokerColumnName">
                 <ScalarProperty Name="ColumnName" ColumnName="ColumnName" />
                 <ScalarProperty Name="ColumnId" ColumnName="ColumnId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserMenuPermissionMsts">
+            <EntityTypeMapping TypeName="BG_DBModel.UserMenuPermissionMst">
+              <MappingFragment StoreEntitySet="UserMenuPermissionMst">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="MenuMstId" ColumnName="MenuMstId" />
+                <ScalarProperty Name="MainMenuMstId" ColumnName="MainMenuMstId" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

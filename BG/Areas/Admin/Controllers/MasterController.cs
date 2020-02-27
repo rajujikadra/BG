@@ -8,6 +8,7 @@ using BG.Common;
 using BG.Helper;
 using BG_Application.CustomDTO;
 using BG_Application.Data;
+using Microsoft.Ajax.Utilities;
 using Newtonsoft.Json;
 
 namespace BG.Areas.Admin.Controllers
@@ -208,22 +209,38 @@ namespace BG.Areas.Admin.Controllers
         public PartialViewResult GetMenu()
         {
             var DB = new BG_DBEntities();
-            var menu = DB.MainMenuMsts.Where(x => x.Active == true).Select(y => new MenuViewModel()
+            string UserID = DB.AspNetUsers.FirstOrDefault(x => x.Email == User.Identity.Name).Id;
+            var menu = DB.UserMenuPermissionMsts.Where(x => x.UserId == UserID && x.MainMenuMst.Active == true).Select(y => new MenuViewModel()
             {
-                MainMenuName = y.MainMenuName,
-                URL = y.URL,
-                Icon = y.Icon,
-                MainMenuMstID = y.MainMenuMstID,
-                Active = y.Active,
-                SubMenu = y.MenuMsts.Where(v => v.Active == true).Select(c => new SubMenuViewModel()
+                MainMenuName = y.MainMenuMst.MainMenuName,
+                URL = y.MainMenuMst.URL,
+                Icon = y.MainMenuMst.Icon,
+                Active = y.MainMenuMst.Active,
+                SubMenu = DB.UserMenuPermissionMsts.Where(x => x.UserId == UserID && x.MenuMst.Active == true && x.MainMenuMstId == y.MainMenuMstId).Select(c => new SubMenuViewModel()
                 {
-                    MenuName = c.MenuName,
-                    URL = c.URL,
-                    Active = c.Active,
-                    Icon = c.Icon,
-                    MenuMstId = c.MenuMstId
+                    MenuName = c.MenuMst.MenuName,
+                    URL = c.MenuMst.URL,
+                    Active = c.MenuMst.Active,
+                    Icon = c.MenuMst.Icon,
+                    MenuMstId = c.MenuMst.MenuMstId
                 }).ToList()
-            }).ToList();
+            }).DistinctBy(b => b.MainMenuName).ToList();
+            //var menu = DB.MainMenuMsts.Where(x => x.Active == true).Select(y => new MenuViewModel()
+            //{
+            //    MainMenuName = y.MainMenuName,
+            //    URL = y.URL,
+            //    Icon = y.Icon,
+            //    MainMenuMstID = y.MainMenuMstID,
+            //    Active = y.Active,
+            //    SubMenu = y.MenuMsts.Where(v => v.Active == true).Select(c => new SubMenuViewModel()
+            //    {
+            //        MenuName = c.MenuName,
+            //        URL = c.URL,
+            //        Active = c.Active,
+            //        Icon = c.Icon,
+            //        MenuMstId = c.MenuMstId
+            //    }).ToList()
+            //}).ToList();
             return PartialView("_MenuPartial", menu);
         }
         #endregion

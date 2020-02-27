@@ -42,6 +42,10 @@
         <EntityTypeShape EntityType="BG_DBModel.BrokerColumnName" Width="1.5" PointX="20.125" PointY="11.25" />
         <AssociationConnector Association="BG_DBModel.FK_BrokerUser" />
         <AssociationConnector Association="BG_DBModel.FK_BrokerColumns" />
+        <EntityTypeShape EntityType="BG_DBModel.UserMenuPermissionMst" Width="1.5" PointX="22.375" PointY="7" />
+        <AssociationConnector Association="BG_DBModel.FK_USer" />
+        <AssociationConnector Association="BG_DBModel.FK_MainMenu" />
+        <AssociationConnector Association="BG_DBModel.FK_Menu" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

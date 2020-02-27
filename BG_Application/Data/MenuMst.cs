@@ -14,6 +14,12 @@ namespace BG_Application.Data
     
     public partial class MenuMst
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public MenuMst()
+        {
+            this.UserMenuPermissionMsts = new HashSet<UserMenuPermissionMst>();
+        }
+    
         public int MenuMstId { get; set; }
         public Nullable<int> MainMenuMstId { get; set; }
         public string MenuName { get; set; }
@@ -23,5 +29,7 @@ namespace BG_Application.Data
         public string URL { get; set; }
     
         public virtual MainMenuMst MainMenuMst { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UserMenuPermissionMst> UserMenuPermissionMsts { get; set; }
     }
 }

@@ -43,5 +43,6 @@ namespace BG.Common
 
         // Broker API
         public static readonly string get_broker = "api/broker";
+        public static readonly string get_broker_Columns = "api/broker/get-stock";
     }
 }

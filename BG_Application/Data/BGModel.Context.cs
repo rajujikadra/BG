@@ -52,5 +52,6 @@ namespace BG_Application.Data
         public virtual DbSet<DiamondStock> DiamondStocks { get; set; }
         public virtual DbSet<BrokerColumnMappingMst> BrokerColumnMappingMsts { get; set; }
         public virtual DbSet<BrokerColumnName> BrokerColumnNames { get; set; }
+        public virtual DbSet<UserMenuPermissionMst> UserMenuPermissionMsts { get; set; }
     }
 }

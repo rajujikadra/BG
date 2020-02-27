@@ -171,6 +171,9 @@
     <Compile Include="Data\SymmetryMst.cs">
       <DependentUpon>BGModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\UserMenuPermissionMst.cs">
+      <DependentUpon>BGModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceContract\IBroker_Repository.cs" />
     <Compile Include="ServiceContract\ICustomer_Repository.cs" />
