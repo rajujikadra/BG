@@ -241,9 +241,12 @@ namespace BG_Application.Service
             return DB.Database.SqlQuery<TypeViewModel>("SELECT * FROM TypeMst").ToList();
         }
 
-        public bool IsColorExist(string ColorName)
+        public bool IsColorExist(string ColorName, int ColorCode)
         {
-            return DB.ColorMsts.Any(x => x.ColorName.ToUpper().Equals(ColorName.ToUpper()));
+            if (ColorCode > 0)
+                return DB.ColorMsts.Any(x => x.ColorCode != ColorCode && x.ColorName.ToUpper().Equals(ColorName.ToUpper()));
+            else
+                return DB.ColorMsts.Any(x => x.ColorName.ToUpper().Equals(ColorName.ToUpper()));
         }
         public bool DeleteColorMaster(int ID)
         {
@@ -301,10 +304,666 @@ namespace BG_Application.Service
                 return false;
             }
         }
+        public bool InsertCertificateMaster(CertificateViewModel model)
+        {
+            try
+            {
+                if (model.CertificateCode != 0)
+                {
+                    var certificate = DB.CertificateMsts.FirstOrDefault(x => x.CertificateCode == model.CertificateCode);
+                    if (certificate != null)
+                    {
+                        certificate.CertificateName = model.CertificateName;
+                        certificate.Active = model.Active ?? true;
+                        certificate.SortID = model.SortID ?? certificate.SortID;
+                        DB.SaveChanges();
+                    }
+                }
+                else
+                {
+                    var obj = new CertificateMst
+                    {
+                        CertificateName = model.CertificateName,
+                        CompanyCode = 1,
+                        SortID = model.SortID,
+                        Active = model.Active,
+                        Pcid = model.Pcid,
+                        Sdate = DateTime.Now,
+                        Logid = model.Logid
+                    };
+                    DB.CertificateMsts.Add(obj);
+                    DB.SaveChanges();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public bool IsCertificateExist(string CertificateName, int CertificateCode)
+        {
+            if (CertificateCode > 0)
+                return DB.CertificateMsts.Any(x => x.CertificateCode != CertificateCode && x.CertificateName.Trim().ToUpper().Equals(CertificateName.Trim().ToUpper()));
+            else
+                return DB.CertificateMsts.Any(x => x.CertificateName.Trim().ToUpper().Equals(CertificateName.Trim().ToUpper()));
+        }
+
+        public bool DeleteCertificate(int CertificateCode)
+        {
+            try
+            {
+                var certificate = DB.CertificateMsts.FirstOrDefault(x => x.CertificateCode == CertificateCode);
+                if (certificate != null)
+                {
+                    certificate.Active = false;
+                    DB.SaveChanges();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+        public bool InsertCutMaster(CutViewModel model)
+        {
+            try
+            {
+                if (model.CutCode != 0)
+                {
+                    var Cut = DB.CutMsts.FirstOrDefault(x => x.CutCode == model.CutCode);
+                    if (Cut != null)
+                    {
+                        Cut.CutAliasName = model.CutAliasName;
+                        Cut.CutName = model.CutName;
+                        Cut.SortID = model.SortID;
+                        Cut.Active = model.Active ?? true;
+                    }
+                }
+                else
+                {
+                    var obj = new CutMst
+                    {
+                        Active = model.Active,
+                        CompanyCode = 1,
+                        CutAliasName = model.CutAliasName,
+                        CutName = model.CutName,
+                        Logid = model.Logid,
+                        Pcid = model.Pcid,
+                        Sdate = DateTime.Now,
+                        SortID = model.SortID
+                    };
+                    DB.CutMsts.Add(obj);
+                    DB.SaveChanges();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+        public bool IsCutExist(string CutName, int CutCode)
+        {
+            if (CutCode > 0)
+                return DB.CutMsts.Any(x => x.CutCode != CutCode && x.CutName.Trim().ToUpper().Equals(CutName.Trim().ToUpper()));
+            else
+                return DB.CutMsts.Any(x => x.CutName.Trim().ToUpper().Equals(CutName.Trim().ToUpper()));
+        }
+        public bool DeleteCut(int CutCode)
+        {
+            try
+            {
+                var Cut = DB.CutMsts.FirstOrDefault(x => x.CutCode == CutCode);
+                if (Cut != null)
+                {
+                    Cut.Active = false;
+                    DB.SaveChanges();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public bool InsertFancyColorMaster(FancyColorViewModel model)
+        {
+            try
+            {
+                if (model.CompanyCode != 0)
+                {
+                    var FancyColor = DB.FancyColorMsts.FirstOrDefault(x => x.FancyColorCode == model.FancyColorCode);
+                    if (FancyColor != null)
+                    {
+                        FancyColor.FancyColorName = model.FancyColorName;
+                        FancyColor.SortID = model.SortID;
+                        FancyColor.Active = model.Active ?? true;
+                        DB.SaveChanges();
+                    }
+                }
+                else
+                {
+                    var obj = new FancyColorMst
+                    {
+                        CompanyCode = 1,
+                        FancyColorName = model.FancyColorName,
+                        Logid = model.Logid,
+                        Pcid = model.Pcid,
+                        Sdate = DateTime.Now,
+                        SortID = model.SortID,
+                        Active = model.Active,
+                    };
+                    DB.FancyColorMsts.Add(obj);
+                    DB.SaveChanges();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+        public bool IsFancyColorExist(string FancyColorName, int FancyColorCode)
+        {
+            if (FancyColorCode != 0)
+                return DB.FancyColorMsts.Any(x => x.FancyColorCode != FancyColorCode && x.FancyColorName.Trim().ToUpper().Equals(FancyColorName.Trim().ToUpper()));
+            else 
+                return DB.FancyColorMsts.Any(x => x.FancyColorName.Trim().ToUpper().Equals(FancyColorName.Trim().ToUpper()));
+        }
+        public bool DeleteFancyColor(int FancyColorCode)
+        {
+            try
+            {
+                var FancyColor = DB.FancyColorMsts.FirstOrDefault(x => x.FancyColorCode == FancyColorCode);
+                if (FancyColor != null)
+                {
+                    FancyColor.Active = false;
+                    DB.SaveChanges();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public bool InsertFancyOTMaster(FancyOTViewModel model)
+        {
+            try
+            {
+                if (model.FancyOTCode != 0)
+                {
+                    var FancyOT = DB.FancyOTMsts.FirstOrDefault(x => x.FancyOTCode == model.FancyOTCode);
+                    if (FancyOT != null)
+                    {
+                        FancyOT.FancyOTName = model.FancyOTName;
+                        FancyOT.SortID = model.SortID;
+                        FancyOT.Active = model.Active ?? true;
+                        DB.SaveChanges();
+                    }
+                }
+                else
+                {
+                    var obj = new FancyOTMst
+                    {
+                        Active = model.Active,
+                        CompanyCode = 1,
+                        FancyOTName = model.FancyOTName,
+                        Logid = model.Logid,
+                        Pcid = model.Pcid,
+                        Sdate = DateTime.Now,
+                        SortID = model.SortID
+                    };
+                    DB.FancyOTMsts.Add(obj);
+                    DB.SaveChanges();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+        public bool IsFancyOTExist(string FancyOTName, int FancyOTCode)
+        {
+            if (FancyOTCode != 0)
+                return DB.FancyOTMsts.Any(x => x.FancyOTCode != FancyOTCode && x.FancyOTName.Trim().ToUpper().Equals(FancyOTName.Trim().ToUpper()));
+            else
+                return DB.FancyOTMsts.Any(x => x.FancyOTName.Trim().ToUpper().Equals(FancyOTName.Trim().ToUpper()));
+        }
+        public bool DeleteFancyOT(int FancyOTCode)
+        {
+            try
+            {
+                var FancyOT = DB.FancyOTMsts.FirstOrDefault(x => x.FancyOTCode == FancyOTCode);
+                if (FancyOT != null)
+                {
+                    FancyOT.Active = false;
+                    DB.SaveChanges();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public bool InsertFlouMaster(FlouViewModel model)
+        {
+            try
+            {
+                if (model.FlouCode != 0)
+                {
+                    var Flou = DB.FlouMsts.FirstOrDefault(x => x.FlouCode == model.FlouCode);
+                    if (Flou != null)
+                    {
+                        Flou.Active = model.Active ?? true;
+                        Flou.FlouAliasName = model.FlouAliasName;
+                        Flou.FlouName = model.FlouName;
+                        Flou.SortID = model.SortID;
+                        DB.SaveChanges();
+                    }
+                }
+                else
+                {
+                    var obj = new FlouMst
+                    {
+                        Active = model.Active,
+                        CompanyCode = 1,
+                        FlouAliasName = model.FlouAliasName,
+                        FlouName = model.FlouName,
+                        Logid = model.Logid,
+                        Pcid = model.Pcid,
+                        Sdate = DateTime.Now,
+                        SortID = model.SortID
+                    };
+                    DB.FlouMsts.Add(obj);
+                    DB.SaveChanges();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+        public bool IsFlouExist(string FlouName, int FlouCode)
+        {
+            if (FlouCode != 0)
+                return DB.FlouMsts.Any(x => x.FlouCode != FlouCode && x.FlouName.Trim().ToUpper().Equals(FlouName.Trim().ToUpper()));
+            else
+                return DB.FlouMsts.Any(x => x.FlouName.Trim().ToUpper().Equals(FlouName.Trim().ToUpper()));
+        }
+        public bool DeleteFlou(int FlouCode)
+        {
+            try
+            {
+                var Flou = DB.FlouMsts.FirstOrDefault(x => x.FlouCode == FlouCode);
+                if (Flou != null)
+                {
+                    Flou.Active = false;
+                    DB.SaveChanges();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public bool InsertHAMaster(HAViewModel model)
+        {
+            try
+            {
+                if (model.HACode != 0)
+                {
+                    var HA = DB.HAMsts.FirstOrDefault(x => x.HACode == model.HACode);
+                    if (HA != null)
+                    {
+                        HA.HAAliasName = model.HAAliasName;
+                        HA.HAName = model.HAName;
+                        HA.SortID = model.SortID;
+                        HA.Active = model.Active ?? true;
+                        DB.SaveChanges();
+                    }
+                }
+                else
+                {
+                    var obj = new HAMst
+                    {
+                        Active = model.Active,
+                        CompanyCode = 1,
+                        HAAliasName = model.HAAliasName,
+                        HAName = model.HAName,
+                        Logid = model.Logid,
+                        Pcid = model.Pcid,
+                        Sdate = DateTime.Now,
+                        SortID = model.SortID
+                    };
+                    DB.HAMsts.Add(obj);
+                    DB.SaveChanges();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+        public bool IsHAExis(string HAName, int HACode)
+        {
+            if (HACode != 0)
+                return DB.HAMsts.Any(x => x.HACode != HACode && x.HAName.Trim().ToUpper().Equals(HAName.Trim().ToUpper()));
+            else
+                return DB.HAMsts.Any(x => x.HAName.Trim().ToUpper().Equals(HAName.Trim().ToUpper()));
+        }
+        public bool DeleteHA(int HACode)
+        {
+            try
+            {
+                var HA = DB.HAMsts.FirstOrDefault(x => x.HACode == HACode);
+                if (HA != null)
+                {
+                    HA.Active = false;
+                    DB.SaveChanges();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public bool DeleteParty(int PartyCode)
+        {
+            try
+            {
+                var Party = DB.PartyMsts.FirstOrDefault(x => x.PartyCode == PartyCode);
+                if (Party != null)
+                {
+                    Party.Active = false;
+                    DB.SaveChanges();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public bool IsPartyExist(int PartyCode, string PartyName, string MobNo1, string MobNo2)
+        {
+            if (PartyCode != 0)
+                return DB.PartyMsts.Any(x => x.PartyCode != PartyCode && x.PartyName.Trim().ToUpper().Equals(PartyName.Trim().ToUpper()) && x.MobNo1.Equals(MobNo1) && x.MobNo2.Equals(MobNo1));
+            else
+                return DB.PartyMsts.Any(x => x.PartyName.Trim().ToUpper().Equals(PartyName.Trim().ToUpper()) && x.MobNo1.Equals(MobNo1) && x.MobNo2.Equals(MobNo1));
+        }
+        public bool InsertPartyMaster(PartyViewModel model)
+        {
+            try
+            {
+                if (model.PartyCode != 0)
+                {
+                    var party = DB.PartyMsts.FirstOrDefault(x => x.PartyCode == model.PartyCode);
+                    if (party != null)
+                    {
+                        party.PartyName = model.PartyName;
+                        party.Add1 = model.Add1;
+                        party.Add2 = model.Add2;
+                        party.Add3 = model.Add3;
+                        party.City = model.City;
+                        party.PhNo1 = model.PhNo1;
+                        party.PhNo2 = model.PhNo2;
+                        party.MobNo1 = model.MobNo1;
+                        party.MobNo2 = model.MobNo2;
+                        party.FaxNo = model.FaxNo;
+                        party.Email = model.Email;
+                        party.PanNo = model.PanNo;
+                        party.SortID = model.SortID;
+                        party.Active = model.Active ?? true;
+                        DB.SaveChanges();
+                    }
+                }
+                else
+                {
+                    var obj = new PartyMst
+                    {
+                        Active = model.Active,
+                        Add1 = model.Add1,
+                        Add2 = model.Add2,
+                        Add3 = model.Add3,
+                        City = model.City,
+                        CompanyCode = 1,
+                        Email = model.Email,
+                        FaxNo = model.FaxNo,
+                        Logid = model.Logid,
+                        MobNo1 = model.MobNo1,
+                        MobNo2 = model.MobNo2,
+                        PanNo = model.PanNo,
+                        PartyName = model.PartyName,
+                        Pcid = model.Pcid,
+                        PhNo1 = model.PhNo1,
+                        PhNo2 = model.PhNo2,
+                        Sdate = DateTime.Now,
+                        SortID = model.SortID
+                    };
+                    DB.PartyMsts.Add(obj);
+                    DB.SaveChanges();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public bool DeletePurity(int PurityCode)
+        {
+            try
+            {
+                var Purity = DB.PurityMsts.FirstOrDefault(x => x.PurityCode == PurityCode);
+                if (Purity != null)
+                {
+                    Purity.Active = false;
+                    DB.SaveChanges();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+        public bool IsPurityExist(string PurityName, int PurityCode)
+        {
+            if (PurityCode != 0)
+                return DB.PurityMsts.Any(x => x.PurityCode != PurityCode && x.PurityName.Trim().ToUpper().Equals(PurityName.Trim().ToUpper()));
+            else
+                return DB.PurityMsts.Any(x => x.PurityName.Trim().ToUpper().Equals(PurityName.Trim().ToUpper()));
+        }
+        public bool InsertPurityMaster(PurityViewModel model)
+        {
+            try
+            {
+                if (model.PurityCode != 0)
+                {
+                    var purity = DB.PurityMsts.FirstOrDefault(x => x.PurityCode == model.PurityCode);
+                    if (purity != null)
+                    {
+                        purity.PurityAliasName = model.PurityAliasName;
+                        purity.PurityName = model.PurityName;
+                        purity.SortID = model.SortID;
+                        purity.Active = model.Active ?? true;
+                        DB.SaveChanges();
+                    }
+                }
+                else
+                {
+                    var obj = new PurityMst
+                    {
+                        Active = model.Active,
+                        SortID = model.SortID,
+                        Sdate = DateTime.Now,
+                        CompanyCode = 1,
+                        Logid = model.Logid,
+                        Pcid = model.Pcid,
+                        PurityAliasName = model.PurityAliasName,
+                        PurityName = model.PurityName
+                    };
+                    DB.PurityMsts.Add(obj);
+                    DB.SaveChanges();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public bool DeleteShap(int ShapCode)
+        {
+            try
+            {
+                var Shap = DB.ShapeMsts.FirstOrDefault(x => x.ShapeCode == ShapCode);
+                if (Shap != null)
+                {
+                    Shap.Active = false;
+                    DB.SaveChanges();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+        public bool IsShapExist(string ShapName, int ShapCode)
+        {
+            if (ShapCode != 0)
+                return DB.ShapeMsts.Any(x => x.ShapeCode != ShapCode && x.ShapeName.Trim().ToUpper().Equals(ShapName.Trim().ToUpper()));
+            else
+                return DB.ShapeMsts.Any(x => x.ShapeName.Trim().ToUpper().Equals(ShapName.Trim().ToUpper()));
+        }
+        public bool InsertShapMaster(ShapViewModel model)
+        {
+            try
+            {
+                if (model.ShapeCode != 0)
+                {
+                    var shap = DB.ShapeMsts.FirstOrDefault(x => x.ShapeCode == model.ShapeCode);
+                    if (shap != null)
+                    {
+                        shap.ShapeName = model.ShapeName;
+                        shap.ShapeAliasName = model.ShapeAliasName;
+                        shap.SortID = model.SortID;
+                        shap.Active = model.Active ?? true;
+                        DB.SaveChanges();
+                    }
+                }
+                else
+                {
+                    var obj = new ShapeMst
+                    {
+                        Active = model.Active,
+                        CompanyCode = 1,
+                        Logid = model.Logid,
+                        Pcid = model.Pcid,
+                        Sdate = DateTime.Now,
+                        ShapeAliasName = model.ShapeAliasName,
+                        ShapeName = model.ShapeName,
+                        SortID = model.SortID
+                    };
+                    DB.ShapeMsts.Add(obj);
+                    DB.SaveChanges();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public bool DeleteSize(int SizeMstId)
+        {
+            try
+            {
+                var Size = DB.SizeMsts.FirstOrDefault(x => x.SizeMstID == SizeMstId);
+                if (Size != null)
+                {
+                    Size.Active = false;
+                    DB.SaveChanges();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+        public bool IsSizeExist(int SizeMstId, decimal FromSize, decimal ToSize)
+        {
+            if (SizeMstId != 0)
+                return DB.SizeMsts.Any(x => x.SizeMstID == SizeMstId && x.FromSize == FromSize && x.ToSize == ToSize || (x.FromSize >= FromSize && x.ToSize >= ToSize));
+            else
+                return DB.SizeMsts.Any(x => x.FromSize == FromSize && x.ToSize == ToSize || (x.FromSize >= FromSize && x.ToSize >= ToSize));
+        }
+        public bool InsertSizeMaster(SizeViewModel model)
+        {
+            try
+            {
+                var Size = DB.SizeMsts.FirstOrDefault(x => x.SizeMstID == model.SizeMstID);
+                if (Size != null)
+                {
+                    Size.FromSize = model.FromSize;
+                    Size.ToSize = model.ToSize;
+                    Size.SortID = model.SortID;
+                    Size.Active = model.Active ?? true;
+                    Size.SizeAlias = model.SizeAlias;
+                    DB.SaveChanges();
+                }
+                else
+                {
+                    var obj = new SizeMst
+                    {
+                        CompanyCode = 1,
+                        Active = model.Active,
+                        FromSize = model.FromSize,
+                        Logid = model.Logid,
+                        Pcid = model.Pcid,
+                        Sdate = DateTime.Now,
+                        SizeAlias = model.SizeAlias,
+                        SortID = model.SortID,
+                        ToSize = model.ToSize
+                    };
+                    DB.SizeMsts.Add(obj);
+                    DB.SaveChanges();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+
+
+
 
         #region IDisposable Support
         private bool disposedValue = false; // To detect redundant calls
-
         protected virtual void Dispose(bool disposing)
         {
             if (!disposedValue)
@@ -324,6 +983,7 @@ namespace BG_Application.Service
             // TODO: uncomment the following line if the finalizer is overridden above.
             GC.SuppressFinalize(this);
         }
+
         #endregion
     }
 }
