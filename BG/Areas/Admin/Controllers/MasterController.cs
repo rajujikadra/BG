@@ -216,6 +216,7 @@ namespace BG.Areas.Admin.Controllers
                 URL = y.MainMenuMst.URL,
                 Icon = y.MainMenuMst.Icon,
                 Active = y.MainMenuMst.Active,
+                MainMenuMstID = y.MainMenuMstId,
                 SubMenu = DB.UserMenuPermissionMsts.Where(x => x.UserId == UserID && x.MenuMst.Active == true && x.MainMenuMstId == y.MainMenuMstId).Select(c => new SubMenuViewModel()
                 {
                     MenuName = c.MenuMst.MenuName,
@@ -223,24 +224,8 @@ namespace BG.Areas.Admin.Controllers
                     Active = c.MenuMst.Active,
                     Icon = c.MenuMst.Icon,
                     MenuMstId = c.MenuMst.MenuMstId
-                }).ToList()
-            }).DistinctBy(b => b.MainMenuName).ToList();
-            //var menu = DB.MainMenuMsts.Where(x => x.Active == true).Select(y => new MenuViewModel()
-            //{
-            //    MainMenuName = y.MainMenuName,
-            //    URL = y.URL,
-            //    Icon = y.Icon,
-            //    MainMenuMstID = y.MainMenuMstID,
-            //    Active = y.Active,
-            //    SubMenu = y.MenuMsts.Where(v => v.Active == true).Select(c => new SubMenuViewModel()
-            //    {
-            //        MenuName = c.MenuName,
-            //        URL = c.URL,
-            //        Active = c.Active,
-            //        Icon = c.Icon,
-            //        MenuMstId = c.MenuMstId
-            //    }).ToList()
-            //}).ToList();
+                }).OrderBy(v => v.MenuMstId).ToList()
+            }).DistinctBy(b => b.MainMenuName).OrderBy(v => v.MainMenuMstID).ToList();
             return PartialView("_MenuPartial", menu);
         }
         #endregion

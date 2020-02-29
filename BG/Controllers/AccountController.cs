@@ -26,7 +26,7 @@ namespace BG.Controllers
         {
             if (CurrentUser != null && CurrentUser.Identity.IsAuthenticated)
             {
-                return RedirectToAction("Login", "Account");
+                return RedirectToRoute("Default");
             }
             ViewBag.ReturnUrl = returnUrl;
             return View();
@@ -112,6 +112,26 @@ namespace BG.Controllers
             }
             Request.GetOwinContext().Authentication.SignOut("ApplicationCookie");
             return RedirectToAction("Login");
+        }
+
+        // GET: /Account/Register
+        [AllowAnonymous]
+        public ActionResult Register()
+        {
+            return View();
+        }
+
+        // POST: /Account/Register
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public ActionResult Register(RegisterViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+
+            }
+            return View(model);
         }
     }
 }

@@ -35,8 +35,9 @@ namespace BG_Application.Service
                 RefMobile = y.RefMobile,
                 RefName = y.RefName,
                 UserCityName = y.CityMst1.CityName,
-                Active = y.Active
-            }).ToList();
+                Active = y.Active,
+                UserGSTNO = y.UserGSTNO
+            }).OrderBy(x => x.FirstName).ToList();
         }
 
         public List<BrokerColumnsViewModel> GetBrokerColumn()

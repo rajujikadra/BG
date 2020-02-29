@@ -1,0 +1,301 @@
+﻿@model BG.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<!-- index.html  21 Nov 2019 03:44:50 GMT -->
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="images/favicon.ico" type="image/ico" />
+    <link rel='shortcut icon' type='image/x-icon' href='~/Areas/Admin/assets/img/favicon.ico' />
+    <style>
+        .login-form {
+            border-radius: 0 !important;
+        }
+
+        div#carouselExampleFade {
+            box-shadow: 0 0.46875rem 2.1875rem rgba(90,97,105,0.1), 0 0.9375rem 1.40625rem rgba(90,97,105,0.1), 0 0.25rem 0.53125rem rgba(90,97,105,0.12), 0 0.125rem 0.1875rem rgba(90,97,105,0.1);
+        }
+
+        .compny-name {
+            font-size: 11px;
+            color: #6777ef;
+            margin-top: 150px !important;
+        }
+
+        .regist-compny-name {
+            font-size: 11px;
+            color: #6777ef;
+            margin-top: 250px !important
+        }
+
+        @@media(max-width:1200px) {
+            .compny-name {
+                margin-top: 0px !important;
+            }
+
+            .regist-compny-name {
+                margin-top: 0px !important
+            }
+        }
+
+        @@media(min-width: 220px) and (max-width: 991px) {
+            .carousel-item img.d-block.w-100 {
+                height: 65vh !important;
+            }
+        }
+    </style>
+    @Styles.Render("~/Admin/css")
+</head>
+<body>
+    <div class="loader"></div>
+    <div id="app">
+        <div class="main-wrapper main-wrapper-1">
+            <div class="container-fluid">
+                <div class="row" style="overflow: hidden;">
+                    <div class="col-lg-8 p-0 ml-0 h-100">
+                        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                            </ol>
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img src="~/Content/slider/slide1.jpeg" class="d-block w-100" alt="..." style="height: 230vh;">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="~/Content/slider/slide2.jpeg" class="d-block w-100" alt="..." style="height: 230vh;">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="~/Content/slider/slide3.jpeg" class="d-block w-100" alt="..." style="height: 230vh;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 p-0 mr-0" style="height: 230vh;">
+                        <div class="card card-primary login-form full-heigh h-100">
+                            <div class="card-header">
+                                <h4>Register</h4>
+                            </div>
+                            <div class="card-body">
+                                <form method="POST">
+                                    <div class="row">
+                                        <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                                            <label for="frist_name">First Name</label>
+                                            @*<input id="frist_name" type="text" class="form-control" name="frist_name" autofocus>*@
+                                            @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                                            <label for="frist_name">Last Name</label>
+                                            @*<input id="frist_name" type="text" class="form-control" name="frist_name" autofocus>*@
+                                            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-6 col-lg-6 col-md-6 col-sm-12 w-100">
+                                            <label for="email">Email</label>
+                                            @*<input id="email" type="email" class="form-control" name="email">*@
+                                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                                            <div class="invalid-feedback">
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-6 col-lg-6 col-md-6 col-sm-12 w-100">
+                                            <label for="email">Mobile No</label>
+                                            @*<input id="email" type="email" class="form-control" name="email">*@
+                                            @Html.TextBoxFor(m => m.MobileNo, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(m => m.MobileNo, "", new { @class = "text-danger" })
+                                            <div class="invalid-feedback">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                                            <label for="password" class="d-block">Password</label>
+                                            @*<input id="password" type="password" class="form-control pwstrength" data-indicator="pwindicator" name="password">*@
+                                            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                                            <div id="pwindicator" class="pwindicator">
+                                                <div class="bar"></div>
+                                                <div class="label"></div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                                            <label for="password2" class="d-block">Password Confirmation</label>
+                                            @*<input id="password2" type="password" class="form-control" name="password-confirm">*@
+                                            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-12 w-100 p-0">
+                                        <label for="email">Address</label>
+                                        @*<textarea id="address" type="text" class="form-control" name="adress" rows="4" cols="50"></textarea>*@
+                                        @Html.TextAreaFor(m => m.Address, new { @class = "form-control", @rows = "4", @cols = "50" })
+                                        @Html.ValidationMessageFor(m => m.MobileNo, "", new { @class = "text-danger" })
+                                        <div class="invalid-feedback">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-lg-4 col-md-4 col-sm-12 w-100">
+                                            <label for="city">City</label>
+                                            <div class="form-group">
+                                                <select class="form-control ">
+                                                    <option value="">Select City</option>
+                                                    <option value="1">Surat</option>
+                                                    <option value="2">Ahemdabad</option>
+                                                    <option value="3">vadodra</option>
+                                                </select>
+
+                                                <small id="region_message " class="text-danger "></small>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-lg-4 col-md-4 col-sm-12 w-100">
+                                            <label>State</label>
+                                            <div class="form-group">
+                                                <select class="form-control ">
+                                                    <option value="">Select Region</option>
+                                                    <option value="1">Andaman and Nicobar Islands</option>
+                                                    <option value="2">Andhra Pradesh</option>
+                                                    <option value="3">Arunachal Pradesh</option>
+                                                    <option value="4">Assam</option>
+                                                    <option value="5">Bihar</option>
+                                                </select>
+                                                <small id="region_message " class="text-danger "></small>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-lg-4 col-md-4 col-sm-12 w-100">
+                                            <label>Contury</label>
+                                            <div class="form-group ">
+                                                <select class="form-control ">
+                                                    <option value="">Select Country</option>
+                                                    <option value="1">India</option>
+                                                    <option value="2">Afghanistan</option>
+                                                    <option value="3">Åland Islands</option>
+                                                    <option value="4">Albania</option>
+                                                    <option value="5">Algeria</option>
+                                                </select>
+                                                <small id="country_message " class="text-danger "></small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                                            <label for="frist_name">Business Name</label>
+                                            @Html.TextBoxFor(m => m.BusinessName, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(m => m.BusinessName, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                                            <label for="last_name">Address</label>
+                                            @Html.TextAreaFor(m => m.BusinessAddress, new { @class = "form-control", @rows = "4", @cols = "50" })
+                                            @Html.ValidationMessageFor(m => m.BusinessAddress, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                                            <label for="last_name">Email Id</label>
+                                            @*<input id="last_name" type="email" class="form-control" name="last_name">*@
+                                            @Html.TextBoxFor(m => m.BusinessMobileNo, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(m => m.BusinessEmailId, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                                            <label for="last_name">Mobile No.</label>
+                                            @*<input id="last_name" type="text" class="form-control" name="last_name">*@
+                                            @Html.TextBoxFor(m => m.BusinessMobileNo, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(m => m.BusinessMobileNo, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-lg-4 col-md-4 col-sm-12 w-100">
+                                            <label for="city">City</label>
+                                            <div class="form-group">
+                                                <select class="form-control">
+                                                    <option value="">Select City</option>
+                                                    <option value="1">Surat</option>
+                                                    <option value="2">Ahemdabad</option>
+                                                    <option value="3">vadodra</option>
+                                                    <option value="4">Rohtak</option>
+                                                </select>
+                                                <small id="region_message " class="text-danger"></small>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-lg-4 col-md-4 col-sm-12 w-100">
+                                            <label for="state">State</label>
+                                            <div class="form-group">
+                                                <select class="form-control">
+                                                    <option value="">Select Region</option>
+                                                    <option value="1">Andaman and Nicobar Islands</option>
+                                                    <option value="2">Andhra Pradesh</option>
+                                                    <option value="3">Arunachal Pradesh</option>
+                                                    <option value="4">Assam</option>
+                                                </select>
+                                                <small id="region_message " class="text-danger "></small>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-lg-4 col-md-4 col-sm-12 w-100">
+                                            <label for="contury">Contury</label>
+                                            <div class="form-group ">
+                                                <select class="form-control">
+                                                    <option value="">Select Country</option>
+                                                    <option value="1">India</option>
+                                                    <option value="2">Afghanistan</option>
+                                                    <option value="3">Åland Islands</option>
+                                                </select>
+                                                <small id="country_message " class="text-danger "></small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                                            <label for="last_name">GST NO</label>
+                                            @*<input id="last_name" type="text" class="form-control" name="last_name">*@
+                                            @Html.TextBoxFor(m => m.GSTNO, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(m => m.GSTNO, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                                            <label for="last_name">Reference No.</label>
+                                            @*<input id="last_name" type="text" class="form-control" name="last_name">*@
+                                            @Html.TextBoxFor(m => m.ReferenceNo, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(m => m.ReferenceNo, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" name="agree" class="custom-control-input" id="agree">
+                                            <label class="custom-control-label" for="agree">I agree with the terms and conditions</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-primary btn-lg btn-block">Register</button>
+                                    </div>
+                                    <div class="mb-4 text-muted text-center">Already Registered? <a href="/Account/Login">Login</a></div>
+                                </form>
+                            </div>
+                            <div class="right-section">
+                                <h6 class="regist-compny-name mt-2 text-right">Designe & Devloped by Rudra | New Era of Technology </h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- General JS Scripts -->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/Admin/JS")
+    @Scripts.Render("~/bundles/jqueryval")
+</body>
+</html>

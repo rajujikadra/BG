@@ -37,6 +37,7 @@ namespace BG
                 "~/Areas/Admin/assets/css/style.css",
                 "~/Areas/Admin/assets/css/components.css",
                 "~/Areas/Admin/assets/css/custom.css",
+                "~/Content/HoldOn.css",
                 "~/Areas/Admin/assets/bundles/datatables/datatables.min.css",
                 "~/Areas/Admin/assets/bundles/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css"));
 
@@ -52,6 +53,7 @@ namespace BG
                 "~/Areas/Admin/assets/bundles/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js",
                 "~/Areas/Admin/assets/js/page/datatables.js",
                 "~/Areas/Admin/assets/js/scripts.js",
+                 "~/Scripts/HoldOn.js",
                 "~/Areas/Admin/assets/js/custom.js"));
         }
     }

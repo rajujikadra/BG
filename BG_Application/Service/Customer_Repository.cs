@@ -35,9 +35,9 @@ namespace BG_Application.Service
                 RefMobile = y.RefMobile,
                 RefName = y.RefName,
                 UserCityName = y.CityMst1.CityName,
-                Active = y.Active
-
-            }).ToList();
+                Active = y.Active,
+                UserGSTNO = y.UserGSTNO
+            }).OrderBy(v => v.FirstName).ToList();
             return Users;
         }
         public List<ApplicationUserViewModel> GetRegisterCustomers()
@@ -60,9 +60,9 @@ namespace BG_Application.Service
                 RefMobile = y.RefMobile,
                 RefName = y.RefName,
                 UserCityName = y.CityMst1.CityName,
-                Active = y.Active
-
-            }).ToList();
+                Active = y.Active,
+                UserGSTNO = y.UserGSTNO
+            }).OrderBy(v => v.FirstName).ToList();
             return Users;
         }
         public ApplicationUserViewModel GetCustomerDetails(string UserId)
@@ -85,7 +85,8 @@ namespace BG_Application.Service
                 RefName = y.RefName,
                 UserCityName = y.CityMst1.CityName,
                 Active = y.Active,
-                Address = y.Address
+                Address = y.Address,
+                UserGSTNO = y.UserGSTNO
             }).FirstOrDefault();
         }
         public bool CustomerDeactivate(string Email)

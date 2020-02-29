@@ -8,7 +8,7 @@ namespace BG_Application.CustomDTO
 {
     public class MenuViewModel
     {
-        public int MainMenuMstID { get; set; }
+        public int? MainMenuMstID { get; set; }
         public string MainMenuName { get; set; }
         public string Icon { get; set; }
         public Nullable<int> SortId { get; set; }

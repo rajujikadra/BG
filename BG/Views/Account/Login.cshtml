@@ -3,85 +3,208 @@
     /**/
 
     ViewBag.Title = "Login";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = null;
 }
-<div class="row">
-    <div class="col-md-8">
-        <section id="loginForm">
-            @using (Ajax.BeginForm("Login", "Account", null, new AjaxOptions { HttpMethod = "POST", OnSuccess = "LoginFormSuccess", OnFailure = "Failed", }, new { @id = "formLogin", @class = "form-horizontal", @autocomplete = "off" }))
-            {
-                @Html.AntiForgeryToken()
-                <hr />
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="form-group">
-                    @Html.LabelFor(m => m.UserName, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+<!DOCTYPE html>
+<html lang="en">
+<!-- index.html  21 Nov 2019 03:44:50 GMT -->
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="images/favicon.ico" type="image/ico" />
+    <link rel='shortcut icon' type='image/x-icon' href='~/Areas/Admin/assets/img/favicon.ico' />
+    <style>
+        .login-form {
+            border-radius: 0 !important;
+        }
+
+        div#carouselExampleFade {
+            box-shadow: 0 0.46875rem 2.1875rem rgba(90,97,105,0.1), 0 0.9375rem 1.40625rem rgba(90,97,105,0.1), 0 0.25rem 0.53125rem rgba(90,97,105,0.12), 0 0.125rem 0.1875rem rgba(90,97,105,0.1);
+        }
+
+        .compny-name {
+            font-size: 11px;
+            color: #6777ef;
+            margin-top: 150px !important;
+        }
+
+        .regist-compny-name {
+            font-size: 11px;
+            color: #6777ef;
+            margin-top: 250px !important
+        }
+
+        @@media(max-width:1200px) {
+            .compny-name {
+                margin-top: 0px !important;
+            }
+
+            .regist-compny-name {
+                margin-top: 0px !important
+            }
+        }
+
+        @@media(min-width: 220px) and (max-width: 991px) {
+            .carousel-item img.d-block.w-100 {
+                height: 65vh !important;
+            }
+        }
+    </style>
+    @Styles.Render("~/Admin/css")
+</head>
+
+<body>
+    <div class="loader"></div>
+    <div id="app">
+        <div class="main-wrapper main-wrapper-1">
+            <div class="container-fluid">
+                <div class="row" style="overflow-x: hidden; overflow-y: hidden;">
+                    <div class="col-lg-8 p-0 ml-0 h-100">
+                        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                            </ol>
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img src="~/Content/slider/slide1.jpeg" class="d-block w-100" alt="..." style="height: 100vh;">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="~/Content/slider/slide2.jpeg" class="d-block w-100" alt="..." style="height: 100vh;">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="~/Content/slider/slide3.jpeg" class="d-block w-100" alt="..." style="height: 100vh;">
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <div class="checkbox">
-                            @Html.CheckBoxFor(m => m.RememberMe)
-                            @Html.LabelFor(m => m.RememberMe)
+
+                    <div class="col-lg-4 p-0 mr-0" style="height: 100vh;">
+                        <div class="card card-primary login-form full-heigh h-100">
+                            <div class="card-header">
+                                <h4>Login</h4>
+                            </div>
+                            <div class="card-body">
+                                @*<form method="POST" action="#" class="needs-validation" novalidate="">*@
+                                @using (Ajax.BeginForm("Login", "Account", null, new AjaxOptions { HttpMethod = "POST", OnSuccess = "LoginFormSuccess", OnFailure = "Failed", }, new { @id = "formLogin", @class = "needs-validation", @autocomplete = "off" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <div class="form-group">
+                                        <label for="email">Email</label>
+                                        @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+                                        @*<input id="email" type="email" class="form-control" name="email" tabindex="1" required autofocus>
+                                            <div class="invalid-feedback">
+                                                Please fill in your email
+                                            </div>*@
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="d-block">
+                                            <label for="password" class="control-label">Password</label>
+                                            <div class="float-right">
+                                                <a href="auth-forgot-password.html" class="text-small">
+                                                    Forgot Password?
+                                                </a>
+                                            </div>
+                                        </div>
+                                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                                        @*<input id="password" type="password" class="form-control" name="password" tabindex="2" required>
+                                            <div class="invalid-feedback">
+                                                please fill in your password
+                                            </div>*@
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="custom-control custom-checkbox">
+                                            @Html.CheckBoxFor(m => m.RememberMe, new { @class = "custom-control-input" })
+                                            @Html.LabelFor(m => m.RememberMe, new { @class = "custom-control-label", @for = "RememberMe" })
+                                            @*<input type="checkbox" name="remember" class="custom-control-input" tabindex="3" id="remember-me">
+                                                <label class="custom-control-label" for="remember-me">Remember Me</label>*@
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="button" id="btnLogin" class="btn btn-primary btn-lg btn-block" tabindex="4">Login</button>
+                                    </div>
+                                }
+                                @*<div class="text-center mt-4 mb-3">
+                                        <div class="text-job text-muted">Login With Social</div>
+                                    </div>
+                                    <div class="col-6">
+                                        <a class="btn btn-block btn-social btn-facebook">
+                                            <span class="fab fa-facebook"></span> Facebook
+                                        </a>
+                                    </div>
+                                    <div class="col-6">
+                                        <a class="btn btn-block btn-social btn-twitter">
+                                            <span class="fab fa-twitter"></span> Twitter
+                                        </a>
+                                    </div>*@
+                                <div class="mt-1 text-muted text-center">
+                                    Don't have an account? <a href="/Account/Register">Create One</a>
+                                </div>
+                                <div class="right-section">
+                                    <h6 class="pt-5 mt-5 compny-name text-right">Designe & Devloped by Rudra | New Era of Technology </h6>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="button" id="btnLogin" value="Log in" class="btn btn-default" />
-                    </div>
-                </div>
-                <p>
-                    @Html.ActionLink("Register as a new user", "Register")
-                </p>
-                @* Enable this once you have account confirmation enabled for password reset functionality
-                    <p>
-                        @Html.ActionLink("Forgot your password?", "ForgotPassword")
-                    </p>*@
-            }
-        </section>
+            </div>
+        </div>
     </div>
-</div>
-@section scripts {
-    <script type="text/javascript">
-        $("#btnLogin").on('click', function () {
-            
-            var form = $('#formLogin');
-            if (formValidate(form) === false) {
-                return false;
-            }
-            HoldOn.open();
-            $.ajax({
-                url: "/Account/Login",
-                method: "Post",
-                data: form.serialize(),
-                success: function (data) {
-                    if (data.StatusCode == 200) {                       
-                        location.href = "/";
-                    } else if (data.StatusCode == 404) {
-                        swal("Error", data.Messages.join(), "error");
-                    }
-                    HoldOn.close();
-                },
-                error: function (data) {
-                    $('.loader').hide();
-                    $("#btnclose").click();
-                }
-            });
-            return true;
-        });
-        function LoginFormSuccess(response) {
-            debugger;
-            var data = response;
+    <!-- Main Content -->
+    <!-- General JS Scripts -->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/Admin/JS")
+    @Scripts.Render("~/bundles/jqueryval")
+</body>
+<!-- index.html  21 Nov 2019 03:47:04 GMT -->
+</html>
+
+<script type="text/javascript">
+    $("#btnLogin").on('click', function () {
+        debugger;
+        var form = $('#formLogin');
+        if (formValidate(form) === false) {
+            return false;
         }
-    </script>
-}
+        HoldOn.open();
+        $.ajax({
+            url: "/Account/Login",
+            method: "Post",
+            data: form.serialize(),
+            success: function (data) {
+                if (data.StatusCode == 200) {
+                    location.href = "/";
+                } else if (data.StatusCode == 404) {
+                    swal("Error", data.Messages.join(), "error");
+                }
+                HoldOn.close();
+            },
+            error: function (data) {
+                $('.loader').hide();
+                $("#btnclose").click();
+            }
+        });
+        return true;
+    });
+    function LoginFormSuccess(response) {
+        debugger;
+        var data = response;
+    }
+    function formValidate(form) {
+        form.removeData("validator");
+        form.removeData("unobtrusiveValidation");
+        $.validator.unobtrusive.parse(form);
+        if (!form.valid())
+            return false;
+        else
+            return true;
+    }
+</script>

@@ -40,5 +40,6 @@ namespace BG_Application.CustomDTO
         public string UserState { get; set; }
         public string UserCountry { get; set; }
         public string Address { get; set; }
+        public string UserGSTNO { get; set; }
     }
 }

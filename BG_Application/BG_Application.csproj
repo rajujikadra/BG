@@ -179,11 +179,13 @@
     <Compile Include="ServiceContract\ICustomer_Repository.cs" />
     <Compile Include="ServiceContract\IDashboard_Repository.cs" />
     <Compile Include="ServiceContract\IMaster_Repository.cs" />
+    <Compile Include="ServiceContract\ISalesPerson_Repository.cs" />
     <Compile Include="ServiceContract\IStock_Repository.cs" />
     <Compile Include="Service\Broker_Repository.cs" />
     <Compile Include="Service\Customer_Repository.cs" />
     <Compile Include="Service\Dashboard_Repository.cs" />
     <Compile Include="Service\Master_Repository.cs" />
+    <Compile Include="Service\SalesPerson_Repository.cs" />
     <Compile Include="Service\Stock_Repository.cs" />
   </ItemGroup>
   <ItemGroup>
