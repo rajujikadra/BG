@@ -88,7 +88,9 @@
                                 <h4>Register</h4>
                             </div>
                             <div class="card-body">
-                                <form method="POST">
+                                @*<form method="POST">*@
+                                @using (Ajax.BeginForm("Register", "Account", null, new AjaxOptions { HttpMethod = "POST", OnSuccess = "RegisterFormSuccess", OnFailure = "Failed", }, new { @id = "formRegister", @class = "needs-validation", @autocomplete = "off" }))
+                                {
                                     <div class="row">
                                         <div class="form-group col-lg-6 col-md-6 col-sm-12">
                                             <label for="frist_name">First Name</label>
@@ -147,49 +149,29 @@
                                         <div class="invalid-feedback">
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="form-group col-lg-4 col-md-4 col-sm-12 w-100">
-                                            <label for="city">City</label>
-                                            <div class="form-group">
-                                                <select class="form-control ">
-                                                    <option value="">Select City</option>
-                                                    <option value="1">Surat</option>
-                                                    <option value="2">Ahemdabad</option>
-                                                    <option value="3">vadodra</option>
-                                                </select>
-
-                                                <small id="region_message " class="text-danger "></small>
+                                    @*<div class="row">
+                                            <div class="form-group col-lg-4 col-md-4 col-sm-12 w-100">
+                                                <label for="city">City</label>
+                                                <div class="form-group">
+                                                    @Html.DropDownListFor(m => m.UserCityId, new SelectList(ViewBag.City, "Value", "Text"), "--Select city--", new { @class = "form-control" })
+                                                    <small id="region_message " class="text-danger "></small>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group col-lg-4 col-md-4 col-sm-12 w-100">
-                                            <label>State</label>
-                                            <div class="form-group">
-                                                <select class="form-control ">
-                                                    <option value="">Select Region</option>
-                                                    <option value="1">Andaman and Nicobar Islands</option>
-                                                    <option value="2">Andhra Pradesh</option>
-                                                    <option value="3">Arunachal Pradesh</option>
-                                                    <option value="4">Assam</option>
-                                                    <option value="5">Bihar</option>
-                                                </select>
-                                                <small id="region_message " class="text-danger "></small>
+                                            <div class="form-group col-lg-4 col-md-4 col-sm-12 w-100">
+                                                <label>State</label>
+                                                <div class="form-group">
+                                                    @Html.DropDownListFor(m => m.UserStateId, new SelectList(ViewBag.State, "Value", "Text"), "--Select state--", new { @class = "form-control" })
+                                                    <small id="region_message " class="text-danger "></small>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group col-lg-4 col-md-4 col-sm-12 w-100">
-                                            <label>Contury</label>
-                                            <div class="form-group ">
-                                                <select class="form-control ">
-                                                    <option value="">Select Country</option>
-                                                    <option value="1">India</option>
-                                                    <option value="2">Afghanistan</option>
-                                                    <option value="3">Åland Islands</option>
-                                                    <option value="4">Albania</option>
-                                                    <option value="5">Algeria</option>
-                                                </select>
-                                                <small id="country_message " class="text-danger "></small>
+                                            <div class="form-group col-lg-4 col-md-4 col-sm-12 w-100">
+                                                <label>Contury</label>
+                                                <div class="form-group ">
+                                                    @Html.DropDownListFor(m => m.UserCountryId, new SelectList(ViewBag.Country, "Value", "Text"), "--Select country--", new { @class = "form-control" })
+                                                    <small id="country_message " class="text-danger "></small>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
+                                        </div>*@
                                     <div class="row">
                                         <div class="form-group col-lg-12 col-md-12 col-sm-12">
                                             <label for="frist_name">Business Name</label>
@@ -208,7 +190,7 @@
                                         <div class="form-group col-lg-6 col-md-6 col-sm-12">
                                             <label for="last_name">Email Id</label>
                                             @*<input id="last_name" type="email" class="form-control" name="last_name">*@
-                                            @Html.TextBoxFor(m => m.BusinessMobileNo, new { @class = "form-control" })
+                                            @Html.TextBoxFor(m => m.BusinessEmailId, new { @class = "form-control" })
                                             @Html.ValidationMessageFor(m => m.BusinessEmailId, "", new { @class = "text-danger" })
                                         </div>
                                         <div class="form-group col-lg-6 col-md-6 col-sm-12">
@@ -218,46 +200,29 @@
                                             @Html.ValidationMessageFor(m => m.BusinessMobileNo, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="form-group col-lg-4 col-md-4 col-sm-12 w-100">
-                                            <label for="city">City</label>
-                                            <div class="form-group">
-                                                <select class="form-control">
-                                                    <option value="">Select City</option>
-                                                    <option value="1">Surat</option>
-                                                    <option value="2">Ahemdabad</option>
-                                                    <option value="3">vadodra</option>
-                                                    <option value="4">Rohtak</option>
-                                                </select>
-                                                <small id="region_message " class="text-danger"></small>
+                                    @*<div class="row">
+                                            <div class="form-group col-lg-4 col-md-4 col-sm-12 w-100">
+                                                <label for="city">City</label>
+                                                <div class="form-group">
+                                                    @Html.DropDownListFor(m => m.BusinessCityId, new SelectList(ViewBag.City, "Value", "Text"), "--Select city--", new { @class = "form-control" })
+                                                    <small id="region_message " class="text-danger"></small>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group col-lg-4 col-md-4 col-sm-12 w-100">
-                                            <label for="state">State</label>
-                                            <div class="form-group">
-                                                <select class="form-control">
-                                                    <option value="">Select Region</option>
-                                                    <option value="1">Andaman and Nicobar Islands</option>
-                                                    <option value="2">Andhra Pradesh</option>
-                                                    <option value="3">Arunachal Pradesh</option>
-                                                    <option value="4">Assam</option>
-                                                </select>
-                                                <small id="region_message " class="text-danger "></small>
+                                            <div class="form-group col-lg-4 col-md-4 col-sm-12 w-100">
+                                                <label for="state">State</label>
+                                                <div class="form-group">
+                                                    @Html.DropDownListFor(m => m.BusinessStateId, new SelectList(ViewBag.State, "Value", "Text"), "--Select State--", new { @class = "form-control" })
+                                                    <small id="region_message " class="text-danger "></small>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group col-lg-4 col-md-4 col-sm-12 w-100">
-                                            <label for="contury">Contury</label>
-                                            <div class="form-group ">
-                                                <select class="form-control">
-                                                    <option value="">Select Country</option>
-                                                    <option value="1">India</option>
-                                                    <option value="2">Afghanistan</option>
-                                                    <option value="3">Åland Islands</option>
-                                                </select>
-                                                <small id="country_message " class="text-danger "></small>
+                                            <div class="form-group col-lg-4 col-md-4 col-sm-12 w-100">
+                                                <label for="contury">Contury</label>
+                                                <div class="form-group ">
+                                                    @Html.DropDownListFor(m => m.BusinessCountryId, new SelectList(ViewBag.Country, "Value", "Text"), "--Select Country--", new { @class = "form-control" })
+                                                    <small id="country_message " class="text-danger "></small>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
+                                        </div>*@
                                     <div class="row">
                                         <div class="form-group col-lg-6 col-md-6 col-sm-12">
                                             <label for="last_name">GST NO</label>
@@ -274,15 +239,15 @@
                                     </div>
                                     <div class="form-group">
                                         <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" name="agree" class="custom-control-input" id="agree">
-                                            <label class="custom-control-label" for="agree">I agree with the terms and conditions</label>
+                                            <input type="checkbox" name="agree" class="custom-control-input" id="register_agree">
+                                            <label class="custom-control-label" for="register_agree">I agree with the terms and conditions</label>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <button type="submit" class="btn btn-primary btn-lg btn-block">Register</button>
+                                        <button type="button" id="btnRegister" class="btn btn-primary btn-lg btn-block">Register</button>
                                     </div>
                                     <div class="mb-4 text-muted text-center">Already Registered? <a href="/Account/Login">Login</a></div>
-                                </form>
+                                }
                             </div>
                             <div class="right-section">
                                 <h6 class="regist-compny-name mt-2 text-right">Designe & Devloped by Rudra | New Era of Technology </h6>
@@ -299,3 +264,67 @@
     @Scripts.Render("~/bundles/jqueryval")
 </body>
 </html>
+<script type="text/javascript">
+    $("#btnRegister").on('click', function () {
+        var form = $('#formRegister');
+        if (formValidate(form) === false) {
+            return false;
+        }
+        debugger;
+        var formData = objectifyForm(form.serializeArray());
+        HoldOn.open();
+        $.ajax({
+            url: "/Account/Register",
+            method: "POST",
+            data: JSON.stringify(formData),
+            contentType: 'application/json',
+            success: function (data) {
+                if (data.StatusCode == 200) {
+                    location.href = "/";
+                } else if (data.StatusCode == 404) {
+                    swal("Error", data.Messages.join(), "error");
+                }
+                HoldOn.close();
+            },
+            error: function (data) {
+                $('.loader').hide();
+                $("#btnclose").click();
+            }
+        });
+        //$.ajax({
+        //    url: "/Account/TestDemo",
+        //    method: "GET",
+        //    data: { 'text': "Rajesh" },
+        //    contentType: 'application/json',
+        //    success: function (data) {
+        //        if (data.StatusCode == 200) {
+        //            location.href = "/";
+        //        } else if (data.StatusCode == 404) {
+        //            swal("Error", data.Messages.join(), "error");
+        //        }
+        //        HoldOn.close();
+        //    },
+        //    error: function (data) {
+        //        $('.loader').hide();
+        //        $("#btnclose").click();
+        //    }
+        //});
+    });
+    function objectifyForm(formArray) {//serialize data function
+        var returnArray = {};
+        for (var i = 0; i < formArray.length; i++) {
+            returnArray[formArray[i]['name']] = formArray[i]['value'];
+        }
+        return returnArray;
+    }
+
+    function formValidate(form) {
+        form.removeData("validator");
+        form.removeData("unobtrusiveValidation");
+        $.validator.unobtrusive.parse(form);
+        if (!form.valid())
+            return false;
+        else
+            return true;
+    }
+</script>

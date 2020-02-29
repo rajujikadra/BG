@@ -115,23 +115,61 @@ namespace BG.Controllers
         }
 
         // GET: /Account/Register
+        [HttpGet]
         [AllowAnonymous]
         public ActionResult Register()
         {
+            ViewBag.City = new List<SelectListItem>()
+                    {
+                        new SelectListItem(){ Text= "Beverages", Value = "1"},
+                        new SelectListItem(){ Text= "Condiments", Value = "2"},
+                        new SelectListItem(){ Text= "Confections", Value = "3"},
+                        new SelectListItem(){ Text= "Dairy Products", Value = "4"},
+                        new SelectListItem(){ Text= "Grains/Cereals", Value = "5"},
+                        new SelectListItem(){ Text= "Meat/Poultry", Value = "6"},
+                        new SelectListItem(){ Text= "Produce", Value = "7"},
+                        new SelectListItem(){ Text= "Seafood", Value = "8"}
+                    };
+            ViewBag.State = new List<SelectListItem>()
+                    {
+                        new SelectListItem(){ Text= "Beverages", Value = "1"},
+                        new SelectListItem(){ Text= "Condiments", Value = "2"},
+                        new SelectListItem(){ Text= "Confections", Value = "3"},
+                        new SelectListItem(){ Text= "Dairy Products", Value = "4"},
+                        new SelectListItem(){ Text= "Grains/Cereals", Value = "5"},
+                        new SelectListItem(){ Text= "Meat/Poultry", Value = "6"},
+                        new SelectListItem(){ Text= "Produce", Value = "7"},
+                        new SelectListItem(){ Text= "Seafood", Value = "8"}
+                    };
+            ViewBag.Country = new List<SelectListItem>()
+                    {
+                        new SelectListItem(){ Text= "Beverages", Value = "1"},
+                        new SelectListItem(){ Text= "Condiments", Value = "2"},
+                        new SelectListItem(){ Text= "Confections", Value = "3"},
+                        new SelectListItem(){ Text= "Dairy Products", Value = "4"},
+                        new SelectListItem(){ Text= "Grains/Cereals", Value = "5"},
+                        new SelectListItem(){ Text= "Meat/Poultry", Value = "6"},
+                        new SelectListItem(){ Text= "Produce", Value = "7"},
+                        new SelectListItem(){ Text= "Seafood", Value = "8"}
+                    };
             return View();
         }
 
         // POST: /Account/Register
         [HttpPost]
         [AllowAnonymous]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult Register(RegisterViewModel model)
         {
-            if (ModelState.IsValid)
-            {
+            if (!ModelState.IsValid)
+                return Json(new DefaultResponse().SetErrorMessages(this).AsDefault(), JsonRequestBehavior.AllowGet);
+            return Json(true);
+        }
 
-            }
-            return View(model);
+        [HttpGet]
+        public ActionResult TestDemo(string text)
+        {
+            return null;
         }
     }
 }

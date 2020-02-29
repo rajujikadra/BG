@@ -80,50 +80,51 @@ namespace BG.Models
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "First name is required.")]
         public string FirstName { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Last name is required.")]
         public string LastName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Mobile number is required.")]
         public string MobileNo { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Address is required.")]
         public string Address { get; set; }
 
-        [Required]
-        public int UserCityId { get; set; }
-        [Required]
-        public int UserStateId { get; set; }
-        [Required]
-        public int UserCountryId { get; set; }
+        //[Required(ErrorMessage = "Please select city.")]
+        //public int UserCityId { get; set; }
+        //[Required(ErrorMessage = "Please select state.")]
+        //public int UserStateId { get; set; }
+        //[Required(ErrorMessage = "Please select country.")]
+        //public int UserCountryId { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Business name is required.")]
         public string BusinessName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Business address is required.")]
         public string BusinessAddress { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Business email is required.")]
         [EmailAddress]
+        [Display(Name = "Business Email")]
         public string BusinessEmailId { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Business mobile number is required.")]
         public string BusinessMobileNo { get; set; }
 
-        [Required]
-        public int BusinessCityId { get; set; }
+        //[Required(ErrorMessage = "Please select city.")]
+        //public int BusinessCityId { get; set; }
 
-        [Required]
-        public int BusinessStateId { get; set; }
+        //[Required(ErrorMessage = "Please select state.")]
+        //public int BusinessStateId { get; set; }
 
-        [Required]
-        public int BusinessCountryId { get; set; }
+        //[Required(ErrorMessage = "Please select country.")]
+        //public int BusinessCountryId { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "GST NO is required.")]
         public string GSTNO { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Reference number is required.")]
         public string ReferenceNo { get; set; }
 
     }
