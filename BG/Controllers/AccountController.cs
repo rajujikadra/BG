@@ -143,7 +143,7 @@ namespace BG.Controllers
             try
             {
                 var token = ApiHelper.Register(model);
-                return Json(true);
+                return Json(new DefaultResponse(HttpStatusCode.OK, ""), JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {

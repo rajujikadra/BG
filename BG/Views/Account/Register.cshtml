@@ -42,19 +42,19 @@
             height: 100vh;
         }
 
-        ::-webkit-scrollbar {
+        /*::-webkit-scrollbar {
             width: 5px;
         }
 
-        /* Track */
+
         ::-webkit-scrollbar-track {
             background: #f1f1f1;
         }
 
-        /* Handle */
+
         ::-webkit-scrollbar-thumb {
             background: #4f5ece !important;
-        }
+        }*/
 
         @@media(max-width:1200px) {
             .compny-name {
@@ -100,7 +100,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 p-0 mr-0" style="height: 230vh;overflow: auto;display: flex;width: 100%;">
+                    <div class="col-lg-4 p-0 mr-0" @*style="height: 230vh;overflow: auto;display: flex;width: 100%;"*@>
                         <div class="card card-primary login-form full-heigh" style="height:270vh;">
                             <div class="card-header">
                                 <h4>Register</h4>
@@ -289,7 +289,7 @@
         if (formValidate(form) === false) {
             return false;
         }
-        debugger;
+
         if (!$("#register_agree").prop("checked")) {
             swal("Warning", "Please accept terms and conditions.", "warning");
             return false;
@@ -303,9 +303,17 @@
             contentType: 'application/json',
             success: function (data) {
                 if (data.StatusCode == 200) {
-                    location.href = "/";
+                    swal({
+                        title: "Success",
+                        text: "Your account has been successfully register. When system admin approve your account after then you can login.",
+                        icon: "success"
+                    }).then(function (willDelete) {
+                        if (willDelete) {
+                            location.reload();
+                        }
+                    });
                 } else if (data.StatusCode == 404) {
-                    swal("Error", data.Messages.join(), "error");
+                    swal("Error", "Opps! Some problem there", "error");
                 }
                 HoldOn.close();
             },
