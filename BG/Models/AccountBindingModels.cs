@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 
 namespace BG.Models
 {
@@ -71,6 +72,11 @@ namespace BG.Models
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [RegularExpression(@"^((?=.*[a-z])(?=.*[A-Z])(?=.*\d)).+$", ErrorMessage = "Passwords must contain at least six characters long, including uppercase, lowercase letters, numbers and symbol.")]
+        [MembershipPassword(MinRequiredNonAlphanumericCharacters = 1,
+         MinNonAlphanumericCharactersError = "Your password needs to contain at least one symbol (!, @, #, etc).",
+         ErrorMessage = "Your password must be 6 characters long and contain at least one symbol (!, @, #, etc).",
+         MinRequiredPasswordLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
@@ -91,12 +97,12 @@ namespace BG.Models
         [Required(ErrorMessage = "Address is required.")]
         public string Address { get; set; }
 
-        //[Required(ErrorMessage = "Please select city.")]
-        //public int UserCityId { get; set; }
-        //[Required(ErrorMessage = "Please select state.")]
-        //public int UserStateId { get; set; }
-        //[Required(ErrorMessage = "Please select country.")]
-        //public int UserCountryId { get; set; }
+        [Required(ErrorMessage = "Please select city.")]
+        public int UserCityId { get; set; }
+        [Required(ErrorMessage = "Please select state.")]
+        public int UserStateId { get; set; }
+        [Required(ErrorMessage = "Please select country.")]
+        public int UserCountryId { get; set; }
 
         [Required(ErrorMessage = "Business name is required.")]
         public string BusinessName { get; set; }
@@ -112,14 +118,14 @@ namespace BG.Models
         [Required(ErrorMessage = "Business mobile number is required.")]
         public string BusinessMobileNo { get; set; }
 
-        //[Required(ErrorMessage = "Please select city.")]
-        //public int BusinessCityId { get; set; }
+        [Required(ErrorMessage = "Please select business city.")]
+        public int BusinessCityId { get; set; }
 
-        //[Required(ErrorMessage = "Please select state.")]
-        //public int BusinessStateId { get; set; }
+        [Required(ErrorMessage = "Please select business state.")]
+        public int BusinessStateId { get; set; }
 
-        //[Required(ErrorMessage = "Please select country.")]
-        //public int BusinessCountryId { get; set; }
+        [Required(ErrorMessage = "Please select business country.")]
+        public int BusinessCountryId { get; set; }
 
         [Required(ErrorMessage = "GST NO is required.")]
         public string GSTNO { get; set; }

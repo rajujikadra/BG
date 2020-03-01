@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Formatting;
 using System.Security.Claims;
 using System.Web;
 
@@ -51,6 +52,19 @@ namespace BG.Helper
                 var resultContent = result.Content.ReadAsStringAsync().Result;
                 return JsonConvert.DeserializeObject<Token>(resultContent);
             }
+        }
+        public static string Register(RegisterViewModel model)
+        {
+            using (var httpClient = ApiHelper.GetHttpClient())
+            {
+                var result = httpClient.PostAsync(Config.Register, model, new JsonMediaTypeFormatter()).Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    HttpContent msg = result.Content;
+                    string sds = "";
+                }
+            }
+            return string.Empty;
         }
     }
 }

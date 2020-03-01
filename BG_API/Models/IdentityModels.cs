@@ -12,6 +12,7 @@ namespace BG_API.Models
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public Nullable<int> UserCityId { get; set; }
         public string Mobile { get; set; }
         public string CompanyName { get; set; }
         public string ContactPerson { get; set; }

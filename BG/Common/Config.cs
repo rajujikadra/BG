@@ -10,6 +10,7 @@ namespace BG.Common
         public static readonly string API = "http://localhost:56718/";
         public static readonly string TokenURL = "Token";
         public static readonly string TokenType = "bearer";
+        public static readonly string Register = "api/Account/Register";
 
 
         // API URL

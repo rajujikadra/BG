@@ -48,6 +48,23 @@ namespace BG_API.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string MobileNo { get; set; }
+        public string Address { get; set; }
+        public int UserCityId { get; set; }
+        public int UserStateId { get; set; }
+        public int UserCountryId { get; set; }
+        public string BusinessName { get; set; }
+        public string BusinessAddress { get; set; }
+        public string BusinessEmailId { get; set; }
+        public string BusinessMobileNo { get; set; }
+        public int BusinessCityId { get; set; }
+        public int BusinessStateId { get; set; }
+        public int BusinessCountryId { get; set; }
+        public string GSTNO { get; set; }
+        public string ReferenceNo { get; set; }
     }
 
     public class RegisterExternalBindingModel

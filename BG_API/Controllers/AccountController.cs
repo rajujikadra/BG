@@ -16,6 +16,7 @@ using Microsoft.Owin.Security.OAuth;
 using BG_API.Models;
 using BG_API.Providers;
 using BG_API.Results;
+using BG_Application.CustomDTO;
 
 namespace BG_API.Controllers
 {
@@ -125,7 +126,7 @@ namespace BG_API.Controllers
 
             IdentityResult result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword,
                 model.NewPassword);
-            
+
             if (!result.Succeeded)
             {
                 return GetErrorResult(result);
@@ -258,9 +259,9 @@ namespace BG_API.Controllers
             if (hasRegistered)
             {
                 Authentication.SignOut(DefaultAuthenticationTypes.ExternalCookie);
-                
-                 ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(UserManager,
-                    OAuthDefaults.AuthenticationType);
+
+                ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(UserManager,
+                   OAuthDefaults.AuthenticationType);
                 ClaimsIdentity cookieIdentity = await user.GenerateUserIdentityAsync(UserManager,
                     CookieAuthenticationDefaults.AuthenticationType);
 
@@ -328,15 +329,29 @@ namespace BG_API.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
-
+            var user = new ApplicationUser()
+            {
+                UserName = model.Email,
+                Email = model.Email,
+                Active = false,
+                Address = model.Address,
+                CompanyAddress = model.BusinessAddress,
+                CompanyCityId = model.BusinessCityId,
+                CompanyName = model.BusinessName,
+                EmailConfirmed =false,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                Mobile = model.MobileNo,
+                UserGSTNO = model.GSTNO,
+                PhoneNumber = model.MobileNo,
+                UserCityId = model.UserCityId
+            };
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
-
             if (!result.Succeeded)
             {
                 return GetErrorResult(result);
             }
-
+            UserManager.AddToRole(user.Id, EnumTypes.RoleList.USER.ToString());
             return Ok();
         }
 
@@ -368,7 +383,7 @@ namespace BG_API.Controllers
             result = await UserManager.AddLoginAsync(user.Id, info.Login);
             if (!result.Succeeded)
             {
-                return GetErrorResult(result); 
+                return GetErrorResult(result);
             }
             return Ok();
         }

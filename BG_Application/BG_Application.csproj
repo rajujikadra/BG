@@ -60,8 +60,10 @@
     <Compile Include="CustomDTO\ApplicationUserViewModel.cs" />
     <Compile Include="CustomDTO\BrokerColumnsViewModel.cs" />
     <Compile Include="CustomDTO\CertificateViewModel.cs" />
+    <Compile Include="CustomDTO\CityViewModel.cs" />
     <Compile Include="CustomDTO\ColorViewModel.cs" />
     <Compile Include="CustomDTO\CompanyViewModel.cs" />
+    <Compile Include="CustomDTO\CountryViewModel.cs" />
     <Compile Include="CustomDTO\CutViewModel.cs" />
     <Compile Include="CustomDTO\DiamondStockViewModel.cs" />
     <Compile Include="CustomDTO\EnumTypes.cs" />
@@ -74,6 +76,7 @@
     <Compile Include="CustomDTO\PurityViewModel.cs" />
     <Compile Include="CustomDTO\ShapViewModel.cs" />
     <Compile Include="CustomDTO\SizeViewModel.cs" />
+    <Compile Include="CustomDTO\StateViewModel.cs" />
     <Compile Include="CustomDTO\TypeViewModel.cs" />
     <Compile Include="Data\AspNetRole.cs">
       <DependentUpon>BGModel.tt</DependentUpon>

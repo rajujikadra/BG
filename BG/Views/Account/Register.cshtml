@@ -38,6 +38,24 @@
             margin-top: 250px !important
         }
 
+        .register-form .carousel-item img {
+            height: 100vh;
+        }
+
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        /* Track */
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+            background: #4f5ece !important;
+        }
+
         @@media(max-width:1200px) {
             .compny-name {
                 margin-top: 0px !important;
@@ -56,14 +74,14 @@
     </style>
     @Styles.Render("~/Admin/css")
 </head>
-<body>
+<body style="overflow:hidden">
     <div class="loader"></div>
     <div id="app">
         <div class="main-wrapper main-wrapper-1">
             <div class="container-fluid">
-                <div class="row" style="overflow: hidden;">
+                <div class="row register-form">
                     <div class="col-lg-8 p-0 ml-0 h-100">
-                        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="overflow-y:hidden">
                             <ol class="carousel-indicators">
                                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                                 <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -71,19 +89,19 @@
                             </ol>
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
-                                    <img src="~/Content/slider/slide1.jpeg" class="d-block w-100" alt="..." style="height: 230vh;">
+                                    <img src="~/Content/slider/slide1.jpeg" class="d-block w-100" alt="...">
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="~/Content/slider/slide2.jpeg" class="d-block w-100" alt="..." style="height: 230vh;">
+                                    <img src="~/Content/slider/slide2.jpeg" class="d-block w-100" alt="...">
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="~/Content/slider/slide3.jpeg" class="d-block w-100" alt="..." style="height: 230vh;">
+                                    <img src="~/Content/slider/slide3.jpeg" class="d-block w-100" alt="...">
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 p-0 mr-0" style="height: 230vh;">
-                        <div class="card card-primary login-form full-heigh h-100">
+                    <div class="col-lg-4 p-0 mr-0" style="height: 230vh;overflow: auto;display: flex;width: 100%;">
+                        <div class="card card-primary login-form full-heigh" style="height:270vh;">
                             <div class="card-header">
                                 <h4>Register</h4>
                             </div>
@@ -91,6 +109,7 @@
                                 @*<form method="POST">*@
                                 @using (Ajax.BeginForm("Register", "Account", null, new AjaxOptions { HttpMethod = "POST", OnSuccess = "RegisterFormSuccess", OnFailure = "Failed", }, new { @id = "formRegister", @class = "needs-validation", @autocomplete = "off" }))
                                 {
+                                    @*@Html.AntiForgeryToken()*@
                                     <div class="row">
                                         <div class="form-group col-lg-6 col-md-6 col-sm-12">
                                             <label for="frist_name">First Name</label>
@@ -149,29 +168,29 @@
                                         <div class="invalid-feedback">
                                         </div>
                                     </div>
-                                    @*<div class="row">
-                                            <div class="form-group col-lg-4 col-md-4 col-sm-12 w-100">
-                                                <label for="city">City</label>
-                                                <div class="form-group">
-                                                    @Html.DropDownListFor(m => m.UserCityId, new SelectList(ViewBag.City, "Value", "Text"), "--Select city--", new { @class = "form-control" })
-                                                    <small id="region_message " class="text-danger "></small>
-                                                </div>
+                                    <div class="row">
+                                        <div class="form-group col-lg-4 col-md-4 col-sm-12 w-100">
+                                            <label>Contury</label>
+                                            <div class="form-group ">
+                                                @Html.DropDownListFor(m => m.UserCountryId, new SelectList(ViewBag.Country, "CountryId", "CountryName"), "--Select country--", new { @class = "form-control", @onchange = "SelectCountry(this, 'UserCountry');" })
+                                                @Html.ValidationMessageFor(m => m.UserCountryId, "", new { @class = "text-danger" })
                                             </div>
-                                            <div class="form-group col-lg-4 col-md-4 col-sm-12 w-100">
-                                                <label>State</label>
-                                                <div class="form-group">
-                                                    @Html.DropDownListFor(m => m.UserStateId, new SelectList(ViewBag.State, "Value", "Text"), "--Select state--", new { @class = "form-control" })
-                                                    <small id="region_message " class="text-danger "></small>
-                                                </div>
+                                        </div>
+                                        <div class="form-group col-lg-4 col-md-4 col-sm-12 w-100">
+                                            <label>State</label>
+                                            <div class="form-group">
+                                                @Html.DropDownListFor(m => m.UserStateId, new SelectList(ViewBag.State, "Value", "Text"), "--Select state--", new { @class = "form-control", @disabled = "disabled", @onchange = "SelectState(this, 'UserState');" })
+                                                @Html.ValidationMessageFor(m => m.UserStateId, "", new { @class = "text-danger" })
                                             </div>
-                                            <div class="form-group col-lg-4 col-md-4 col-sm-12 w-100">
-                                                <label>Contury</label>
-                                                <div class="form-group ">
-                                                    @Html.DropDownListFor(m => m.UserCountryId, new SelectList(ViewBag.Country, "Value", "Text"), "--Select country--", new { @class = "form-control" })
-                                                    <small id="country_message " class="text-danger "></small>
-                                                </div>
+                                        </div>
+                                        <div class="form-group col-lg-4 col-md-4 col-sm-12 w-100">
+                                            <label for="city">City</label>
+                                            <div class="form-group">
+                                                @Html.DropDownListFor(m => m.UserCityId, new SelectList(ViewBag.City, "Value", "Text"), "--Select city--", new { @class = "form-control", @disabled = "disabled" })
+                                                @Html.ValidationMessageFor(m => m.UserCityId, "", new { @class = "text-danger" })
                                             </div>
-                                        </div>*@
+                                        </div>
+                                    </div>
                                     <div class="row">
                                         <div class="form-group col-lg-12 col-md-12 col-sm-12">
                                             <label for="frist_name">Business Name</label>
@@ -200,29 +219,29 @@
                                             @Html.ValidationMessageFor(m => m.BusinessMobileNo, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
-                                    @*<div class="row">
-                                            <div class="form-group col-lg-4 col-md-4 col-sm-12 w-100">
-                                                <label for="city">City</label>
-                                                <div class="form-group">
-                                                    @Html.DropDownListFor(m => m.BusinessCityId, new SelectList(ViewBag.City, "Value", "Text"), "--Select city--", new { @class = "form-control" })
-                                                    <small id="region_message " class="text-danger"></small>
-                                                </div>
+                                    <div class="row">
+                                        <div class="form-group col-lg-4 col-md-4 col-sm-12 w-100">
+                                            <label for="contury">Contury</label>
+                                            <div class="form-group ">
+                                                @Html.DropDownListFor(m => m.BusinessCountryId, new SelectList(ViewBag.Country, "CountryId", "CountryName"), "--Select Country--", new { @class = "form-control", @onchange = "SelectCountry(this, 'CompanyCountry');" })
+                                                @Html.ValidationMessageFor(m => m.BusinessCountryId, "", new { @class = "text-danger" })
                                             </div>
-                                            <div class="form-group col-lg-4 col-md-4 col-sm-12 w-100">
-                                                <label for="state">State</label>
-                                                <div class="form-group">
-                                                    @Html.DropDownListFor(m => m.BusinessStateId, new SelectList(ViewBag.State, "Value", "Text"), "--Select State--", new { @class = "form-control" })
-                                                    <small id="region_message " class="text-danger "></small>
-                                                </div>
+                                        </div>
+                                        <div class="form-group col-lg-4 col-md-4 col-sm-12 w-100">
+                                            <label for="state">State</label>
+                                            <div class="form-group">
+                                                @Html.DropDownListFor(m => m.BusinessStateId, new SelectList(ViewBag.State, "Value", "Text"), "--Select State--", new { @class = "form-control", @disabled = "disabled", @onchange = "SelectState(this, 'CompanyState');" })
+                                                @Html.ValidationMessageFor(m => m.BusinessStateId, "", new { @class = "text-danger" })
                                             </div>
-                                            <div class="form-group col-lg-4 col-md-4 col-sm-12 w-100">
-                                                <label for="contury">Contury</label>
-                                                <div class="form-group ">
-                                                    @Html.DropDownListFor(m => m.BusinessCountryId, new SelectList(ViewBag.Country, "Value", "Text"), "--Select Country--", new { @class = "form-control" })
-                                                    <small id="country_message " class="text-danger "></small>
-                                                </div>
+                                        </div>
+                                        <div class="form-group col-lg-4 col-md-4 col-sm-12 w-100">
+                                            <label for="city">City</label>
+                                            <div class="form-group">
+                                                @Html.DropDownListFor(m => m.BusinessCityId, new SelectList(ViewBag.City, "Value", "Text"), "--Select city--", new { @class = "form-control", @disabled = "disabled" })
+                                                @Html.ValidationMessageFor(m => m.BusinessCityId, "", new { @class = "text-danger" })
                                             </div>
-                                        </div>*@
+                                        </div>
+                                    </div>
                                     <div class="row">
                                         <div class="form-group col-lg-6 col-md-6 col-sm-12">
                                             <label for="last_name">GST NO</label>
@@ -271,6 +290,10 @@
             return false;
         }
         debugger;
+        if (!$("#register_agree").prop("checked")) {
+            swal("Warning", "Please accept terms and conditions.", "warning");
+            return false;
+        }
         var formData = objectifyForm(form.serializeArray());
         HoldOn.open();
         $.ajax({
@@ -291,24 +314,6 @@
                 $("#btnclose").click();
             }
         });
-        //$.ajax({
-        //    url: "/Account/TestDemo",
-        //    method: "GET",
-        //    data: { 'text': "Rajesh" },
-        //    contentType: 'application/json',
-        //    success: function (data) {
-        //        if (data.StatusCode == 200) {
-        //            location.href = "/";
-        //        } else if (data.StatusCode == 404) {
-        //            swal("Error", data.Messages.join(), "error");
-        //        }
-        //        HoldOn.close();
-        //    },
-        //    error: function (data) {
-        //        $('.loader').hide();
-        //        $("#btnclose").click();
-        //    }
-        //});
     });
     function objectifyForm(formArray) {//serialize data function
         var returnArray = {};
@@ -326,5 +331,85 @@
             return false;
         else
             return true;
+    }
+
+    function SelectCountry(e, DrdName) {
+        $.ajax({
+            url: "/Account/GetStates",
+            method: "GET",
+            data: { 'CountryId': e.value },
+            contentType: 'application/json',
+            beforeSend: function () {
+                HoldOn.open();
+            },
+            complete: function () {
+                HoldOn.close();
+            },
+            success: function (data) {
+                if (data.length > 0) {
+                    if (DrdName == "UserCountry") {
+                        $("#UserStateId").empty();
+                        $("#UserStateId").append($("<option>--Select State--</option>"))
+                        $("#UserCityId").empty();
+                        $("#UserCityId").append($("<option>--Select City--</option>"))
+                        $.each(data, function (index, value) {
+                            $("#UserStateId").append($("<option></option>").val(this.StateId).html(this.StateName));
+                        });
+                        $("#UserStateId").removeAttr("disabled");
+                    } else if (DrdName == "CompanyCountry") {
+                        $("#BusinessStateId").empty();
+                        $("#BusinessStateId").append($("<option>--Select State--</option>"))
+                        $("#BusinessCityId").empty();
+                        $("#BusinessCityId").append($("<option>--Select City--</option>"))
+                        $.each(data, function (index, value) {
+                            $("#BusinessStateId").append($("<option></option>").val(this.StateId).html(this.StateName));
+                        });
+                        $("#BusinessStateId").removeAttr("disabled");
+                    }
+                }
+            },
+            error: function (data) {
+                $('.loader').hide();
+                $("#btnclose").click();
+            }
+        });
+    }
+
+    function SelectState(e, DrdName) {
+        $.ajax({
+            url: "/Account/GetCity",
+            method: "GET",
+            data: { 'StateId': e.value },
+            contentType: 'application/json',
+            beforeSend: function () {
+                HoldOn.open();
+            },
+            complete: function () {
+                HoldOn.close();
+            },
+            success: function (data) {
+                if (data.length > 0) {
+                    if (DrdName == "UserState") {
+                        $("#UserCityId").empty();
+                        $("#UserCityId").append($("<option>--Select City--</option>"))
+                        $.each(data, function (index, value) {
+                            $("#UserCityId").append($("<option></option>").val(this.CityId).html(this.CityName));
+                        });
+                        $("#UserCityId").removeAttr("disabled");
+                    } else if (DrdName == "CompanyState") {
+                        $("#BusinessCityId").empty();
+                        $("#BusinessCityId").append($("<option>--Select City--</option>"))
+                        $.each(data, function (index, value) {
+                            $("#BusinessCityId").append($("<option></option>").val(this.CityId).html(this.CityName));
+                        });
+                        $("#BusinessCityId").removeAttr("disabled");
+                    }
+                }
+            },
+            error: function (data) {
+                $('.loader').hide();
+                $("#btnclose").click();
+            }
+        });
     }
 </script>
