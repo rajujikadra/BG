@@ -344,7 +344,10 @@ namespace BG_API.Controllers
                 Mobile = model.MobileNo,
                 UserGSTNO = model.GSTNO,
                 PhoneNumber = model.MobileNo,
-                UserCityId = model.UserCityId
+                UserCityId = model.UserCityId,
+                RefBusiness = model.RefBusiness,
+                RefMobile = model.RefMobile,
+                RefName = model.RefName
             };
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
             if (!result.Succeeded)

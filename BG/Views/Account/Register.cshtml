@@ -136,7 +136,7 @@
                                         <div class="form-group col-6 col-lg-6 col-md-6 col-sm-12 w-100">
                                             <label for="email">Mobile No</label>
                                             @*<input id="email" type="email" class="form-control" name="email">*@
-                                            @Html.TextBoxFor(m => m.MobileNo, new { @class = "form-control", @maxlength = "10", @onkeypress="return isNumberKey(event)" })
+                                            @Html.TextBoxFor(m => m.MobileNo, new { @class = "form-control", @maxlength = "10", @onkeypress = "return isNumberKey(event)" })
                                             @Html.ValidationMessageFor(m => m.MobileNo, "", new { @class = "text-danger" })
                                             <div class="invalid-feedback">
                                             </div>
@@ -215,7 +215,7 @@
                                         <div class="form-group col-lg-6 col-md-6 col-sm-12">
                                             <label for="last_name">Mobile No.</label>
                                             @*<input id="last_name" type="text" class="form-control" name="last_name">*@
-                                            @Html.TextBoxFor(m => m.BusinessMobileNo, new { @class = "form-control", @maxlength = "10", @onkeypress="return isNumberKey(event)" })
+                                            @Html.TextBoxFor(m => m.BusinessMobileNo, new { @class = "form-control", @maxlength = "10", @onkeypress = "return isNumberKey(event)" })
                                             @Html.ValidationMessageFor(m => m.BusinessMobileNo, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
@@ -254,6 +254,29 @@
                                             @*<input id="last_name" type="text" class="form-control" name="last_name">*@
                                             @Html.TextBoxFor(m => m.ReferenceNo, new { @class = "form-control" })
                                             @Html.ValidationMessageFor(m => m.ReferenceNo, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-lg-4 col-md-4 col-sm-12 w-100">
+                                            <label>Reference Name</label>
+                                            <div class="form-group ">
+                                                @Html.TextBoxFor(m => m.RefName, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(m => m.RefName, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-lg-4 col-md-4 col-sm-12 w-100">
+                                            <label>Reference Mobile</label>
+                                            <div class="form-group">
+                                                @Html.TextBoxFor(m => m.RefMobile, new { @class = "form-control", @maxlength = "10", @onkeypress = "return isNumberKey(event)" })
+                                                @Html.ValidationMessageFor(m => m.RefMobile, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-lg-4 col-md-4 col-sm-12 w-100">
+                                            <label for="city">Reference Business</label>
+                                            <div class="form-group">
+                                                @Html.TextBoxFor(m => m.RefBusiness, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(m => m.RefBusiness, "", new { @class = "text-danger" })
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -420,12 +443,11 @@
             }
         });
     }
-     function isNumberKey(evt)
-      {
-         var charCode = (evt.which) ? evt.which : event.keyCode
-         if (charCode > 31 && (charCode < 48 || charCode > 57))
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57))
             return false;
 
-         return true;
-      }
+        return true;
+    }
 </script>

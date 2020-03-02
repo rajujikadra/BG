@@ -133,6 +133,13 @@ namespace BG.Models
         [Required(ErrorMessage = "Reference number is required.")]
         public string ReferenceNo { get; set; }
 
+        [Required(ErrorMessage = "Reference name is required.")]
+        public string RefName { get; set; }
+        [Required(ErrorMessage = "Reference mobile is required.")]
+        public string RefMobile { get; set; }
+        [Required(ErrorMessage = "Reference business is required.")]
+        public string RefBusiness { get; set; }
+
     }
 
 }
