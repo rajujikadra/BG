@@ -42,7 +42,7 @@
             height: 100vh;
         }
 
-        /*::-webkit-scrollbar {
+        ::-webkit-scrollbar {
             width: 5px;
         }
 
@@ -54,7 +54,7 @@
 
         ::-webkit-scrollbar-thumb {
             background: #4f5ece !important;
-        }*/
+        }
 
         @@media(max-width:1200px) {
             .compny-name {
@@ -100,7 +100,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 p-0 mr-0" @*style="height: 230vh;overflow: auto;display: flex;width: 100%;"*@>
+                    <div class="col-lg-4 p-0 mr-0" style="height: 230vh;overflow: auto;display: flex;width: 100%;">
                         <div class="card card-primary login-form full-heigh" style="height:270vh;">
                             <div class="card-header">
                                 <h4>Register</h4>
@@ -136,7 +136,7 @@
                                         <div class="form-group col-6 col-lg-6 col-md-6 col-sm-12 w-100">
                                             <label for="email">Mobile No</label>
                                             @*<input id="email" type="email" class="form-control" name="email">*@
-                                            @Html.TextBoxFor(m => m.MobileNo, new { @class = "form-control" })
+                                            @Html.TextBoxFor(m => m.MobileNo, new { @class = "form-control", @maxlength = "10", @onkeypress="return isNumberKey(event)" })
                                             @Html.ValidationMessageFor(m => m.MobileNo, "", new { @class = "text-danger" })
                                             <div class="invalid-feedback">
                                             </div>
@@ -164,7 +164,7 @@
                                         <label for="email">Address</label>
                                         @*<textarea id="address" type="text" class="form-control" name="adress" rows="4" cols="50"></textarea>*@
                                         @Html.TextAreaFor(m => m.Address, new { @class = "form-control", @rows = "4", @cols = "50" })
-                                        @Html.ValidationMessageFor(m => m.MobileNo, "", new { @class = "text-danger" })
+                                        @Html.ValidationMessageFor(m => m.Address, "", new { @class = "text-danger" })
                                         <div class="invalid-feedback">
                                         </div>
                                     </div>
@@ -215,7 +215,7 @@
                                         <div class="form-group col-lg-6 col-md-6 col-sm-12">
                                             <label for="last_name">Mobile No.</label>
                                             @*<input id="last_name" type="text" class="form-control" name="last_name">*@
-                                            @Html.TextBoxFor(m => m.BusinessMobileNo, new { @class = "form-control" })
+                                            @Html.TextBoxFor(m => m.BusinessMobileNo, new { @class = "form-control", @maxlength = "10", @onkeypress="return isNumberKey(event)" })
                                             @Html.ValidationMessageFor(m => m.BusinessMobileNo, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
@@ -420,4 +420,12 @@
             }
         });
     }
+     function isNumberKey(evt)
+      {
+         var charCode = (evt.which) ? evt.which : event.keyCode
+         if (charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+
+         return true;
+      }
 </script>
