@@ -27,19 +27,6 @@
                                 <table class="table table-striped table-hover" id="new-customer-table" style="width:100%;">
                                     <thead>
                                         <tr>
-                                            @if (Model.Count() > 0)
-                                            {
-                                                if (Model[0].Active != true)
-                                                {
-                                                    <th class="text-center">
-                                                        <div class="custom-checkbox custom-checkbox-table custom-control">
-                                                            <input type="checkbox" data-checkboxes="mygroup" data-checkbox-role="dad"
-                                                                   class="custom-control-input" id="checkbox-all">
-                                                            <label for="checkbox-all" class="custom-control-label">&nbsp;</label>
-                                                        </div>
-                                                    </th>
-                                                }
-                                            }
                                             <th>Name</th>
                                             <th>Email</th>
                                             <th>Mobile</th>
@@ -57,16 +44,6 @@
                                         @foreach (var U in Model)
                                         {
                                             <tr>
-                                                @if (U.Active != true)
-                                                {
-                                                    <td class="p-0 text-center">
-                                                        <div class="custom-checkbox custom-control">
-                                                            <input type="checkbox" data-checkboxes="mygroup" class="custom-control-input"
-                                                                   id="checkbox'@U.Id'">
-                                                            <label for="checkbox'@U.Id'" class="custom-control-label">&nbsp;</label>
-                                                        </div>
-                                                    </td>
-                                                }
                                                 <td>@U.FirstName @U.LastName</td>
                                                 <td>@U.Email</td>
                                                 <td>@U.Mobile</td>
@@ -110,10 +87,10 @@
                         url: '@Url.Action("ActivateNewCustomer","customer", new { area = "admin"} )',
                         data: { 'Email': Email },
                         beforeSend: function () {
-                            $('.loader').show();
+                            HoldOn.open();
                         },
                         complete: function () {
-                            $('.loader').hide();
+                            HoldOn.close();
                         },
                         success: function (response) {
                             if (response == true) {
@@ -123,7 +100,9 @@
                                     icon: "success"
                                 }).then(function (willDelete) {
                                     if (willDelete) {
-                                       location.reload();
+                                        //location.reload();
+                                        debugger;
+                                        AssignSalesPerson(Email);
                                     }
                                 });
                             } else {
@@ -136,6 +115,30 @@
                     });
                 }
             });
+        }
+        function AssignSalesPerson(Email) {
+             $.ajax({
+                 async: true,
+                 type: "Get",
+                 url: '@Url.Action("GetAllSalesPerson","customer", new { area = "admin"} )',
+                 data: { 'Email': Email },
+                 beforeSend: function () {
+                     HoldOn.open();
+                 },
+                 complete: function () {
+                      HoldOn.close();
+                 },
+                 success: function (response) {
+                     $("#ModalCenter").html(response);
+                     $('#ModalCenter').modal({
+                         backdrop: 'static',
+                         keyboard: false
+                     });
+                 },
+                 error: function (response) {
+                     alert(response.responseText);
+                 }
+             });
         }
     </script>
 }

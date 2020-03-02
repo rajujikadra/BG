@@ -58,6 +58,7 @@
     <Compile Include="Class1.cs" />
     <Compile Include="CustomDTO\AdminDashboardViewModel.cs" />
     <Compile Include="CustomDTO\ApplicationUserViewModel.cs" />
+    <Compile Include="CustomDTO\AssignSalesPersonViewModel.cs" />
     <Compile Include="CustomDTO\BrokerColumnsViewModel.cs" />
     <Compile Include="CustomDTO\CertificateViewModel.cs" />
     <Compile Include="CustomDTO\CityViewModel.cs" />

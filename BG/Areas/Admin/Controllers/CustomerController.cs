@@ -137,5 +137,28 @@ namespace BG.Areas.Admin.Controllers
             return Json(status, JsonRequestBehavior.AllowGet);
         }
         #endregion
+
+        #region Assign Sales person modal
+        [ActionName("GetAllSalesPerson")]
+        [Route("GetAllSalesPerson")]
+        public ActionResult GetAllSalesPerson(string Email)
+        {
+            ViewBag.CustomerID = Email;
+            var model = new List<SalesPersons>();
+            var DB = new BG_DBEntities();
+            var user = DB.AspNetUsers.FirstOrDefault(x => x.Email == Email);
+            ViewBag.UserName = user != null ? user.FirstName.Trim().ToUpper() + " " + user.LastName.Trim().ToUpper() : "";
+            string RoleId = DB.AspNetRoles.FirstOrDefault(x => x.Name.Equals(EnumTypes.RoleList.SALESPERSON.ToString())).Id;
+            if (!string.IsNullOrEmpty(RoleId))
+            {
+                model = DB.AspNetUsers.Where(x => x.Active == true && x.EmailConfirmed == true && x.AspNetRoles.Any(c => c.Id == RoleId)).Select(y => new SalesPersons()
+                {
+                    SalesPersonID = y.Id,
+                    SalesPersonName = (y.FirstName + " " + y.LastName).Trim().ToUpper()
+                }).OrderBy(v => v.SalesPersonName).ToList();
+            }
+            return PartialView("_AssignSalesPerson", model);
+        }
+        #endregion
     }
 }
