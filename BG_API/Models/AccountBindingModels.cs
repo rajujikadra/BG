@@ -65,6 +65,7 @@ namespace BG_API.Models
         public int BusinessCountryId { get; set; }
         public string GSTNO { get; set; }
         public string ReferenceNo { get; set; }
+        public string RoleName { get; set; }
     }
 
     public class RegisterExternalBindingModel

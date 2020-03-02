@@ -1,4 +1,5 @@
 ﻿@model List<BG_Application.CustomDTO.ApplicationUserViewModel>
+@using BG_Application.CustomDTO
 @{
     ViewBag.Title = "Sales Persons";
     Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
@@ -47,14 +48,10 @@
                                                 <td>@U.RefMobile</td>
                                                 <td>
                                                     <a href="/admin/customer/@U.Id" class="btn btn-primary"><i class="fa fa-eye"></i> View</a>
-                                                    @*@if (U.EmailConfirmed)
+                                                    @if (User.IsInRole(EnumTypes.RoleList.ADMIN.ToString()))
                                                     {
-                                                        <button type="button" class="btn btn-danger" onclick="DeactivateCustomer('@U.Email');">Deactivate</button>
+                                                        <button type="button" onclick="AssignMenuPermission('@U.Id')" class="btn btn-info">Menu Permission</button>
                                                     }
-                                                    else
-                                                    {
-                                                        <button type="button" class="btn btn-primary" onclick="ActivateCustomer('@U.Email');">Activate</button>
-                                                    }*@
                                                 </td>
                                             </tr>
                                         }
@@ -70,7 +67,7 @@
 </div>
 @section scripts{
     <script type="text/javascript">
-         $(document).ready(function () {
+        $(document).ready(function () {
             $('#sales-person-table').DataTable({
                 "columnDefs": [
                     { "sortable": false, "targets": [10] }
@@ -82,5 +79,28 @@
                 ]
             });
         });
+        function AssignMenuPermission(UserId) {
+            debugger;
+             $.ajax({
+                 async: true,
+                 type: "Get",
+                 url: '@Url.Action("GetAllSalesPersonMenu","SalesPerson", new { area = "admin"} )',
+                 data: { 'UserID': UserId },
+                 beforeSend: function () {
+                     HoldOn.open();
+                 },
+                 complete: function () {
+                     HoldOn.close();
+                 },
+                 success: function (response) {
+                     $("#ModalCenter").empty();
+                     $("#ModalCenter").html(response);
+                     $("#ModalCenter").modal('show');
+                 },
+                 error: function (response) {
+                     alert(response.responseText);
+                 }
+              });
+        }
     </script>
 }

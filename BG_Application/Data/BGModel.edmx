@@ -81,6 +81,17 @@
           <Property Name="RefBusiness" Type="varchar" MaxLength="50" />
           <Property Name="Active" Type="bit" />
         </EntityType>
+        <EntityType Name="AssignSalesPersonMst">
+          <Key>
+            <PropertyRef Name="AssignID" />
+          </Key>
+          <Property Name="AssignID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomerID" Type="nvarchar" MaxLength="128" />
+          <Property Name="SalesPersonID" Type="nvarchar" MaxLength="128" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="Active" Type="bit" />
+        </EntityType>
         <EntityType Name="BrokerColumnMappingMst">
           <Key>
             <PropertyRef Name="BrokerColMapId" />
@@ -481,7 +492,7 @@ warning 6002: The table/view 'BG_DB.dbo.SizeMst' does not have a primary key def
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CountrtId">
+        <Association Name="FK_CountryId">
           <End Role="CountryMst" Type="Self.CountryMst" Multiplicity="0..1" />
           <End Role="StateMst" Type="Self.StateMst" Multiplicity="*" />
           <ReferentialConstraint>
@@ -490,6 +501,30 @@ warning 6002: The table/view 'BG_DB.dbo.SizeMst' does not have a primary key def
             </Principal>
             <Dependent Role="StateMst">
               <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CreatedBy">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="AssignSalesPersonMst" Type="Self.AssignSalesPersonMst" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AssignSalesPersonMst">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Customer">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="AssignSalesPersonMst" Type="Self.AssignSalesPersonMst" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AssignSalesPersonMst">
+              <PropertyRef Name="CustomerID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -585,6 +620,18 @@ warning 6002: The table/view 'BG_DB.dbo.SizeMst' does not have a primary key def
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_SalesPerson">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="AssignSalesPersonMst" Type="Self.AssignSalesPersonMst" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AssignSalesPersonMst">
+              <PropertyRef Name="SalesPersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_State">
           <End Role="StateMst" Type="Self.StateMst" Multiplicity="0..1" />
           <End Role="CityMst" Type="Self.CityMst" Multiplicity="*" />
@@ -628,6 +675,7 @@ warning 6002: The table/view 'BG_DB.dbo.SizeMst' does not have a primary key def
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AssignSalesPersonMst" EntityType="Self.AssignSalesPersonMst" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BrokerColumnMappingMst" EntityType="Self.BrokerColumnMappingMst" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BrokerColumnName" EntityType="Self.BrokerColumnName" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CertificateMst" EntityType="Self.CertificateMst" Schema="dbo" store:Type="Tables" />
@@ -729,9 +777,17 @@ warning 6002: The table/view 'BG_DB.dbo.SizeMst' does not have a primary key def
             <End Role="CityMst" EntitySet="CityMst" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
-          <AssociationSet Name="FK_CountrtId" Association="Self.FK_CountrtId">
+          <AssociationSet Name="FK_CountryId" Association="Self.FK_CountryId">
             <End Role="CountryMst" EntitySet="CountryMst" />
             <End Role="StateMst" EntitySet="StateMst" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CreatedBy" Association="Self.FK_CreatedBy">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AssignSalesPersonMst" EntitySet="AssignSalesPersonMst" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Customer" Association="Self.FK_Customer">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AssignSalesPersonMst" EntitySet="AssignSalesPersonMst" />
           </AssociationSet>
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -760,6 +816,10 @@ warning 6002: The table/view 'BG_DB.dbo.SizeMst' does not have a primary key def
           <AssociationSet Name="FK_menuid" Association="Self.FK_menuid">
             <End Role="MainMenuMst" EntitySet="MainMenuMst" />
             <End Role="MenuMst" EntitySet="MenuMst" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SalesPerson" Association="Self.FK_SalesPerson">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AssignSalesPersonMst" EntitySet="AssignSalesPersonMst" />
           </AssociationSet>
           <AssociationSet Name="FK_State" Association="Self.FK_State">
             <End Role="StateMst" EntitySet="StateMst" />
@@ -1072,6 +1132,19 @@ warning 6002: The table/view 'BG_DB.dbo.SizeMst' does not have a primary key def
             <End Role="MenuMst" EntitySet="MenuMsts" />
             <End Role="UserMenuPermissionMst" EntitySet="UserMenuPermissionMsts" />
           </AssociationSet>
+          <EntitySet Name="AssignSalesPersonMsts" EntityType="BG_DBModel.AssignSalesPersonMst" />
+          <AssociationSet Name="FK_CreatedBy" Association="BG_DBModel.FK_CreatedBy">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="AssignSalesPersonMst" EntitySet="AssignSalesPersonMsts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Customer" Association="BG_DBModel.FK_Customer">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="AssignSalesPersonMst" EntitySet="AssignSalesPersonMsts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SalesPerson" Association="BG_DBModel.FK_SalesPerson">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="AssignSalesPersonMst" EntitySet="AssignSalesPersonMsts" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="PartyMst">
           <Key>
@@ -1208,6 +1281,9 @@ warning 6002: The table/view 'BG_DB.dbo.SizeMst' does not have a primary key def
           <NavigationProperty Name="BrokerColumnMappingMsts" Relationship="BG_DBModel.FK_BrokerUser" FromRole="AspNetUser" ToRole="BrokerColumnMappingMst" />
           <NavigationProperty Name="UserMenuPermissionMsts" Relationship="BG_DBModel.FK_USer" FromRole="AspNetUser" ToRole="UserMenuPermissionMst" />
           <Property Name="UserGSTNO" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="AssignSalesPersonMsts" Relationship="BG_DBModel.FK_CreatedBy" FromRole="AspNetUser" ToRole="AssignSalesPersonMst" />
+          <NavigationProperty Name="AssignSalesPersonMsts1" Relationship="BG_DBModel.FK_Customer" FromRole="AspNetUser" ToRole="AssignSalesPersonMst" />
+          <NavigationProperty Name="AssignSalesPersonMsts2" Relationship="BG_DBModel.FK_SalesPerson" FromRole="AspNetUser" ToRole="AssignSalesPersonMst" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Type="BG_DBModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
@@ -1461,6 +1537,56 @@ warning 6002: The table/view 'BG_DB.dbo.SizeMst' does not have a primary key def
             </Principal>
             <Dependent Role="UserMenuPermissionMst">
               <PropertyRef Name="MenuMstId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="AssignSalesPersonMst">
+          <Key>
+            <PropertyRef Name="AssignID" />
+          </Key>
+          <Property Name="AssignID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="SalesPersonID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="Active" Type="Boolean" />
+          <NavigationProperty Name="AspNetUser" Relationship="BG_DBModel.FK_CreatedBy" FromRole="AssignSalesPersonMst" ToRole="AspNetUser" />
+          <NavigationProperty Name="AspNetUser1" Relationship="BG_DBModel.FK_Customer" FromRole="AssignSalesPersonMst" ToRole="AspNetUser" />
+          <NavigationProperty Name="AspNetUser2" Relationship="BG_DBModel.FK_SalesPerson" FromRole="AssignSalesPersonMst" ToRole="AspNetUser" />
+        </EntityType>
+        <Association Name="FK_CreatedBy">
+          <End Type="BG_DBModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
+          <End Type="BG_DBModel.AssignSalesPersonMst" Role="AssignSalesPersonMst" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AssignSalesPersonMst">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Customer">
+          <End Type="BG_DBModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
+          <End Type="BG_DBModel.AssignSalesPersonMst" Role="AssignSalesPersonMst" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AssignSalesPersonMst">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SalesPerson">
+          <End Type="BG_DBModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
+          <End Type="BG_DBModel.AssignSalesPersonMst" Role="AssignSalesPersonMst" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AssignSalesPersonMst">
+              <PropertyRef Name="SalesPersonID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1922,6 +2048,18 @@ warning 6002: The table/view 'BG_DB.dbo.SizeMst' does not have a primary key def
                 <ScalarProperty Name="MenuMstId" ColumnName="MenuMstId" />
                 <ScalarProperty Name="MainMenuMstId" ColumnName="MainMenuMstId" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AssignSalesPersonMsts">
+            <EntityTypeMapping TypeName="BG_DBModel.AssignSalesPersonMst">
+              <MappingFragment StoreEntitySet="AssignSalesPersonMst">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="SalesPersonID" ColumnName="SalesPersonID" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="AssignID" ColumnName="AssignID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

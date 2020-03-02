@@ -46,6 +46,10 @@
         <AssociationConnector Association="BG_DBModel.FK_USer" />
         <AssociationConnector Association="BG_DBModel.FK_MainMenu" />
         <AssociationConnector Association="BG_DBModel.FK_Menu" />
+        <EntityTypeShape EntityType="BG_DBModel.AssignSalesPersonMst" Width="1.5" PointX="22.375" PointY="0.75" />
+        <AssociationConnector Association="BG_DBModel.FK_CreatedBy" />
+        <AssociationConnector Association="BG_DBModel.FK_Customer" />
+        <AssociationConnector Association="BG_DBModel.FK_SalesPerson" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

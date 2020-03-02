@@ -1,9 +1,13 @@
-﻿@model List<BG_Application.CustomDTO.BrokerColumnsViewModel>
+﻿@model List<BG_Application.CustomDTO.SalesPersonMenuPermissionViewModel>
+@{
+    ViewBag.Title = "_MenuPermissions";
+    Layout = null;
+}
 <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalCenterTitle">@ViewBag.BrokerName's permission</h5>
-            <input type="hidden" id="BrokerID" value="@ViewBag.BrokerID" />
+            <h5 class="modal-title" id="exampleModalCenterTitle">@ViewBag.SalesPersonName's menu permission</h5>
+            <input type="hidden" id="SalesPersonID" value="@ViewBag.SalesPersonID" />
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -14,10 +18,10 @@
                     <div class="button">
                         @foreach (var C in Model)
                         {
-                            <div class="col-3 btn btn-icon align-left">
+                            <div class="col-4 btn btn-icon align-left">
                                 <div class="custom-checkbox custom-checkbox-table custom-control font-15">
-                                    <input type="checkbox" @(C.IsDisplay ? "checked" : "") value="@C.ColumnId" data-checkboxes="mygroup" data-checkbox-role="dad" class="custom-control-input brk-chk" id="@C.ColumnId">
-                                    <label for="@C.ColumnId" class="custom-control-label">@C.ColumnName</label>
+                                    <input type="checkbox" @(C.IsDisplay ? "checked" : "") value="@C.MenuName" data-checkboxes="mygroup" data-checkbox-role="dad" class="custom-control-input sales-chk" id="@C.MenuName.Replace(" ", "")">
+                                    <label for="@C.MenuName.Replace(" ", "")" class="custom-control-label">@C.MenuName</label>
                                 </div>
                             </div>
                         }
@@ -26,36 +30,37 @@
             </div>
         </div>
         <div class="modal-footer bg-whitesmoke br">
-            <button type="button" class="btn btn-primary" onclick="SaveBrokerPermission();">Save</button>
+            <button type="button" class="btn btn-primary" onclick="SaveSalesPersonMenuPermission();">Save</button>
             <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
         </div>
     </div>
 </div>
 <script type="text/javascript">
-    function SaveBrokerPermission() {
-        var BrokerIDs = [];
-        $('.brk-chk').each(function () {
+    function SaveSalesPersonMenuPermission() {
+        var MenuNames = [];
+        $('.sales-chk').each(function () {
+            debugger;
             var $this = $(this);
             if ($this.is(':checked')) {
-                BrokerIDs.push(parseInt($this.val()));
+                MenuNames.push($this.val());
             }
         });
-        $.ajax({
+           $.ajax({
             async: false,
             type: "POST",
-            url: '@Url.Action("SetPerimission","broker", new { area = "admin"} )',
+            url: '@Url.Action("SetMenuPerimission","SalesPerson", new { area = "admin"} )',
             cache: false,
-            data: { 'UserID': $("#BrokerID").val(), 'BrokerID': BrokerIDs },
+            data: { 'UserID': $("#SalesPersonID").val(), 'MenuNames': MenuNames },
             beforeSend: function () {
                   HoldOn.open();
              },
             complete: function () {
-                   HoldOn.close();
+                  HoldOn.close();
             },
             success: function (response) {
                 if (response == true) {
                     $("#ModalCenter").modal('hide');
-                    swal("Success", "@ViewBag.BrokerName's permission has been set.", "success");
+                    swal("Success", "@ViewBag.SalesPersonName's menu permission has been set.", "success");
                 }
             },
             error: function (response) {

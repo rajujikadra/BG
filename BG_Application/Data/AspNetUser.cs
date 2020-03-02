@@ -22,6 +22,9 @@ namespace BG_Application.Data
             this.AspNetRoles = new HashSet<AspNetRole>();
             this.BrokerColumnMappingMsts = new HashSet<BrokerColumnMappingMst>();
             this.UserMenuPermissionMsts = new HashSet<UserMenuPermissionMst>();
+            this.AssignSalesPersonMsts = new HashSet<AssignSalesPersonMst>();
+            this.AssignSalesPersonMsts1 = new HashSet<AssignSalesPersonMst>();
+            this.AssignSalesPersonMsts2 = new HashSet<AssignSalesPersonMst>();
         }
     
         public string Id { get; set; }
@@ -64,5 +67,11 @@ namespace BG_Application.Data
         public virtual ICollection<BrokerColumnMappingMst> BrokerColumnMappingMsts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserMenuPermissionMst> UserMenuPermissionMsts { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AssignSalesPersonMst> AssignSalesPersonMsts { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AssignSalesPersonMst> AssignSalesPersonMsts1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AssignSalesPersonMst> AssignSalesPersonMsts2 { get; set; }
     }
 }

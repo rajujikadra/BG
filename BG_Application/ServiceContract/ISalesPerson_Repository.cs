@@ -9,6 +9,6 @@ namespace BG_Application.ServiceContract
 {
     public interface ISalesPerson_Repository
     {
-        List<ApplicationUserViewModel> GetSalesPersons();
+        List<ApplicationUserViewModel> GetSalesPersons(string Email);
     }
 }

@@ -85,10 +85,10 @@
                  url: '@Url.Action("GetAllBrokerColumn","broker", new { area = "admin"} )',
                  data: { 'UserID': UserId },
                  beforeSend: function () {
-                     $('.loader').show();
+                     HoldOn.open();
                  },
                  complete: function () {
-                     $('.loader').hide();
+                    HoldOn.close();
                  },
                  success: function (response) {
                      $("#ModalCenter").empty();

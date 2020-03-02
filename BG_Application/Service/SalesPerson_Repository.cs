@@ -15,29 +15,55 @@ namespace BG_Application.Service
         {
             DB = _DB;
         }
-        public List<ApplicationUserViewModel> GetSalesPersons()
+        public List<ApplicationUserViewModel> GetSalesPersons(string Email)
         {
             string RoleID = DB.AspNetRoles.FirstOrDefault(x => x.Name.Equals(EnumTypes.RoleList.SALESPERSON.ToString())).Id;
-            return DB.AspNetUsers.Where(x => x.Active == true && x.EmailConfirmed == true && x.AspNetRoles.Any(c => c.Id == RoleID)).Select(y => new ApplicationUserViewModel()
+            if (!string.IsNullOrEmpty(Email))
             {
-                Id = y.Id,
-                FirstName = y.FirstName,
-                LastName = y.LastName,
-                Email = y.Email,
-                CompanyAddress = y.CompanyAddress,
-                CompanyCityId = y.CompanyCityId,
-                CompanyName = y.CompanyName,
-                CompanyZipcode = y.CompanyZipcode,
-                CompanyCityName = y.CityMst.CityName,
-                ContactPerson = y.ContactPerson,
-                Mobile = y.Mobile,
-                RefBusiness = y.RefBusiness,
-                RefMobile = y.RefMobile,
-                RefName = y.RefName,
-                UserCityName = y.CityMst1.CityName,
-                Active = y.Active,
-                UserGSTNO = y.UserGSTNO
-            }).OrderBy(v => v.FirstName).ToList();
+                return DB.AspNetUsers.Where(x => x.Active == true && x.EmailConfirmed == true && x.Email == Email && x.AspNetRoles.Any(c => c.Id == RoleID)).Select(y => new ApplicationUserViewModel()
+                {
+                    Id = y.Id,
+                    FirstName = y.FirstName,
+                    LastName = y.LastName,
+                    Email = y.Email,
+                    CompanyAddress = y.CompanyAddress,
+                    CompanyCityId = y.CompanyCityId,
+                    CompanyName = y.CompanyName,
+                    CompanyZipcode = y.CompanyZipcode,
+                    CompanyCityName = y.CityMst.CityName,
+                    ContactPerson = y.ContactPerson,
+                    Mobile = y.Mobile,
+                    RefBusiness = y.RefBusiness,
+                    RefMobile = y.RefMobile,
+                    RefName = y.RefName,
+                    UserCityName = y.CityMst1.CityName,
+                    Active = y.Active,
+                    UserGSTNO = y.UserGSTNO
+                }).OrderBy(v => v.FirstName).ToList();
+            }
+            else
+            {
+                return DB.AspNetUsers.Where(x => x.Active == true && x.EmailConfirmed == true && x.AspNetRoles.Any(c => c.Id == RoleID)).Select(y => new ApplicationUserViewModel()
+                {
+                    Id = y.Id,
+                    FirstName = y.FirstName,
+                    LastName = y.LastName,
+                    Email = y.Email,
+                    CompanyAddress = y.CompanyAddress,
+                    CompanyCityId = y.CompanyCityId,
+                    CompanyName = y.CompanyName,
+                    CompanyZipcode = y.CompanyZipcode,
+                    CompanyCityName = y.CityMst.CityName,
+                    ContactPerson = y.ContactPerson,
+                    Mobile = y.Mobile,
+                    RefBusiness = y.RefBusiness,
+                    RefMobile = y.RefMobile,
+                    RefName = y.RefName,
+                    UserCityName = y.CityMst1.CityName,
+                    Active = y.Active,
+                    UserGSTNO = y.UserGSTNO
+                }).OrderBy(v => v.FirstName).ToList();
+            }
         }
 
 

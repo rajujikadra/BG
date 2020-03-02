@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using BG_API.Models;
 using BG_Application.CustomDTO;
 using BG_Application.Service;
 using BG_Application.ServiceContract;
@@ -27,7 +28,10 @@ namespace BG_API.Controllers
         {
             try
             {
-                var users = _ISalesPerson_Repository.GetSalesPersons();
+                string Email = string.Empty;
+                if (User.IsInRole(EnumTypes.RoleList.SALESPERSON.ToString()))
+                    Email = IdentityExtensions.GetEmailAdress(User.Identity);
+                var users = _ISalesPerson_Repository.GetSalesPersons(Email);
                 return Ok(users);
             }
             catch (Exception ex)
