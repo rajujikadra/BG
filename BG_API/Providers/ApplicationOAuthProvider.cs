@@ -88,6 +88,7 @@ namespace BG_API.Providers
             AuthenticationProperties properties = CreateProperties(user.UserName);
 
             properties.Dictionary.Add("role", Roles);
+            properties.Dictionary.Add("id", user.Id);
             AuthenticationTicket ticket = new AuthenticationTicket(oAuthIdentity, properties);
             context.Validated(ticket);
             context.Request.Context.Authentication.SignIn(cookiesIdentity);

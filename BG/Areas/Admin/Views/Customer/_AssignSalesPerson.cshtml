@@ -13,7 +13,7 @@
         </div>
         <div class="modal-body">
             <form class="">
-                <input type="hidden" value="@ViewBag.CustomerID" id="CustomerEmailID"/>
+                <input type="hidden" value="@ViewBag.CustomerID" id="CustomerEmailID" />
                 <div class="form-group">
                     <label>Sales person</label>
                     <div class="input-group">
@@ -23,7 +23,7 @@
                             </div>
                         </div>
                         @*<input type="text" class="form-control" placeholder="Email" name="email">*@
-                        <select class="form-control">
+                        <select class="form-control" id="SalesPersonDrd">
                             <option value="">--Select Sales Person--</option>
                             @foreach (var i in Model)
                             {
@@ -31,9 +31,53 @@
                             }
                         </select>
                     </div>
+                    <span class="text-danger" id="ErrorSalesPerson"></span>
                 </div>
-                <button type="button" class="btn btn-info text-right m-t-15 waves-effect">Assign</button>
+                <button type="button" onclick="AssignSalesPersons();" class="btn btn-info text-right m-t-15 waves-effect">Assign</button>
             </form>
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    function AssignSalesPersons() {
+        if (ValidationAssignPerson() == true) {
+              $.ajax({
+                 async: true,
+                 type: "Get",
+                  url: '@Url.Action("AssignSalesPersons","customer", new { area = "admin"} )',
+                  data: { 'CustomerEmail': $("#CustomerEmailID").val().trim(), 'SalesPersonID': $("#SalesPersonDrd").val().trim() },
+                 beforeSend: function () {
+                     HoldOn.open();
+                 },
+                 complete: function () {
+                      HoldOn.close();
+                 },
+                  success: function (response) {
+                      if (response == true) {
+                          $('#ModalCenter').modal('hide');
+                          swal("Success", "Sales person has been successfully assigned  to " + '@ViewBag.UserName', "success");
+                      } else {
+                          swal("Error", "Opps! Something went wrong", "error");
+                      }
+                 },
+                 error: function (response) {
+                     alert(response.responseText);
+                 }
+             });
+        }
+    }
+    function ValidationAssignPerson() {
+        if ($("#SalesPersonDrd").val() == "" || $("#SalesPersonDrd").val() == null || $("#SalesPersonDrd").val() == undefined) {
+            $("#ErrorSalesPerson").text("Please select sales person");
+            return false;
+        }
+        return true;
+    }
+    $("#SalesPersonDrd").on('change', function () {
+        if ($("#SalesPersonDrd").val() == "" || $("#SalesPersonDrd").val() == null || $("#SalesPersonDrd").val() == undefined) {
+            $("#ErrorSalesPerson").text("Please select sales person");
+        } else {
+            $("#ErrorSalesPerson").text("");
+        }
+    });
+</script>

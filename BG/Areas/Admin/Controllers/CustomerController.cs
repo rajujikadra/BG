@@ -8,6 +8,7 @@ using BG.Common;
 using BG.Helper;
 using BG_Application.CustomDTO;
 using BG_Application.Data;
+using Microsoft.AspNet.Identity;
 using Newtonsoft.Json;
 
 
@@ -158,6 +159,34 @@ namespace BG.Areas.Admin.Controllers
                 }).OrderBy(v => v.SalesPersonName).ToList();
             }
             return PartialView("_AssignSalesPerson", model);
+        }
+        #endregion
+        #region assign sales person
+        [ActionName("AssignSalesPersons")]
+        [Route("AssignSalesPersons")]
+        public ActionResult AssignSalesPersons(string CustomerEmail, string SalesPersonID)
+        {
+            try
+            {
+                var DB = new BG_DBEntities();
+                string CurrentUserID = DB.AspNetUsers.FirstOrDefault(x => x.Email == User.Identity.Name).Id;
+                string CustomerID = DB.AspNetUsers.FirstOrDefault(x => x.Email == CustomerEmail).Id;
+                var obj = new AssignSalesPersonMst
+                {
+                    Active = true,
+                    CreatedDate = DateTime.Now,
+                    CreatedBy = CurrentUserID,
+                    SalesPersonID = SalesPersonID,
+                    CustomerID = CustomerID
+                };
+                DB.AssignSalesPersonMsts.Add(obj);
+                DB.SaveChanges();
+                return Json(true, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
         }
         #endregion
     }

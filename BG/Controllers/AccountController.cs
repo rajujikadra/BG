@@ -61,6 +61,7 @@ namespace BG.Controllers
                         new Claim("currentTime", DateTime.Now.ToString()),
                         new Claim(ClaimTypes.Name, token.userName),
                         new Claim(ClaimTypes.Email, token.email),
+                        new Claim("UserID", token.id),
                         new Claim("AcessToken", $"{token.access_token}"),
                         //new Claim(ClaimTypes.Role, token.role),
                         //new Claim("AcessToken", $"{token.token_type} {token.access_token}"),
