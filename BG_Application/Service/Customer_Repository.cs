@@ -17,7 +17,8 @@ namespace BG_Application.Service
         }
         public List<ApplicationUserViewModel> GetInActiveCustomers()
         {
-            var Users = DB.AspNetUsers.Where(x => x.Active == false).Select(y => new ApplicationUserViewModel()
+            string RoleID = DB.AspNetRoles.FirstOrDefault(x => x.Name.Equals(EnumTypes.RoleList.USER.ToString())).Id;
+            var Users = DB.AspNetUsers.Where(x => x.Active == false && x.AspNetRoles.Any(c => c.Id == RoleID)).Select(y => new ApplicationUserViewModel()
             {
                 EmailConfirmed = y.EmailConfirmed,
                 Id = y.Id,
@@ -42,7 +43,8 @@ namespace BG_Application.Service
         }
         public List<ApplicationUserViewModel> GetRegisterCustomers()
         {
-            var Users = DB.AspNetUsers.Where(x => x.Active == true).Select(y => new ApplicationUserViewModel()
+            string RoleID = DB.AspNetRoles.FirstOrDefault(x => x.Name.Equals(EnumTypes.RoleList.USER.ToString())).Id;
+            var Users = DB.AspNetUsers.Where(x => x.Active == true && x.AspNetRoles.Any(c => c.Id == RoleID)).Select(y => new ApplicationUserViewModel()
             {
                 EmailConfirmed = y.EmailConfirmed,
                 Id = y.Id,

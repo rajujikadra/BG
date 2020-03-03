@@ -356,10 +356,17 @@ namespace BG_API.Controllers
             }
             var context = new ApplicationDbContext();
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
-            if (!roleManager.RoleExists(model.RoleName.ToUpper().Trim()))
+            if (!string.IsNullOrEmpty(model.RoleName))
+            {
+                if (!roleManager.RoleExists(model.RoleName.ToUpper().Trim()))
+                {
+                    model.RoleName = EnumTypes.RoleList.USER.ToString();
+                }
+            }
+            else
             {
                 model.RoleName = EnumTypes.RoleList.USER.ToString();
-            }
+            }            
             UserManager.AddToRole(user.Id, model.RoleName.ToUpper().Trim());
             return Ok();
         }

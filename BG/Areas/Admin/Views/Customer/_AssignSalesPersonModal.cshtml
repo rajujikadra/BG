@@ -1,19 +1,18 @@
 ﻿@model List<BG_Application.CustomDTO.SalesPersons>
 @{
-    ViewBag.Title = "_AssignSalesPerson";
+    ViewBag.Title = "_AssignSalesPersonModal";
 }
 
 <div class="modal-dialog" role="document">
     <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="formModal">Asssign sales person to @ViewBag.UserName</h5>
+            <h5 class="modal-title" id="formModal">Change Sales Person</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
         <div class="modal-body">
             <form class="">
-                <input type="hidden" value="@ViewBag.CustomerID" id="CustomerEmailID" />
                 <div class="form-group">
                     <label>Sales person</label>
                     <div class="input-group">
@@ -33,19 +32,19 @@
                     </div>
                     <span class="text-danger" id="ErrorSalesPerson"></span>
                 </div>
-                <button type="button" onclick="AssignSalesPersons();" class="btn btn-info text-right m-t-15 waves-effect">Assign</button>
+                <button type="button" onclick="ChangeSalesPersons();" class="btn btn-info text-right m-t-15 waves-effect">Assign</button>
             </form>
         </div>
     </div>
 </div>
 <script type="text/javascript">
-    function AssignSalesPersons() {
+    function ChangeSalesPersons() {
         if (ValidationAssignPerson() == true) {
-              $.ajax({
+             $.ajax({
                  async: true,
-                 type: "Get",
-                  url: '@Url.Action("AssignSalesPersons","customer", new { area = "admin"} )',
-                  data: { 'CustomerEmail': $("#CustomerEmailID").val().trim(), 'SalesPersonID': $("#SalesPersonDrd").val().trim() },
+                 type: "POST",
+                 url: '@Url.Action("ChangeSalesPerson","customer", new { area = "admin"} )',
+                 data: { 'CustomerEmail': CustomerID, 'SalesPersonID': $("#SalesPersonDrd").val().trim() },
                  beforeSend: function () {
                      HoldOn.open();
                  },
@@ -56,14 +55,14 @@
                       if (response == true) {
                           $('#ModalCenter').modal('hide');
                            swal({
-                                    title: "Success",
-                                    text: "Sales person has been successfully assigned  to '@ViewBag.UserName'",
-                                    icon: "success"
-                                }).then(function (willDelete) {
-                                    if (willDelete) {
-                                        location.reload();
-                                    }
-                                });
+                               title: "Success",
+                               text: "Sales person has been successfully changes",
+                               icon: "success"
+                           }).then(function (willDelete) {
+                               if (willDelete) {
+                                   location.reload();
+                               }
+                           });
                       } else {
                           swal("Error", "Opps! Something went wrong", "error");
                       }
@@ -81,7 +80,7 @@
         }
         return true;
     }
-    $("#SalesPersonDrd").on('change', function () {
+       $("#SalesPersonDrd").on('change', function () {
         if ($("#SalesPersonDrd").val() == "" || $("#SalesPersonDrd").val() == null || $("#SalesPersonDrd").val() == undefined) {
             $("#ErrorSalesPerson").text("Please select sales person");
         } else {
