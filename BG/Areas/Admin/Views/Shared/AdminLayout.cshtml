@@ -10,7 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="images/favicon.ico" type="image/ico" />
-    <link rel='shortcut icon' type='image/x-icon' href='~/Areas/Admin/assets/img/favicon.ico' />
+    <link rel='shortcut icon' type='image/x-icon' href='~/Areas/Admin/assets/img/BG_LOGO.jpeg' />
     @Styles.Render("~/Admin/css")
 </head>
 <body>
@@ -138,8 +138,9 @@
             <div class="main-sidebar sidebar-style-2">
                 <aside id="sidebar-wrapper">
                     <div class="sidebar-brand">
-                        <a href="index.html">
-                            <img alt="image" src="~/Areas/Admin/assets/img/logo.png" class="header-logo" /> <span class="logo-name">Rudra Infotech</span>
+                        <a href="/admin/dashboard">
+                            @*<img alt="image" src="~/Areas/Admin/assets/img/logo.png" class="header-logo" /> <span class="logo-name">Rudra Infotech</span>*@
+                            <img alt="image" src="~/Areas/Admin/assets/img/BG_LOGO.jpeg" class="header-logo" />
                         </a>
                     </div>
                     @{Html.RenderAction("GetMenu", "Master");}

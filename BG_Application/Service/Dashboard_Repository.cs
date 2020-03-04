@@ -19,7 +19,8 @@ namespace BG_Application.Service
         {
             var model = new AdminDashboardViewModel();
             model.TilesCount.NewCustomers_Count = DB.AspNetUsers.Count(x => x.Active == false);
-            model.TilesCount.Customers_Count = DB.AspNetUsers.Count(x => x.Active == true);
+            string RoleID = DB.AspNetRoles.FirstOrDefault(x => x.Name.Equals(EnumTypes.RoleList.USER.ToString())).Id;
+            model.TilesCount.Customers_Count = DB.AspNetUsers.Count(x => x.Active == true && x.AspNetRoles.Any(c => c.Id == RoleID));
             string SalesPerson_RoleID = DB.AspNetRoles.FirstOrDefault(x => x.Name.Trim().ToUpper().Equals(EnumTypes.RoleList.SALESPERSON.ToString().Trim().ToUpper())).Id;
             model.TilesCount.SalesPerson_Count = DB.AspNetUsers.Count(x => x.Active == true && x.EmailConfirmed == true && x.AspNetRoles.Any(c => c.Id == SalesPerson_RoleID));
             return model;

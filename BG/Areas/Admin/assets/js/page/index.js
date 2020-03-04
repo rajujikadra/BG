@@ -67,7 +67,7 @@ function chart1() {
         },
         series: [{
             name: "High - 2019",
-            data: [5, 15, 14, 36, 32, 32]
+            data: [5, 50, 10, 60, 70, 10]
         },
         {
             name: "Low - 2019",
