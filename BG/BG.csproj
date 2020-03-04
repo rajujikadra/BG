@@ -1080,6 +1080,7 @@
     <Content Include="Areas\Admin\Views\SalesPerson\_MenuPermissions.cshtml" />
     <Content Include="Areas\Admin\Views\Customer\_AssignSalesPerson.cshtml" />
     <Content Include="Areas\Admin\Views\Customer\_AssignSalesPersonModal.cshtml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\ClientJS\common.js" />
     <Content Include="Scripts\HoldOn.js" />

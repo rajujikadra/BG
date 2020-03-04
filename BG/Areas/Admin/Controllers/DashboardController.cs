@@ -43,7 +43,7 @@ namespace BG.Areas.Admin.Controllers
             else if (User.IsInRole(EnumTypes.RoleList.SALESPERSON.ToString()))
             {
                 string CurrentUserID = DB.AspNetUsers.FirstOrDefault(x => x.Email == User.Identity.Name).Id;
-                model.TilesCount.Customers_Count = DB.AssignSalesPersonMsts.Count(x => x.SalesPersonID == CurrentUserID);
+                model.TilesCount.Customers_Count = DB.AssignSalesPersonMsts.Count(x => x.SalesPersonID == CurrentUserID && x.Active == true);
             }           
             return View(model);
         }

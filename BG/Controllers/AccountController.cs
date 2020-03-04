@@ -77,6 +77,10 @@ namespace BG.Controllers
                     var identity = new ClaimsIdentity(claims, "ApplicationCookie");
 
                     Request.GetOwinContext().Authentication.SignIn(options, identity);
+                    if (User.IsInRole(EnumTypes.RoleList.USER.ToString()))
+                        returnUrl = "/";
+                    else
+                        returnUrl = "/admin/dashboard";
                     string[] message = new string[] { "success", returnUrl };
                     return Json(new DefaultResponse(HttpStatusCode.OK, message), JsonRequestBehavior.AllowGet);
                 }
