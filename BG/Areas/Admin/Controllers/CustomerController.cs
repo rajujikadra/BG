@@ -88,7 +88,8 @@ namespace BG.Areas.Admin.Controllers
                              RefName = a.AspNetUser1.RefName,
                              UserCityName = a.AspNetUser1.CityMst1.CityName,
                              Active = a.AspNetUser1.Active,
-                             UserGSTNO = a.AspNetUser1.UserGSTNO
+                             UserGSTNO = a.AspNetUser1.UserGSTNO,
+                             SalesPersonName = a.AspNetUser2.FirstName + " " + a.AspNetUser2.LastName
                          }).DistinctBy(v => v.Id).ToList();
             }
             return View(model);

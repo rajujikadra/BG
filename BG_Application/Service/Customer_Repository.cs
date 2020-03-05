@@ -44,6 +44,7 @@ namespace BG_Application.Service
         public List<ApplicationUserViewModel> GetRegisterCustomers()
         {
             string RoleID = DB.AspNetRoles.FirstOrDefault(x => x.Name.Equals(EnumTypes.RoleList.USER.ToString())).Id;
+            var s = DB.AspNetUsers.Where(x => x.Active == true && x.AspNetRoles.Any(c => c.Id == RoleID)).ToList();
             var Users = DB.AspNetUsers.Where(x => x.Active == true && x.AspNetRoles.Any(c => c.Id == RoleID)).Select(y => new ApplicationUserViewModel()
             {
                 EmailConfirmed = y.EmailConfirmed,
@@ -63,7 +64,8 @@ namespace BG_Application.Service
                 RefName = y.RefName,
                 UserCityName = y.CityMst1.CityName,
                 Active = y.Active,
-                UserGSTNO = y.UserGSTNO
+                UserGSTNO = y.UserGSTNO,
+                SalesPersonName = y.AssignSalesPersonMsts1.FirstOrDefault(c => c.CustomerID == y.Id && c.Active == true).AspNetUser2.FirstName + " " + y.AssignSalesPersonMsts1.FirstOrDefault(c => c.CustomerID == y.Id && c.Active == true).AspNetUser2.LastName
             }).OrderBy(v => v.FirstName).ToList();
             return Users;
         }
