@@ -43,5 +43,6 @@ namespace BG_Application.CustomDTO
         public string UserGSTNO { get; set; }
 
         public string SalesPersonName { get; set; }
+        public DateTime RegisterDate { get; set; }
     }
 }

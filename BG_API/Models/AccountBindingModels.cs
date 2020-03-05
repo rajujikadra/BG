@@ -69,6 +69,7 @@ namespace BG_API.Models
         public string RefName { get; set; }
         public string RefMobile { get; set; }
         public string RefBusiness { get; set; }
+        public DateTime RegisterDate { get; set; }
     }
 
     public class RegisterExternalBindingModel

@@ -3,12 +3,9 @@ using BG.Helper;
 using BG.Models;
 using BG_Application.CustomDTO;
 using BG_Application.Data;
-using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -133,7 +130,7 @@ namespace BG.Controllers
                 CountryName = x.CountryName
             }).OrderBy(c => c.CountryName).ToList();
             ViewBag.State = new List<SelectListItem>();
-            ViewBag.City = new List<SelectListItem>();
+            ViewBag.City = new List<SelectListItem>();            
             return View();
         }
 

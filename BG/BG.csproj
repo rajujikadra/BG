@@ -222,6 +222,7 @@
     <Compile Include="Helper\GenericResponse.cs" />
     <Compile Include="Helper\Token.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
+    <Compile Include="Models\CounterViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -1081,6 +1082,7 @@
     <Content Include="Areas\Admin\Views\SalesPerson\_MenuPermissions.cshtml" />
     <Content Include="Areas\Admin\Views\Customer\_AssignSalesPerson.cshtml" />
     <Content Include="Areas\Admin\Views\Customer\_AssignSalesPersonModal.cshtml" />
+    <Content Include="Areas\Admin\Views\Counter\Index.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\ClientJS\common.js" />
@@ -1121,7 +1123,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Areas\Admin\Views\Counter\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>

@@ -25,6 +25,7 @@ namespace BG_API.Models
         public Nullable<bool> Active { get; set; }
         public string Address { get; set; }
         public string UserGSTNO { get; set; }
+        public DateTime RegisterDate { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager, string authenticationType)
         {
@@ -41,7 +42,7 @@ namespace BG_API.Models
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
-        
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

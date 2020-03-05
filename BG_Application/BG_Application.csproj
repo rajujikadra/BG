@@ -76,6 +76,7 @@
     <Compile Include="CustomDTO\PartyViewModel.cs" />
     <Compile Include="CustomDTO\PurityViewModel.cs" />
     <Compile Include="CustomDTO\SalesPersonMenuPermissionViewModel.cs" />
+    <Compile Include="CustomDTO\SelectListViewModel.cs" />
     <Compile Include="CustomDTO\ShapViewModel.cs" />
     <Compile Include="CustomDTO\SizeViewModel.cs" />
     <Compile Include="CustomDTO\StateViewModel.cs" />

@@ -347,7 +347,8 @@ namespace BG_API.Controllers
                 UserCityId = model.UserCityId,
                 RefBusiness = model.RefBusiness,
                 RefMobile = model.RefMobile,
-                RefName = model.RefName
+                RefName = model.RefName,
+                RegisterDate = DateTime.Now
             };
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
             if (!result.Succeeded)

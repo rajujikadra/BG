@@ -44,7 +44,18 @@ namespace BG.Areas.Admin.Controllers
             {
                 string CurrentUserID = DB.AspNetUsers.FirstOrDefault(x => x.Email == User.Identity.Name).Id;
                 model.TilesCount.Customers_Count = DB.AssignSalesPersonMsts.Count(x => x.SalesPersonID == CurrentUserID && x.Active == true);
-            }           
+            }
+            string RoleID = DB.AspNetRoles.FirstOrDefault(x => x.Name.Equals(EnumTypes.RoleList.SALESPERSON.ToString())).Id;
+            model.SalesPerson = DB.AspNetUsers.Where(x => x.Active == true && x.EmailConfirmed == true && x.AspNetRoles.Any(c => c.Id == RoleID)).Select(y => new SalesPersonListViewModel()
+            {
+                SalesPersonID = y.Id,
+                Email = y.Email,
+                Name = y.FirstName + " " + y.LastName,
+                CompanyName = y.CompanyName,
+                RegisterDate = y.RegisterDate,
+                Mobile = y.Mobile,
+                TotalCustomer = DB.AssignSalesPersonMsts.Count(c => c.SalesPersonID == y.Id && c.Active == true)
+            }).OrderByDescending(v => v.RegisterDate).Take(10).ToList();
             return View(model);
         }
     }

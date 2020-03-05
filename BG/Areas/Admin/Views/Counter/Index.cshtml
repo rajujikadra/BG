@@ -1,0 +1,217 @@
+﻿@model BG.Models.CounterViewModel
+@{
+    ViewBag.Title = "Counter";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+<div class="main-content" style="min-height: 260px;">
+    <section class="section">
+        <div class="section-body">
+            <div class="row">
+                <div class="col-12 col-md-12 col-lg-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Counter</h4>
+                        </div>
+                        @using (Ajax.BeginForm("AddCounters", "Counter", null, new AjaxOptions { HttpMethod = "POST", OnSuccess = "RegisterFormSuccess", OnFailure = "Failed", }, new { @id = "formCounter", @class = "needs-validation", @autocomplete = "off" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="row p-3">
+                                <div class="col-lg-6 col-md-6 col-sm-12 mt-4">
+                                    <div class="">
+                                        <div class="">
+                                            <div class="form-group">
+                                                <label>Email</label>
+                                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                                            </div><div class="form-group">
+                                                <label>Password</label>
+                                                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                                            </div><div class="form-group">
+                                                <label>Conform Password</label>
+                                                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
+                                            </div><div class="form-group">
+                                                <label>First Name</label>
+                                                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
+                                            </div><div class="form-group">
+                                                <label>Last Name</label>
+                                                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+                                            </div><div class="form-group">
+                                                <label>Address</label>
+                                                <input type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 mt-4">
+                                    <div class="">
+                                        <div class="">
+                                            <div class="form-group">
+                                                <label>Mobile No</label>
+                                                @Html.TextBoxFor(m => m.MobileNo, new { @class = "form-control", @maxlength = "10", @onkeypress = "return isNumberKey(event)" })
+                                                @Html.ValidationMessageFor(m => m.MobileNo, "", new { @class = "text-danger" })
+                                            </div><div class="form-group">
+                                                <label>Refrence Name</label>
+                                                @Html.TextBoxFor(m => m.RefName, new { @class = "form-control" })
+                                            </div><div class="form-group">
+                                                <label>Refrence Mobile</label>
+                                                @Html.TextBoxFor(m => m.RefMobile, new { @class = "form-control", @maxlength = "10", @onkeypress = "return isNumberKey(event)" })
+                                            </div><div class="form-group">
+                                                <label>Refrence business</label>
+                                                @Html.TextBoxFor(m => m.RefBusiness, new { @class = "form-control" })
+                                            </div><div class="form-group">
+                                                <label>Role</label>
+                                                @Html.DropDownListFor(m => m.Role, new SelectList(ViewBag.RoleList, "Value", "Text"), "--Select role--", new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(m => m.Role, "", new { @class = "text-danger" })
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-lg-4">
+                                                        <label>Country</label>
+                                                        @*<input type="text" class="form-control">*@
+                                                        @Html.DropDownListFor(m => m.UserCountryId, new SelectList(ViewBag.Country, "CountryId", "CountryName"), "--Select country--", new { @class = "form-control", @onchange = "SelectCountry(this, 'UserCountry');" })
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <label>State</label>
+                                                        @*<input type="text" class="form-control">*@
+                                                        @Html.DropDownListFor(m => m.UserStateId, new SelectList(ViewBag.State, "Value", "Text"), "--Select state--", new { @class = "form-control", @disabled = "disabled", @onchange = "SelectState(this, 'UserState');" })
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <label>City</label>
+                                                        @*<input type="text" class="form-control">*@
+                                                        @Html.DropDownListFor(m => m.UserCityId, new SelectList(ViewBag.City, "Value", "Text"), "--Select city--", new { @class = "form-control", @disabled = "disabled" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12 my-1 text-right">
+                                            <button class="btn btn-primary mr-1" type="submit">Menu Rights</button>
+                                            <button class="btn btn-primary mr-1" type="submit">Stock Rights</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row p-3">
+                                <div class="col-lg-12">
+                                    <div class="card-footer text-right mt-3">
+                                        <button class="btn btn-primary mr-1" type="button" id="btnRegister">Submit</button>
+                                        <button class="btn btn-danger" type="reset">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+@section scripts{
+    <script type="text/javascript">
+        $("#btnRegister").on('click', function () {
+            var form = $('#formCounter');
+            if (formValidate(form) === false) {
+                return false;
+            }
+        });
+        function formValidate(form) {
+            form.removeData("validator");
+            form.removeData("unobtrusiveValidation");
+            $.validator.unobtrusive.parse(form);
+            if (!form.valid())
+                return false;
+            else
+                return true;
+        }
+
+        function SelectCountry(e, DrdName) {
+            $.ajax({
+                url: "/Counter/GetStates",
+                method: "GET",
+                data: { 'CountryId': e.value },
+                contentType: 'application/json',
+                beforeSend: function () {
+                    HoldOn.open();
+                },
+                complete: function () {
+                    HoldOn.close();
+                },
+                success: function (data) {
+                    if (data.length > 0) {
+                        if (DrdName == "UserCountry") {
+                            $("#UserStateId").empty();
+                            $("#UserStateId").append($("<option>--Select State--</option>"))
+                            $("#UserCityId").empty();
+                            $("#UserCityId").append($("<option>--Select City--</option>"))
+                            $.each(data, function (index, value) {
+                                $("#UserStateId").append($("<option></option>").val(this.StateId).html(this.StateName));
+                            });
+                            $("#UserStateId").removeAttr("disabled");
+                        } else if (DrdName == "CompanyCountry") {
+                            $("#BusinessStateId").empty();
+                            $("#BusinessStateId").append($("<option>--Select State--</option>"))
+                            $("#BusinessCityId").empty();
+                            $("#BusinessCityId").append($("<option>--Select City--</option>"))
+                            $.each(data, function (index, value) {
+                                $("#BusinessStateId").append($("<option></option>").val(this.StateId).html(this.StateName));
+                            });
+                            $("#BusinessStateId").removeAttr("disabled");
+                        }
+                    }
+                },
+                error: function (data) {
+                    $('.loader').hide();
+                    $("#btnclose").click();
+                }
+            });
+        }
+        function SelectState(e, DrdName) {
+            $.ajax({
+                url: "/Counter/GetCity",
+                method: "GET",
+                data: { 'StateId': e.value },
+                contentType: 'application/json',
+                beforeSend: function () {
+                    HoldOn.open();
+                },
+                complete: function () {
+                    HoldOn.close();
+                },
+                success: function (data) {
+                    if (data.length > 0) {
+                        if (DrdName == "UserState") {
+                            $("#UserCityId").empty();
+                            $("#UserCityId").append($("<option>--Select City--</option>"))
+                            $.each(data, function (index, value) {
+                                $("#UserCityId").append($("<option></option>").val(this.CityId).html(this.CityName));
+                            });
+                            $("#UserCityId").removeAttr("disabled");
+                        } else if (DrdName == "CompanyState") {
+                            $("#BusinessCityId").empty();
+                            $("#BusinessCityId").append($("<option>--Select City--</option>"))
+                            $.each(data, function (index, value) {
+                                $("#BusinessCityId").append($("<option></option>").val(this.CityId).html(this.CityName));
+                            });
+                            $("#BusinessCityId").removeAttr("disabled");
+                        }
+                    }
+                },
+                error: function (data) {
+                    $('.loader').hide();
+                    $("#btnclose").click();
+                }
+            });
+        }
+        function isNumberKey(evt) {
+            var charCode = (evt.which) ? evt.which : event.keyCode
+            if (charCode > 31 && (charCode < 48 || charCode > 57))
+                return false;
+
+            return true;
+        }
+    </script>
+}

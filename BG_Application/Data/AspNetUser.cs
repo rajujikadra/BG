@@ -54,6 +54,7 @@ namespace BG_Application.Data
         public Nullable<bool> Active { get; set; }
         public string Address { get; set; }
         public string UserGSTNO { get; set; }
+        public Nullable<System.DateTime> RegisterDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetUserClaim> AspNetUserClaims { get; set; }

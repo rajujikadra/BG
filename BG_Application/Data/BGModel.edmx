@@ -80,6 +80,7 @@
           <Property Name="RefMobile" Type="varchar" MaxLength="50" />
           <Property Name="RefBusiness" Type="varchar" MaxLength="50" />
           <Property Name="Active" Type="bit" />
+          <Property Name="RegisterDate" Type="datetime" />
         </EntityType>
         <EntityType Name="AssignSalesPersonMst">
           <Key>
@@ -1284,6 +1285,7 @@ warning 6002: The table/view 'BG_DB.dbo.SizeMst' does not have a primary key def
           <NavigationProperty Name="AssignSalesPersonMsts" Relationship="BG_DBModel.FK_CreatedBy" FromRole="AspNetUser" ToRole="AssignSalesPersonMst" />
           <NavigationProperty Name="AssignSalesPersonMsts1" Relationship="BG_DBModel.FK_Customer" FromRole="AspNetUser" ToRole="AssignSalesPersonMst" />
           <NavigationProperty Name="AssignSalesPersonMsts2" Relationship="BG_DBModel.FK_SalesPerson" FromRole="AspNetUser" ToRole="AssignSalesPersonMst" />
+          <Property Name="RegisterDate" Type="DateTime" Precision="3" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Type="BG_DBModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
@@ -1888,6 +1890,7 @@ warning 6002: The table/view 'BG_DB.dbo.SizeMst' does not have a primary key def
           <EntitySetMapping Name="AspNetUsers">
             <EntityTypeMapping TypeName="BG_DBModel.AspNetUser">
               <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="RegisterDate" ColumnName="RegisterDate" />
                 <ScalarProperty Name="UserGSTNO" ColumnName="UserGSTNO" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="Active" ColumnName="Active" />
