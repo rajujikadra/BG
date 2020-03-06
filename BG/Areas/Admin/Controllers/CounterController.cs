@@ -59,5 +59,41 @@ namespace BG.Areas.Admin.Controllers
             }).OrderBy(c => c.CityName).ToList();
             return Json(City, JsonRequestBehavior.AllowGet);
         }
+
+        public ActionResult GetMenuPermission()
+        {
+            var DB = new BG_DBEntities();
+            //var model = new List<MenuViewModel>();
+            //model = DB.MainMenuMsts.Where(x => x.Active == true).Select(c => new MenuViewModel()
+            //{
+            //    MainMenuMstID = c.MainMenuMstID,
+            //    MainMenuName = c.MainMenuName,
+            //    SubMenu = c.MenuMsts.Select(b => new SubMenuViewModel() { MenuMstId = b.MenuMstId, MenuName = b.MenuName }).ToList()
+            //}).ToList();
+            var model = new List<SalesPersonMenuPermissionViewModel>();
+            model = DB.MainMenuMsts.Select(x => new SalesPersonMenuPermissionViewModel()
+            {
+                MenuID = x.MainMenuMstID,
+                MenuName = x.MainMenuName
+            }).ToList();
+            var SubMenu = DB.MenuMsts.Select(x => new SalesPersonMenuPermissionViewModel()
+            {
+                MenuID = x.MenuMstId,
+                MenuName = x.MenuName
+            }).ToList();
+            model.AddRange(SubMenu);
+            return PartialView("_MenuPermission", model);
+        }
+        public ActionResult GetBrokerColumn()
+        {
+            var DB = new BG_DBEntities();
+            var model = new List<BrokerColumnsViewModel>();
+            model = DB.BrokerColumnNames.Select(x => new BrokerColumnsViewModel()
+            {
+                ColumnName = x.ColumnName,
+                ColumnId = x.ColumnId
+            }).ToList();
+            return PartialView("_ColumnPermission", model);
+        }
     }
 }

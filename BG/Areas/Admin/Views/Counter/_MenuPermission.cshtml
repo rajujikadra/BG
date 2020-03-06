@@ -1,0 +1,32 @@
+﻿@model List<BG_Application.CustomDTO.SalesPersonMenuPermissionViewModel>
+<div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalCenterTitle">Menu permission</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-12 col-md-12 col-lg-12">
+                    <div class="button">
+                        @foreach (var C in Model)
+                        {
+                            <div class="col-4 btn btn-icon align-left">
+                                <div class="custom-checkbox custom-checkbox-table custom-control font-15">
+                                    <input type="checkbox" @(C.IsDisplay ? "checked" : "") value="@C.MenuName" data-checkboxes="mygroup" data-checkbox-role="dad" class="custom-control-input sales-chk" id="@C.MenuName.Replace(" ", "")">
+                                    <label for="@C.MenuName.Replace(" ", "")" class="custom-control-label">@C.MenuName</label>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer bg-whitesmoke br">
+            <button type="button" class="btn btn-primary">Save</button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+    </div>
+</div>
