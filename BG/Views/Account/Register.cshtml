@@ -320,29 +320,48 @@
         var formData = objectifyForm(form.serializeArray());
         HoldOn.open();
         $.ajax({
-            url: "/Account/Register",
-            method: "POST",
-            data: JSON.stringify(formData),
+            url: "/Account/CheckEmailAlreadyThere",
+            method: "GET",
+            data: { 'Email': $("#Email").val().trim() },
             contentType: 'application/json',
             success: function (data) {
-                if (data.StatusCode == 200) {
+                if (data == true) {
                     swal({
-                        title: "Success",
-                        text: "Your account has been successfully register. When system admin approve your account after then you can login.",
-                        icon: "success"
-                    }).then(function (willDelete) {
-                        if (willDelete) {
-                            location.reload();
+                        title: "Warning",
+                        text: $("#Email").val().trim() + " already taken. Please enter different email.",
+                        icon: "warning"
+                    })
+                    return;
+                } else {
+                    $.ajax({
+                        url: "/Account/Register",
+                        method: "POST",
+                        data: JSON.stringify(formData),
+                        contentType: 'application/json',
+                        success: function (data) {
+                            if (data.StatusCode == 200) {
+                                swal({
+                                    title: "Success",
+                                    text: "Your account has been successfully register. When system admin approve your account after then you can login.",
+                                    icon: "success"
+                                }).then(function (willDelete) {
+                                    if (willDelete) {
+
+                                    }
+                                });
+                            } else if (data.StatusCode == 404) {
+                                swal("Error", "Opps! Some problem there", "error");
+                            }
+                            HoldOn.close();
+                        },
+                        error: function (data) {
+                            HoldOn.close();
                         }
                     });
-                } else if (data.StatusCode == 404) {
-                    swal("Error", "Opps! Some problem there", "error");
                 }
-                HoldOn.close();
             },
             error: function (data) {
-                $('.loader').hide();
-                $("#btnclose").click();
+                HoldOn.close();
             }
         });
     });

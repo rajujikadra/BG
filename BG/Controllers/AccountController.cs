@@ -130,7 +130,7 @@ namespace BG.Controllers
                 CountryName = x.CountryName
             }).OrderBy(c => c.CountryName).ToList();
             ViewBag.State = new List<SelectListItem>();
-            ViewBag.City = new List<SelectListItem>();            
+            ViewBag.City = new List<SelectListItem>();
             return View();
         }
 
@@ -174,6 +174,12 @@ namespace BG.Controllers
                 CityName = y.CityName
             }).OrderBy(c => c.CityName).ToList();
             return Json(City, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult CheckEmailAlreadyThere(string Email)
+        {
+            var DB = new BG_DBEntities();
+            bool status = DB.AspNetUsers.Any(x => x.Email.Trim().Equals(Email.Trim()));
+            return Json(status, JsonRequestBehavior.AllowGet);
         }
     }
 }
