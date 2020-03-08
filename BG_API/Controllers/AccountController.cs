@@ -338,7 +338,7 @@ namespace BG_API.Controllers
                 CompanyAddress = model.BusinessAddress,
                 CompanyCityId = model.BusinessCityId,
                 CompanyName = model.BusinessName,
-                EmailConfirmed =false,
+                EmailConfirmed = false,
                 FirstName = model.FirstName,
                 LastName = model.LastName,
                 Mobile = model.MobileNo,
@@ -367,9 +367,63 @@ namespace BG_API.Controllers
             else
             {
                 model.RoleName = EnumTypes.RoleList.USER.ToString();
-            }            
+            }
             UserManager.AddToRole(user.Id, model.RoleName.ToUpper().Trim());
             return Ok();
+        }
+
+        // POST api/Account/Counter
+        [Route("Counter")]
+        public async Task<IHttpActionResult> Counter(ApplicationUserViewModel model)
+        {
+            try
+            {
+                var user = new ApplicationUser()
+                {
+                    UserName = model.Email,
+                    Email = model.Email,
+                    Active = true,
+                    Address = model.Address,
+                    CompanyAddress = model.CompanyAddress,
+                    CompanyCityId = model.CompanyCityId,
+                    CompanyName = model.CompanyName,
+                    EmailConfirmed = true,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    Mobile = model.Mobile,
+                    UserGSTNO = model.UserGSTNO,
+                    PhoneNumber = model.PhoneNumber,
+                    UserCityId = model.UserCityId,
+                    RefBusiness = model.RefBusiness,
+                    RefMobile = model.RefMobile,
+                    RefName = model.RefName,
+                    RegisterDate = DateTime.Now
+                };
+                IdentityResult result = await UserManager.CreateAsync(user, model.Password);
+                if (!result.Succeeded)
+                {
+                    return BadRequest();
+                }
+                var context = new ApplicationDbContext();
+                var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+                if (!string.IsNullOrEmpty(model.RoleName))
+                {
+                    if (!roleManager.RoleExists(model.RoleName.ToUpper().Trim()))
+                    {
+                        model.RoleName = EnumTypes.RoleList.USER.ToString();
+                    }
+                }
+                else
+                {
+                    model.RoleName = EnumTypes.RoleList.USER.ToString();
+                }
+                UserManager.AddToRole(user.Id, model.RoleName.ToUpper().Trim());
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
         }
 
         // POST api/Account/RegisterExternal

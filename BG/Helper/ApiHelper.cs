@@ -1,6 +1,7 @@
 ﻿using BG.Common;
 using BG.EnumFile;
 using BG.Models;
+using BG_Application.CustomDTO;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -65,6 +66,32 @@ namespace BG.Helper
                 }
             }
             return string.Empty;
+        }
+
+        public static bool CounterRegister(CounterViewModel model)
+        {
+            using (var httpClient = ApiHelper.GetHttpClient())
+            {
+                var obj = new ApplicationUserViewModel();
+                obj.Email = model.Email;
+                obj.Password = model.Password;
+                obj.FirstName = model.FirstName;
+                obj.LastName = model.LastName;
+                obj.Address = model.Address;
+                obj.Mobile = model.MobileNo;
+                obj.RefName = model.RefName;
+                obj.RefMobile = model.RefMobile;
+                obj.RefBusiness = model.RefBusiness;
+                obj.RoleName = model.Role;
+                obj.UserCityId = model.UserCityId;
+                obj.RoleName = model.Role;
+                var result = httpClient.PostAsync(Config.Counter, obj, new JsonMediaTypeFormatter()).Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

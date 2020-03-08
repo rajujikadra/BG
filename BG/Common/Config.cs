@@ -11,6 +11,7 @@ namespace BG.Common
         public static readonly string TokenURL = "Token";
         public static readonly string TokenType = "bearer";
         public static readonly string Register = "api/Account/Register";
+        public static readonly string Counter = "api/Account/Counter";
 
 
         // API URL

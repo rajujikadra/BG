@@ -57,5 +57,8 @@ namespace BG.Models
         public string RefMobile { get; set; }
         public string RefBusiness { get; set; }
         public bool IsActive { get; set; }
+
+        public string MenuNames { get; set; }
+        public string ColumnName { get; set; }
     }
 }

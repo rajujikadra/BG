@@ -89,8 +89,8 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-12 my-1 text-right">
-                                            <button class="btn btn-primary mr-1" type="button" onclick="GetMenuPermission();">Menu Rights</button>
-                                            <button class="btn btn-primary mr-1" type="button" onclick="GetColumnPermission();">Stock Rights</button>
+                                            <button class="btn btn-primary mr-1" type="button" data-toggle="modal" data-target="#ModalMenu" data-backdrop="static" @*onclick="GetMenuPermission();"*@>Menu Rights</button>
+                                            <button class="btn btn-primary mr-1" type="button" data-toggle="modal" data-target="#ModalColumn" data-backdrop="static" @*onclick="GetColumnPermission();"*@>Stock Rights</button>
                                         </div>
                                     </div>
                                 </div>
@@ -110,16 +110,167 @@
         </div>
     </section>
 </div>
+<div class="modal fade" id="ModalMenu" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Menu permission</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12 col-md-12 col-lg-12">
+                        <div class="row">
+                            @foreach (var C in ViewBag.Menus)
+                            {
+                                <div class="col-6 btn btn-icon align-left">
+                                    <div class="custom-checkbox custom-checkbox-table custom-control font-15">
+                                        <input type="checkbox" @(C.IsDisplay ? "checked" : "") value="@C.MenuName" data-checkboxes="mygroup" data-checkbox-role="dad" class="custom-control-input menu-chk" id="@C.MenuName.Replace(" ", "")">
+                                        <label for="@C.MenuName.Replace(" ", "")" class="custom-control-label">@C.MenuName</label>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer bg-whitesmoke br">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="ModalColumn" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Column permission</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12 col-md-12 col-lg-12">
+                        <div class="row">
+                            @foreach (var C in ViewBag.Columns)
+                            {
+                                <div class="col-lg-4 btn btn-icon align-left Columnpermission_modal">
+                                    <div class="custom-checkbox custom-checkbox-table custom-control font-15">
+                                        <input type="checkbox" @(C.IsDisplay ? "checked" : "") value="@C.ColumnId" data-checkboxes="mygroup" data-checkbox-role="dad" class="custom-control-input column-chk" id="@C.ColumnId">
+                                        <label for="@C.ColumnId" class="custom-control-label">@C.ColumnName</label>
+                                        <input type="text" onkeypress="return isNumberKey(event)" name="" value="" class="form-control custom-txtBox" />
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer bg-whitesmoke br">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+            </div>
+        </div>
+    </div>
+
+</div>
 @section scripts{
     <script type="text/javascript">
         var Menus = [];
         var Columns = [];
         $("#btnRegister").on('click', function () {
+            $('.menu-chk').each(function () {
+               var $this = $(this);
+               if ($this.is(':checked')) {
+                   Menus.push($this.val());
+               }
+            });
+            $('.column-chk').each(function () {
+               var $this = $(this);
+               if ($this.is(':checked')) {
+                   Columns.push($this.val());
+               }
+            });
             var form = $('#formCounter');
             if (formValidate(form) === false) {
                 return false;
             }
+            if (Menus.length == 0) {
+                swal({
+                    title: "Warning",
+                    text: "Please set menu permission.",
+                    icon: "warning"
+                });
+                return;
+            }
+            if (Columns.length == 0) {
+                swal({
+                    title: "Warning",
+                    text: "Please set columns permission.",
+                    icon: "warning"
+                });
+                return;
+            }
+            debugger;
+            var formData = objectifyForm(form.serializeArray());
+            formData.MenuNames = JSON.stringify(Menus);
+            formData.ColumnName = JSON.stringify(Columns);
+            HoldOn.open();
+            $.ajax({
+                url: "/Account/CheckEmailAlreadyThere",
+                method: "GET",
+                data: { 'Email': $("#Email").val().trim() },
+                contentType: 'application/json',
+                success: function (data) {
+                    if (data == true) {
+                        swal({
+                            title: "Warning",
+                            text: $("#Email").val().trim() + " already taken. Please enter different email.",
+                            icon: "warning"
+                        })
+                        return;
+                    } else {
+                        $.ajax({
+                            url: "/Admin/Counter/Register",
+                            method: "POST",
+                            data: JSON.stringify(formData),
+                            contentType: 'application/json',
+                            success: function (data) {
+                                if (data.StatusCode == 200) {
+                                    swal({
+                                        title: "Success",
+                                        text: "Your account has been successfully register.",
+                                        icon: "success"
+                                    }).then(function (willDelete) {
+                                        if (willDelete) {
+                                            location.reload();
+                                        }
+                                    });
+                                } else if (data.StatusCode == 404) {
+                                    swal("Error", "Opps! Some problem there", "error");
+                                }
+                                HoldOn.close();
+                            },
+                            error: function (data) {
+                                HoldOn.close();
+                            }
+                        });
+                    }
+                },
+                error: function (data) {
+                    HoldOn.close();
+                }
+            });
         });
+        function objectifyForm(formArray) {
+            var returnArray = {};
+            for (var i = 0; i < formArray.length; i++) {
+                returnArray[formArray[i]['name']] = formArray[i]['value'];
+            }
+            return returnArray;
+        }
         function formValidate(form) {
             form.removeData("validator");
             form.removeData("unobtrusiveValidation");

@@ -17,61 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="images/favicon.ico" type="image/ico" />
     <link rel='shortcut icon' type='image/x-icon' href='~/Areas/Admin/assets/img/favicon.ico' />
-    <style>
-        .login-form {
-            border-radius: 0 !important;
-        }
 
-        div#carouselExampleFade {
-            box-shadow: 0 0.46875rem 2.1875rem rgba(90,97,105,0.1), 0 0.9375rem 1.40625rem rgba(90,97,105,0.1), 0 0.25rem 0.53125rem rgba(90,97,105,0.12), 0 0.125rem 0.1875rem rgba(90,97,105,0.1);
-        }
-
-        .compny-name {
-            font-size: 11px;
-            color: #6777ef;
-            margin-top: 150px !important;
-        }
-
-        .regist-compny-name {
-            font-size: 11px;
-            color: #6777ef;
-            margin-top: 250px !important
-        }
-
-        .register-form .carousel-item img {
-            height: 100vh;
-        }
-
-        ::-webkit-scrollbar {
-            width: 5px;
-        }
-
-
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-        }
-
-
-        ::-webkit-scrollbar-thumb {
-            background: #4f5ece !important;
-        }
-
-        @@media(max-width:1200px) {
-            .compny-name {
-                margin-top: 0px !important;
-            }
-
-            .regist-compny-name {
-                margin-top: 0px !important
-            }
-        }
-
-        @@media(min-width: 220px) and (max-width: 991px) {
-            .carousel-item img.d-block.w-100 {
-                height: 65vh !important;
-            }
-        }
-    </style>
     @Styles.Render("~/Admin/css")
 </head>
 <body style="overflow:hidden">
@@ -81,51 +27,62 @@
             <div class="container-fluid">
                 <div class="row register-form">
                     <div class="col-lg-8 p-0 ml-0 h-100">
-                        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="overflow-y:hidden">
-                            <ol class="carousel-indicators">
-                                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                            </ol>
+                        @*<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="overflow-y:hidden">
+                                <ol class="carousel-indicators">
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                                </ol>
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img src="~/Content/slider/slide1.jpeg" class="d-block w-100" alt="...">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="~/Content/slider/slide2.jpeg" class="d-block w-100" alt="...">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="~/Content/slider/slide3.jpeg" class="d-block w-100" alt="...">
+                                    </div>
+                                </div>
+                            </div>*@
+                        <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
-                                    <img src="~/Content/slider/slide1.jpeg" class="d-block w-100" alt="...">
+                                    <img src="~/Content/slider/slide1.jpeg" class="img-fluid" alt="...">
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="~/Content/slider/slide2.jpeg" class="d-block w-100" alt="...">
+                                    <img src="~/Content/slider/slide2.jpeg" class="img-fluid" alt="...">
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="~/Content/slider/slide3.jpeg" class="d-block w-100" alt="...">
+                                    <img src="~/Content/slider/slide3.jpeg" class="img-fluid" alt="...">
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 p-0 mr-0" style="height: 230vh;overflow: auto;display: flex;width: 100%;">
-                        <div class="card card-primary login-form full-heigh" style="height:270vh;">
+                    <div class="col-lg-4 p-0 mr-0 ">
+                        <div class="card card-primary login-form full-heigh">
                             <div class="card-header">
                                 <h4>Register</h4>
                             </div>
-                            <div class="card-body">
+                            <div class="card-body right-regform">
                                 @*<form method="POST">*@
                                 @using (Ajax.BeginForm("Register", "Account", null, new AjaxOptions { HttpMethod = "POST", OnSuccess = "RegisterFormSuccess", OnFailure = "Failed", }, new { @id = "formRegister", @class = "needs-validation", @autocomplete = "off" }))
                                 {
                                     @*@Html.AntiForgeryToken()*@
                                     <div class="row">
-                                        <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                                        <div class="form-group col-xl-6 col-sm-12">
                                             <label for="frist_name">First Name</label>
                                             @*<input id="frist_name" type="text" class="form-control" name="frist_name" autofocus>*@
                                             @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
                                             @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
                                         </div>
-                                        <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                                        <div class="form-group col-xl-6 col-sm-12">
                                             <label for="frist_name">Last Name</label>
                                             @*<input id="frist_name" type="text" class="form-control" name="frist_name" autofocus>*@
                                             @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
                                             @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="form-group col-6 col-lg-6 col-md-6 col-sm-12 w-100">
+                                        <div class="form-group col-xl-6 col-sm-12">
                                             <label for="email">Email</label>
                                             @*<input id="email" type="email" class="form-control" name="email">*@
                                             @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
@@ -133,7 +90,7 @@
                                             <div class="invalid-feedback">
                                             </div>
                                         </div>
-                                        <div class="form-group col-6 col-lg-6 col-md-6 col-sm-12 w-100">
+                                        <div class="form-group col-xl-6 col-sm-12">
                                             <label for="email">Mobile No</label>
                                             @*<input id="email" type="email" class="form-control" name="email">*@
                                             @Html.TextBoxFor(m => m.MobileNo, new { @class = "form-control", @maxlength = "10", @onkeypress = "return isNumberKey(event)" })
@@ -141,9 +98,7 @@
                                             <div class="invalid-feedback">
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                                        <div class="form-group col-xl-6 col-sm-12">
                                             <label for="password" class="d-block">Password</label>
                                             @*<input id="password" type="password" class="form-control pwstrength" data-indicator="pwindicator" name="password">*@
                                             @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
@@ -153,125 +108,111 @@
                                                 <div class="label"></div>
                                             </div>
                                         </div>
-                                        <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                                        <div class="form-group col-xl-6 col-sm-12">
                                             <label for="password2" class="d-block">Password Confirmation</label>
                                             @*<input id="password2" type="password" class="form-control" name="password-confirm">*@
                                             @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
                                             @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
                                         </div>
-                                    </div>
-                                    <div class="form-group col-12 w-100 p-0">
-                                        <label for="email">Address</label>
-                                        @*<textarea id="address" type="text" class="form-control" name="adress" rows="4" cols="50"></textarea>*@
-                                        @Html.TextAreaFor(m => m.Address, new { @class = "form-control", @rows = "4", @cols = "50" })
-                                        @Html.ValidationMessageFor(m => m.Address, "", new { @class = "text-danger" })
-                                        <div class="invalid-feedback">
+                                        <div class="form-group col-12">
+                                            <label for="email">Address</label>
+                                            @*<textarea id="address" type="text" class="form-control" name="adress" rows="4" cols="50"></textarea>*@
+                                            @Html.TextAreaFor(m => m.Address, new { @class = "form-control", @rows = "4", @cols = "50" })
+                                            @Html.ValidationMessageFor(m => m.Address, "", new { @class = "text-danger" })
+                                            <div class="invalid-feedback">
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="form-group col-lg-4 col-md-4 col-sm-12 w-100">
+                                        <div class="form-group col-xl-4 col-sm-12">
                                             <label>Contury</label>
-                                            <div class="form-group ">
+                                            <div class="form-group">
                                                 @Html.DropDownListFor(m => m.UserCountryId, new SelectList(ViewBag.Country, "CountryId", "CountryName"), "--Select country--", new { @class = "form-control", @onchange = "SelectCountry(this, 'UserCountry');" })
                                                 @Html.ValidationMessageFor(m => m.UserCountryId, "", new { @class = "text-danger" })
                                             </div>
                                         </div>
-                                        <div class="form-group col-lg-4 col-md-4 col-sm-12 w-100">
+                                        <div class="form-group col-xl-4 col-sm-12">
                                             <label>State</label>
                                             <div class="form-group">
                                                 @Html.DropDownListFor(m => m.UserStateId, new SelectList(ViewBag.State, "Value", "Text"), "--Select state--", new { @class = "form-control", @disabled = "disabled", @onchange = "SelectState(this, 'UserState');" })
                                                 @Html.ValidationMessageFor(m => m.UserStateId, "", new { @class = "text-danger" })
                                             </div>
                                         </div>
-                                        <div class="form-group col-lg-4 col-md-4 col-sm-12 w-100">
+                                        <div class="form-group col-xl-4 col-sm-12">
                                             <label for="city">City</label>
                                             <div class="form-group">
                                                 @Html.DropDownListFor(m => m.UserCityId, new SelectList(ViewBag.City, "Value", "Text"), "--Select city--", new { @class = "form-control", @disabled = "disabled" })
                                                 @Html.ValidationMessageFor(m => m.UserCityId, "", new { @class = "text-danger" })
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row">
                                         <div class="form-group col-lg-12 col-md-12 col-sm-12">
                                             <label for="frist_name">Business Name</label>
                                             @Html.TextBoxFor(m => m.BusinessName, new { @class = "form-control" })
                                             @Html.ValidationMessageFor(m => m.BusinessName, "", new { @class = "text-danger" })
                                         </div>
-                                    </div>
-                                    <div class="row">
                                         <div class="form-group col-lg-12 col-md-12 col-sm-12">
                                             <label for="last_name">Address</label>
                                             @Html.TextAreaFor(m => m.BusinessAddress, new { @class = "form-control", @rows = "4", @cols = "50" })
                                             @Html.ValidationMessageFor(m => m.BusinessAddress, "", new { @class = "text-danger" })
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                                        <div class="form-group col-xl-6 col-sm-12">
                                             <label for="last_name">Email Id</label>
                                             @*<input id="last_name" type="email" class="form-control" name="last_name">*@
                                             @Html.TextBoxFor(m => m.BusinessEmailId, new { @class = "form-control" })
                                             @Html.ValidationMessageFor(m => m.BusinessEmailId, "", new { @class = "text-danger" })
                                         </div>
-                                        <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                                        <div class="form-group col-xl-6 col-sm-12">
                                             <label for="last_name">Mobile No.</label>
                                             @*<input id="last_name" type="text" class="form-control" name="last_name">*@
                                             @Html.TextBoxFor(m => m.BusinessMobileNo, new { @class = "form-control", @maxlength = "10", @onkeypress = "return isNumberKey(event)" })
                                             @Html.ValidationMessageFor(m => m.BusinessMobileNo, "", new { @class = "text-danger" })
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="form-group col-lg-4 col-md-4 col-sm-12 w-100">
+                                        <div class="form-group col-xl-4 col-sm-12">
                                             <label for="contury">Contury</label>
                                             <div class="form-group ">
                                                 @Html.DropDownListFor(m => m.BusinessCountryId, new SelectList(ViewBag.Country, "CountryId", "CountryName"), "--Select Country--", new { @class = "form-control", @onchange = "SelectCountry(this, 'CompanyCountry');" })
                                                 @Html.ValidationMessageFor(m => m.BusinessCountryId, "", new { @class = "text-danger" })
                                             </div>
                                         </div>
-                                        <div class="form-group col-lg-4 col-md-4 col-sm-12 w-100">
+                                        <div class="form-group col-xl-4 col-sm-12">
                                             <label for="state">State</label>
                                             <div class="form-group">
                                                 @Html.DropDownListFor(m => m.BusinessStateId, new SelectList(ViewBag.State, "Value", "Text"), "--Select State--", new { @class = "form-control", @disabled = "disabled", @onchange = "SelectState(this, 'CompanyState');" })
                                                 @Html.ValidationMessageFor(m => m.BusinessStateId, "", new { @class = "text-danger" })
                                             </div>
                                         </div>
-                                        <div class="form-group col-lg-4 col-md-4 col-sm-12 w-100">
+                                        <div class="form-group col-xl-4 col-sm-12">
                                             <label for="city">City</label>
                                             <div class="form-group">
                                                 @Html.DropDownListFor(m => m.BusinessCityId, new SelectList(ViewBag.City, "Value", "Text"), "--Select city--", new { @class = "form-control", @disabled = "disabled" })
                                                 @Html.ValidationMessageFor(m => m.BusinessCityId, "", new { @class = "text-danger" })
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                                        <div class="form-group col-xl-6 col-sm-12">
                                             <label for="last_name">GST NO</label>
                                             @*<input id="last_name" type="text" class="form-control" name="last_name">*@
                                             @Html.TextBoxFor(m => m.GSTNO, new { @class = "form-control" })
                                             @Html.ValidationMessageFor(m => m.GSTNO, "", new { @class = "text-danger" })
                                         </div>
-                                        <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                                        <div class="form-group col-xl-6 col-sm-12">
                                             <label for="last_name">Reference No.</label>
                                             @*<input id="last_name" type="text" class="form-control" name="last_name">*@
                                             @Html.TextBoxFor(m => m.ReferenceNo, new { @class = "form-control" })
                                             @Html.ValidationMessageFor(m => m.ReferenceNo, "", new { @class = "text-danger" })
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="form-group col-lg-4 col-md-4 col-sm-12 w-100">
+                                        <div class="form-group col-xl-4 col-sm-12">
                                             <label>Reference Name</label>
                                             <div class="form-group ">
                                                 @Html.TextBoxFor(m => m.RefName, new { @class = "form-control" })
                                                 @Html.ValidationMessageFor(m => m.RefName, "", new { @class = "text-danger" })
                                             </div>
                                         </div>
-                                        <div class="form-group col-lg-4 col-md-4 col-sm-12 w-100">
+                                        <div class="form-group col-xl-4 col-sm-12">
                                             <label>Reference Mobile</label>
                                             <div class="form-group">
                                                 @Html.TextBoxFor(m => m.RefMobile, new { @class = "form-control", @maxlength = "10", @onkeypress = "return isNumberKey(event)" })
                                                 @Html.ValidationMessageFor(m => m.RefMobile, "", new { @class = "text-danger" })
                                             </div>
                                         </div>
-                                        <div class="form-group col-lg-4 col-md-4 col-sm-12 w-100">
+                                        <div class="form-group col-xl-4 col-sm-12">
                                             <label for="city">Reference Business</label>
                                             <div class="form-group">
                                                 @Html.TextBoxFor(m => m.RefBusiness, new { @class = "form-control" })
@@ -279,6 +220,7 @@
                                             </div>
                                         </div>
                                     </div>
+
                                     <div class="form-group">
                                         <div class="custom-control custom-checkbox">
                                             <input type="checkbox" name="agree" class="custom-control-input" id="register_agree">
@@ -288,11 +230,12 @@
                                     <div class="form-group">
                                         <button type="button" id="btnRegister" class="btn btn-primary btn-lg btn-block">Register</button>
                                     </div>
-                                    <div class="mb-4 text-muted text-center">Already Registered? <a href="/Account/Login">Login</a></div>
+                                    <div class="text-muted text-center">Already Registered? <a href="/Account/Login">Login</a></div>
+                                    <div class="right-section pt-4">
+                                        <h6 class="reg-right-link">Designe & Devloped by Rudra | New Era of Technology </h6>
+                                    </div>
                                 }
-                            </div>
-                            <div class="right-section">
-                                <h6 class="regist-compny-name mt-2 text-right">Designe & Devloped by Rudra | New Era of Technology </h6>
+
                             </div>
                         </div>
                     </div>

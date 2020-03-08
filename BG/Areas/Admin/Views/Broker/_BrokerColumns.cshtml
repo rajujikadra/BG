@@ -11,13 +11,14 @@
         <div class="modal-body">
             <div class="row">
                 <div class="col-12 col-md-12 col-lg-12">
-                    <div class="button">
+                    <div class="row">
                         @foreach (var C in Model)
                         {
-                            <div class="col-3 btn btn-icon align-left">
+                            <div class="col-md-4 btn btn-icon align-left Columnpermission_modal">
                                 <div class="custom-checkbox custom-checkbox-table custom-control font-15">
                                     <input type="checkbox" @(C.IsDisplay ? "checked" : "") value="@C.ColumnId" data-checkboxes="mygroup" data-checkbox-role="dad" class="custom-control-input brk-chk" id="@C.ColumnId">
                                     <label for="@C.ColumnId" class="custom-control-label">@C.ColumnName</label>
+                                    <input type="text" onkeypress="return isNumberKey(event)" name="" value="" class="form-control custom-txtBox" />
                                 </div>
                             </div>
                         }
