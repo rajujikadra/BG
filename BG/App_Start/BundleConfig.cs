@@ -39,7 +39,8 @@ namespace BG
                 "~/Areas/Admin/assets/css/custom.css",
                 "~/Content/HoldOn.css",
                 "~/Areas/Admin/assets/bundles/datatables/datatables.min.css",
-                "~/Areas/Admin/assets/bundles/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css"));
+                "~/Areas/Admin/assets/bundles/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css",
+                "~/Areas/Admin/assets/bundles/izitoast/css/iziToast.min.css"));
 
             bundles.Add(new ScriptBundle("~/Admin/JS").Include(
                 "~/Areas/Admin/assets/bundles/jquery-ui/jquery-ui.min.js",
@@ -54,7 +55,9 @@ namespace BG
                 "~/Areas/Admin/assets/js/page/datatables.js",
                 "~/Areas/Admin/assets/js/scripts.js",
                  "~/Scripts/HoldOn.js",
-                "~/Areas/Admin/assets/js/custom.js"));
+                "~/Areas/Admin/assets/js/custom.js",
+                "~/Areas/Admin/assets/bundles/izitoast/js/iziToast.min.js",
+                "~/Areas/Adminassets/js/page/toastr.js"));
         }
     }
 }

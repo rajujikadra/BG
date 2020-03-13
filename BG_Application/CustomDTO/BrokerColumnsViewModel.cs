@@ -14,5 +14,6 @@ namespace BG_Application.CustomDTO
         public string ColumnName { get; set; }
         public bool IsDisplay { get; set; }
         public int ColumnId { get; set; }
+        public int? Sort { get; set; }
     }
 }

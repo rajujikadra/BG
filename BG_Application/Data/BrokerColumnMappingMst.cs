@@ -17,6 +17,7 @@ namespace BG_Application.Data
         public int BrokerColMapId { get; set; }
         public string UserId { get; set; }
         public Nullable<int> ColumnId { get; set; }
+        public Nullable<int> Sort { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
         public virtual BrokerColumnName BrokerColumnName { get; set; }

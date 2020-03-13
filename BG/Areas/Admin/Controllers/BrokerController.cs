@@ -55,15 +55,19 @@ namespace BG.Areas.Admin.Controllers
                 ColumnName = x.ColumnName,
                 ColumnId = x.ColumnId,
                 IsDisplay = x.BrokerColumnMappingMsts.Count(c => c.UserId == UserID) > 0 ? true : false,
-                UserId = UserID
+                UserId = UserID,
+                Sort = (int)x.BrokerColumnMappingMsts.FirstOrDefault(v => v.ColumnId == x.ColumnId && v.UserId == UserID).Sort
             }).ToList();
             return PartialView("_BrokerColumns", model);
         }
         #endregion
 
         #region set broker permission
-        public ActionResult SetPerimission(string UserID, int?[] BrokerID)
+        public ActionResult SetPerimission(string UserID, List<BrokerColumnsViewModel> BrokerColumn)
         {
+            int?[] BrokerID = null;
+            if (BrokerColumn.Count() > 0 && BrokerColumn != null)
+                BrokerID = BrokerColumn.Select(x => (int?)x.ColumnId).ToArray();
             if (BrokerID != null)
             {
                 var DB = new BG_DBEntities();
@@ -71,13 +75,18 @@ namespace BG.Areas.Admin.Controllers
                 BrkCol = BrkCol.Where(x => !BrokerID.Contains(x.ColumnId)).ToList();
                 DB.BrokerColumnMappingMsts.RemoveRange(BrkCol);
                 DB.SaveChanges();
-                foreach (var c in BrokerID)
+                foreach (var c in BrokerColumn)
                 {
-                    var Col = DB.BrokerColumnMappingMsts.FirstOrDefault(x => x.UserId == UserID && x.ColumnId == c);
+                    var Col = DB.BrokerColumnMappingMsts.FirstOrDefault(x => x.UserId == UserID && x.ColumnId == c.ColumnId);
                     if (Col == null)
                     {
-                        var obj = new BrokerColumnMappingMst { ColumnId = c, UserId = UserID };
+                        var obj = new BrokerColumnMappingMst { ColumnId = c.ColumnId, Sort = c.Sort ?? c.ColumnId, UserId = UserID };
                         DB.BrokerColumnMappingMsts.Add(obj);
+                        DB.SaveChanges();
+                    }
+                    else
+                    {
+                        Col.Sort = c.Sort ?? c.ColumnId;
                         DB.SaveChanges();
                     }
                 }

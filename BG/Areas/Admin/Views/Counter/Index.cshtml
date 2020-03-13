@@ -161,7 +161,7 @@
                                     <div class="custom-checkbox custom-checkbox-table custom-control font-15">
                                         <input type="checkbox" @(C.IsDisplay ? "checked" : "") value="@C.ColumnId" data-checkboxes="mygroup" data-checkbox-role="dad" class="custom-control-input column-chk" id="@C.ColumnId">
                                         <label for="@C.ColumnId" class="custom-control-label">@C.ColumnName</label>
-                                        <input type="text" onkeypress="return isNumberKey(event)" name="" value="" class="form-control custom-txtBox" />
+                                        <input maxlength="2" type="text" id="txt_@C.ColumnId" onkeypress="return isNumberKey(event)" name="" value="@C.Sort" class="form-control custom-txtBox sort-txt" @(C.IsDisplay ? "" : "disabled") />
                                     </div>
                                 </div>
                             }
@@ -180,6 +180,32 @@
     <script type="text/javascript">
         var Menus = [];
         var Columns = [];
+         $(".column-chk").on('click', function (e) {
+             var $this = $(this);
+             if ($this.is(':checked')) {
+                 $("#txt_" + $this[0].id).removeAttr("disabled");
+             } else {
+                 $("#txt_" + $this[0].id).attr("disabled", "disabled");
+                 $("#txt_" + $this[0].id).val("");
+             }
+         });
+         $(".sort-txt").on('change', function (e) {
+             var ID = this.id;
+             $('.sort-txt').each(function () {
+                 var $this = $(this);
+                 if (ID != $this[0].id) {
+                     if ($this.val().trim() == $("#" + ID).val()) {
+                         iziToast.error({
+                            title: "You can't enter column same position - " + $("#" + ID).val() + ".",
+                            message: "",
+                            position: 'topRight'
+                         });
+                         $("#" + ID).val("");
+                          return false;
+                      }
+                 }
+             });
+        });
         $("#btnRegister").on('click', function () {
             $('.menu-chk').each(function () {
                var $this = $(this);
