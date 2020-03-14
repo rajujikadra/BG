@@ -118,7 +118,6 @@ namespace BG_API.Controllers
                 {
                     expandoDict.Add(propertyName, propertyReaders[propertyName](t));
                 }
-
                 return (dynamic)expando;
             }).ToList();
         }

@@ -40,17 +40,27 @@ namespace BG.Areas.Admin.Controllers
                 }
                 else
                 {
-
+                    var DB = new BG_DBEntities();
+                    string ID = DB.AspNetUsers.FirstOrDefault(x => x.Email.Trim() == User.Identity.Name.Trim()).Id;
+                    ViewBag.BrokerColumns = GetBrokerColumn(ID);
                     result = httpClient.GetAsync(Config.get_broker_Columns + "/" + User.Identity.Name + "/").Result;
                     if (result.IsSuccessStatusCode)
                     {
                         var resultContent = result.Content.ReadAsStringAsync().Result;
-                         Data = JsonConvert.DeserializeObject<List<dynamic>>(resultContent);
+                        Data = JsonConvert.DeserializeObject<List<DiamondStockViewModel>>(resultContent);
+                        ViewBag.BrokerStock = Data;
                     }
                 }
 
             }
             return View(model);
+        }
+
+        public List<string> GetBrokerColumn(string UserID)
+        {
+            var DB = new BG_DBEntities();
+            var Columns = DB.BrokerColumnMappingMsts.Where(x => x.UserId == UserID).OrderBy(c => c.Sort).ToList();
+            return Columns.Select(x => x.BrokerColumnName.ColumnName).ToList();
         }
     }
 }

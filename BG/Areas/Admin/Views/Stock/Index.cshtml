@@ -4,7 +4,10 @@
     ViewBag.Title = "Stock";
     Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
 }
-
+@{
+    var ColumnList = ViewBag.BrokerColumns as List<string>;
+    var Stock = ViewBag.BrokerStock;
+}
 <div class="main-content">
     <section class="section">
         <div class="section-body">
@@ -144,7 +147,139 @@
                                 }
                                 else if (User.IsInRole(EnumTypes.RoleList.BROKER.ToString()))
                                 {
-
+                                    <table class="table table-striped table-hover" id="stock-master-table" style="width:100%; line-height: 1.1;">
+                                        <thead>
+                                            <tr>
+                                                @foreach (var C in ViewBag.BrokerColumns)
+                                                {
+                                                    <th>@C</th>
+                                                }
+                                                @*<th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th>StoneID</th>
+                                                    <th>CTS</th>
+                                                    <th>Location</th>
+                                                    <th>ReportNo</th>
+                                                    <th>Certificate</th>
+                                                    <th>Shape</th>
+                                                    <th>Size</th>
+                                                    <th>Color</th>
+                                                    <th>Purity</th>
+                                                    <th>Cut</th>
+                                                    <th>Polish</th>
+                                                    <th>Symmetry</th>
+                                                    <th>Flou</th>
+                                                    <th>RAP</th>
+                                                    <th>Discount</th>
+                                                    <th>Asking</th>
+                                                    <th>Amount</th>
+                                                    <th>S.Per(%)</th>
+                                                    <th>S.Rate</th>
+                                                    <th>S.Amt</th>
+                                                    <th>Length</th>
+                                                    <th>Width</th>
+                                                    <th>Depth</th>
+                                                    <th>DepthPer</th>
+                                                    <th>TablePer</th>
+                                                    <th>Crown Angle</th>
+                                                    <th>Crown Height</th>
+                                                    <th>Pav. Angle</th>
+                                                    <th>Pav. Height</th>
+                                                    <th>Key To Symbol</th>
+                                                    <th>Eye Clean</th>
+                                                    <th>Girdle</th>
+                                                    <th>Culet</th>
+                                                    <th>Star</th>
+                                                    <th>Lower</th>
+                                                    <th>Milky</th>
+                                                    <th>HA</th>
+                                                    <th>Inscription</th>
+                                                    <th>Comment</th>*@
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @*@for(int i = 0; i < Stock.Count(); i++)
+                                            {
+                                                <tr>
+                                                    <td>@Stock[i].StoneID.ToString()</td>
+                                                </tr>
+                                            }*@
+                                            @*@foreach (var S in Model)
+                                                {
+                                                    string class_tr = "";
+                                                    if (S.Hold == true)
+                                                    {
+                                                        class_tr = "bg-secondary";
+                                                    }
+                                                    else if (S.Basket == true)
+                                                    {
+                                                        class_tr = "bg-success";
+                                                    }
+                                                    else if (S.Inquiry == true)
+                                                    {
+                                                        class_tr = "bg-primary";
+                                                    }
+                                                    <tr class="@class_tr">
+                                                        <td>
+                                                            <div class="custom-checkbox custom-control">
+                                                                <input type="checkbox" data-checkboxes="mygroup" class="custom-control-input" @((S.Hold == true || S.Basket == true) ? "disabled" : "") id="checkbox'@S.StockMSTID'">
+                                                                <label for="checkbox'@S.StockMSTID'" class="custom-control-label">&nbsp;</label>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <a target="_blank" href="https://www.gia.edu/report-check?reportno=@S.ReportNo">
+                                                                <i class="fas fa-certificate"></i>
+                                                            </a>
+                                                        </td>
+                                                        <td>
+                                                            <a target="_blank" href="@S.VideoLink">
+                                                                <i class="fas fa-video"></i>
+                                                            </a>
+                                                        </td>
+                                                        <td>@S.StoneID</td>
+                                                        <td>@S.Cts</td>
+                                                        <td>@S.Location</td>
+                                                        <td>@S.ReportNo</td>
+                                                        <td>@S.CertificateName</td>
+                                                        <td>@S.ShapeName</td>
+                                                        <td>@S.Size</td>
+                                                        <td>@S.ColorName</td>
+                                                        <td>@S.Purity</td>
+                                                        <td>@S.Cut</td>
+                                                        <td>@S.Polish</td>
+                                                        <td>@S.Symmetry</td>
+                                                        <td>@S.Flou</td>
+                                                        <td>@S.Rap</td>
+                                                        <td>@S.Disc</td>
+                                                        <td>@S.Asking</td>
+                                                        <td>@S.Amount</td>
+                                                        <td>@S.SPer</td>
+                                                        <td>@S.SRate</td>
+                                                        <td>@S.SAmount</td>
+                                                        <td>@S.Length</td>
+                                                        <td>@S.Width</td>
+                                                        <td>@S.Depth</td>
+                                                        <td>@S.DepthPer</td>
+                                                        <td>@S.TablePer</td>
+                                                        <td>@S.CrownAngle</td>
+                                                        <td>@S.CrownHeight</td>
+                                                        <td>@S.PavAngle</td>
+                                                        <td>@S.PavHeight</td>
+                                                        <td>@S.KeytoSymbol</td>
+                                                        <td>@S.EyeClean</td>
+                                                        <td>@S.Girdle</td>
+                                                        <td>@S.Culet</td>
+                                                        <td>@S.Star</td>
+                                                        <td>@S.Lower</td>
+                                                        <td>@S.Milky</td>
+                                                        <td>@S.HA</td>
+                                                        <td>@S.Inscription</td>
+                                                        <td>@S.Comments</td>
+                                                    </tr>
+                                                }*@
+                                        </tbody>
+                                    </table>
                                 }
                             </div>
                         </div>

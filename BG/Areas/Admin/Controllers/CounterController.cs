@@ -123,7 +123,7 @@ namespace BG.Areas.Admin.Controllers
                     if (!string.IsNullOrEmpty(ID))
                     {
                         var MenuNames = JsonConvert.DeserializeObject<List<string>>(model.MenuNames);
-                        var Columns = JsonConvert.DeserializeObject<List<int>>(model.ColumnName);
+                        var Columns = JsonConvert.DeserializeObject<List<BrokerColumnsViewModel>>(model.ColumnName);
                         if (MenuNames.Count() > 0)
                         {
                             bool status = AddMenuPermission(ID, MenuNames);
@@ -142,8 +142,11 @@ namespace BG.Areas.Admin.Controllers
             }
         }
 
-        public bool AddColumnPermission(string UserID, List<int> BrokerID)
+        public bool AddColumnPermission(string UserID, List<BrokerColumnsViewModel> BrokerColumn)
         {
+            int?[] BrokerID = null;
+            if (BrokerColumn.Count() > 0 && BrokerColumn != null)
+                BrokerID = BrokerColumn.Select(x => (int?)x.ColumnId).ToArray();
             if (BrokerID != null)
             {
                 var DB = new BG_DBEntities();
@@ -151,13 +154,18 @@ namespace BG.Areas.Admin.Controllers
                 BrkCol = BrkCol.Where(x => !BrokerID.Contains((int)x.ColumnId)).ToList();
                 DB.BrokerColumnMappingMsts.RemoveRange(BrkCol);
                 DB.SaveChanges();
-                foreach (var c in BrokerID)
+                foreach (var c in BrokerColumn)
                 {
-                    var Col = DB.BrokerColumnMappingMsts.FirstOrDefault(x => x.UserId == UserID && x.ColumnId == c);
+                    var Col = DB.BrokerColumnMappingMsts.FirstOrDefault(x => x.UserId == UserID && x.ColumnId == c.ColumnId);
                     if (Col == null)
                     {
-                        var obj = new BrokerColumnMappingMst { ColumnId = c, UserId = UserID };
+                        var obj = new BrokerColumnMappingMst { ColumnId = c.ColumnId, Sort = c.Sort ?? c.ColumnId, UserId = UserID };
                         DB.BrokerColumnMappingMsts.Add(obj);
+                        DB.SaveChanges();
+                    }
+                    else
+                    {
+                        Col.Sort = c.Sort ?? c.ColumnId;
                         DB.SaveChanges();
                     }
                 }

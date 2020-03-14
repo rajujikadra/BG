@@ -133,7 +133,7 @@ namespace BG_Application.Service
         }
         public List<string> GetBrokerColumnByUserId(string UserID)
         {
-            return DB.BrokerColumnMappingMsts.Where(x => x.UserId == UserID).Select(y => y.BrokerColumnName.ColumnName).ToList();
+            return DB.BrokerColumnMappingMsts.Where(x => x.UserId == UserID).OrderBy(b => b.Sort).Select(y => y.BrokerColumnName.ColumnName).ToList();
         }
 
 

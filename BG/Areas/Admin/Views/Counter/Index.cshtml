@@ -215,8 +215,12 @@
             });
             $('.column-chk').each(function () {
                var $this = $(this);
-               if ($this.is(':checked')) {
-                   Columns.push($this.val());
+                if ($this.is(':checked')) {
+                   var obj = {
+                     'ColumnId': parseInt($this.val()),
+                     'Sort': parseInt($("#txt_" + $this[0].id).val())
+                   };
+                   Columns.push(obj);
                }
             });
             var form = $('#formCounter');
@@ -239,7 +243,7 @@
                 });
                 return;
             }
-            debugger;
+
             var formData = objectifyForm(form.serializeArray());
             formData.MenuNames = JSON.stringify(Menus);
             formData.ColumnName = JSON.stringify(Columns);
