@@ -56,7 +56,39 @@ namespace BG_API.Controllers
                 else
                 {
                     return BadRequest("No stocks available right now.");
-                }               
+                }
+            }
+            catch (Exception ex)
+            {
+                return NotFound();
+            }
+        }
+        #endregion
+        #region get broker stock
+        [HttpGet]
+        [Route("get-broker-stock/{Email}")]
+        public IHttpActionResult GetBrokerStocks(string Email)
+        {
+            try
+            {
+                var queryResult = _IBroker_Repository.GetStock();
+                string userid = _IBroker_Repository.GetUserIdByEmail(Email);
+                if (!string.IsNullOrEmpty(userid))
+                {
+                    List<string> Columns = _IBroker_Repository.GetBrokerColumnByUserId(userid);
+                    Columns.Add("VideoLink");
+                    Columns.Add("Sale");
+                    Columns.Add("Broker");
+                    Columns.Add("Hold");
+                    Columns.Add("Basket");
+                    Columns.Add("Inquiry");
+                    var results = GetWhatClientWants(Columns, queryResult);
+                    return Ok(results);
+                }
+                else
+                {
+                    return BadRequest("No stocks available right now.");
+                }
             }
             catch (Exception ex)
             {
@@ -67,25 +99,25 @@ namespace BG_API.Controllers
 
         private Dictionary<string, Func<DiamondStockViewModel, object>> propertyReaders = new Dictionary<string, Func<DiamondStockViewModel, object>> {
             {"StoneID", x => x.StoneID },
-            {"CTS", x => x.Cts },
+            {"Cts", x => x.Cts },
             {"Location", x => x.Location},
             {"ReportNo", x => x.ReportNo },
-            {"Certificate", x => x.CertificateName },
-            {"Shape", x=>x.ShapeName },
+            {"CertificateName", x => x.CertificateName },
+            {"ShapeName", x=>x.ShapeName },
             {"Size", x=>x.Size },
-            {"Color", x=>x.ColorName},
+            {"ColorName", x=>x.ColorName},
             {"Purity", x=>x.Purity },
             {"Cut", x=>x.Cut },
             {"Polish", x=>x.Polish },
             {"Symmetry", x=>x.Symmetry },
             {"Flou", x=>x.Flou },
-            {"RAP", x=>x.Rap},
-            {"Discount", x=>x.Disc },
+            {"Rap", x=>x.Rap},
+            {"Disc", x=>x.Disc },
             {"Asking", x=>x.Asking },
             {"Amount", x=>x.Amount},
             {"SPer", x=>x.SPer },
             {"SRate", x=>x.SRate },
-            {"SAmt", x=>x.SAmount },
+            {"SAmount", x=>x.SAmount },
             {"Length", x=>x.Length },
             {"Width", x=>x.Width },
             {"Depth", x=>x.Depth },
@@ -104,7 +136,13 @@ namespace BG_API.Controllers
             {"Milky", x=>x.Milky },
             {"HA", x=>x.HA },
             {"Inscription", x=>x.Inscription },
-            {"Comment", x=>x.Comments }
+            {"Comments", x=>x.Comments },
+            {"VideoLink", x=>x.VideoLink },
+            {"Sale", x => x.Sale},
+            {"Broker", x => x.Broker},
+            {"Hold", x => x.Hold},
+            {"Basket", x => x.Basket},
+            {"Inquiry", x => x.Inquiry}
         };
         public List<dynamic> GetWhatClientWants(List<string> propertyNames, List<DiamondStockViewModel> queryResult)
         {

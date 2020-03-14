@@ -43,12 +43,12 @@ namespace BG.Areas.Admin.Controllers
                     var DB = new BG_DBEntities();
                     string ID = DB.AspNetUsers.FirstOrDefault(x => x.Email.Trim() == User.Identity.Name.Trim()).Id;
                     ViewBag.BrokerColumns = GetBrokerColumn(ID);
-                    result = httpClient.GetAsync(Config.get_broker_Columns + "/" + User.Identity.Name + "/").Result;
+                    result = httpClient.GetAsync(Config.get_broker_stocks + "/" + User.Identity.Name + "/").Result;
                     if (result.IsSuccessStatusCode)
                     {
                         var resultContent = result.Content.ReadAsStringAsync().Result;
                         Data = JsonConvert.DeserializeObject<List<DiamondStockViewModel>>(resultContent);
-                        ViewBag.BrokerStock = Data;
+                        ViewBag.StockDatas = Data;
                     }
                 }
 
