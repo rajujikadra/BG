@@ -194,7 +194,6 @@
                                                     </td>
                                                     @foreach (var C in ViewBag.BrokerColumns)
                                                     {
-                                                        //var value = S.GetType().GetProperty(C.ToString()).GetValue(S, null);
                                                         <td>@(S.GetType().GetProperty(C.ToString()).GetValue(S, null))</td>
                                                     }
                                                 </tr>
