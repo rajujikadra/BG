@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 using System.Web;
 
 namespace BG.Common
@@ -50,5 +52,28 @@ namespace BG.Common
 
         //Sales person API
         public static readonly string get_sales_persons = "api/sales-person";
-    }
+
+
+
+
+        // Get Enum description value
+        // @(Utility.GetEnumDescription((EnumType.VMProjectType)(int)Enum.Parse(typeof(EnumType.VMProjectType), item.ProjectType)))
+        public static string GetEnumDescription(Enum value)
+        {
+            try
+            {
+                FieldInfo fi = value.GetType().GetField(value.ToString());
+                DescriptionAttribute[] attributes = fi.GetCustomAttributes(typeof(DescriptionAttribute), false) as DescriptionAttribute[];
+                if (attributes != null && attributes.Any())
+                {
+                    return attributes.First().Description;
+                }
+                return value.ToString();
+            }
+            catch (Exception ex)
+            {
+                return string.Empty;
+            }
+        }
+    } 
 }
