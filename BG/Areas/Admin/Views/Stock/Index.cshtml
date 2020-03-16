@@ -1,5 +1,7 @@
 ﻿@model List<BG_Application.CustomDTO.DiamondStockViewModel>
 @using BG_Application.CustomDTO
+@using BG.Common;
+@using BG.EnumFile;
 @{
     ViewBag.Title = "Stock";
     Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
@@ -155,7 +157,9 @@
                                                 <th></th>
                                                 @foreach (var C in ViewBag.BrokerColumns)
                                                 {
-                                                    <th>@C</th>
+                                                    <th>
+                                                        @(Config.GetEnumDescription((EnumType.StockColumnName)(int)Enum.Parse(typeof(EnumType.StockColumnName), C)))
+                                                    </th>
                                                 }
                                             </tr>
                                         </thead>
