@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BG_Application.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Principal;
@@ -10,7 +11,7 @@ namespace BG.Models
 {
     public class AuthorizeEntryPermission : AuthorizeAttribute
     {
-        
+
         public string Permission { get; set; }
         public AuthorizeEntryPermission()
         {
@@ -22,10 +23,20 @@ namespace BG.Models
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
             string CurrentUserEmail = httpContext.User.Identity.Name;
-            var ID = HttpContext.Current.Request.RequestContext.RouteData.Values["Id"];
+            Permission = Permission.Replace("_", " ");
+            //var ID = HttpContext.Current.Request.RequestContext.RouteData.Values["Id"];
             //check your permissions
-            
-            return false;
+            var DB = new BG_DBEntities();
+            string UserID = DB.AspNetUsers.FirstOrDefault(x => x.Email == CurrentUserEmail).Id;
+            bool IsAccess = DB.UserMenuPermissionMsts.Any(x => x.MainMenuMst.MainMenuName.ToLower().Trim().Equals(Permission.ToLower().Trim()) && x.UserId == UserID);
+            if (!IsAccess)
+            {
+                return DB.UserMenuPermissionMsts.Any(x => x.MenuMst.MenuName.ToLower().Trim().Equals(Permission.ToLower().Trim()) && x.UserId == UserID);
+            }
+            else
+            {
+                return true;
+            }
         }
         public override void OnAuthorization(AuthorizationContext filterContext)
         {
@@ -44,8 +55,8 @@ namespace BG.Models
             }
             else
             {
-                return;
                 //handle no permission
+                filterContext.Result = new RedirectResult("~/Error");
             }
         }
         private void CacheValidateHandler(HttpContext context, object data, ref HttpValidationStatus validationStatus)

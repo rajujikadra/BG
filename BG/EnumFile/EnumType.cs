@@ -103,5 +103,25 @@ namespace BG.EnumFile
             Basket,
             Inquiry
         }
+
+        public enum MenuName
+        {
+            Dashboard,
+            Masters,
+            Stock,
+            Broker,
+            Sales_Persons,
+            Counter,
+            Color,
+            Certificate,
+            Cut,
+            Purity,
+            Flou,
+            Size,
+            Party,
+            Fancy_Color,
+            Fancy_OT,
+            Shape
+        }
     }
 }

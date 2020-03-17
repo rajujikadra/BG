@@ -1,4 +1,5 @@
 ﻿using BG.Common;
+using BG.EnumFile;
 using BG.Helper;
 using BG.Models;
 using BG_Application.CustomDTO;
@@ -25,7 +26,7 @@ namespace BG.Areas.Admin.Controllers
         #region get brokers
         [HttpGet]
         [Route("broker")]
-        [AuthorizeEntryPermission(Permission = "TEST")]
+        [AuthorizeEntryPermission(Permission = "Broker")]
         public ActionResult GetAllBrokers(string active)
         {
             var model = new List<ApplicationUserViewModel>();
