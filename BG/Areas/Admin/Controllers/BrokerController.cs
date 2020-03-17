@@ -1,5 +1,6 @@
 ﻿using BG.Common;
 using BG.Helper;
+using BG.Models;
 using BG_Application.CustomDTO;
 using BG_Application.Data;
 using Newtonsoft.Json;
@@ -24,6 +25,7 @@ namespace BG.Areas.Admin.Controllers
         #region get brokers
         [HttpGet]
         [Route("broker")]
+        [AuthorizeEntryPermission(Permission = "TEST")]
         public ActionResult GetAllBrokers(string active)
         {
             var model = new List<ApplicationUserViewModel>();
