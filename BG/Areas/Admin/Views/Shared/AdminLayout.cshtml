@@ -12,6 +12,7 @@
     <link rel="icon" href="images/favicon.ico" type="image/ico" />
     <link rel='shortcut icon' type='image/x-icon' href='~/Areas/Admin/assets/img/BG_LOGO.jpeg' />
     @Styles.Render("~/Admin/css")
+    <link rel="stylesheet" href="~/Areas/Admin/assets/bundles/dropzonejs/dropzone.css">
 </head>
 <body>
     <div class="loader"></div>
@@ -161,6 +162,7 @@
     </div>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/Admin/JS")
+    <script src="~/Areas/Admin/assets/bundles/dropzonejs/min/dropzone.min.js"></script>
     @Scripts.Render("~/bundles/jqueryval")
     @RenderSection("scripts", required: false)
 </body>

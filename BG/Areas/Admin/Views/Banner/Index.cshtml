@@ -3,12 +3,13 @@
     ViewBag.Title = "Banner";
     Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
 }
+@*<link rel="stylesheet" href="~/Areas/Admin/assets/bundles/dropzonejs/dropzone.css">*@
 <div class="main-content">
     <section class="section">
         <div class="section-body card p-3">
             <h4 class="mb-4">
                 Banner Images
-                <button class="btn btn-primary float-right">Add New</button>
+                <button class="btn btn-primary float-right" data-toggle="modal" data-target="#ModalCenter" data-backdrop="static">Add New</button>
             </h4>
             <div class="row">
                 @foreach (var item in Model)
@@ -50,7 +51,46 @@
         </div>
     </section>
 </div>
+<div class="modal fade" id="ModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Add Banner</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="">
+                    <div class="form-group">
+                        <label>Title</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Title" name="Title">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Upload Banner</label>
+                        <div action="#" class="dropzone dz-clickable" id="mydropzone">
+                            <div class="dz-default dz-message"><span>Drop files here to upload</span></div>
+                        </div>
+                    </div>
+                    <div class="form-group mb-0">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" name="Active" class="custom-control-input" id="Active">
+                            <label class="custom-control-label" for="Active">Active</label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer bg-whitesmoke br">
+                <button type="button" class="btn btn-primary" onclick="SaveBrokerPermission();">Save</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 @section scripts{
+    @*<script src="~/Areas/Admin/assets/bundles/dropzonejs/min/dropzone.min.js"></script>*@
     <script type="text/javascript">
         function ActiveInactiveBanner(ImageID, Status) {
              $.ajax({
