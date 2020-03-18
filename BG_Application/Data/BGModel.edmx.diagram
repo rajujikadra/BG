@@ -50,6 +50,7 @@
         <AssociationConnector Association="BG_DBModel.FK_CreatedBy" />
         <AssociationConnector Association="BG_DBModel.FK_Customer" />
         <AssociationConnector Association="BG_DBModel.FK_SalesPerson" />
+        <EntityTypeShape EntityType="BG_DBModel.BannerMst" Width="1.5" PointX="13.375" PointY="8.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

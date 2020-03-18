@@ -27,6 +27,15 @@ namespace BG.Controllers
             {
                 return RedirectToRoute("Default");
             }
+            var DB = new BG_DBEntities();
+            ViewBag.Banner = DB.BannerMsts.Where(v => v.Active == true).Select(x => new BannerViewModel()
+            {
+                Active = x.Active,
+                Title = x.Title,
+                UploadDate = x.UploadDate,
+                ImageName = x.ImageName,
+                ImageID = x.ImageID
+            }).ToList();
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }

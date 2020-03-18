@@ -54,5 +54,6 @@ namespace BG_Application.Data
         public virtual DbSet<BrokerColumnName> BrokerColumnNames { get; set; }
         public virtual DbSet<UserMenuPermissionMst> UserMenuPermissionMsts { get; set; }
         public virtual DbSet<AssignSalesPersonMst> AssignSalesPersonMsts { get; set; }
+        public virtual DbSet<BannerMst> BannerMsts { get; set; }
     }
 }

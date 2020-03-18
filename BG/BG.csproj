@@ -201,6 +201,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\BannerController.cs" />
     <Compile Include="Areas\Admin\Controllers\BrokerController.cs" />
     <Compile Include="Areas\Admin\Controllers\CounterController.cs" />
     <Compile Include="Areas\Admin\Controllers\CustomerController.cs" />
@@ -1086,6 +1087,7 @@
     <Content Include="Areas\Admin\Views\Counter\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Counter\_ColumnPermission.cshtml" />
     <Content Include="Areas\Admin\Views\Counter\_MenuPermission.cshtml" />
+    <Content Include="Areas\Admin\Views\Banner\Index.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\ClientJS\common.js" />

@@ -57,7 +57,6 @@
     </style>
     @Styles.Render("~/Admin/css")
 </head>
-
 <body>
     <div class="loader"></div>
     <div id="app">
@@ -67,20 +66,26 @@
                     <div class="col-lg-8 p-0 ml-0 h-100">
                         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                             <ol class="carousel-indicators">
-                                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                                @{
+                                    int Count = 0;
+                                }
+                                @foreach (var B in ViewBag.Banner)
+                                {
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="@Count" class=" @(Count == 0 ? "active" : "")"></li>
+                                    Count++;
+                                }
                             </ol>
                             <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <img src="~/Content/slider/slide1.jpeg" class="d-block w-100" alt="..." style="height: 100vh;">
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="~/Content/slider/slide2.jpeg" class="d-block w-100" alt="..." style="height: 100vh;">
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="~/Content/slider/slide3.jpeg" class="d-block w-100" alt="..." style="height: 100vh;">
-                                </div>
+                                @{
+                                    int Slide_Count = 0;
+                                }
+                                @foreach (var B in ViewBag.Banner)
+                                {
+                                    <div class="carousel-item @(Slide_Count == 0 ? "active" : "")">
+                                        <img src="~/Content/slider/@B.ImageName" class="d-block w-100" alt="..." style="height: 100vh;">
+                                    </div>
+                                    Slide_Count++;
+                                }
                             </div>
                         </div>
                     </div>
@@ -121,11 +126,11 @@
                                             </div>*@
                                     </div>
                                     @*<div class="form-group">
-                                        <div class="custom-control custom-checkbox">
-                                            @Html.CheckBoxFor(m => m.RememberMe, new { @class = "custom-control-input" })
-                                            @Html.LabelFor(m => m.RememberMe, new { @class = "custom-control-label", @for = "RememberMe" })
-                                        </div>
-                                    </div>*@
+                                            <div class="custom-control custom-checkbox">
+                                                @Html.CheckBoxFor(m => m.RememberMe, new { @class = "custom-control-input" })
+                                                @Html.LabelFor(m => m.RememberMe, new { @class = "custom-control-label", @for = "RememberMe" })
+                                            </div>
+                                        </div>*@
                                     <div class="form-group">
                                         <button type="button" id="btnLogin" class="btn btn-primary btn-lg btn-block" tabindex="4">Login</button>
                                     </div>

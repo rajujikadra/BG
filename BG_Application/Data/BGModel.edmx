@@ -93,6 +93,16 @@
           <Property Name="CreatedDate" Type="datetime" />
           <Property Name="Active" Type="bit" />
         </EntityType>
+        <EntityType Name="BannerMst">
+          <Key>
+            <PropertyRef Name="ImageID" />
+          </Key>
+          <Property Name="ImageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ImageName" Type="varchar" MaxLength="150" />
+          <Property Name="Title" Type="varchar" MaxLength="500" />
+          <Property Name="Active" Type="bit" />
+          <Property Name="UploadDate" Type="datetime" />
+        </EntityType>
         <EntityType Name="BrokerColumnMappingMst">
           <Key>
             <PropertyRef Name="BrokerColMapId" />
@@ -678,6 +688,7 @@ warning 6002: The table/view 'BG_DB.dbo.SizeMst' does not have a primary key def
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AssignSalesPersonMst" EntityType="Self.AssignSalesPersonMst" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BannerMst" EntityType="Self.BannerMst" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BrokerColumnMappingMst" EntityType="Self.BrokerColumnMappingMst" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BrokerColumnName" EntityType="Self.BrokerColumnName" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CertificateMst" EntityType="Self.CertificateMst" Schema="dbo" store:Type="Tables" />
@@ -1147,6 +1158,7 @@ warning 6002: The table/view 'BG_DB.dbo.SizeMst' does not have a primary key def
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
             <End Role="AssignSalesPersonMst" EntitySet="AssignSalesPersonMsts" />
           </AssociationSet>
+          <EntitySet Name="BannerMsts" EntityType="BG_DBModel.BannerMst" />
           </EntityContainer>
         <EntityType Name="PartyMst">
           <Key>
@@ -1594,6 +1606,16 @@ warning 6002: The table/view 'BG_DB.dbo.SizeMst' does not have a primary key def
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="BannerMst">
+          <Key>
+            <PropertyRef Name="ImageID" />
+          </Key>
+          <Property Name="ImageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ImageName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Active" Type="Boolean" />
+          <Property Name="UploadDate" Type="DateTime" Precision="3" />
+          <Property Name="Title" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2066,6 +2088,17 @@ warning 6002: The table/view 'BG_DB.dbo.SizeMst' does not have a primary key def
                 <ScalarProperty Name="SalesPersonID" ColumnName="SalesPersonID" />
                 <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
                 <ScalarProperty Name="AssignID" ColumnName="AssignID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BannerMsts">
+            <EntityTypeMapping TypeName="BG_DBModel.BannerMst">
+              <MappingFragment StoreEntitySet="BannerMst">
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="UploadDate" ColumnName="UploadDate" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="ImageName" ColumnName="ImageName" />
+                <ScalarProperty Name="ImageID" ColumnName="ImageID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

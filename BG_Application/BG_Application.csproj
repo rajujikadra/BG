@@ -59,6 +59,7 @@
     <Compile Include="CustomDTO\AdminDashboardViewModel.cs" />
     <Compile Include="CustomDTO\ApplicationUserViewModel.cs" />
     <Compile Include="CustomDTO\AssignSalesPersonViewModel.cs" />
+    <Compile Include="CustomDTO\BannerViewModel.cs" />
     <Compile Include="CustomDTO\BrokerColumnsViewModel.cs" />
     <Compile Include="CustomDTO\CertificateViewModel.cs" />
     <Compile Include="CustomDTO\CityViewModel.cs" />
@@ -94,6 +95,9 @@
       <DependentUpon>BGModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\AssignSalesPersonMst.cs">
+      <DependentUpon>BGModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\BannerMst.cs">
       <DependentUpon>BGModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\BGModel.Context.cs">

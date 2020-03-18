@@ -3175,7 +3175,7 @@ textarea.form-control {
     }
 
 .card {
-    background-color: transparent;
+    background-color: #ffffff;
     border-radius: 10px;
     border: none;
     position: relative;
@@ -6641,7 +6641,9 @@ body.layout-3 .main-footer {
     font-weight: 600;
     text-transform: uppercase;
     font-size: 11px;
-    width: 100%
+    width: 100%;
+    position: absolute;
+    bottom: 0;
 }
 
     .main-footer .footer-left {
@@ -11307,50 +11309,60 @@ body:not(.sidebar-mini) .sidebar-style-2 .sidebar-menu li.active ul.dropdown-men
     overflow-y: scroll;
     display: flex;
 }
-    /*.right-regform .login-form {
+/*.right-regform .login-form {
         height: 100vh;
     }*/
 .login-form {
     border-radius: 0 !important;
 }
+
 .reg-right-link {
     font-size: 11px;
     color: #6777ef;
-    text-align:right;
+    text-align: right;
 }
+
 ::-webkit-scrollbar {
     width: 5px;
 }
+
 ::-webkit-scrollbar-track {
     background: #f1f1f1;
 }
+
 ::-webkit-scrollbar-thumb {
     background: #4f5ece !important;
 }
-@media(min-width:992px){
+
+@media(min-width:992px) {
     .carousel-item > img {
         height: 100vh;
-        width:100%;
+        width: 100%;
     }
 }
-@media(min-width:576px) and (max-width:992px){
+
+@media(min-width:576px) and (max-width:992px) {
     .register-form #carouselExampleFade .carousel-inner {
         width: 100%;
         height: 400px;
     }
+
     .right-regform {
         height: calc(100vh - 449px);
     }
 }
+
 @media(max-width:575px) {
     .register-form #carouselExampleFade .carousel-inner {
         width: 100%;
         height: 213px;
     }
+
     .right-regform {
         height: calc(100vh - 262px);
     }
 }
+
 .Columnpermission_modal .custom-txtBox {
     width: 100px;
     float: right;
@@ -11358,6 +11370,7 @@ body:not(.sidebar-mini) .sidebar-style-2 .sidebar-menu li.active ul.dropdown-men
     margin-left: 10px;
     padding: 5px !important;
 }
+
 .Columnpermission_modal .custom-control-label {
     float: left;
 }
