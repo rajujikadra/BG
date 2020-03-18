@@ -9,6 +9,7 @@ using BG.Helper;
 using BG_Application.CustomDTO;
 using BG_Application.Data;
 using Newtonsoft.Json;
+using BG.Models;
 
 namespace BG.Areas.Admin.Controllers
 {
@@ -18,6 +19,7 @@ namespace BG.Areas.Admin.Controllers
     {
         // GET: Admin/Dashboard
         [Route]
+        [AuthorizeEntryPermission(Permission = "Dashboard")]
         public ActionResult Index()
         {
             if (!CurrentUser.Identity.IsAuthenticated)

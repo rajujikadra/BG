@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using BG.Common;
 using BG.Helper;
+using BG.Models;
 using BG_Application.CustomDTO;
 using BG_Application.Data;
 using Microsoft.AspNet.Identity;
@@ -22,6 +23,7 @@ namespace BG.Areas.Admin.Controllers
     {
         // GET: Admin/Stock
         [Route]
+        [AuthorizeEntryPermission(Permission = "Stock")]
         public ActionResult Index()
         {
             var model = new List<DiamondStockViewModel>();

@@ -17,6 +17,7 @@ namespace BG.Areas.Admin.Controllers
     public class CounterController : Controller
     {
         // GET: Admin/Counter
+        [AuthorizeEntryPermission(Permission = "Counter")]
         public ActionResult Index()
         {
             var DB = new BG_DBEntities();

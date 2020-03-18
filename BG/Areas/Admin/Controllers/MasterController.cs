@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using BG.Common;
 using BG.Helper;
+using BG.Models;
 using BG_Application.CustomDTO;
 using BG_Application.Data;
 using Microsoft.Ajax.Utilities;
@@ -26,6 +27,7 @@ namespace BG.Areas.Admin.Controllers
 
         #region color master
         [Route("color-master")]
+        [AuthorizeEntryPermission(Permission = "Color")]
         public ActionResult GetAllColorMst()
         {
             var model = new List<ColorViewModel>();
@@ -44,6 +46,7 @@ namespace BG.Areas.Admin.Controllers
 
         #region certificate master
         [Route("certificate-master")]
+        [AuthorizeEntryPermission(Permission = "Certificate")]
         public ActionResult GetAllCertificateMst()
         {
             var model = new List<CertificateViewModel>();
@@ -62,6 +65,7 @@ namespace BG.Areas.Admin.Controllers
 
         #region cut master
         [Route("cut-master")]
+        [AuthorizeEntryPermission(Permission = "Cut")]
         public ActionResult GetAllCutMst()
         {
             var model = new List<CutViewModel>();
@@ -80,6 +84,7 @@ namespace BG.Areas.Admin.Controllers
 
         #region purity master
         [Route("purity-master")]
+        [AuthorizeEntryPermission(Permission = "Purity")]
         public ActionResult GetAllPurityMst()
         {
             var model = new List<PurityViewModel>();
@@ -98,6 +103,7 @@ namespace BG.Areas.Admin.Controllers
 
         #region flou master
         [Route("flou-master")]
+        [AuthorizeEntryPermission(Permission = "Flou")]
         public ActionResult GetAllFlouMst()
         {
             var model = new List<FlouViewModel>();
@@ -116,6 +122,7 @@ namespace BG.Areas.Admin.Controllers
 
         #region size master
         [Route("size-master")]
+        [AuthorizeEntryPermission(Permission = "Size")]
         public ActionResult GetAllSizeMst()
         {
             var model = new List<SizeViewModel>();
@@ -134,6 +141,7 @@ namespace BG.Areas.Admin.Controllers
 
         #region party master
         [Route("party-master")]
+        [AuthorizeEntryPermission(Permission = "Party")]
         public ActionResult GetAllPartyMst()
         {
             var model = new List<PartyViewModel>();
@@ -152,6 +160,7 @@ namespace BG.Areas.Admin.Controllers
 
         #region fancy color master
         [Route("fancy-color-master")]
+        [AuthorizeEntryPermission(Permission = "Fancy Color")]
         public ActionResult GetAllFancyColorMst()
         {
             var model = new List<FancyColorViewModel>();
@@ -170,6 +179,7 @@ namespace BG.Areas.Admin.Controllers
 
         #region fancy ot master
         [Route("fancy-ot-master")]
+        [AuthorizeEntryPermission(Permission = "Fancy OT")]
         public ActionResult GetAllFancyOTMst()
         {
             var model = new List<FancyOTViewModel>();
@@ -188,6 +198,7 @@ namespace BG.Areas.Admin.Controllers
 
         #region shape master
         [Route("shape-master")]
+        [AuthorizeEntryPermission(Permission = "Shape")]
         public ActionResult GetAllShapeMst()
         {
             var model = new List<ShapViewModel>();

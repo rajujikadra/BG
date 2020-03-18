@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using BG.Common;
 using BG.Helper;
+using BG.Models;
 using BG_Application.CustomDTO;
 using BG_Application.Data;
 using Newtonsoft.Json;
@@ -19,6 +20,7 @@ namespace BG.Areas.Admin.Controllers
     {
         // GET: Admin/SalesPerson
         [Route]
+        [AuthorizeEntryPermission(Permission = "Sales Persons")]
         public ActionResult Index()
         {
             var model = new List<ApplicationUserViewModel>();
