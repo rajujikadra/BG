@@ -30,6 +30,12 @@ namespace BG.Areas.Admin.Controllers
             return View(model);
         }
 
+        [HttpPost]
+        public ActionResult AddBanner(BannerViewModel model)
+        {
+            return null;
+        }
+
         #region active in-active banner
         [HttpGet]
         [Route("ActiveInactiveBanner")]

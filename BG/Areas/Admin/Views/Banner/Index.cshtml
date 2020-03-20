@@ -65,7 +65,7 @@
                     <div class="form-group">
                         <label>Title</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Title" name="Title">
+                            <input type="text" class="form-control" placeholder="Title" id="Title" name="Title">
                         </div>
                     </div>
                     <div class="form-group">
@@ -83,7 +83,7 @@
                 </form>
             </div>
             <div class="modal-footer bg-whitesmoke br">
-                <button type="button" class="btn btn-primary" onclick="SaveBrokerPermission();">Save</button>
+                <button type="button" class="btn btn-primary" onclick="SaveBannerImage();">Save</button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
             </div>
         </div>
@@ -91,6 +91,7 @@
 </div>
 @section scripts{
     @*<script src="~/Areas/Admin/assets/bundles/dropzonejs/min/dropzone.min.js"></script>*@
+    <script src="~/Areas/Admin/assets/js/page/multiple-upload.js"></script>
     <script type="text/javascript">
         function ActiveInactiveBanner(ImageID, Status) {
              $.ajax({
@@ -121,6 +122,33 @@
                      alert(response.responseText);
                  }
               });
+        }
+        function SaveBannerImage() {
+            debugger;
+            var obj = {
+                'ImageName': ImageName,
+                'ImageString': Base64,
+                'Title': $("#Title").val().trim(),
+                'Active': $("#Active").prop("checked")
+            };
+            $.ajax({
+                url: "/admin/banner/AddBanner",
+                method: "POST",
+                data: obj,
+                contentType: 'application/json',
+                beforeSend: function () {
+                    HoldOn.open();
+                },
+                complete: function () {
+                    HoldOn.close();
+                },
+                success: function (data) {
+
+                },
+                error: function (data) {
+                    HoldOn.close();
+                }
+            });
         }
     </script>
 }

@@ -1,21 +1,33 @@
 "use strict";
-
+var Base64 = null;
+var ImageName = null;
 // DropzoneJS
 if (window.Dropzone) {
     Dropzone.autoDiscover = false;
 }
 
 var dropzone = new Dropzone("#mydropzone", {
-    acceptedFiles: ".png,.jpg",
+    acceptedFiles: ".jpeg,.jpg",
     addRemoveLinks: true,
     url: "#",
     maxFiles: 1,
+    maxFilesize: 5,
     init: function () {
         this.on("maxfilesexceeded", function (file) {
             this.removeAllFiles();
             this.addFile(file);
         });
-    }
+    },
+    accept: function (file, done) {
+        var reader = new FileReader();
+        reader.onload = handleReaderLoad;
+        reader.readAsDataURL(file);
+        function handleReaderLoad(evt) {
+            Base64 = evt.target.result;
+            ImageName = file.name;
+        }
+        done();
+    },
 });
 
 var minSteps = 6,
@@ -27,7 +39,7 @@ dropzone.uploadFiles = function (files) {
     var self = this;
 
     for (var i = 0; i < files.length; i++) {
-
+        var totalSteps = null;
         var file = files[i];
         totalSteps = Math.round(Math.min(maxSteps, Math.max(minSteps, file.size / bytesPerStep)));
 
