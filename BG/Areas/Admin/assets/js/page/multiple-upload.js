@@ -6,8 +6,16 @@ if (window.Dropzone) {
 }
 
 var dropzone = new Dropzone("#mydropzone", {
+    acceptedFiles: ".png,.jpg",
+    addRemoveLinks: true,
     url: "#",
-    uploadMultiple: false
+    maxFiles: 1,
+    init: function () {
+        this.on("maxfilesexceeded", function (file) {
+            this.removeAllFiles();
+            this.addFile(file);
+        });
+    }
 });
 
 var minSteps = 6,
