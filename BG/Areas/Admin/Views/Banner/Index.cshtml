@@ -66,6 +66,7 @@
                         <label>Title</label>
                         <div class="input-group">
                             <input type="text" class="form-control" placeholder="Title" id="Title" name="Title">
+                            <span class="text-danger" id="error_title"></span>
                         </div>
                     </div>
                     <div class="form-group">
@@ -73,6 +74,7 @@
                         <div action="#" class="dropzone dz-clickable" id="mydropzone">
                             <div class="dz-default dz-message"><span>Drop files here to upload</span></div>
                         </div>
+                        <span class="text-danger" id="error_upload"></span>
                     </div>
                     <div class="form-group mb-0">
                         <div class="custom-control custom-checkbox">
@@ -106,7 +108,6 @@
                     HoldOn.close();
                  },
                  success: function (response) {
-                     debugger;
                      var msg = response == true ? "Banner has been activated" : "Banner has been in activated";
                      swal({
                            title: "Success",
@@ -125,6 +126,22 @@
         }
         function SaveBannerImage() {
             debugger;
+            if ($("#Title").val().trim() == "") {
+                 $("#error_title").html('Please title.');
+                 $('html, body').animate({
+                     scrollTop: $("#error_title").parent().parent().offset().top - 70
+                 }, 500);
+                 $('#error_title').fadeIn('fast').delay(2000).fadeOut('slow');
+                 return false;
+            }
+            if (ImageName.trim() == null || Base64.trim() == null) {
+                 $("#error_upload").html('Please upload banner image.');
+                 $('html, body').animate({
+                     scrollTop: $("#error_upload").parent().parent().offset().top - 70
+                 }, 500);
+                 $('#error_upload').fadeIn('fast').delay(2000).fadeOut('slow');
+                 return false;
+            }
             var obj = {
                 'ImageName': ImageName,
                 'ImageString': Base64,
