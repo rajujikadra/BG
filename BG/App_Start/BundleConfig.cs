@@ -35,6 +35,7 @@ namespace BG
             bundles.Add(new StyleBundle("~/Admin/css").Include(
                 "~/Areas/Admin/assets/css/app.min.css",
                 "~/Areas/Admin/assets/css/style.css",
+                 "~/Areas/Admin/assets/bundles/pretty-checkbox/pretty-checkbox.min.css",
                 "~/Areas/Admin/assets/css/components.css",
                 "~/Areas/Admin/assets/css/custom.css",
                 "~/Content/HoldOn.css",
@@ -45,6 +46,7 @@ namespace BG
             bundles.Add(new ScriptBundle("~/Admin/JS").Include(
                 "~/Areas/Admin/assets/bundles/jquery-ui/jquery-ui.min.js",
                 "~/Areas/Admin/assets/js/app.min.js",
+                "~/Areas/Admin/assets/js/fSelect.js",
                 "~/Areas/Admin/assets/bundles/apexcharts/apexcharts.min.js",
                 "~/Areas/Admin/assets/js/page/index.js",
                 "~/Areas/Admin/assets/js/scripts.js",
