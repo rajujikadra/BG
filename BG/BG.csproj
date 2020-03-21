@@ -848,6 +848,7 @@
     <Content Include="Areas\Admin\assets\img\banner\2.png" />
     <Content Include="Areas\Admin\assets\img\banner\3.png" />
     <Content Include="Areas\Admin\assets\img\banner\4.png" />
+    <Content Include="Areas\Admin\assets\img\banner\DiamondImage.jpg" />
     <Content Include="Areas\Admin\assets\img\BG_LOGO.jpeg" />
     <Content Include="Areas\Admin\assets\img\blog\img01.png" />
     <Content Include="Areas\Admin\assets\img\blog\img02.png" />

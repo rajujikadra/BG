@@ -34,7 +34,7 @@
                                     </div>*@
                             </div>
                             <div class="article-details">
-                                <h4>@item.Title</h4>
+                                <h4 class="text-truncate">@item.Title</h4>
                                 @*<p>
                                         A don't spirit gathered two under, lights said. May Multiply seasons you'll spirit tree morning
                                         hath first signs.
@@ -66,8 +66,8 @@
                         <label>Title</label>
                         <div class="input-group">
                             <input type="text" class="form-control" placeholder="Title" id="Title" name="Title">
-                            <span class="text-danger" id="error_title"></span>
                         </div>
+                        <span class="text-danger" id="error_title"></span>
                     </div>
                     <div class="form-group">
                         <label>Upload Banner</label>
@@ -86,7 +86,7 @@
             </div>
             <div class="modal-footer bg-whitesmoke br">
                 <button type="button" class="btn btn-primary" onclick="SaveBannerImage();">Save</button>
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="ClearModal();">Close</button>
             </div>
         </div>
     </div>
@@ -125,7 +125,6 @@
               });
         }
         function SaveBannerImage() {
-            debugger;
             if ($("#Title").val().trim() == "") {
                  $("#error_title").html('Please title.');
                  $('html, body').animate({
@@ -134,7 +133,7 @@
                  $('#error_title').fadeIn('fast').delay(2000).fadeOut('slow');
                  return false;
             }
-            if (ImageName.trim() == null || Base64.trim() == null) {
+            if (ImageName == null || Base64 == null) {
                  $("#error_upload").html('Please upload banner image.');
                  $('html, body').animate({
                      scrollTop: $("#error_upload").parent().parent().offset().top - 70
@@ -151,7 +150,7 @@
             $.ajax({
                 url: "/admin/banner/AddBanner",
                 method: "POST",
-                data: obj,
+                data: JSON.stringify(obj),
                 contentType: 'application/json',
                 beforeSend: function () {
                     HoldOn.open();
@@ -160,12 +159,38 @@
                     HoldOn.close();
                 },
                 success: function (data) {
-
+                    if (data == true) {
+                         swal({
+                           title: "Success",
+                           text: "Banner image has been saved.",
+                           icon: "success"
+                         }).then(function (willDelete) {
+                              if (willDelete) {
+                                  location.reload();
+                              }
+                         });
+                    } else {
+                        swal({
+                           title: "Erro",
+                           text: "Oops ! Something went wrong.",
+                           icon: "error"
+                         }).then(function (willDelete) {
+                              if (willDelete) {
+                                  location.reload();
+                              }
+                         });
+                    }
                 },
                 error: function (data) {
                     HoldOn.close();
                 }
             });
+        }
+        function ClearModal() {
+            $("#Title").val("");
+            ImageName = null;
+            Base64 = null;
+            $("#Active").prop("checked", false);
         }
     </script>
 }
