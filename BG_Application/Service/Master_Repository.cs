@@ -471,7 +471,7 @@ namespace BG_Application.Service
         {
             if (FancyColorCode != 0)
                 return DB.FancyColorMsts.Any(x => x.FancyColorCode != FancyColorCode && x.FancyColorName.Trim().ToUpper().Equals(FancyColorName.Trim().ToUpper()));
-            else 
+            else
                 return DB.FancyColorMsts.Any(x => x.FancyColorName.Trim().ToUpper().Equals(FancyColorName.Trim().ToUpper()));
         }
         public bool DeleteFancyColor(int FancyColorCode)
@@ -915,7 +915,7 @@ namespace BG_Application.Service
         public bool IsSizeExist(int SizeMstId, decimal FromSize, decimal ToSize)
         {
             if (SizeMstId != 0)
-                return DB.SizeMsts.Any(x => x.SizeMstID == SizeMstId && x.FromSize == FromSize && x.ToSize == ToSize || (x.FromSize >= FromSize && x.ToSize >= ToSize));
+                return DB.SizeMsts.Any(x => x.SizeMstID != SizeMstId && x.FromSize == FromSize && x.ToSize == ToSize || (x.FromSize >= FromSize && x.ToSize >= ToSize));
             else
                 return DB.SizeMsts.Any(x => x.FromSize == FromSize && x.ToSize == ToSize || (x.FromSize >= FromSize && x.ToSize >= ToSize));
         }
@@ -958,6 +958,226 @@ namespace BG_Application.Service
             }
         }
 
+        public List<DiamondStockViewModel> GetAllStock()
+        {
+            return DB.DiamondStocks.Where(x => x.Sale != true).Select(y => new DiamondStockViewModel()
+            {
+                StockMSTID = y.StockMSTID,
+                StoneID = y.StoneID,
+                Cts = y.Cts,
+                Location = y.Location,
+                ReportNo = y.ReportNo,
+                CertificateCode = y.CertificateCode,
+                ShapeCode = y.ShapeCode,
+                SizeCode = y.SizeCode,
+                ColorCode = y.ColorCode,
+                PurityCode = y.PurityCode,
+                CutCode = y.CutCode,
+                PolishCode = y.PolishCode,
+                SymmetryCode = y.SymmetryCode,
+                FlouCode = y.FlouCode,
+                Rap = y.Rap,
+                Disc = y.Disc,
+                Asking = y.Asking,
+                Amount = y.Amount,
+                SPer = y.SPer,
+                SRate = y.SRate,
+                SAmount = y.SAmount,
+                Length = y.Length,
+                Width = y.Width,
+                Depth = y.Depth,
+                DepthPer = y.DepthPer,
+                TablePer = y.TablePer,
+                CrownAngle = y.CrownAngle,
+                CrownHeight = y.CrownHeight,
+                PavAngle = y.PavAngle,
+                PavHeight = y.PavHeight,
+                KeytoSymbol = y.KeytoSymbol,
+                VideoLink = y.VideoLink,
+                EyeClean = y.EyeClean,
+                Comments = y.Comments,
+                Girdle = y.Girdle,
+                Culet = y.Culet,
+                Star = y.Star,
+                Lower = y.Lower,
+                Milky = y.Milky,
+                TBlack = y.TBlack,
+                SBlack = y.SBlack,
+                TWhite = y.TWhite,
+                SWhite = y.SWhite,
+                HA = y.HA,
+                ResultVerify = y.ResultVerify,
+                ReportDate = y.ReportDate,
+                Inscription = y.Inscription,
+                Sale = y.Sale,
+                Broker = y.Broker,
+                Hold = y.Hold,
+                Basket = y.Basket,
+                Inquiry = y.Inquiry,
+                CertificateName = DB.CertificateMsts.FirstOrDefault(c => c.CertificateCode == y.CertificateCode).CertificateName,
+                ShapeName = DB.ShapeMsts.FirstOrDefault(c => c.ShapeCode == y.ShapeCode).ShapeAliasName,
+                Size = DB.SizeMsts.FirstOrDefault(c => c.SizeMstID == y.SizeCode).SizeAlias,
+                ColorName = DB.ColorMsts.FirstOrDefault(c => c.ColorCode == y.ColorCode).ColorAliasName,
+                Cut = DB.CutMsts.FirstOrDefault(c => c.CutCode == y.CutCode).CutAliasName,
+                Flou = DB.FlouMsts.FirstOrDefault(c => c.FlouCode == y.FlouCode).FlouAliasName,
+                Polish = DB.PolishMsts.FirstOrDefault(c => c.PolishCode == y.PolishCode).PolishAliasName,
+                Purity = DB.PurityMsts.FirstOrDefault(c => c.PurityCode == y.PurityCode).PurityAliasName,
+                Symmetry = DB.SymmetryMsts.FirstOrDefault(c => c.SymmetryCode == y.SymmetryCode).SymmetryAliasName
+            }).ToList();
+        }
+
+        public bool InsertStockMaster(DiamondStockViewModel model)
+        {
+            try
+            {
+                if (model.StockMSTID != 0)
+                {
+                    var Stock = DB.DiamondStocks.FirstOrDefault(x => x.StockMSTID == model.StockMSTID);
+                    if (Stock != null)
+                    {
+                        Stock.SizeCode = model.SizeCode;
+                        Stock.StoneID = model.StoneID;
+                        Stock.SWhite = model.SWhite;
+                        Stock.SymmetryCode = model.SymmetryCode;
+                        Stock.TablePer = model.TablePer;
+                        Stock.TBlack = model.TBlack;
+                        Stock.TWhite = model.TWhite;
+                        Stock.VideoLink = model.VideoLink;
+                        Stock.Width = model.Width;
+                        Stock.Star = model.Star;
+                        Stock.Amount = model.Amount;
+                        Stock.Asking = model.Asking;
+                        Stock.Basket = model.Basket;
+                        Stock.Broker = model.Broker;
+                        Stock.CertificateCode = model.CertificateCode;
+                        Stock.ColorCode = model.ColorCode;
+                        Stock.Comments = model.Comments;
+                        Stock.CrownAngle = model.CrownAngle;
+                        Stock.CrownHeight = model.CrownHeight;
+                        Stock.Cts = model.Cts;
+                        Stock.Culet = model.Culet;
+                        Stock.CutCode = model.CutCode;
+                        Stock.Depth = model.Depth;
+                        Stock.DepthPer = model.DepthPer;
+                        Stock.Disc = model.Disc;
+                        Stock.EyeClean = model.EyeClean;
+                        Stock.FlouCode = model.FlouCode;
+                        Stock.Girdle = model.Girdle;
+                        Stock.HA = model.HA;
+                        Stock.Hold = model.Hold;
+                        Stock.Inquiry = model.Inquiry;
+                        Stock.Inscription = model.Inscription;
+                        Stock.KeytoSymbol = model.KeytoSymbol;
+                        Stock.Length = model.Length;
+                        Stock.Location = model.Location;
+                        Stock.Lower = model.Lower;
+                        Stock.Milky = model.Milky;
+                        Stock.PavAngle = model.PavAngle;
+                        Stock.PavHeight = model.PavHeight;
+                        Stock.PolishCode = model.PolishCode;
+                        Stock.PurityCode = model.PurityCode;
+                        Stock.Rap = model.Rap;
+                        Stock.ReportDate = model.ReportDate;
+                        Stock.ReportNo = model.ReportNo;
+                        Stock.ResultVerify = model.ResultVerify;
+                        Stock.Sale = model.Sale;
+                       Stock.SAmount = model.SAmount;
+                        Stock.SBlack = model.SBlack;
+                        Stock.ShapeCode = model.ShapeCode;
+                        Stock.SPer = model.SPer;
+                        Stock.SRate = model.SRate;
+                    }
+                }
+                else
+                {
+                    var obj = new DiamondStock
+                    {
+                        SizeCode = model.SizeCode,
+                        StoneID = model.StoneID,
+                        SWhite = model.SWhite,
+                        SymmetryCode = model.SymmetryCode,
+                        TablePer = model.TablePer,
+                        TBlack = model.TBlack,
+                        TWhite = model.TWhite,
+                        VideoLink = model.VideoLink,
+                        Width = model.Width,
+                        Star = model.Star,
+                        Amount = model.Amount,
+                        Asking = model.Asking,
+                        Basket = model.Basket,
+                        Broker = model.Broker,
+                        CertificateCode = model.CertificateCode,
+                        ColorCode = model.ColorCode,
+                        Comments = model.Comments,
+                        CrownAngle = model.CrownAngle,
+                        CrownHeight = model.CrownHeight,
+                        Cts = model.Cts,
+                        Culet = model.Culet,
+                        CutCode = model.CutCode,
+                        Depth = model.Depth,
+                        DepthPer = model.DepthPer,
+                        Disc = model.Disc,
+                        EyeClean = model.EyeClean,
+                        FlouCode = model.FlouCode,
+                        Girdle = model.Girdle,
+                        HA = model.HA,
+                        Hold = model.Hold,
+                        Inquiry = model.Inquiry,
+                        Inscription = model.Inscription,
+                        KeytoSymbol = model.KeytoSymbol,
+                        Length = model.Length,
+                        Location = model.Location,
+                        Lower = model.Lower,
+                        Milky = model.Milky,
+                        PavAngle = model.PavAngle,
+                        PavHeight = model.PavHeight,
+                        PolishCode = model.PolishCode,
+                        PurityCode = model.PurityCode,
+                        Rap = model.Rap,
+                        ReportDate = model.ReportDate,
+                        ReportNo = model.ReportNo,
+                        ResultVerify = model.ResultVerify,
+                        Sale = model.Sale,
+                        SAmount = model.SAmount,
+                        SBlack = model.SBlack,
+                        ShapeCode = model.ShapeCode,
+                        SPer = model.SPer,
+                        SRate = model.SRate
+                    };
+                    DB.DiamondStocks.Add(obj);
+                    DB.SaveChanges();
+                }
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+        public bool IsStockExist(int StockID, string StoneID)
+        {
+            if (StockID != 0)
+                return DB.DiamondStocks.Any(x => x.StockMSTID != StockID && x.StoneID == StoneID);
+            else
+                return DB.DiamondStocks.Any(x => x.StoneID == StoneID);
+        }
+        public bool DeleteStock(int ID)
+        {
+            try
+            {
+                var Stock = DB.DiamondStocks.FirstOrDefault(x => x.StockMSTID == ID);
+                if (Stock != null)
+                {
+                    DB.DiamondStocks.Remove(Stock);
+                    DB.SaveChanges();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
 
 
 
@@ -983,7 +1203,6 @@ namespace BG_Application.Service
             // TODO: uncomment the following line if the finalizer is overridden above.
             GC.SuppressFinalize(this);
         }
-
         #endregion
     }
 }

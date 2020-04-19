@@ -680,6 +680,65 @@ namespace BG_API.Controllers
         }
         #endregion
 
+        #region stock-master
+        [HttpGet]
+        [Route("stock-master")]
+        public IHttpActionResult GetAllStock()
+        {
+            try
+            {
+                var Stock = _IMaster_Repository.GetAllStock();
+                return Ok(Stock);
+            }
+            catch (Exception ex)
+            {
+                return NotFound();
+            }
+        }
+        [HttpPost]
+        [Route("save-stock-master")]
+        public IHttpActionResult AddEditStockMaster(DiamondStockViewModel model)
+        {
+            try
+            {
+                if (!_IMaster_Repository.IsStockExist(model.StockMSTID, model.StoneID))
+                {
+                    bool status = _IMaster_Repository.InsertStockMaster(model);
+                    if (status)
+                        return Ok(model.StockMSTID != 0 ? "Successfully updated" : "Successfully added");
+                    else
+                        return BadRequest("Opps! Something problem in your data");
+                }
+                else
+                {
+                    return BadRequest(model.StoneID + " diamond stock is already exist");
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Opps! Something went wrong");
+            }
+        }
+
+        [HttpDelete]
+        [Route("delete-stock-master/{StonID}")]
+        public IHttpActionResult DeleteStockMaster(int StonID)
+        {
+            try
+            {
+                bool status = _IMaster_Repository.DeleteStock(StonID);
+                if (status)
+                    return Ok("Successfully deleted");
+                else
+                    return BadRequest("Opps! Something went wrong");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Opps! Something went wrong");
+            }
+        }
+        #endregion
+
         #region Type Master
         [HttpGet]
         [Route("type-master")]

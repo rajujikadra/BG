@@ -22,7 +22,11 @@ namespace BG_Application.ServiceContract
         List<ShapViewModel> GetAllShapMaster();
         List<SizeViewModel> GetAllSizeMaster();
         List<TypeViewModel> GetAllTypeMaster();
+        List<DiamondStockViewModel> GetAllStock();
 
+        bool InsertStockMaster(DiamondStockViewModel model);
+        bool IsStockExist(int StockID, string StoneID);
+        bool DeleteStock(int ID);
 
         bool InsertColorMaster(ColorViewModel model);
         bool IsColorExist(string ColorName, int ColorCode);
