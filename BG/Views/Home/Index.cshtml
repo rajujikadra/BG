@@ -19,19 +19,23 @@
                 <div class="col-12">
                     <h6 class="title_h6">Shape</h6>
                     <div class="dflex-center select_all_active">All</div>
-                    <div class="shapeBtn"><img src="~/Areas/Admin/assets/img/stocksearch/cb-CU.png"><span>Round</span></div>
-                    <div class="shapeBtn"><img src="~/Areas/Admin/assets/img/stocksearch/cb-CUBR.png"><span>Cusion</span></div>
-                    <div class="shapeBtn"><img src="~/Areas/Admin/assets/img/stocksearch/cb-CUMBR.png"><span>Princess</span></div>
-                    <div class="shapeBtn"><img src="~/Areas/Admin/assets/img/stocksearch/cb-EM.png"><span>Emerald</span></div>
-                    <div class="shapeBtn"><img src="~/Areas/Admin/assets/img/stocksearch/cb-TR.png"><span>Asscher</span></div>
-                    <div class="shapeBtn"><img src="~/Areas/Admin/assets/img/stocksearch/cb-MQ.png"><span>Heart</span></div>
-                    <div class="shapeBtn"><img src="~/Areas/Admin/assets/img/stocksearch/cb-OV.png"><span>Pear</span></div>
-                    <div class="shapeBtn"><img src="~/Areas/Admin/assets/img/stocksearch/cb-PR.png"><span>Oval</span></div>
-                    <div class="shapeBtn"><img src="~/Areas/Admin/assets/img/stocksearch/cb-PS.png"><span>Marquise</span></div>
-                    <div class="shapeBtn"><img src="~/Areas/Admin/assets/img/stocksearch/cb-RD.png"><span>L Radiant</span></div>
-                    <div class="shapeBtn"><img src="~/Areas/Admin/assets/img/stocksearch/cb-SQEM.png"><span>Sq Radiant</span></div>
-                    <div class="shapeBtn"><img src="~/Areas/Admin/assets/img/stocksearch/cb-SQRT.png"><span>Baguette</span></div>
-                    <div class="shapeBtn"><img src="~/Areas/Admin/assets/img/stocksearch/cb-TA.png"><span>Other</span></div>
+                    @foreach (var shap in Model.Shape)
+                    {
+                        <div class="shapeBtn" id="@shap.ShapeCode"><img src="~/Areas/Admin/assets/img/stocksearch/cb-CU.png"><span>@shap.ShapeName</span></div>
+                    }
+                    @*<div class="shapeBtn"><img src="~/Areas/Admin/assets/img/stocksearch/cb-CU.png"><span>Round</span></div>
+                        <div class="shapeBtn"><img src="~/Areas/Admin/assets/img/stocksearch/cb-CUBR.png"><span>Cusion</span></div>
+                        <div class="shapeBtn"><img src="~/Areas/Admin/assets/img/stocksearch/cb-CUMBR.png"><span>Princess</span></div>
+                        <div class="shapeBtn"><img src="~/Areas/Admin/assets/img/stocksearch/cb-EM.png"><span>Emerald</span></div>
+                        <div class="shapeBtn"><img src="~/Areas/Admin/assets/img/stocksearch/cb-TR.png"><span>Asscher</span></div>
+                        <div class="shapeBtn"><img src="~/Areas/Admin/assets/img/stocksearch/cb-MQ.png"><span>Heart</span></div>
+                        <div class="shapeBtn"><img src="~/Areas/Admin/assets/img/stocksearch/cb-OV.png"><span>Pear</span></div>
+                        <div class="shapeBtn"><img src="~/Areas/Admin/assets/img/stocksearch/cb-PR.png"><span>Oval</span></div>
+                        <div class="shapeBtn"><img src="~/Areas/Admin/assets/img/stocksearch/cb-PS.png"><span>Marquise</span></div>
+                        <div class="shapeBtn"><img src="~/Areas/Admin/assets/img/stocksearch/cb-RD.png"><span>L Radiant</span></div>
+                        <div class="shapeBtn"><img src="~/Areas/Admin/assets/img/stocksearch/cb-SQEM.png"><span>Sq Radiant</span></div>
+                        <div class="shapeBtn"><img src="~/Areas/Admin/assets/img/stocksearch/cb-SQRT.png"><span>Baguette</span></div>
+                        <div class="shapeBtn"><img src="~/Areas/Admin/assets/img/stocksearch/cb-TA.png"><span>Other</span></div>*@
                 </div>
                 <div class="col-12 mt-4">
                     <h6 class="title_h6">Carat</h6>
@@ -40,13 +44,13 @@
                             <form>
                                 <div class="form-row">
                                     <div class="form-group col-sm-6 mt-3">
-                                        <input type="text" class="form-control" placeholder="From">
+                                        <input id="txtFromCaret" type="text" class="form-control" placeholder="From">
                                     </div>
                                     <div class="form-group col-sm-6 mt-3">
-                                        <input type="text" class="form-control" placeholder="To">
+                                        <input id="txtToCaret" type="text" class="form-control" placeholder="To">
                                     </div>
                                     <div class="form-group col-md-12 mt-3 pos-rel">
-                                        <input type="text" class="form-control cartMultiSize" placeholder="Multisize">
+                                        <input id="txtMultiSize" type="text" class="form-control cartMultiSize" placeholder="Multisize">
                                         <div class="plusModal" data-toggle="modal" data-target="#exampleModalCenter1">
                                             <i class="fas fa-plus"></i>
                                         </div>
@@ -61,10 +65,10 @@
                                         <label>Price/Carat</label>
                                     </div>
                                     <div class="form-group priceCaret2 mt-3">
-                                        <input type="text" class="form-control" placeholder="From">
+                                        <input id="txtPriceCaretFrom" type="text" class="form-control" placeholder="From">
                                     </div>
                                     <div class="form-group priceCaret3 mt-3">
-                                        <input type="text" class="form-control" placeholder="To">
+                                        <input id="txtPriceCaretTo" type="text" class="form-control" placeholder="To">
                                     </div>
                                     <div class="form-group RAPCaret1 mt-3">
                                         <label>RAP Off</label>
@@ -72,12 +76,12 @@
                                     <div class="form-group RAPCaret2 mt-3">
                                         <button><i class="fas fa-plus"></i></button>
                                         <button><i class="fas fa-minus"></i></button>
-                                        <input type="text" class="form-control" placeholder="From">
+                                        <input id="txtRapFrom" type="text" class="form-control" placeholder="From">
                                     </div>
                                     <div class="form-group RAPCaret3 mt-3">
                                         <button><i class="fas fa-plus"></i></button>
                                         <button><i class="fas fa-minus"></i></button>
-                                        <input type="text" class="form-control" placeholder="To">
+                                        <input id="txtRapTo" type="text" class="form-control" placeholder="To">
                                     </div>
                                 </div>
                             </form>
@@ -93,13 +97,19 @@
                                     <div class="form-group col-md-6 mt-3">
                                         <select id="inputState" class="form-control">
                                             <option selected>Choose...</option>
-                                            <option>...</option>
+                                            @foreach (var color in Model.Color)
+                                            {
+                                                <option value="@color.ColorCode">@color.ColorName</option>
+                                            }
                                         </select>
                                     </div>
                                     <div class="form-group col-md-6 mt-3">
                                         <select id="inputState" class="form-control">
                                             <option selected>Choose...</option>
-                                            <option>...</option>
+                                            @foreach (var fancy_color in Model.FancyColor)
+                                            {
+                                                <option value="@fancy_color.FancyColorCode">@fancy_color.FancyColorName</option>
+                                            }
                                         </select>
                                     </div>
                                 </div>
@@ -108,19 +118,23 @@
                         <div class="col-md-8">
                             <div class="fancycolorBox">
                                 <div class="FCBox_active">All</div>
-                                <div class="FCBox_Fc">D</div>
-                                <div class="FCBox_Fc">E</div>
-                                <div class="FCBox_Fc">F</div>
-                                <div class="FCBox_Fc">G</div>
-                                <div class="FCBox_Fc">H</div>
-                                <div class="FCBox_Fc">I</div>
-                                <div class="FCBox_Fc">J</div>
-                                <div class="FCBox_Fc">K</div>
-                                <div class="FCBox_Fc">L</div>
-                                <div class="FCBox_Fc">M</div>
-                                <div class="FCBox_Fc">N</div>
-                                <div class="FCBox_Fc">O</div>
-                                <div class="FCBox_Fc">P</div>
+                                @foreach (var color in Model.Color)
+                                {
+                                    <div class="FCBox_Fc" id="@color.ColorCode">@color.ColorName</div>
+                                }
+                                @*<div class="FCBox_Fc">D</div>
+                                    <div class="FCBox_Fc">E</div>
+                                    <div class="FCBox_Fc">F</div>
+                                    <div class="FCBox_Fc">G</div>
+                                    <div class="FCBox_Fc">H</div>
+                                    <div class="FCBox_Fc">I</div>
+                                    <div class="FCBox_Fc">J</div>
+                                    <div class="FCBox_Fc">K</div>
+                                    <div class="FCBox_Fc">L</div>
+                                    <div class="FCBox_Fc">M</div>
+                                    <div class="FCBox_Fc">N</div>
+                                    <div class="FCBox_Fc">O</div>
+                                    <div class="FCBox_Fc">P</div>*@
                             </div>
                         </div>
                     </div>
@@ -134,7 +148,10 @@
                                     <div class="form-group col-md-6 mt-3">
                                         <select id="inputState" class="form-control">
                                             <option selected>Choose...</option>
-                                            <option>...</option>
+                                            @foreach (var clarity in Model.Clarity)
+                                            {
+                                                <option value="@clarity.PurityCode">@clarity.PurityName</option>
+                                            }
                                         </select>
                                     </div>
                                     <div class="form-group col-md-6 mt-3">
@@ -149,20 +166,24 @@
                         <div class="col-md-8">
                             <div class="fancycolorBox">
                                 <div class="FCBox_active1">ALL</div>
-                                <div class="FCBox_Fc1">FL</div>
-                                <div class="FCBox_Fc1">IF</div>
-                                <div class="FCBox_Fc1">VVS1</div>
-                                <div class="FCBox_Fc1">VVS2</div>
-                                <div class="FCBox_Fc1">VS1</div>
-                                <div class="FCBox_Fc1">VS2</div>
-                                <div class="FCBox_Fc1">SI1</div>
-                                <div class="FCBox_Fc1">SI2</div>
-                                <div class="FCBox_Fc1">SI3</div>
-                                <div class="FCBox_Fc1">I1</div>
-                                <div class="FCBox_Fc1">I2</div>
-                                <div class="FCBox_Fc1">I3</div>
-                                <div class="FCBox_Fc1">I4</div>
-                                <div class="FCBox_Fc1">I5</div>
+                                @foreach (var clarity in Model.Clarity)
+                                {
+                                    <div class="FCBox_Fc1" id="@clarity.PurityCode">@clarity.PurityName</div>
+                                }
+                                @*<div class="FCBox_Fc1">FL</div>
+                                    <div class="FCBox_Fc1">IF</div>
+                                    <div class="FCBox_Fc1">VVS1</div>
+                                    <div class="FCBox_Fc1">VVS2</div>
+                                    <div class="FCBox_Fc1">VS1</div>
+                                    <div class="FCBox_Fc1">VS2</div>
+                                    <div class="FCBox_Fc1">SI1</div>
+                                    <div class="FCBox_Fc1">SI2</div>
+                                    <div class="FCBox_Fc1">SI3</div>
+                                    <div class="FCBox_Fc1">I1</div>
+                                    <div class="FCBox_Fc1">I2</div>
+                                    <div class="FCBox_Fc1">I3</div>
+                                    <div class="FCBox_Fc1">I4</div>
+                                    <div class="FCBox_Fc1">I5</div>*@
                             </div>
                         </div>
                     </div>
@@ -171,44 +192,60 @@
                     <h6 class="title_h6">CUT</h6>
                     <div class="cut-Symmetry-Polish2">
                         <div class="CSP_box_active1">All</div>
-                        <div class="CSP_box1">Id</div>
-                        <div class="CSP_box1">Ex</div>
-                        <div class="CSP_box1">Vg</div>
-                        <div class="CSP_box1">Gd</div>
-                        <div class="CSP_box1">Fr</div>
-                        <div class="CSP_box1">Pr</div>
+                        @foreach (var cut in Model.Cut)
+                        {
+                            <div class="CSP_box1" id="@cut.CutCode">@cut.CutName</div>
+                        }
+                        @*<div class="CSP_box1">Id</div>
+                            <div class="CSP_box1">Ex</div>
+                            <div class="CSP_box1">Vg</div>
+                            <div class="CSP_box1">Gd</div>
+                            <div class="CSP_box1">Fr</div>
+                            <div class="CSP_box1">Pr</div>*@
                     </div>
                 </div>
                 <div class="col-md-6 col-xl-4 mt-4">
                     <h6 class="title_h6">POLISH</h6>
                     <div class="cut-Symmetry-Polish2">
                         <div class="CSP_box_active2">All</div>
-                        <div class="CSP_box2">Id</div>
-                        <div class="CSP_box2">Ex</div>
-                        <div class="CSP_box2">Vg</div>
-                        <div class="CSP_box2">Gd</div>
-                        <div class="CSP_box2">Fr</div>
-                        <div class="CSP_box2">Pr</div>
+                        @foreach (var polish in Model.Polish)
+                        {
+                            <div class="CSP_box2" id="@polish.PolishCode">@polish.PolishName</div>
+                        }
+                        @*<div class="CSP_box2">Id</div>
+                            <div class="CSP_box2">Ex</div>
+                            <div class="CSP_box2">Vg</div>
+                            <div class="CSP_box2">Gd</div>
+                            <div class="CSP_box2">Fr</div>
+                            <div class="CSP_box2">Pr</div>*@
                     </div>
                 </div>
                 <div class="col-md-6 col-xl-4 mt-4">
                     <h6 class="title_h6">SYMMETRY</h6>
                     <div class="cut-Symmetry-Polish2">
                         <div class="CSP_box_active3">All</div>
-                        <div class="CSP_box3">Id</div>
-                        <div class="CSP_box3">Ex</div>
-                        <div class="CSP_box3">Vg</div>
-                        <div class="CSP_box3">Gd</div>
-                        <div class="CSP_box3">Fr</div>
-                        <div class="CSP_box3">Pr</div>
+                        @foreach (var symmetry in Model.Symmetry)
+                        {
+                            <div class="CSP_box3" @symmetry.SymmetryCode>@symmetry.SymmetryName</div>
+                        }
+                        @*<div class="CSP_box3">Id</div>
+                            <div class="CSP_box3">Ex</div>
+                            <div class="CSP_box3">Vg</div>
+                            <div class="CSP_box3">Gd</div>
+                            <div class="CSP_box3">Fr</div>
+                            <div class="CSP_box3">Pr</div>*@
                     </div>
                 </div>
                 <div class="col-12 mt-4">
                     <h6 class="title_h6">Lab</h6>
                     <div class="shapeBtn_Lab_Active dflex-center">All</div>
-                    <div class="shapeBtn_Lab"><img src="~/Areas/Admin/assets/img/stocksearch/cb-CU.png"><span>GIA</span></div>
-                    <div class="shapeBtn_Lab"><img src="~/Areas/Admin/assets/img/stocksearch/cb-CU.png"><span>HRD</span></div>
-                    <div class="shapeBtn_Lab"><img src="~/Areas/Admin/assets/img/stocksearch/cb-CU.png"><span>IGI</span></div>
+                    @foreach (var Lab in Model.Lab)
+                    {
+                        <div id="@Lab.CertificateCode" class="shapeBtn_Lab"><img src="~/Areas/Admin/assets/img/stocksearch/cb-CU.png"><span>@Lab.CertiificateName</span></div>
+                    }
+                    @*<div class="shapeBtn_Lab"><img src="~/Areas/Admin/assets/img/stocksearch/cb-CU.png"><span>GIA</span></div>
+                        <div class="shapeBtn_Lab"><img src="~/Areas/Admin/assets/img/stocksearch/cb-CU.png"><span>HRD</span></div>
+                        <div class="shapeBtn_Lab"><img src="~/Areas/Admin/assets/img/stocksearch/cb-CU.png"><span>IGI</span></div>*@
                 </div>
                 <div class="kTosymbol mt-4">
                     <h6 class="title_h6">KEY TO SYMBOL</h6>
@@ -290,10 +327,14 @@
                     <h6 class="title_h6">Hearts & Arrows</h6>
                     <div class="cut-Symmetry-Polish2">
                         <div class="CSP_box_active6">All</div>
-                        <div class="CSP_box6">EX</div>
-                        <div class="CSP_box6">VG</div>
-                        <div class="CSP_box6">Gd</div>
-                        <div class="CSP_box6">Fr</div>
+                        @foreach (var HA in Model.Hearts_Arrows)
+                        {
+                            <div id="@HA.HACode" class="CSP_box6">@HA.HAName</div>
+                        }
+                        @*<div class="CSP_box6">EX</div>
+                            <div class="CSP_box6">VG</div>
+                            <div class="CSP_box6">Gd</div>
+                            <div class="CSP_box6">Fr</div>*@
                     </div>
                 </div>
             </div>
@@ -1245,5 +1286,18 @@
                 }
             });
         });
+
+        $('#txtFromCaret, #txtToCaret, #txtPriceCaretFrom, #txtPriceCaretFrom, #txtRapFrom, #txtRapTo, #txtMultiSize').keypress(function (event) {
+            return isNumber(event, this)
+        });
+        // THE SCRIPT THAT CHECKS IF THE KEY PRESSED IS A NUMERIC OR DECIMAL VALUE.
+        function isNumber(evt, element) {
+            var charCode = (evt.which) ? evt.which : event.keyCode
+            if (
+                (charCode != 46 || $(element).val().indexOf('.') != -1) &&      // “.” CHECK DOT, AND ONLY ONE.
+                (charCode < 48 || charCode > 57))
+                return false;
+            return true;
+        }
     </script>
 }

@@ -31,6 +31,22 @@ namespace BG.Controllers
                 ColorName = c.ColorName,
                 ColorAliasName = c.ColorAliasName
             }).ToList();
+            model.FancyColor = DB.FancyColorMsts.Where(x => x.Active == true).Select(c => new FancyColor()
+            {
+                FancyColorCode = c.FancyColorCode,
+                FancyColorName = c.FancyColorName
+            }).ToList();
+            model.Lab = DB.CertificateMsts.Where(x => x.Active == true).Select(c => new Certificate()
+            {
+                CertificateCode = c.CertificateCode,
+                CertiificateName = c.CertificateName
+            }).ToList();
+            model.Clarity = DB.PurityMsts.Where(x => x.Active == true).Select(c => new Purity()
+            {
+                PurityAliasName = c.PurityAliasName,
+                PurityCode = c.PurityCode,
+                PurityName = c.PurityName
+            }).ToList();
             model.Cut = DB.CutMsts.Where(x => x.Active == true).Select(c => new Cut()
             {
                 CutCode = c.CutCode,
@@ -49,7 +65,13 @@ namespace BG.Controllers
                 SymmetryAliasName = c.SymmetryAliasName,
                 SymmetryName = c.SymmetryName
             }).ToList();
-            return View();
+            model.Hearts_Arrows = DB.HAMsts.Where(x => x.Active == true).Select(c => new HA
+            { 
+                HAAliasName = c.HAAliasName,
+                HACode = c.HACode,
+                HAName = c.HAName
+            }).ToList();
+            return View(model);
         }
 
         public ActionResult About()

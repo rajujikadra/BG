@@ -13,6 +13,10 @@ namespace BG_Application.CustomDTO
         public List<Cut> Cut { get; set; }
         public List<Polish> Polish { get; set; }
         public List<Symmetry> Symmetry { get; set; }
+        public List<FancyColor> FancyColor { get; set; }
+        public List<Purity> Clarity { get; set; }
+        public List<Certificate> Lab { get; set; }
+        public List<HA> Hearts_Arrows { get; set; }
     }
 
     public class Shape
@@ -26,6 +30,11 @@ namespace BG_Application.CustomDTO
         public int ColorCode { get; set; }
         public string ColorName { get; set; }
         public string ColorAliasName { get; set; }
+    }
+    public class FancyColor
+    {
+        public int FancyColorCode { get; set; }
+        public string FancyColorName { get; set; }
     }
     public class Cut
     {
@@ -44,5 +53,22 @@ namespace BG_Application.CustomDTO
         public int SymmetryCode { get; set; }
         public string SymmetryName { get; set; }
         public string SymmetryAliasName { get; set; }
+    }
+    public class Purity
+    {
+        public int PurityCode { get; set; }
+        public string PurityName { get; set; }
+        public string PurityAliasName { get; set; }
+    }
+    public class Certificate
+    {
+        public int CertificateCode { get; set; }
+        public string CertiificateName { get; set; }
+    }
+    public class HA
+    {
+        public int HACode { get; set; }
+        public string HAName { get; set; }
+        public string HAAliasName { get; set; }
     }
 }
