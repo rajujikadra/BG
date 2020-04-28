@@ -183,6 +183,7 @@
             data: form.serialize(),
             success: function (data) {
                 if (data.StatusCode == 200) {
+                    debugger;
                     location.href = data.Messages[1];
                 } else if (data.StatusCode == 404) {
                     swal("Error", data.Messages.join(), "error");
@@ -197,7 +198,6 @@
         return true;
     });
     function LoginFormSuccess(response) {
-        debugger;
         var data = response;
     }
     function formValidate(form) {

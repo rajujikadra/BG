@@ -6,13 +6,18 @@
 <div class="main-content main-content-pb">
     <section class="section">
         <div class="section-body stocksearch">
-
             <div class="row sticky-top">
                 <div class="col-12 mainScrollHeader">
-                    <a href="#basicSearch"><div class="searchstockBtn current-active">Basic Search</div></a>
-                    <a href="#searchParameters"><div class="searchstockBtn">Search By Parameters</div></a>
-                    <a href="#searchInclusion"><div class="searchstockBtn">Search By Inclusion</div></a>
-                    <a href="#searchPacket"><div class="searchstockBtn">Search By Packet/List/Certificate No. and Other</div></a>
+                    @*<a href="#basicSearch"><div class="searchstockBtn current-active">Basic Search</div></a>
+                        <a href="#searchParameters"><div class="searchstockBtn">Search By Parameters</div></a>
+                        <a href="#searchInclusion"><div class="searchstockBtn">Search By Inclusion</div></a>
+                        <a href="#searchPacket"><div class="searchstockBtn">Search By Packet/List/Certificate No. and Other</div></a>*@
+                    <ul>
+                        <li><a href="#basicSearch" class="current-active">Basic Search</a></li>
+                        <li><a href="#searchParameters">Search By Parameters</a></li>
+                        <li><a href="#searchInclusion">Search By Inclusion</a></li>
+                        <li><a href="#searchPacket">Search By Packet/List/Certificate No. and Other</a></li>
+                    </ul>
                 </div>
             </div>
             <div class="row containe_details" id="basicSearch">
@@ -50,10 +55,10 @@
                                         <input id="txtToCaret" type="text" class="form-control" placeholder="To">
                                     </div>
                                     <div class="form-group col-md-12 mt-3 pos-rel">
-                                        <input id="txtMultiSize" type="text" class="form-control cartMultiSize" placeholder="Multisize">
-                                        <div class="plusModal" data-toggle="modal" data-target="#exampleModalCenter1">
-                                            <i class="fas fa-plus"></i>
-                                        </div>
+                                        <input id="txtMultiSize" type="text" class="form-control" placeholder="Multisize">
+                                        @*<div class="plusModal" data-toggle="modal" data-target="#exampleModalCenter1">
+                                                <i class="fas fa-plus"></i>
+                                            </div>*@
                                     </div>
                                 </div>
                             </form>
@@ -62,7 +67,7 @@
                             <form>
                                 <div class="form-row">
                                     <div class="form-group priceCaret1 mt-3">
-                                        <label>Price/Carat</label>
+                                        <label>Price</label>
                                     </div>
                                     <div class="form-group priceCaret2 mt-3">
                                         <input id="txtPriceCaretFrom" type="text" class="form-control" placeholder="From">
@@ -74,13 +79,13 @@
                                         <label>RAP Off</label>
                                     </div>
                                     <div class="form-group RAPCaret2 mt-3">
-                                        <button><i class="fas fa-plus"></i></button>
-                                        <button><i class="fas fa-minus"></i></button>
+                                        @*<button><i class="fas fa-plus"></i></button>
+                                            <button><i class="fas fa-minus"></i></button>*@
                                         <input id="txtRapFrom" type="text" class="form-control" placeholder="From">
                                     </div>
                                     <div class="form-group RAPCaret3 mt-3">
-                                        <button><i class="fas fa-plus"></i></button>
-                                        <button><i class="fas fa-minus"></i></button>
+                                        @*<button><i class="fas fa-plus"></i></button>
+                                            <button><i class="fas fa-minus"></i></button>*@
                                         <input id="txtRapTo" type="text" class="form-control" placeholder="To">
                                     </div>
                                 </div>
@@ -94,7 +99,7 @@
                         <div class="col-md-4">
                             <form>
                                 <div class="form-row">
-                                    <div class="form-group col-md-6 mt-3">
+                                    <div class="form-group col-md-12 mt-3">
                                         <select id="inputState" class="form-control">
                                             <option selected>Choose...</option>
                                             @foreach (var color in Model.Color)
@@ -103,15 +108,15 @@
                                             }
                                         </select>
                                     </div>
-                                    <div class="form-group col-md-6 mt-3">
-                                        <select id="inputState" class="form-control">
-                                            <option selected>Choose...</option>
-                                            @foreach (var fancy_color in Model.FancyColor)
-                                            {
-                                                <option value="@fancy_color.FancyColorCode">@fancy_color.FancyColorName</option>
-                                            }
-                                        </select>
-                                    </div>
+                                    @*<div class="form-group col-md-6 mt-3">
+                                            <select id="inputState" class="form-control">
+                                                <option selected>Choose...</option>
+                                                @foreach (var fancy_color in Model.FancyColor)
+                                                {
+                                                    <option value="@fancy_color.FancyColorCode">@fancy_color.FancyColorName</option>
+                                                }
+                                            </select>
+                                        </div>*@
                                 </div>
                             </form>
                         </div>
@@ -145,7 +150,7 @@
                         <div class="col-md-4">
                             <form>
                                 <div class="form-row">
-                                    <div class="form-group col-md-6 mt-3">
+                                    <div class="form-group col-md-12 mt-3">
                                         <select id="inputState" class="form-control">
                                             <option selected>Choose...</option>
                                             @foreach (var clarity in Model.Clarity)
@@ -154,12 +159,12 @@
                                             }
                                         </select>
                                     </div>
-                                    <div class="form-group col-md-6 mt-3">
-                                        <select id="inputState" class="form-control">
-                                            <option selected>Choose...</option>
-                                            <option>...</option>
-                                        </select>
-                                    </div>
+                                    @*<div class="form-group col-md-6 mt-3">
+                                            <select id="inputState" class="form-control">
+                                                <option selected>Choose...</option>
+                                                <option>...</option>
+                                            </select>
+                                        </div>*@
                                 </div>
                             </form>
                         </div>
@@ -251,17 +256,21 @@
                     <h6 class="title_h6">KEY TO SYMBOL</h6>
                     <div class="row">
                         <div class="labSymbol mt-3 customeselect_option">
-                            <i class="far fa-times-circle fa-Circle-icon"></i>
-                            <i class="far fa-check-circle fa-Circle-icon"></i>
+                            @*<i class="far fa-times-circle fa-Circle-icon"></i>
+                                <i class="far fa-check-circle fa-Circle-icon"></i>*@
                             <span>Key to Symbol</span>
-                            <select class="test" multiple="multiple">
-                                <optgroup label="Group A">
-                                    <option value="1">Option 1</option>
-                                    <option value="2">Option 2</option>
-                                    <option value="3">Option 3</option>
-                                    <option value="4">Option 4</option>
-                                    <option value="5">Option 5</option>
-                                </optgroup>
+                            <select class="test" multiple="multiple" id="DrdKetToDymbol">
+                                @foreach (var key_to_symbol in Model.KetToSymbol)
+                                {
+                                    <option value="@key_to_symbol">@key_to_symbol</option>
+                                }
+                                @*<optgroup label="Group A">
+                                        <option value="1">Option 1</option>
+                                        <option value="2">Option 2</option>
+                                        <option value="3">Option 3</option>
+                                        <option value="4">Option 4</option>
+                                        <option value="5">Option 5</option>
+                                    </optgroup>*@
                             </select>
                         </div>
                     </div>
@@ -270,17 +279,21 @@
                     <h6 class="title_h6">REPORT COMMENTS</h6>
                     <div class="row">
                         <div class="labSymbol mt-3 customeselect_option">
-                            <i class="far fa-times-circle fa-Circle-icon1"></i>
-                            <i class="far fa-check-circle fa-Circle-icon1"></i>
+                            @*<i class="far fa-times-circle fa-Circle-icon1"></i>
+                                <i class="far fa-check-circle fa-Circle-icon1"></i>*@
                             <span>Report Comments</span>
-                            <select class="test" multiple="multiple">
-                                <optgroup label="Group A">
-                                    <option value="1">Option 1</option>
-                                    <option value="2">Option 2</option>
-                                    <option value="3">Option 3</option>
-                                    <option value="4">Option 4</option>
-                                    <option value="5">Option 5</option>
-                                </optgroup>
+                            <select class="test" multiple="multiple" id="DrdComments">
+                                @foreach (var comments in Model.Comments)
+                                {
+                                    <option value="@comments">@comments</option>
+                                }
+                                @*<optgroup label="Group A">
+                                        <option value="1">Option 1</option>
+                                        <option value="2">Option 2</option>
+                                        <option value="3">Option 3</option>
+                                        <option value="4">Option 4</option>
+                                        <option value="5">Option 5</option>
+                                    </optgroup>*@
                             </select>
                         </div>
                     </div>
@@ -288,17 +301,21 @@
                 <div class="col-md-12 mt-4 color_shade">
                     <h6 class="title_h6">COLOR SHADE</h6>
                     <div class="customeselect_option mt-3">
-                        <select class="test" multiple="multiple">
-                            <optgroup label="Group A">
-                                <option value="1">Option 1</option>
-                                <option value="2">Option 2</option>
-                                <option value="3">Option 3</option>
-                                <option value="4">Option 4</option>
-                                <option value="5">Option 5</option>
-                            </optgroup>
+                        <select class="test" multiple="multiple" id="DrdColorShade">
+                            @foreach (var fancyColor in Model.FancyColor)
+                            {
+                                <option value="@fancyColor.FancyColorCode">@fancyColor.FancyColorName</option>
+                            }
+                            @*<optgroup label="Group A">
+                                    <option value="1">Option 1</option>
+                                    <option value="2">Option 2</option>
+                                    <option value="3">Option 3</option>
+                                    <option value="4">Option 4</option>
+                                    <option value="5">Option 5</option>
+                                </optgroup>*@
                         </select>
                     </div>
-                    <button class="noBGM">No bgm</button>
+                    @*<button class="noBGM">No bgm</button>*@
                 </div>
                 <div class="FluorescenceHearts mt-4">
                     <h6 class="title_h6">Fluorescence</h6>
@@ -311,7 +328,7 @@
                         <div class="CSP_box4">VH</div>
                     </div>
                 </div>
-                <div class="FluorescenceHearts mt-4">
+                @*<div class="FluorescenceHearts mt-4">
                     <h6 class="title_h6">Fluorescence Color</h6>
                     <div class="cut-Symmetry-Polish2">
                         <div class="CSP_box_active5">All</div>
@@ -322,7 +339,7 @@
                         <div class="CSP_box5">GR</div>
                         <div class="CSP_box5">RD</div>
                     </div>
-                </div>
+                </div>*@
                 <div class="FluorescenceHearts mt-4">
                     <h6 class="title_h6">Hearts & Arrows</h6>
                     <div class="cut-Symmetry-Polish2">
@@ -353,15 +370,15 @@
                         <div class="Parameters_chkBox mt-3">
                             <input type="text" class="form-control" placeholder="To">
                         </div>
-                        <div class="ParametersCHKBox mt-3">
-                            <div class="pretty p-icon p-smooth">
-                                <input type="checkbox">
-                                <div class="state p-success">
-                                    <i class="icon fa fa-check"></i>
-                                    <label></label>
+                        @*<div class="ParametersCHKBox mt-3">
+                                <div class="pretty p-icon p-smooth">
+                                    <input type="checkbox">
+                                    <div class="state p-success">
+                                        <i class="icon fa fa-check"></i>
+                                        <label></label>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
+                            </div>*@
                     </div>
                     <div class="row mx-0">
                         <div class="Parameters_name mt-3">
@@ -695,10 +712,22 @@
                 </div>
                 <div class="col-md-12 col-lg-6 mt-3">
                     <textarea rows="4" class="form-control" placeholder="Enter Number"></textarea>
-                    <div class="packet_List_Other">Packet Code</div>
-                    <div class="packet_List_Other">Certificate No.</div>
-                    <div class="packet_List_Other">List No.</div>
-                    <div class="packet_List_Other">Memo No.</div>
+                    <div class="packet_List_Other">
+                        Packet Code
+                        <input type="radio" name="searchPacket">
+                    </div>
+                    <div class="packet_List_Other">
+                        Certificate No.
+                        <input type="radio" name="searchPacket">
+                    </div>
+                    <div class="packet_List_Other">
+                        List No.
+                        <input type="radio" name="searchPacket">
+                    </div>
+                    <div class="packet_List_Other">
+                        Memo No.
+                        <input type="radio" name="searchPacket">
+                    </div>
                 </div>
             </div>
         </div>
@@ -713,11 +742,19 @@
                 window.fs_test = $('.test').fSelect();
             });
         })(jQuery);
-        $('.searchstockBtn').click(function () {
+        //$('.searchstockBtn').click(function () {
+        //    if ($(this).hasClass('current-active')) {
+        //        $(this).removeClass('current-active');
+        //    } else {
+        //        $('.searchstockBtn.current-active').removeClass('current-active');
+        //        $(this).addClass('current-active');
+        //    }
+        //});
+        $('.mainScrollHeader ul li a').click(function () {
             if ($(this).hasClass('current-active')) {
                 $(this).removeClass('current-active');
             } else {
-                $('.searchstockBtn.current-active').removeClass('current-active');
+                $('.mainScrollHeader ul li a.current-active').removeClass('current-active');
                 $(this).addClass('current-active');
             }
         });

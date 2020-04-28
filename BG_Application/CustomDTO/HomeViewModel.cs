@@ -17,6 +17,8 @@ namespace BG_Application.CustomDTO
         public List<Purity> Clarity { get; set; }
         public List<Certificate> Lab { get; set; }
         public List<HA> Hearts_Arrows { get; set; }
+        public List<string> KetToSymbol { get; set; }
+        public List<string> Comments { get; set; }
     }
 
     public class Shape

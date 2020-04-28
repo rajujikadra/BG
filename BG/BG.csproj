@@ -1147,6 +1147,7 @@
     <Content Include="Views\Shared\_MenuPartial.cshtml" />
     <Content Include="Views\Error\Index.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Home\Stock.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

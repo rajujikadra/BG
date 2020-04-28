@@ -71,6 +71,8 @@ namespace BG.Controllers
                 HACode = c.HACode,
                 HAName = c.HAName
             }).ToList();
+            model.KetToSymbol = DB.DiamondStocks.Select(x => x.KeytoSymbol.Trim()).Distinct().ToList();
+            model.Comments = DB.DiamondStocks.Select(x => x.Comments.Trim()).Distinct().ToList();
             return View(model);
         }
 
@@ -85,6 +87,12 @@ namespace BG.Controllers
         {
             ViewBag.Message = "Your contact page.";
 
+            return View();
+        }
+
+        [Route("stock")]
+        public ActionResult Stock()
+        {
             return View();
         }
     }

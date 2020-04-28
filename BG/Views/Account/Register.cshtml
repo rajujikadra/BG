@@ -273,7 +273,8 @@
                         title: "Warning",
                         text: $("#Email").val().trim() + " already taken. Please enter different email.",
                         icon: "warning"
-                    })
+                    });
+                    HoldOn.close();
                     return;
                 } else {
                     $.ajax({
@@ -283,6 +284,7 @@
                         contentType: 'application/json',
                         success: function (data) {
                             if (data.StatusCode == 200) {
+                                $("#formRegister")[0].reset();
                                 swal({
                                     title: "Success",
                                     text: "Your account has been successfully register. When system admin approve your account after then you can login.",

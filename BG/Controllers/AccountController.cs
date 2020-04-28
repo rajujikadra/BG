@@ -83,7 +83,7 @@ namespace BG.Controllers
                     var identity = new ClaimsIdentity(claims, "ApplicationCookie");
 
                     Request.GetOwinContext().Authentication.SignIn(options, identity);
-                    if (User.IsInRole(EnumTypes.RoleList.USER.ToString()))
+                    if (token.role.Equals(EnumTypes.RoleList.USER.ToString()))
                         returnUrl = "/";
                     else
                         returnUrl = "/admin/dashboard";

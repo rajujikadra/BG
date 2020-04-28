@@ -136,7 +136,7 @@ html {
 }
 button:focus{outline: none;box-shadow: none;}
 .RAPCaret2 input,.RAPCaret3 input{
-  width: 82%;
+  /*width: 82%;*/
   float: right;
 }
 .fancycolorBox .FCBox{
@@ -190,7 +190,11 @@ button:focus{outline: none;box-shadow: none;}
 .checkredColor{color: #828080 !important;}
 .fa-Circle-icon-color{color: #6777ef !important;}
 .customeselect_option > span{font-size: 14px; color: #828080; font-weight: 500; position: relative; top: -7px;}
-
+.customeselect_option .fs-dropdown .fs-option-label {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 /**/
 .customeselect_option .fs-wrap {
     display: inline-block;
@@ -442,7 +446,17 @@ button:focus{outline: none;box-shadow: none;}
     align-items: center;
     text-transform: capitalize;
     transition: all 0.5s;
+    position: relative;
+    min-width: 100px;
+    width: auto;
 }
+    .packet_List_Other input[type=radio] {
+        opacity: 0;
+        position: absolute;
+        cursor: pointer;
+        width: 40px;
+        height: 40px;
+    }
 .PL_other_Active{background-color: #6777ef !important; color: #fff !important;}
 .active_blue_bg {
     background-color: #6777ef !important;
@@ -482,9 +496,49 @@ button:focus{outline: none;box-shadow: none;}
 .stocksearch_footer li img{margin-top: -4px;}
 .stocksearch_footer li:last-child{margin-right: 0px;}
 .stocksearch_fotter{margin-top: 0px;}
+.mainScrollHeader ul {
+    padding-left: 0px;
+    margin-bottom: 0px;
+}
 
+    .mainScrollHeader ul li {
+        text-decoration: none;
+        display: inline-block;
+        margin: 0px 20px 0px 0px;
+    }
 
+        .mainScrollHeader ul li a {
+            font-size: 15px;
+            color: #333131;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.5s;
+            text-decoration: none;
+        }
 
+            .mainScrollHeader ul li a:hover {
+                color: #333131;
+            }
+
+        .mainScrollHeader ul li:hover a:after {
+            content: '';
+            display: block;
+            width: 100%;
+            transition: all 0.5s;
+            border-bottom: 2px solid #6777ef;
+        }
+
+        .mainScrollHeader ul li a:after {
+            content: '';
+            display: block;
+            width: 0px;
+            transition: all 0.5s;
+            position: relative;
+            top: -5px;
+            border-bottom: 2px solid #a8a8a8;
+        }
+
+   
 
 
 
@@ -519,7 +573,7 @@ button:focus{outline: none;box-shadow: none;}
     .cartMultiSize{width: 87%;}
     .priceCaret1, .RAPCaret1{width: 10%;}
     .priceCaret2, .priceCaret3, .RAPCaret2, .RAPCaret3{width: 43%;}
-    .RAPCaret2 input, .RAPCaret3 input{width: 70%;}
+    /*.RAPCaret2 input, .RAPCaret3 input{width: 70%;}*/
 }
 @media (min-width:1600px){
     .kTosymbol{width: 33.33%; padding: 0px 15px;}
@@ -581,6 +635,16 @@ button:focus{outline: none;box-shadow: none;}
     }
     .ParametersCHKBox .pretty{top: -10px;}
     .Inclusion_chkBox{width: 100%; margin-top: 0px !important;}
+    .mainScrollHeader ul {
+        display: flex;
+        width: 100%;
+        overflow: hidden;
+        overflow-x: scroll;
+    }
+
+        .mainScrollHeader ul li a {
+            white-space: nowrap;
+        }
 }
 @media (max-width: 767px){
     .main-content{
