@@ -671,3 +671,518 @@ button:focus{outline: none;box-shadow: none;}
     }
     .main-content-pb{padding-bottom: 60px;}
 }
+.stocksearch-bottom-margin {
+    margin: 0 auto 75px;
+}
+
+.stocksearch-footer {
+    padding: 20px 30px 20px 280px;
+    margin-top: 0px;
+    color: #98a6ad;
+    border-top: 1px solid #e3eaef;
+    display: inline-block;
+    background: #ffffff;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 11px;
+    width: 100%;
+    position: fixed;
+    bottom: 40px;
+    left: 0;
+    z-index: 1;
+}
+/********************************************** /25-04-2020(Result1-tbl) ***************************************/
+.result1Tbl .selectedStone_area {
+    width: 100%;
+    background-color: #fff;
+    height: auto;
+    padding: 15px;
+    margin: 15px 0px;
+    border-radius: 10px;
+    box-shadow: 0 0.46875rem 2.1875rem rgba(90,97,105,0.1), 0 0.9375rem 1.40625rem rgba(90,97,105,0.1), 0 0.25rem 0.53125rem rgba(90,97,105,0.12), 0 0.125rem 0.1875rem rgba(90,97,105,0.1);
+}
+
+    .result1Tbl .selectedStone_area h1 {
+        font-size: 18px;
+        color: #000;
+        font-weight: bold;
+        text-align: left;
+        display: inline-block;
+        margin-bottom: 0px;
+    }
+
+.selectedStone_area > .selectedStone_btn button {
+    width: auto;
+    height: auto;
+    margin: 0px 5px;
+    padding: 5px;
+    background-color: transparent;
+    border: 1px solid #000;
+    font-size: 16px;
+    color: #000;
+    text-align: center;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+    .selectedStone_area > .selectedStone_btn button:hover {
+        background-color: #6777ef;
+        border-color: #6777ef;
+        color: #fff;
+        transition: all 0.5s;
+    }
+
+.selectedStone_area > .selectedStone_btn {
+    display: inline-block;
+    float: right;
+}
+
+.selectedStoneActiveBtn {
+    background-color: #6777ef !important;
+    border-color: #6777ef !important;
+    color: #fff !important;
+}
+
+.selectedStone_rating_area {
+    width: 100%;
+    margin-top: 45px;
+}
+
+.stone_number {
+    width: 5.84vw;
+    height: auto;
+    display: inline-block;
+    margin-bottom: 5px;
+}
+
+.result1Tbl .selectedStone_rating_area > .stone_number > h5 {
+    font-size: 14px;
+    color: #000;
+    text-align: left;
+    margin-bottom: 0px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.result1Tbl .selectedStone_rating_area > .stone_number > p {
+    font-size: 14px;
+    color: #6c757d;
+    text-align: left;
+    margin-bottom: 0px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.stone_center_b {
+    width: 3vw !important;
+    position: relative;
+    height: 45px;
+    margin-bottom: 0;
+}
+
+    .stone_center_b::after {
+        content: '';
+        border: 1px solid #6c757d;
+        height: 45px;
+        margin-bottom: 0;
+        text-align: center;
+        position: absolute;
+        top: 0;
+        left: 50%;
+    }
+
+.result1Tbl .selectedStone_inner_tbl {
+    width: 100%;
+    height: auto;
+    padding: 15px;
+    background-color: #fff;
+    box-shadow: 0 0.46875rem 2.1875rem rgba(90,97,105,0.1), 0 0.9375rem 1.40625rem rgba(90,97,105,0.1), 0 0.25rem 0.53125rem rgba(90,97,105,0.12), 0 0.125rem 0.1875rem rgba(90,97,105,0.1);
+    border-radius: 10px;
+}
+
+    .result1Tbl .selectedStone_inner_tbl .search-btn {
+        display: inline-block;
+        position: relative;
+    }
+
+    .result1Tbl .selectedStone_inner_tbl .selectedStone_title_right {
+        display: inline-block;
+        float: right;
+    }
+
+    .result1Tbl .selectedStone_inner_tbl .search-btn i {
+        width: 35px;
+        height: 35px;
+        line-height: 35px;
+        background: #6777ef;
+        border: 1px solid #6777ef;
+        text-align: center;
+        font-size: 18px;
+        position: absolute;
+        top: 0;
+        right: -40px;
+        color: #fff;
+        cursor: pointer;
+        transition: all 0.5s;
+    }
+
+        .result1Tbl .selectedStone_inner_tbl .search-btn i:hover {
+            background-color: transparent;
+            border: 1px solid #6777ef;
+            color: #6777ef;
+            transition: all 0.5s;
+        }
+
+    .result1Tbl .selectedStone_inner_tbl .search-btn input {
+        width: 250px;
+    }
+
+    .result1Tbl .selectedStone_inner_tbl .selectedStone_title_right ul {
+        margin-bottom: 0px;
+        padding-left: 0px;
+    }
+
+        .result1Tbl .selectedStone_inner_tbl .selectedStone_title_right ul li {
+            list-style: none;
+            display: inline-block;
+        }
+
+            .result1Tbl .selectedStone_inner_tbl .selectedStone_title_right ul li a {
+                font-size: 18px;
+                color: #000;
+                cursor: pointer;
+                text-decoration: none;
+            }
+
+            .result1Tbl .selectedStone_inner_tbl .selectedStone_title_right ul li:nth-child(1) a::before {
+                content: '';
+                border-left: 2px solid #a96d42;
+                margin: 0px 10px;
+            }
+
+            .result1Tbl .selectedStone_inner_tbl .selectedStone_title_right ul li:nth-child(2) a::before {
+                content: '';
+                border-left: 2px solid red;
+                margin: 0px 10px;
+            }
+
+            .result1Tbl .selectedStone_inner_tbl .selectedStone_title_right ul li:nth-child(3) a::before {
+                content: '';
+                border-left: 2px solid green;
+                margin: 0px 10px;
+            }
+
+            .result1Tbl .selectedStone_inner_tbl .selectedStone_title_right ul li:nth-child(4) a::before {
+                content: '';
+                border-left: 2px solid orange;
+                margin: 0px 10px;
+            }
+
+        .result1Tbl .selectedStone_inner_tbl .selectedStone_title_right ul > li > a > i,
+        .result1Tbl .selectedStone_inner_tbl .selectedStone_title_right ul > li > a > i,
+        .result1Tbl .selectedStone_inner_tbl .selectedStone_title_right ul > li > a > i {
+            font-size: 16px;
+            margin: 0px 10px;
+        }
+
+.result1Tbl .selectedStone_Main_Tbl {
+    width: 100%;
+    margin-top: 35px;
+}
+
+    .result1Tbl .selectedStone_Main_Tbl table {
+        border-collapse: collapse;
+        border-spacing: 0;
+        width: 100%;
+        border: 1px solid #ddd;
+    }
+
+        .result1Tbl .selectedStone_Main_Tbl table th, .result1Tbl .selectedStone_Main_Tbl table td {
+            text-align: left;
+            padding: 8px;
+            border: 1px solid #ddd;
+            white-space: nowrap;
+        }
+
+    .result1Tbl .selectedStone_Main_Tbl tr:nth-child(even) {
+        background-color: #f2f2f2
+    }
+
+.result1Tbl .selectgrid_checkBox.pretty.p-icon .state .icon {
+    width: calc(1.2em + 2px);
+    height: calc(1.2em + 2px);
+}
+
+.result1Tbl .selectgrid_checkBox.pretty .state label:after, .result1Tbl .selectgrid_checkBox.pretty .state label:before {
+    width: calc(1.2em + 2px);
+    height: calc(1.2em + 2px);
+}
+
+.result1Tbl .selectgrid_checkBox.pretty {
+    margin-right: 0px;
+    top: -2px;
+    left: -2px;
+}
+
+    .result1Tbl .selectgrid_checkBox.pretty input {
+        width: calc(1.2em + 2px);
+        height: calc(1.2em + 2px);
+    }
+
+.result1Tbl .selectedStone_inner_tbl .selectedStone_Main_Tbl table tr > td > i {
+    font-size: 16px;
+    margin-right: 5px;
+}
+
+.result1Tbl {
+    margin-bottom: 25px;
+}
+
+@media (min-width: 1600px) and (max-width: 1899px) {
+    .stone_number {
+        width: 5.6vw;
+    }
+}
+
+@media (min-width: 1440px) and (max-width: 1599px) {
+    .stone_number {
+        width: 5.39vw;
+    }
+
+    .result1Tbl .selectedStone_rating_area > .stone_number > h5 {
+        font-size: 13px;
+    }
+
+    .result1Tbl .selectedStone_rating_area > .stone_number > p {
+        font-size: 12px;
+    }
+
+    .result1Tbl .selectedStone_inner_tbl .selectedStone_title_right ul li a {
+        font-size: 16px;
+    }
+
+    .selectedStone_rating_area {
+        margin-top: 35px;
+    }
+}
+
+@media (min-width: 1366px) and (max-width: 1439px) {
+    .stone_number {
+        width: 5.28vw;
+    }
+
+    .result1Tbl .selectedStone_rating_area > .stone_number > h5 {
+        font-size: 13px;
+    }
+
+    .result1Tbl .selectedStone_rating_area > .stone_number > p {
+        font-size: 12px;
+    }
+
+    .result1Tbl .selectedStone_inner_tbl .selectedStone_title_right ul li a {
+        font-size: 16px;
+    }
+
+    .selectedStone_area > .selectedStone_btn button {
+        font-size: 14px;
+    }
+
+    .selectedStone_rating_area {
+        margin-top: 35px;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1365px) {
+    .result1Tbl .selectedStone_rating_area > .stone_number > h5 {
+        font-size: 13px;
+    }
+
+    .result1Tbl .selectedStone_rating_area > .stone_number > p {
+        font-size: 12px;
+    }
+
+    .result1Tbl .selectedStone_inner_tbl .selectedStone_title_right ul li a {
+        font-size: 14px;
+    }
+
+    .selectedStone_area > .selectedStone_btn button {
+        font-size: 14px;
+    }
+
+    .selectedStone_rating_area {
+        margin-top: 35px;
+    }
+
+    .result1Tbl .selectedStone_inner_tbl .search-btn input {
+        width: 200px;
+    }
+}
+
+@media (min-width: 1200px) and (max-width: 1365px) {
+    .stone_number {
+        width: 4.98vw;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+    .stone_number {
+        width: 6.43vw;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .stone_number {
+        width: 10.6vw;
+    }
+
+    .result1Tbl .selectedStone_rating_area > .stone_number > h5 {
+        font-size: 13px;
+    }
+
+    .result1Tbl .selectedStone_rating_area > .stone_number > p {
+        font-size: 12px;
+    }
+
+    .result1Tbl .selectedStone_inner_tbl .selectedStone_title_right ul li a {
+        font-size: 14px;
+    }
+
+    .selectedStone_area > .selectedStone_btn button {
+        font-size: 13px;
+    }
+
+    .selectedStone_rating_area {
+        margin-top: 35px;
+    }
+
+    .result1Tbl .selectedStone_area h1 {
+        font-size: 16px;
+    }
+
+    .result1Tbl .selectedStone_Main_Tbl {
+        margin-top: 0px;
+    }
+
+    .result1Tbl .selectedStone_inner_tbl .selectedStone_title_right ul {
+        margin: 16px 0px;
+    }
+
+    .result1Tbl .selectedStone_inner_tbl .selectedStone_title_right {
+        float: left;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+    .stone_number {
+        width: 12.5vw;
+    }
+
+    .result1Tbl .selectedStone_rating_area > .stone_number > h5 {
+        font-size: 13px;
+    }
+
+    .result1Tbl .selectedStone_rating_area > .stone_number > p {
+        font-size: 12px;
+    }
+
+    .result1Tbl .selectedStone_inner_tbl .selectedStone_title_right ul li a {
+        font-size: 14px;
+    }
+
+    .selectedStone_area > .selectedStone_btn button {
+        font-size: 12px;
+        margin: 10px 5px;
+    }
+
+    .selectedStone_rating_area {
+        margin-top: 35px;
+    }
+
+    .result1Tbl .selectedStone_area h1 {
+        font-size: 16px;
+    }
+
+    .result1Tbl .selectedStone_Main_Tbl {
+        margin-top: 0px;
+    }
+
+    .result1Tbl .selectedStone_inner_tbl .selectedStone_title_right ul {
+        margin: 16px 0px;
+    }
+
+    .result1Tbl .selectedStone_inner_tbl .selectedStone_title_right {
+        float: left;
+    }
+
+    .selectedStone_area > .selectedStone_btn {
+        float: left;
+    }
+}
+
+@media (min-width: 320px) and (max-width: 575px) {
+    .selectedStone_area > .selectedStone_btn {
+        margin: 10px 0px;
+    }
+
+        .selectedStone_area > .selectedStone_btn button {
+            width: 45%;
+            margin: 5px;
+        }
+
+    .selectedStone_rating_area {
+        margin-top: 0px;
+    }
+
+    .stone_number {
+        width: 49%;
+    }
+
+    .stone_center_b {
+        display: none;
+    }
+
+    .result1Tbl .selectedStone_inner_tbl .search-btn {
+        width: 100%;
+        position: unset;
+    }
+
+        .result1Tbl .selectedStone_inner_tbl .search-btn input {
+            width: 100%;
+        }
+
+        .result1Tbl .selectedStone_inner_tbl .search-btn i {
+            right: 16px;
+        }
+
+    .result1Tbl .selectedStone_inner_tbl .selectedStone_title_right, .result1Tbl .selectedStone_Main_Tbl {
+        margin-top: 15px;
+    }
+
+        .result1Tbl .selectedStone_inner_tbl .selectedStone_title_right ul li a {
+            font-size: 16px;
+        }
+
+    .stone_number {
+        background-color: #eee;
+    }
+
+    .stone_center_b {
+        background-color: transparent;
+    }
+}
+.countryImgCss {
+    position: relative;
+    top: -7px;
+    right: 5px;
+}
+
+.countryNameTxt {
+    color: #000;
+    font-size: 12px;
+    line-height: 1.2;
+}
+
+
