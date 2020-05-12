@@ -3,15 +3,15 @@
     ViewBag.Title = "Home Page";
 }
 <!-- Main Content -->
-<div class="main-content main-content-pb">
+<div class="main-content main-content-pb" id="StockGridDiv">
     <section class="section">
         <div class="section-body stocksearch">
             <div class="row sticky-top">
                 <div class="col-12 mainScrollHeader">
                     @*<a href="#basicSearch"><div class="searchstockBtn current-active">Basic Search</div></a>
-                <a href="#searchParameters"><div class="searchstockBtn">Search By Parameters</div></a>
-                <a href="#searchInclusion"><div class="searchstockBtn">Search By Inclusion</div></a>
-                <a href="#searchPacket"><div class="searchstockBtn">Search By Packet/List/Certificate No. and Other</div></a>*@
+                        <a href="#searchParameters"><div class="searchstockBtn">Search By Parameters</div></a>
+                        <a href="#searchInclusion"><div class="searchstockBtn">Search By Inclusion</div></a>
+                        <a href="#searchPacket"><div class="searchstockBtn">Search By Packet/List/Certificate No. and Other</div></a>*@
                     <ul>
                         <li><a href="#basicSearch" class="current-active">Basic Search</a></li>
                         <li><a href="#searchParameters">Search By Parameters</a></li>
@@ -25,22 +25,22 @@
                     <h6 class="title_h6">Shape</h6>
                     <div class="dflex-center select_all_active">All</div>
                     @foreach (var shap in Model.Shape)
-            {
-                <div class="shapeBtn" id="@shap.ShapeCode"><img src="~/Areas/Admin/assets/img/stocksearch/cb-CU.png"><span>@shap.ShapeName</span></div>
-    }
+                    {
+                        <div class="shapeBtn" id="@shap.ShapeCode"><img src="~/Areas/Admin/assets/img/stocksearch/cb-CU.png"><span>@shap.ShapeName</span></div>
+                    }
                     @*<div class="shapeBtn"><img src="~/Areas/Admin/assets/img/stocksearch/cb-CU.png"><span>Round</span></div>
-                <div class="shapeBtn"><img src="~/Areas/Admin/assets/img/stocksearch/cb-CUBR.png"><span>Cusion</span></div>
-                <div class="shapeBtn"><img src="~/Areas/Admin/assets/img/stocksearch/cb-CUMBR.png"><span>Princess</span></div>
-                <div class="shapeBtn"><img src="~/Areas/Admin/assets/img/stocksearch/cb-EM.png"><span>Emerald</span></div>
-                <div class="shapeBtn"><img src="~/Areas/Admin/assets/img/stocksearch/cb-TR.png"><span>Asscher</span></div>
-                <div class="shapeBtn"><img src="~/Areas/Admin/assets/img/stocksearch/cb-MQ.png"><span>Heart</span></div>
-                <div class="shapeBtn"><img src="~/Areas/Admin/assets/img/stocksearch/cb-OV.png"><span>Pear</span></div>
-                <div class="shapeBtn"><img src="~/Areas/Admin/assets/img/stocksearch/cb-PR.png"><span>Oval</span></div>
-                <div class="shapeBtn"><img src="~/Areas/Admin/assets/img/stocksearch/cb-PS.png"><span>Marquise</span></div>
-                <div class="shapeBtn"><img src="~/Areas/Admin/assets/img/stocksearch/cb-RD.png"><span>L Radiant</span></div>
-                <div class="shapeBtn"><img src="~/Areas/Admin/assets/img/stocksearch/cb-SQEM.png"><span>Sq Radiant</span></div>
-                <div class="shapeBtn"><img src="~/Areas/Admin/assets/img/stocksearch/cb-SQRT.png"><span>Baguette</span></div>
-                <div class="shapeBtn"><img src="~/Areas/Admin/assets/img/stocksearch/cb-TA.png"><span>Other</span></div>*@
+                        <div class="shapeBtn"><img src="~/Areas/Admin/assets/img/stocksearch/cb-CUBR.png"><span>Cusion</span></div>
+                        <div class="shapeBtn"><img src="~/Areas/Admin/assets/img/stocksearch/cb-CUMBR.png"><span>Princess</span></div>
+                        <div class="shapeBtn"><img src="~/Areas/Admin/assets/img/stocksearch/cb-EM.png"><span>Emerald</span></div>
+                        <div class="shapeBtn"><img src="~/Areas/Admin/assets/img/stocksearch/cb-TR.png"><span>Asscher</span></div>
+                        <div class="shapeBtn"><img src="~/Areas/Admin/assets/img/stocksearch/cb-MQ.png"><span>Heart</span></div>
+                        <div class="shapeBtn"><img src="~/Areas/Admin/assets/img/stocksearch/cb-OV.png"><span>Pear</span></div>
+                        <div class="shapeBtn"><img src="~/Areas/Admin/assets/img/stocksearch/cb-PR.png"><span>Oval</span></div>
+                        <div class="shapeBtn"><img src="~/Areas/Admin/assets/img/stocksearch/cb-PS.png"><span>Marquise</span></div>
+                        <div class="shapeBtn"><img src="~/Areas/Admin/assets/img/stocksearch/cb-RD.png"><span>L Radiant</span></div>
+                        <div class="shapeBtn"><img src="~/Areas/Admin/assets/img/stocksearch/cb-SQEM.png"><span>Sq Radiant</span></div>
+                        <div class="shapeBtn"><img src="~/Areas/Admin/assets/img/stocksearch/cb-SQRT.png"><span>Baguette</span></div>
+                        <div class="shapeBtn"><img src="~/Areas/Admin/assets/img/stocksearch/cb-TA.png"><span>Other</span></div>*@
                 </div>
                 <div class="col-12 mt-4">
                     <h6 class="title_h6">Carat</h6>
@@ -57,8 +57,8 @@
                                     <div class="form-group col-md-12 mt-3 pos-rel">
                                         <input onkeypress='return restrictAlphabets(event)' id="txtMultiSize" type="text" class="form-control" placeholder="Multisize">
                                         @*<div class="plusModal" data-toggle="modal" data-target="#exampleModalCenter1">
-                                        <i class="fas fa-plus"></i>
-                                    </div>*@
+                                                <i class="fas fa-plus"></i>
+                                            </div>*@
                                     </div>
                                 </div>
                             </form>
@@ -80,12 +80,12 @@
                                     </div>
                                     <div class="form-group RAPCaret2 mt-3">
                                         @*<button><i class="fas fa-plus"></i></button>
-                                    <button><i class="fas fa-minus"></i></button>*@
+                                            <button><i class="fas fa-minus"></i></button>*@
                                         <input id="txtRapFrom" type="text" class="form-control" placeholder="From">
                                     </div>
                                     <div class="form-group RAPCaret3 mt-3">
                                         @*<button><i class="fas fa-plus"></i></button>
-                                    <button><i class="fas fa-minus"></i></button>*@
+                                            <button><i class="fas fa-minus"></i></button>*@
                                         <input id="txtRapTo" type="text" class="form-control" placeholder="To">
                                     </div>
                                 </div>
@@ -100,23 +100,23 @@
                             <form>
                                 <div class="form-row">
                                     <div class="form-group col-md-12 mt-3">
-                                        <select id="inputState" class="form-control">
-                                            <option selected>Choose...</option>
+                                        <select id="DrdColor" class="form-control">
+                                            <option selected value="">Choose...</option>
                                             @foreach (var color in Model.Color)
-                                    {
-                                        <option value="@color.ColorCode">@color.ColorName</option>
-                            }
+                                            {
+                                                <option value="@color.ColorCode">@color.ColorName</option>
+                                            }
                                         </select>
                                     </div>
                                     @*<div class="form-group col-md-6 mt-3">
-                                    <select id="inputState" class="form-control">
-                                        <option selected>Choose...</option>
-                                        @foreach (var fancy_color in Model.FancyColor)
-                                        {
-                                            <option value="@fancy_color.FancyColorCode">@fancy_color.FancyColorName</option>
-                                        }
-                                    </select>
-                                </div>*@
+                                            <select id="inputState" class="form-control">
+                                                <option selected>Choose...</option>
+                                                @foreach (var fancy_color in Model.FancyColor)
+                                                {
+                                                    <option value="@fancy_color.FancyColorCode">@fancy_color.FancyColorName</option>
+                                                }
+                                            </select>
+                                        </div>*@
                                 </div>
                             </form>
                         </div>
@@ -124,22 +124,22 @@
                             <div class="fancycolorBox">
                                 <div class="FCBox_active">All</div>
                                 @foreach (var color in Model.Color)
-                        {
-                            <div class="FCBox_Fc" id="@color.ColorCode">@color.ColorName</div>
-                }
+                                {
+                                    <div class="FCBox_Fc" id="@color.ColorCode">@color.ColorName</div>
+                                }
                                 @*<div class="FCBox_Fc">D</div>
-                            <div class="FCBox_Fc">E</div>
-                            <div class="FCBox_Fc">F</div>
-                            <div class="FCBox_Fc">G</div>
-                            <div class="FCBox_Fc">H</div>
-                            <div class="FCBox_Fc">I</div>
-                            <div class="FCBox_Fc">J</div>
-                            <div class="FCBox_Fc">K</div>
-                            <div class="FCBox_Fc">L</div>
-                            <div class="FCBox_Fc">M</div>
-                            <div class="FCBox_Fc">N</div>
-                            <div class="FCBox_Fc">O</div>
-                            <div class="FCBox_Fc">P</div>*@
+                                    <div class="FCBox_Fc">E</div>
+                                    <div class="FCBox_Fc">F</div>
+                                    <div class="FCBox_Fc">G</div>
+                                    <div class="FCBox_Fc">H</div>
+                                    <div class="FCBox_Fc">I</div>
+                                    <div class="FCBox_Fc">J</div>
+                                    <div class="FCBox_Fc">K</div>
+                                    <div class="FCBox_Fc">L</div>
+                                    <div class="FCBox_Fc">M</div>
+                                    <div class="FCBox_Fc">N</div>
+                                    <div class="FCBox_Fc">O</div>
+                                    <div class="FCBox_Fc">P</div>*@
                             </div>
                         </div>
                     </div>
@@ -151,20 +151,20 @@
                             <form>
                                 <div class="form-row">
                                     <div class="form-group col-md-12 mt-3">
-                                        <select id="inputState" class="form-control">
-                                            <option selected>Choose...</option>
+                                        <select id="DrdClarity" class="form-control">
+                                            <option selected value="">Choose...</option>
                                             @foreach (var clarity in Model.Clarity)
-                                    {
-                                        <option value="@clarity.PurityCode">@clarity.PurityName</option>
-                            }
+                                            {
+                                                <option value="@clarity.PurityCode">@clarity.PurityName</option>
+                                            }
                                         </select>
                                     </div>
                                     @*<div class="form-group col-md-6 mt-3">
-                                    <select id="inputState" class="form-control">
-                                        <option selected>Choose...</option>
-                                        <option>...</option>
-                                    </select>
-                                </div>*@
+                                            <select id="inputState" class="form-control">
+                                                <option selected>Choose...</option>
+                                                <option>...</option>
+                                            </select>
+                                        </div>*@
                                 </div>
                             </form>
                         </div>
@@ -172,23 +172,23 @@
                             <div class="fancycolorBox">
                                 <div class="FCBox_active1">ALL</div>
                                 @foreach (var clarity in Model.Clarity)
-                        {
-                            <div class="FCBox_Fc1" id="@clarity.PurityCode">@clarity.PurityName</div>
-                }
+                                {
+                                    <div class="FCBox_Fc1" id="@clarity.PurityCode">@clarity.PurityName</div>
+                                }
                                 @*<div class="FCBox_Fc1">FL</div>
-                            <div class="FCBox_Fc1">IF</div>
-                            <div class="FCBox_Fc1">VVS1</div>
-                            <div class="FCBox_Fc1">VVS2</div>
-                            <div class="FCBox_Fc1">VS1</div>
-                            <div class="FCBox_Fc1">VS2</div>
-                            <div class="FCBox_Fc1">SI1</div>
-                            <div class="FCBox_Fc1">SI2</div>
-                            <div class="FCBox_Fc1">SI3</div>
-                            <div class="FCBox_Fc1">I1</div>
-                            <div class="FCBox_Fc1">I2</div>
-                            <div class="FCBox_Fc1">I3</div>
-                            <div class="FCBox_Fc1">I4</div>
-                            <div class="FCBox_Fc1">I5</div>*@
+                                    <div class="FCBox_Fc1">IF</div>
+                                    <div class="FCBox_Fc1">VVS1</div>
+                                    <div class="FCBox_Fc1">VVS2</div>
+                                    <div class="FCBox_Fc1">VS1</div>
+                                    <div class="FCBox_Fc1">VS2</div>
+                                    <div class="FCBox_Fc1">SI1</div>
+                                    <div class="FCBox_Fc1">SI2</div>
+                                    <div class="FCBox_Fc1">SI3</div>
+                                    <div class="FCBox_Fc1">I1</div>
+                                    <div class="FCBox_Fc1">I2</div>
+                                    <div class="FCBox_Fc1">I3</div>
+                                    <div class="FCBox_Fc1">I4</div>
+                                    <div class="FCBox_Fc1">I5</div>*@
                             </div>
                         </div>
                     </div>
@@ -198,15 +198,15 @@
                     <div class="cut-Symmetry-Polish2">
                         <div class="CSP_box_active1">All</div>
                         @foreach (var cut in Model.Cut)
-                {
-                    <div class="CSP_box1" id="@cut.CutCode">@cut.CutName</div>
-        }
+                        {
+                            <div class="CSP_box1" id="@cut.CutCode">@cut.CutName</div>
+                        }
                         @*<div class="CSP_box1">Id</div>
-                    <div class="CSP_box1">Ex</div>
-                    <div class="CSP_box1">Vg</div>
-                    <div class="CSP_box1">Gd</div>
-                    <div class="CSP_box1">Fr</div>
-                    <div class="CSP_box1">Pr</div>*@
+                            <div class="CSP_box1">Ex</div>
+                            <div class="CSP_box1">Vg</div>
+                            <div class="CSP_box1">Gd</div>
+                            <div class="CSP_box1">Fr</div>
+                            <div class="CSP_box1">Pr</div>*@
                     </div>
                 </div>
                 <div class="col-md-6 col-xl-4 mt-4">
@@ -214,15 +214,15 @@
                     <div class="cut-Symmetry-Polish2">
                         <div class="CSP_box_active2">All</div>
                         @foreach (var polish in Model.Polish)
-                {
-                    <div class="CSP_box2" id="@polish.PolishCode">@polish.PolishName</div>
-        }
+                        {
+                            <div class="CSP_box2" id="@polish.PolishCode">@polish.PolishName</div>
+                        }
                         @*<div class="CSP_box2">Id</div>
-                    <div class="CSP_box2">Ex</div>
-                    <div class="CSP_box2">Vg</div>
-                    <div class="CSP_box2">Gd</div>
-                    <div class="CSP_box2">Fr</div>
-                    <div class="CSP_box2">Pr</div>*@
+                            <div class="CSP_box2">Ex</div>
+                            <div class="CSP_box2">Vg</div>
+                            <div class="CSP_box2">Gd</div>
+                            <div class="CSP_box2">Fr</div>
+                            <div class="CSP_box2">Pr</div>*@
                     </div>
                 </div>
                 <div class="col-md-6 col-xl-4 mt-4">
@@ -230,47 +230,47 @@
                     <div class="cut-Symmetry-Polish2">
                         <div class="CSP_box_active3">All</div>
                         @foreach (var symmetry in Model.Symmetry)
-                {
-                    <div class="CSP_box3" @symmetry.SymmetryCode>@symmetry.SymmetryName</div>
-        }
+                        {
+                            <div class="CSP_box3" @symmetry.SymmetryCode>@symmetry.SymmetryName</div>
+                        }
                         @*<div class="CSP_box3">Id</div>
-                    <div class="CSP_box3">Ex</div>
-                    <div class="CSP_box3">Vg</div>
-                    <div class="CSP_box3">Gd</div>
-                    <div class="CSP_box3">Fr</div>
-                    <div class="CSP_box3">Pr</div>*@
+                            <div class="CSP_box3">Ex</div>
+                            <div class="CSP_box3">Vg</div>
+                            <div class="CSP_box3">Gd</div>
+                            <div class="CSP_box3">Fr</div>
+                            <div class="CSP_box3">Pr</div>*@
                     </div>
                 </div>
                 <div class="col-12 mt-4">
                     <h6 class="title_h6">Lab</h6>
                     <div class="shapeBtn_Lab_Active dflex-center">All</div>
                     @foreach (var Lab in Model.Lab)
-            {
-                <div id="@Lab.CertificateCode" class="shapeBtn_Lab"><img src="~/Areas/Admin/assets/img/stocksearch/cb-CU.png"><span>@Lab.CertiificateName</span></div>
-    }
+                    {
+                        <div id="@Lab.CertificateCode" class="shapeBtn_Lab"><img src="~/Areas/Admin/assets/img/stocksearch/cb-CU.png"><span>@Lab.CertiificateName</span></div>
+                    }
                     @*<div class="shapeBtn_Lab"><img src="~/Areas/Admin/assets/img/stocksearch/cb-CU.png"><span>GIA</span></div>
-                <div class="shapeBtn_Lab"><img src="~/Areas/Admin/assets/img/stocksearch/cb-CU.png"><span>HRD</span></div>
-                <div class="shapeBtn_Lab"><img src="~/Areas/Admin/assets/img/stocksearch/cb-CU.png"><span>IGI</span></div>*@
+                        <div class="shapeBtn_Lab"><img src="~/Areas/Admin/assets/img/stocksearch/cb-CU.png"><span>HRD</span></div>
+                        <div class="shapeBtn_Lab"><img src="~/Areas/Admin/assets/img/stocksearch/cb-CU.png"><span>IGI</span></div>*@
                 </div>
                 <div class="kTosymbol mt-4">
                     <h6 class="title_h6">KEY TO SYMBOL</h6>
                     <div class="row">
                         <div class="labSymbol mt-3 customeselect_option">
                             @*<i class="far fa-times-circle fa-Circle-icon"></i>
-                        <i class="far fa-check-circle fa-Circle-icon"></i>*@
+                                <i class="far fa-check-circle fa-Circle-icon"></i>*@
                             <span>Key to Symbol</span>
                             <select class="test" multiple="multiple" id="DrdKetToDymbol">
                                 @foreach (var key_to_symbol in Model.KetToSymbol)
-                        {
-                            <option value="@key_to_symbol">@key_to_symbol</option>
-                }
+                                {
+                                    <option value="@key_to_symbol">@key_to_symbol</option>
+                                }
                                 @*<optgroup label="Group A">
-                                <option value="1">Option 1</option>
-                                <option value="2">Option 2</option>
-                                <option value="3">Option 3</option>
-                                <option value="4">Option 4</option>
-                                <option value="5">Option 5</option>
-                            </optgroup>*@
+                                        <option value="1">Option 1</option>
+                                        <option value="2">Option 2</option>
+                                        <option value="3">Option 3</option>
+                                        <option value="4">Option 4</option>
+                                        <option value="5">Option 5</option>
+                                    </optgroup>*@
                             </select>
                         </div>
                     </div>
@@ -280,20 +280,20 @@
                     <div class="row">
                         <div class="labSymbol mt-3 customeselect_option">
                             @*<i class="far fa-times-circle fa-Circle-icon1"></i>
-                        <i class="far fa-check-circle fa-Circle-icon1"></i>*@
+                                <i class="far fa-check-circle fa-Circle-icon1"></i>*@
                             <span>Report Comments</span>
                             <select class="test" multiple="multiple" id="DrdComments">
                                 @foreach (var comments in Model.Comments)
-                        {
-                            <option value="@comments">@comments</option>
-                }
+                                {
+                                    <option value="@comments">@comments</option>
+                                }
                                 @*<optgroup label="Group A">
-                                <option value="1">Option 1</option>
-                                <option value="2">Option 2</option>
-                                <option value="3">Option 3</option>
-                                <option value="4">Option 4</option>
-                                <option value="5">Option 5</option>
-                            </optgroup>*@
+                                        <option value="1">Option 1</option>
+                                        <option value="2">Option 2</option>
+                                        <option value="3">Option 3</option>
+                                        <option value="4">Option 4</option>
+                                        <option value="5">Option 5</option>
+                                    </optgroup>*@
                             </select>
                         </div>
                     </div>
@@ -303,16 +303,16 @@
                     <div class="customeselect_option mt-3">
                         <select class="test" multiple="multiple" id="DrdColorShade">
                             @foreach (var fancyColor in Model.FancyColor)
-                    {
-                        <option value="@fancyColor.FancyColorCode">@fancyColor.FancyColorName</option>
-            }
+                            {
+                                <option value="@fancyColor.FancyColorCode">@fancyColor.FancyColorName</option>
+                            }
                             @*<optgroup label="Group A">
-                            <option value="1">Option 1</option>
-                            <option value="2">Option 2</option>
-                            <option value="3">Option 3</option>
-                            <option value="4">Option 4</option>
-                            <option value="5">Option 5</option>
-                        </optgroup>*@
+                                    <option value="1">Option 1</option>
+                                    <option value="2">Option 2</option>
+                                    <option value="3">Option 3</option>
+                                    <option value="4">Option 4</option>
+                                    <option value="5">Option 5</option>
+                                </optgroup>*@
                         </select>
                     </div>
                     @*<button class="noBGM">No bgm</button>*@
@@ -329,29 +329,29 @@
                     </div>
                 </div>
                 @*<div class="FluorescenceHearts mt-4">
-                <h6 class="title_h6">Fluorescence Color</h6>
-                <div class="cut-Symmetry-Polish2">
-                    <div class="CSP_box_active5">All</div>
-                    <div class="CSP_box5">BL</div>
-                    <div class="CSP_box5">YL</div>
-                    <div class="CSP_box5">WT</div>
-                    <div class="CSP_box5">OR</div>
-                    <div class="CSP_box5">GR</div>
-                    <div class="CSP_box5">RD</div>
-                </div>
-            </div>*@
+                        <h6 class="title_h6">Fluorescence Color</h6>
+                        <div class="cut-Symmetry-Polish2">
+                            <div class="CSP_box_active5">All</div>
+                            <div class="CSP_box5">BL</div>
+                            <div class="CSP_box5">YL</div>
+                            <div class="CSP_box5">WT</div>
+                            <div class="CSP_box5">OR</div>
+                            <div class="CSP_box5">GR</div>
+                            <div class="CSP_box5">RD</div>
+                        </div>
+                    </div>*@
                 <div class="FluorescenceHearts mt-4">
                     <h6 class="title_h6">Hearts & Arrows</h6>
                     <div class="cut-Symmetry-Polish2">
                         <div class="CSP_box_active6">All</div>
                         @foreach (var HA in Model.Hearts_Arrows)
-                {
-                    <div id="@HA.HACode" class="CSP_box6">@HA.HAName</div>
-        }
+                        {
+                            <div id="@HA.HACode" class="CSP_box6">@HA.HAName</div>
+                        }
                         @*<div class="CSP_box6">EX</div>
-                    <div class="CSP_box6">VG</div>
-                    <div class="CSP_box6">Gd</div>
-                    <div class="CSP_box6">Fr</div>*@
+                            <div class="CSP_box6">VG</div>
+                            <div class="CSP_box6">Gd</div>
+                            <div class="CSP_box6">Fr</div>*@
                     </div>
                 </div>
             </div>
@@ -371,14 +371,14 @@
                             <input id="txtToDiameter" type="text" class="form-control" placeholder="To">
                         </div>
                         @*<div class="ParametersCHKBox mt-3">
-                        <div class="pretty p-icon p-smooth">
-                            <input type="checkbox">
-                            <div class="state p-success">
-                                <i class="icon fa fa-check"></i>
-                                <label></label>
-                            </div>
-                        </div>
-                    </div>*@
+                                <div class="pretty p-icon p-smooth">
+                                    <input type="checkbox">
+                                    <div class="state p-success">
+                                        <i class="icon fa fa-check"></i>
+                                        <label></label>
+                                    </div>
+                                </div>
+                            </div>*@
                     </div>
                     <div class="row mx-0">
                         <div class="Parameters_name mt-3">
@@ -711,22 +711,22 @@
                     <h6 class="title_h6">SEARCH BY PACKET/LIST/CERTIFICATE NO. AND OTHER</h6>
                 </div>
                 <div class="col-md-12 col-lg-12 mt-3">
-                    <textarea rows="4" class="form-control" placeholder="Enter Number"></textarea>
+                    <textarea id="txtPacketSearch" rows="4" class="form-control" placeholder="Enter Number"></textarea>
                     <div class="packet_List_Other">
                         Packet Code
-                        <input type="radio" name="searchPacket">
+                        <input type="radio" name="searchPacket" value="Packet">
                     </div>
                     <div class="packet_List_Other">
                         Certificate No.
-                        <input type="radio" name="searchPacket">
+                        <input type="radio" name="searchPacket" value="Certificate">
                     </div>
                     <div class="packet_List_Other">
                         List No.
-                        <input type="radio" name="searchPacket">
+                        <input type="radio" name="searchPacket" value="List">
                     </div>
                     <div class="packet_List_Other">
                         Memo No.
-                        <input type="radio" name="searchPacket">
+                        <input type="radio" name="searchPacket" value="Memo">
                     </div>
                 </div>
             </div>
@@ -736,7 +736,7 @@
                         <li><i class="fas fa-heart"></i> Favourite Save & Search</li>
                         <li><i class="fas fa-search"></i> Only PSS</li>
                         <li><i class="fas fa-search"></i> Add to Bascate</li>
-                        <li id="toastr-4"><i class="fas fa-search"></i> Stock Search</li>
+                        <li id="toastr-4" onclick="SearchStock();"><i class="fas fa-search"></i> Stock Search</li>
                     </ul>
                 </div>
                 <div class="footer-right">
@@ -1355,6 +1355,196 @@
                 (charCode < 48 || charCode > 57))
                 return false;
             return true;
+        }
+        function SearchStock() {
+            var Shape = [];
+            $('.shapeBtn').each(function () {
+                if ($(this).hasClass("active_blue_bg"))
+                    Shape.push($(this).attr('id'));
+            });
+
+            var CaretFrom, CaretTo;
+            CaretFrom = $("#txtFromCaret").val().trim();
+            CaretTo = $("#txtToCaret").val().trim();
+
+            var PriceFrom, PriceTo;
+            PriceFrom = $("#txtPriceCaretFrom").val().trim();
+            PriceTo = $("#txtPriceCaretTo").val().trim();
+
+            var RapOffFrom, RapOffTo;
+            RapOffFrom = $("#txtRapFrom").val().trim();
+            RapOffTo = $("#txtRapTo").val().trim();
+
+            var MultiSize = $("#txtMultiSize").val().trim() != "" ? $("#txtMultiSize").val().trim().split(",") : "";
+
+            var Color = [];
+            $("#DrdColor").val() == "" ? [] : Color.push($("#DrdColor").val());
+            $('.FCBox_Fc').each(function () {
+                if ($(this).hasClass("active_blue_bg"))
+                    Color.push($(this).attr('id'));
+            });
+
+            var Clarity = [];
+            $("#DrdClarity").val() == "" ? [] : Clarity.push($("#DrdClarity").val());
+            $('.FCBox_Fc1').each(function () {
+                if ($(this).hasClass("active_blue_bg"))
+                    Clarity.push($(this).attr('id'));
+            });
+
+            var Cut = [];
+            $('.CSP_box1').each(function () {
+                if ($(this).hasClass("active_blue_bg"))
+                    Cut.push($(this).attr('id'));
+            });
+
+            var Polish = [];
+            $('.CSP_box2').each(function () {
+                if ($(this).hasClass("active_blue_bg"))
+                    Polish.push($(this).attr('id'));
+            });
+
+            var Symmetry = [];
+            $('.CSP_box3').each(function () {
+                if ($(this).hasClass("active_blue_bg"))
+                    Symmetry.push($(this).attr('id'));
+            });
+
+            var Lab = [];
+            $('.shapeBtn_Lab').each(function () {
+                if ($(this).hasClass("active_blue_bg"))
+                    Lab.push($(this).attr('id'));
+            });
+
+            var KeyToSymbol = $("#DrdKetToDymbol").val();
+            var ReportComment = $("#DrdComments").val();
+            var ColorShade = $("#DrdColorShade").val();
+
+            var Fluorescence = [];
+            $('.CSP_box4').each(function () {
+                if ($(this).hasClass("active_blue_bg"))
+                    Fluorescence.push($(this).attr('id'));
+            });
+
+            var HA = [];
+            $('.CSP_box6').each(function () {
+                if ($(this).hasClass("active_blue_bg"))
+                    HA.push($(this).attr('id'));
+            });
+
+            var DiameterFrom, DiameterTo;
+            DiameterFrom = $("#txtFromDiameter").val().trim();
+            DiameterTo = $("#txtToDiameter").val().trim();
+
+            var RatioFrom, RatioTo;
+            RatioFrom = $("#txtFromRatio").val().trim();
+            RatioTo = $("#txtToRatio").val().trim();
+
+            var DepthFrom, DepthTo;
+            DepthFrom = $("#txtFromDepth").val().trim();
+            DepthTo = $("#txtToDepth").val().trim();
+
+            var TableFrom, TableTo;
+            TableFrom = $("#txtFromTable").val().trim();
+            TableTo = $("#txtToTable").val().trim();
+
+            var LengthFrom, LengthTo;
+            LengthFrom = $("#txtFromLength").val().trim();
+            LengthTo = $("#txtToLength").val().trim();
+
+            var WidthFrom, WidthTo;
+            WidthFrom = $("#txtFromWidth").val().trim();
+            WidthTo = $("#txtToWidth").val().trim();
+
+            var PavilionAngleFrom, PavilionAngleTo;
+            PavilionAngleFrom = $("#txtFromPavilionAngle").val().trim();
+            PavilionAngleTo = $("#txtToPavilionAngle").val().trim();
+
+            var PavilionHeightFrom, PavilionHeightTo;
+            PavilionHeightFrom = $("#txtFromPavilionHeight").val().trim();
+            PavilionHeightTo = $("#txtToPavilionHeight").val().trim();
+
+            var CrownAngleFrom, CrownAngleTo;
+            CrownAngleFrom = $("#txtFromCrownAngle").val().trim();
+            CrownAngleTo = $("#txtToCrownAngle").val().trim();
+
+            var CrownHeightFrom, CrownHeightTo;
+            CrownHeightFrom = $("#txtFromCrownHeight").val().trim();
+            CrownHeightTo = $("#txtToCrownHeight").val().trim();
+
+            var StarLengthFrom, StarLengthTo;
+            StarLengthFrom = $("#txtFromStarLength").val().trim();
+            StarLengthTo = $("#txtToStarLength").val().trim();
+
+            var LowerHalfFrom, LowerHalfTo;
+            LowerHalfFrom = $("#txtFromLowerHalf").val().trim();
+            LowerHalfTo = $("#txtToLowerHalf").val().trim();
+
+            var SearchArea = $("#txtPacketSearch").val() != "" ? $("#txtPacketSearch").val().split(",") : "";
+            var Radio = $("input[name='searchPacket']:checked").val();
+
+            var obj = {
+                'Shape': Shape,
+                'CaretFrom': CaretFrom,
+                'CaretTo': CaretTo,
+                'PriceFrom': PriceFrom,
+                'PriceTo': PriceTo,
+                'MultiSize': MultiSize,
+                'Color': Color,
+                'Clarity': Clarity,
+                'Cut': Cut,
+                'Polish': Polish,
+                'Symmetry': Symmetry,
+                'Lab': Lab,
+                'KeyToSymbol': KeyToSymbol,
+                'ReportComment': ReportComment,
+                'ColorShade': ColorShade,
+                'Fluorescence': Fluorescence,
+                'HA': HA,
+                'DiameterFrom': DiameterFrom,
+                'DiameterTo': DiameterTo,
+                'RatioFrom': RatioFrom,
+                'RatioTo': RatioTo,
+                'DepthFrom': DepthFrom,
+                'DepthTo': DepthTo,
+                'TableFrom': TableFrom,
+                'TableTo': TableTo,
+                'LengthFrom': LengthFrom,
+                'LengthTo': LengthTo,
+                'WidthFrom': WidthFrom,
+                'WidthTo': WidthTo,
+                'PavilionAngleFrom': PavilionAngleFrom,
+                'PavilionAngleTo': PavilionAngleTo,
+                'PavilionHeightFrom': PavilionHeightFrom,
+                'PavilionHeightTo': PavilionHeightTo,
+                'CrownAngleFrom': CrownAngleFrom,
+                'CrownAngleTo': CrownAngleTo,
+                'CrownHeightFrom': CrownHeightFrom,
+                'CrownHeightTo': CrownHeightTo,
+                'StarLengthFrom': StarLengthFrom,
+                'StarLengthTo': StarLengthTo,
+                'LowerHalfFrom': LowerHalfFrom,
+                'LowerHalfTo': LowerHalfTo,
+                'SearchArea': SearchArea,
+                'Radio': Radio
+            };
+            $.ajax({
+                url: "/Home/Stock",
+                method: "POST",
+                data: JSON.stringify(obj),
+                contentType: 'application/json',
+                beforeSend: function () {
+                    HoldOn.open();
+                },
+                complete: function () {
+                    HoldOn.close();
+                },
+                success: function (data) {
+
+                },
+                error: function (data) {
+                    HoldOn.close();
+                }
+            });
         }
     </script>
 }

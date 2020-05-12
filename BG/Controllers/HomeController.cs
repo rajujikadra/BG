@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using BG.Models;
 
 namespace BG.Controllers
 {
@@ -90,8 +91,8 @@ namespace BG.Controllers
             return View();
         }
 
-        [Route("stock")]
-        public ActionResult Stock()
+        [HttpPost]
+        public ActionResult Stock(SearchStockViewModel model)
         {
             return View();
         }
