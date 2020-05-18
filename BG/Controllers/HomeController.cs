@@ -67,7 +67,7 @@ namespace BG.Controllers
                 SymmetryName = c.SymmetryName
             }).ToList();
             model.Hearts_Arrows = DB.HAMsts.Where(x => x.Active == true).Select(c => new HA
-            { 
+            {
                 HAAliasName = c.HAAliasName,
                 HACode = c.HACode,
                 HAName = c.HAName
@@ -94,7 +94,133 @@ namespace BG.Controllers
         [HttpPost]
         public ActionResult Stock(SearchStockViewModel model)
         {
+            var Data = new List<DiamondStockViewModel>();
+            var Stock = GetStocks();
+            if (model.Shape != null && model.Shape.Count() > 0)
+            {
+                Data.AddRange(Stock.Where(x => model.Shape.Contains((int)x.ShapeCode)).ToList());
+            }
+            if (model.CaretFrom != null && model.CaretTo != null)
+            {
+                Data.AddRange(Stock.Where(x => x.Cts >= model.CaretFrom && x.Cts <= model.CaretTo).ToList());
+            }
+            if (model.PriceFrom != null && model.PriceTo != null)
+            {
+                Data.AddRange(Stock.Where(x => x.Rap >= model.PriceFrom && x.Rap <= model.PriceTo).ToList());
+            }
+            if (model.RapOffFrom != null && model.RapOffTo != null)
+            {
+                Data.AddRange(Stock.Where(x => x.Disc >= model.RapOffFrom && x.Disc <= model.RapOffTo).ToList());
+            }
+            if (model.Color != null && model.Color.Count() > 0)
+            {
+                Data.AddRange(Stock.Where(x => model.Color.Contains((int)x.ColorCode)).ToList());
+            }
+            if (model.Clarity != null && model.Clarity.Count() > 0)
+            {
+                Data.AddRange(Stock.Where(x => model.Clarity.Contains((int)x.PurityCode)).ToList());
+            }
+            if (model.Cut != null && model.Cut.Count() > 0)
+            {
+                Data.AddRange(Stock.Where(x => model.Cut.Contains((int)x.CutCode)).ToList());
+            }
+            if (model.Polish != null && model.Polish.Count() > 0)
+            {
+                Data.AddRange(Stock.Where(x => model.Polish.Contains((int)x.PolishCode)).ToList());
+            }
+            if (model.Symmetry != null && model.Symmetry.Count() > 0)
+            {
+                Data.AddRange(Stock.Where(x => model.Symmetry.Contains((int)x.SymmetryCode)).ToList());
+            }
+            if (model.Lab != null && model.Lab.Count() > 0)
+            {
+                Data.AddRange(Stock.Where(x => model.Lab.Contains((int)x.CertificateCode)).ToList());
+            }
+            if (model.KeyToSymbol != null && model.KeyToSymbol.Count() > 0)
+            {
+                Data.AddRange(Stock.Where(x => model.KeyToSymbol.Contains(x.KeytoSymbol)).ToList());
+            }
+            if (model.ReportComment != null && model.ReportComment.Count() > 0)
+            {
+                Data.AddRange(Stock.Where(x => model.ReportComment.Contains(x.Comments)).ToList());
+            }
+            
             return View();
         }
+
+        protected List<DiamondStockViewModel> GetStocks()
+        {
+            var DB = new BG_DBEntities();
+            return DB.DiamondStocks.Where(x => x.Sale != true).Select(y => new DiamondStockViewModel()
+            {
+                StockMSTID = y.StockMSTID,
+                StoneID = y.StoneID,
+                Cts = y.Cts,
+                Location = y.Location,
+                ReportNo = y.ReportNo,
+                CertificateCode = y.CertificateCode,
+                ShapeCode = y.ShapeCode,
+                SizeCode = y.SizeCode,
+                ColorCode = y.ColorCode,
+                PurityCode = y.PurityCode,
+                CutCode = y.CutCode,
+                PolishCode = y.PolishCode,
+                SymmetryCode = y.SymmetryCode,
+                FlouCode = y.FlouCode,
+                Rap = y.Rap,
+                Disc = y.Disc,
+                Asking = y.Asking,
+                Amount = y.Amount,
+                SPer = y.SPer,
+                SRate = y.SRate,
+                SAmount = y.SAmount,
+                Length = y.Length,
+                Width = y.Width,
+                Depth = y.Depth,
+                DepthPer = y.DepthPer,
+                TablePer = y.TablePer,
+                CrownAngle = y.CrownAngle,
+                CrownHeight = y.CrownHeight,
+                PavAngle = y.PavAngle,
+                PavHeight = y.PavHeight,
+                KeytoSymbol = y.KeytoSymbol,
+                VideoLink = y.VideoLink,
+                EyeClean = y.EyeClean,
+                Comments = y.Comments,
+                Girdle = y.Girdle,
+                Culet = y.Culet,
+                Star = y.Star,
+                Lower = y.Lower,
+                Milky = y.Milky,
+                TBlack = y.TBlack,
+                SBlack = y.SBlack,
+                TWhite = y.TWhite,
+                SWhite = y.SWhite,
+                HA = y.HA,
+                ResultVerify = y.ResultVerify,
+                ReportDate = y.ReportDate,
+                Inscription = y.Inscription,
+                Sale = y.Sale,
+                Broker = y.Broker,
+                Hold = y.Hold,
+                Basket = y.Basket,
+                Inquiry = y.Inquiry,
+                CertificateName = DB.CertificateMsts.FirstOrDefault(c => c.CertificateCode == y.CertificateCode).CertificateName,
+                ShapeName = DB.ShapeMsts.FirstOrDefault(c => c.ShapeCode == y.ShapeCode).ShapeAliasName,
+                Size = DB.SizeMsts.FirstOrDefault(c => c.SizeMstID == y.SizeCode).SizeAlias,
+                ColorName = DB.ColorMsts.FirstOrDefault(c => c.ColorCode == y.ColorCode).ColorAliasName,
+                Cut = DB.CutMsts.FirstOrDefault(c => c.CutCode == y.CutCode).CutAliasName,
+                Flou = DB.FlouMsts.FirstOrDefault(c => c.FlouCode == y.FlouCode).FlouAliasName,
+                Polish = DB.PolishMsts.FirstOrDefault(c => c.PolishCode == y.PolishCode).PolishAliasName,
+                Purity = DB.PurityMsts.FirstOrDefault(c => c.PurityCode == y.PurityCode).PurityAliasName,
+                Symmetry = DB.SymmetryMsts.FirstOrDefault(c => c.SymmetryCode == y.SymmetryCode).SymmetryAliasName
+            }).ToList();
+        }
+        //[Route("stock")]
+        //public ActionResult Stock()
+        //{
+        //    return View();
+        //}
+
     }
 }

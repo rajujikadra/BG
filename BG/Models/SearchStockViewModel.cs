@@ -10,6 +10,8 @@ namespace BG.Models
         public List<int> Shape { get; set; }
         public decimal? CaretFrom { get; set; }
         public decimal? CaretTo { get; set; }
+        public decimal? RapOffFrom { get; set; }
+        public decimal? RapOffTo { get; set; }
 
         public decimal? PriceFrom { get; set; }
         public decimal? PriceTo { get; set; }

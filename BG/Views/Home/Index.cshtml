@@ -5,7 +5,7 @@
 <!-- Main Content -->
 <div class="main-content main-content-pb" id="StockGridDiv">
     <section class="section">
-        <div class="section-body stocksearch">
+        <div class="section-body stocksearch pb-3">
             <div class="row sticky-top">
                 <div class="col-12 mainScrollHeader">
                     @*<a href="#basicSearch"><div class="searchstockBtn current-active">Basic Search</div></a>
@@ -94,33 +94,24 @@
                     </div>
                 </div>
                 <div class="col-12 mt-4">
-                    <h6 class="title_h6">COLOR / FANCY COLOR</h6>
+                    <h6 class="title_h6">COLOR</h6>
                     <div class="row">
-                        <div class="col-md-4">
-                            <form>
-                                <div class="form-row">
-                                    <div class="form-group col-md-12 mt-3">
-                                        <select id="DrdColor" class="form-control">
-                                            <option selected value="">Choose...</option>
-                                            @foreach (var color in Model.Color)
-                                            {
-                                                <option value="@color.ColorCode">@color.ColorName</option>
-                                            }
-                                        </select>
+                        @*<div class="col-md-4">
+                                <form>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-12 mt-3">
+                                                <select id="DrdColor" class="form-control">
+                                                    <option selected value="">Choose...</option>
+                                                    @foreach (var color in Model.Color)
+                                                    {
+                                                        <option value="@color.ColorCode">@color.ColorName</option>
+                                                    }
+                                                </select>
+                                            </div>
                                     </div>
-                                    @*<div class="form-group col-md-6 mt-3">
-                                            <select id="inputState" class="form-control">
-                                                <option selected>Choose...</option>
-                                                @foreach (var fancy_color in Model.FancyColor)
-                                                {
-                                                    <option value="@fancy_color.FancyColorCode">@fancy_color.FancyColorName</option>
-                                                }
-                                            </select>
-                                        </div>*@
-                                </div>
-                            </form>
-                        </div>
-                        <div class="col-md-8">
+                                </form>
+                            </div>*@
+                        <div class="col-md-12">
                             <div class="fancycolorBox">
                                 <div class="FCBox_active">All</div>
                                 @foreach (var color in Model.Color)
@@ -147,28 +138,22 @@
                 <div class="col-12 mt-4">
                     <h6 class="title_h6">CLARITY</h6>
                     <div class="row">
-                        <div class="col-md-4">
-                            <form>
-                                <div class="form-row">
-                                    <div class="form-group col-md-12 mt-3">
-                                        <select id="DrdClarity" class="form-control">
-                                            <option selected value="">Choose...</option>
-                                            @foreach (var clarity in Model.Clarity)
-                                            {
-                                                <option value="@clarity.PurityCode">@clarity.PurityName</option>
-                                            }
-                                        </select>
-                                    </div>
-                                    @*<div class="form-group col-md-6 mt-3">
-                                            <select id="inputState" class="form-control">
-                                                <option selected>Choose...</option>
-                                                <option>...</option>
+                        @*<div class="col-md-4">
+                                <form>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-12 mt-3">
+                                            <select id="DrdClarity" class="form-control">
+                                                <option selected value="">Choose...</option>
+                                                @foreach (var clarity in Model.Clarity)
+                                                {
+                                                    <option value="@clarity.PurityCode">@clarity.PurityName</option>
+                                                }
                                             </select>
-                                        </div>*@
-                                </div>
-                            </form>
-                        </div>
-                        <div class="col-md-8">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>*@
+                        <div class="col-md-12">
                             <div class="fancycolorBox">
                                 <div class="FCBox_active1">ALL</div>
                                 @foreach (var clarity in Model.Clarity)
@@ -300,22 +285,28 @@
                 </div>
                 <div class="col-md-12 mt-4 color_shade">
                     <h6 class="title_h6">COLOR SHADE</h6>
-                    <div class="customeselect_option mt-3">
-                        <select class="test" multiple="multiple" id="DrdColorShade">
-                            @foreach (var fancyColor in Model.FancyColor)
-                            {
-                                <option value="@fancyColor.FancyColorCode">@fancyColor.FancyColorName</option>
-                            }
-                            @*<optgroup label="Group A">
-                                    <option value="1">Option 1</option>
-                                    <option value="2">Option 2</option>
-                                    <option value="3">Option 3</option>
-                                    <option value="4">Option 4</option>
-                                    <option value="5">Option 5</option>
-                                </optgroup>*@
-                        </select>
+                    @*<div class="customeselect_option mt-3">
+                            <select class="test" multiple="multiple" id="DrdColorShade">
+                                @foreach (var fancyColor in Model.FancyColor)
+                                {
+                                    <option value="@fancyColor.FancyColorCode">@fancyColor.FancyColorName</option>
+                                }
+                            </select>
+                        </div>*@
+                    <div class="color_shade">
+                        <div class="color_shade_main">
+                            All
+                        </div>
+                        @foreach (var fancyColor in Model.FancyColor)
+                        {
+                            <div class="color_shade_box" id="@fancyColor.FancyColorCode">
+                                @fancyColor.FancyColorName
+                            </div>
+                        }
                     </div>
-                    @*<button class="noBGM">No bgm</button>*@
+                </div>
+                <div class="col-12">
+                    <button class="noBGM">No bgm</button>
                 </div>
                 <div class="FluorescenceHearts mt-4">
                     <h6 class="title_h6">Fluorescence</h6>
@@ -706,7 +697,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row containe_details stocksearch-bottom-margin" id="searchPacket">
+            <div class="row containe_details" id="searchPacket">
                 <div class="col-12">
                     <h6 class="title_h6">SEARCH BY PACKET/LIST/CERTIFICATE NO. AND OTHER</h6>
                 </div>
@@ -714,32 +705,30 @@
                     <textarea id="txtPacketSearch" rows="4" class="form-control" placeholder="Enter Number"></textarea>
                     <div class="packet_List_Other">
                         Packet Code
-                        <input type="radio" name="searchPacket" value="Packet">
+                        <input type="radio" name="searchPackets" value="Packet">
                     </div>
                     <div class="packet_List_Other">
                         Certificate No.
-                        <input type="radio" name="searchPacket" value="Certificate">
+                        <input type="radio" name="searchPackets" value="Certificate">
                     </div>
                     <div class="packet_List_Other">
                         List No.
-                        <input type="radio" name="searchPacket" value="List">
+                        <input type="radio" name="searchPackets" value="List">
                     </div>
                     <div class="packet_List_Other">
                         Memo No.
-                        <input type="radio" name="searchPacket" value="Memo">
+                        <input type="radio" name="searchPackets" value="Memo">
                     </div>
                 </div>
             </div>
-            <div class="main-footer stocksearch-footer">
-                <div class="footer-left">
+            <div class="row fotter_containe_details">
+                <div class="col-12">
                     <ul class="stocksearch_footer">
                         <li><i class="fas fa-heart"></i> Favourite Save & Search</li>
                         <li><i class="fas fa-search"></i> Only PSS</li>
                         <li><i class="fas fa-search"></i> Add to Bascate</li>
                         <li id="toastr-4" onclick="SearchStock();"><i class="fas fa-search"></i> Stock Search</li>
                     </ul>
-                </div>
-                <div class="footer-right">
                 </div>
             </div>
         </div>
@@ -785,7 +774,7 @@
                 $(this).addClass('PL_other_Active');
             });
 
-            $(".shapeBtn,.FCBox,.CSP_box,.InclusionBox,.shapeBtn_Lab,.FCBox_Fc,.FCBox_Fc1,.CSP_box1,.CSP_box2,.CSP_box3,.CSP_box4,.CSP_box5,.CSP_box6,.InclusionBox1,.InclusionBox2,.InclusionBox3,.InclusionBox4,.InclusionBox5,.InclusionBox6,.InclusionBox7,.InclusionBox8,.InclusionBox9,.InclusionBox10,.InclusionBox11").click(function () {
+            $(".shapeBtn,.FCBox,.CSP_box,.InclusionBox,.shapeBtn_Lab,.FCBox_Fc,.FCBox_Fc1,.CSP_box1,.CSP_box2,.CSP_box3,.CSP_box4,.CSP_box5,.CSP_box6,.InclusionBox1,.InclusionBox2,.InclusionBox3,.InclusionBox4,.InclusionBox5,.InclusionBox6,.InclusionBox7,.InclusionBox8,.InclusionBox9,.InclusionBox10,.InclusionBox11, .color_shade_box").click(function () {
                 $(this).toggleClass("active_blue_bg");
             });
 
@@ -1334,6 +1323,32 @@
                     $('.InclusionBox_active11').removeClass("active_blue_bg");
                 }
             });
+
+            $(".color_shade_main").click(function (e) {
+                $(this).toggleClass("active_blue_bg");
+                var childElements = document.getElementsByClassName('color_shade_box');
+                if ($('.color_shade_main').hasClass('active_blue_bg')) {
+                    for (var i = 0; i < childElements.length; i++) {
+                        childElements[i].classList.add('active_blue_bg');
+                    }
+                }
+                else {
+                    for (var i = 0; i < childElements.length; i++) {
+                        childElements[i].classList.remove('active_blue_bg');
+                    }
+                }
+            });
+
+            $(".color_shade_box").click(function () {
+                var childElements = document.getElementsByClassName('color_shade_box').length;
+                var selectedChildElements = document.getElementsByClassName('color_shade_box active_blue_bg').length;
+                if (childElements === selectedChildElements) {
+                    $('.color_shade_main').addClass("active_blue_bg");
+                }
+                else {
+                    $('.color_shade_main').removeClass("active_blue_bg");
+                }
+            });
         });
 
         $('#txtFromCaret, #txtToCaret, #txtPriceCaretFrom, #txtPriceCaretFrom, #txtRapFrom, #txtRapTo, #txtFromDiameter, #txtToDiameter, #txtFromRatio, #txtToRatio, #txtFromDepth, #txtToDepth, #txtFromTable, #txtToTable, #txtFromLength, #txtToLength, #txtFromWidth, #txtToWidth, #txtFromPavilionAngle, #txtToPavilionAngle, #txtFromPavilionHeight, #txtToPavilionHeight, #txtFromCrownAngle, #txtToCrownAngle, #txtFromCrownHeight, #txtToCrownHeight, #txtFromStarLength, #txtToStarLength, #txtFromLowerHalf, #txtToLowerHalf').keypress(function (event) {
@@ -1375,17 +1390,17 @@
             RapOffFrom = $("#txtRapFrom").val().trim();
             RapOffTo = $("#txtRapTo").val().trim();
 
-            var MultiSize = $("#txtMultiSize").val().trim() != "" ? $("#txtMultiSize").val().trim().split(",") : "";
+            var MultiSize = $("#txtMultiSize").val().trim() != "" ? $("#txtMultiSize").val().trim().split(",") : null;
 
             var Color = [];
-            $("#DrdColor").val() == "" ? [] : Color.push($("#DrdColor").val());
+            //$("#DrdColor").val() == "" ? [] : Color.push($("#DrdColor").val());
             $('.FCBox_Fc').each(function () {
                 if ($(this).hasClass("active_blue_bg"))
                     Color.push($(this).attr('id'));
             });
 
             var Clarity = [];
-            $("#DrdClarity").val() == "" ? [] : Clarity.push($("#DrdClarity").val());
+            //$("#DrdClarity").val() == "" ? [] : Clarity.push($("#DrdClarity").val());
             $('.FCBox_Fc1').each(function () {
                 if ($(this).hasClass("active_blue_bg"))
                     Clarity.push($(this).attr('id'));
@@ -1417,7 +1432,12 @@
 
             var KeyToSymbol = $("#DrdKetToDymbol").val();
             var ReportComment = $("#DrdComments").val();
-            var ColorShade = $("#DrdColorShade").val();
+
+            var ColorShade = [];
+            $('.color_shade_box').each(function () {
+                if ($(this).hasClass("active_blue_bg"))
+                    ColorShade.push($(this).attr('id'));
+            });
 
             var Fluorescence = [];
             $('.CSP_box4').each(function () {
@@ -1479,8 +1499,8 @@
             LowerHalfFrom = $("#txtFromLowerHalf").val().trim();
             LowerHalfTo = $("#txtToLowerHalf").val().trim();
 
-            var SearchArea = $("#txtPacketSearch").val() != "" ? $("#txtPacketSearch").val().split(",") : "";
-            var Radio = $("input[name='searchPacket']:checked").val();
+            var SearchArea = $("#txtPacketSearch").val() != "" ? $("#txtPacketSearch").val().split(",") : null;
+            var Radio = $("input[name='searchPackets']:checked").val();
 
             var obj = {
                 'Shape': Shape,
@@ -1488,6 +1508,8 @@
                 'CaretTo': CaretTo,
                 'PriceFrom': PriceFrom,
                 'PriceTo': PriceTo,
+                'RapOffFrom': RapOffFrom,
+                'RapOffTo': RapOffTo,
                 'MultiSize': MultiSize,
                 'Color': Color,
                 'Clarity': Clarity,
