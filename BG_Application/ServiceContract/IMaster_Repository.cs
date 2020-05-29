@@ -23,6 +23,43 @@ namespace BG_Application.ServiceContract
         List<SizeViewModel> GetAllSizeMaster();
         List<TypeViewModel> GetAllTypeMaster();
         List<DiamondStockViewModel> GetAllStock();
+        List<SBlackInclusionViewModel> GetAllSideBlackInclusion();
+        bool InsertSBlackInclusionMaster(SBlackInclusionViewModel model);
+        bool IsSBlackInclusionExist(string Name, int Code);
+        bool DeleteSBlackInclusion(int ID);
+
+
+        List<SWhiteInclusionViewModel> GetAllSideWhiteInclusion();
+        bool InsertSWhiteInclusionMaster(SWhiteInclusionViewModel model);
+        bool IsSWhiteInclusionExist(string Name, int Code);
+        bool DeleteSWhiteInclusion(int ID);
+
+        List<CBlackInclusionViewModel> GetAllCenterBlackInclusion();
+        bool InsertCBlackInclusionMaster(CBlackInclusionViewModel model);
+        bool IsCBlackInclusionExist(string Name, int Code);
+        bool DeleteCBlackInclusion(int ID);
+
+        List<CWhiteInclusionViewModel> GetAllCenterWhiteInclusion();
+        bool InsertCWhiteInclusionMaster(CWhiteInclusionViewModel model);
+        bool IsCWhiteInclusionExist(string Name, int Code);
+        bool DeleteCWhiteInclusion(int ID);
+
+        List<OTableInclusionViewModel> GetAllOpenTableInclusion();
+        bool InsertOTableInclusionMaster(OTableInclusionViewModel model);
+        bool IsOTableInclusionExist(string Name, int Code);
+        bool DeleteOTableInclusion(int ID);
+
+        List<OCrownInclusionViewModel> GetAllOpenCrownInclusion();
+        bool InsertOCrownInclusionMaster(OCrownInclusionViewModel model);
+        bool IsOCrownInclusionExist(string Name, int Code);
+        bool DeleteOCrownInclusion(int ID);
+
+        List<OPavilionInclusionViewModel> GetAllOpenPavilionInclusion();
+        bool InsertOPavilionInclusionMaster(OPavilionInclusionViewModel model);
+        bool IsOPavilionInclusionExist(string Name, int Code);
+        bool DeleteOPavilionInclusion(int ID);
+
+
 
         bool InsertStockMaster(DiamondStockViewModel model);
         bool IsStockExist(int StockID, string StoneID);

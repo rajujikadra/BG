@@ -241,6 +241,573 @@ namespace BG_Application.Service
             return DB.Database.SqlQuery<TypeViewModel>("SELECT * FROM TypeMst").ToList();
         }
 
+        public List<SBlackInclusionViewModel> GetAllSideBlackInclusion()
+        {
+            return DB.SBlackInclusionMsts.Select(y => new SBlackInclusionViewModel()
+            {
+                Code = y.Code,
+                Active = y.Active,
+                AliasName = y.AliasName,
+                Name = y.Name,
+                CompanyCode = y.CompanyCode,
+                Logid = y.Logid,
+                Pcid = y.Pcid,
+                Sdate = y.Sdate,
+                SortID = y.SortID
+            }).ToList();
+        }
+
+        public List<SWhiteInclusionViewModel> GetAllSideWhiteInclusion()
+        {
+            return DB.SWhiteInclusionMsts.Select(y => new SWhiteInclusionViewModel()
+            {
+                Code = y.Code,
+                Active = y.Active,
+                AliasName = y.AliasName,
+                Name = y.Name,
+                CompanyCode = y.CompanyCode,
+                Logid = y.Logid,
+                Pcid = y.Pcid,
+                Sdate = y.Sdate,
+                SortID = y.SortID
+            }).ToList();
+        }
+
+        public List<OTableInclusionViewModel> GetAllOpenTableInclusion()
+        {
+            return DB.OTableInclusionMsts.Select(y => new OTableInclusionViewModel()
+            {
+                Code = y.Code,
+                Active = y.Active,
+                AliasName = y.AliasName,
+                Name = y.Name,
+                CompanyCode = y.CompanyCode,
+                Logid = y.Logid,
+                Pcid = y.Pcid,
+                Sdate = y.Sdate,
+                SortID = y.SortID
+            }).ToList();
+        }
+
+        public List<OCrownInclusionViewModel> GetAllOpenCrownInclusion()
+        {
+            return DB.OCrownInclusionMsts.Select(y => new OCrownInclusionViewModel()
+            {
+                Code = y.Code,
+                Active = y.Active,
+                AliasName = y.AliasName,
+                Name = y.Name,
+                CompanyCode = y.CompanyCode,
+                Logid = y.Logid,
+                Pcid = y.Pcid,
+                Sdate = y.Sdate,
+                SortID = y.SortID
+            }).ToList();
+        }
+
+        public List<OPavilionInclusionViewModel> GetAllOpenPavilionInclusion()
+        {
+            return DB.OPavilionInclusionMsts.Select(y => new OPavilionInclusionViewModel()
+            {
+                Code = y.Code,
+                Active = y.Active,
+                AliasName = y.AliasName,
+                Name = y.Name,
+                CompanyCode = y.CompanyCode,
+                Logid = y.Logid,
+                Pcid = y.Pcid,
+                Sdate = y.Sdate,
+                SortID = y.SortID
+            }).ToList();
+        }
+
+        public List<CBlackInclusionViewModel> GetAllCenterBlackInclusion()
+        {
+            return DB.CBlackInclusionMsts.Select(y => new CBlackInclusionViewModel()
+            {
+                Code = y.Code,
+                Active = y.Active,
+                AliasName = y.AliasName,
+                Name = y.Name,
+                CompanyCode = y.CompanyCode,
+                Logid = y.Logid,
+                Pcid = y.Pcid,
+                Sdate = y.Sdate,
+                SortID = y.SortID
+            }).ToList();
+        }
+
+        public List<CWhiteInclusionViewModel> GetAllCenterWhiteInclusion()
+        {
+            return DB.CWhiteInclusionMsts.Select(y => new CWhiteInclusionViewModel()
+            {
+                Code = y.Code,
+                Active = y.Active,
+                AliasName = y.AliasName,
+                Name = y.Name,
+                CompanyCode = y.CompanyCode,
+                Logid = y.Logid,
+                Pcid = y.Pcid,
+                Sdate = y.Sdate,
+                SortID = y.SortID
+            }).ToList();
+        }
+
+        public bool InsertSBlackInclusionMaster(SBlackInclusionViewModel model)
+        {
+            try
+            {
+                if (model.Code != 0)
+                {
+                    var data = DB.SBlackInclusionMsts.FirstOrDefault(x => x.Code == model.Code);
+                    if (data != null)
+                    {
+                        data.Name = model.Name.ToUpper();
+                        data.AliasName = model.AliasName.ToUpper();
+                        data.Active = model.Active ?? true;
+                        DB.SaveChanges();
+                    }
+                }
+                else
+                {
+                    var obj = new SBlackInclusionMst
+                    {
+                        Active = model.Active,
+                        AliasName = model.AliasName.ToUpper(),
+                        Name = model.Name.ToUpper(),
+                        CompanyCode = 1,
+                        Logid = model.Logid,
+                        Pcid = model.Pcid,
+                        Sdate = DateTime.Now,
+                        SortID = model.SortID
+                    };
+                    DB.SBlackInclusionMsts.Add(obj);
+                    DB.SaveChanges();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public bool IsSBlackInclusionExist(string Name, int Code)
+        {
+            if (Code > 0)
+                return DB.SBlackInclusionMsts.Any(x => x.Code != Code && x.Name.ToUpper().Equals(Name.ToUpper()));
+            else
+                return DB.SBlackInclusionMsts.Any(x => x.Name.ToUpper().Equals(Name.ToUpper()));
+        }
+
+        public bool DeleteSBlackInclusion(int ID)
+        {
+            try
+            {
+                var data = DB.SBlackInclusionMsts.FirstOrDefault(x => x.Code == ID);
+                if (data != null)
+                {
+                    data.Active = false;
+                    DB.SaveChanges();
+                }
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public bool InsertCBlackInclusionMaster(CBlackInclusionViewModel model)
+        {
+            try
+            {
+                if (model.Code != 0)
+                {
+                    var data = DB.CBlackInclusionMsts.FirstOrDefault(x => x.Code == model.Code);
+                    if (data != null)
+                    {
+                        data.Name = model.Name.ToUpper();
+                        data.AliasName = model.AliasName.ToUpper();
+                        data.Active = model.Active ?? true;
+                        DB.SaveChanges();
+                    }
+                }
+                else
+                {
+                    var obj = new CBlackInclusionMst
+                    {
+                        Active = model.Active,
+                        AliasName = model.AliasName.ToUpper(),
+                        Name = model.Name.ToUpper(),
+                        CompanyCode = 1,
+                        Logid = model.Logid,
+                        Pcid = model.Pcid,
+                        Sdate = DateTime.Now,
+                        SortID = model.SortID
+                    };
+                    DB.CBlackInclusionMsts.Add(obj);
+                    DB.SaveChanges();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public bool IsCBlackInclusionExist(string Name, int Code)
+        {
+            if (Code > 0)
+                return DB.CBlackInclusionMsts.Any(x => x.Code != Code && x.Name.ToUpper().Equals(Name.ToUpper()));
+            else
+                return DB.CBlackInclusionMsts.Any(x => x.Name.ToUpper().Equals(Name.ToUpper()));
+        }
+
+        public bool DeleteCBlackInclusion(int ID)
+        {
+            try
+            {
+                var data = DB.CBlackInclusionMsts.FirstOrDefault(x => x.Code == ID);
+                if (data != null)
+                {
+                    data.Active = false;
+                    DB.SaveChanges();
+                }
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+        public bool InsertCWhiteInclusionMaster(CWhiteInclusionViewModel model)
+        {
+            try
+            {
+                if (model.Code != 0)
+                {
+                    var data = DB.CWhiteInclusionMsts.FirstOrDefault(x => x.Code == model.Code);
+                    if (data != null)
+                    {
+                        data.Name = model.Name.ToUpper();
+                        data.AliasName = model.AliasName.ToUpper();
+                        data.Active = model.Active ?? true;
+                        DB.SaveChanges();
+                    }
+                }
+                else
+                {
+                    var obj = new CWhiteInclusionMst
+                    {
+                        Active = model.Active,
+                        AliasName = model.AliasName.ToUpper(),
+                        Name = model.Name.ToUpper(),
+                        CompanyCode = 1,
+                        Logid = model.Logid,
+                        Pcid = model.Pcid,
+                        Sdate = DateTime.Now,
+                        SortID = model.SortID
+                    };
+                    DB.CWhiteInclusionMsts.Add(obj);
+                    DB.SaveChanges();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public bool IsCWhiteInclusionExist(string Name, int Code)
+        {
+            if (Code > 0)
+                return DB.CWhiteInclusionMsts.Any(x => x.Code != Code && x.Name.ToUpper().Equals(Name.ToUpper()));
+            else
+                return DB.CWhiteInclusionMsts.Any(x => x.Name.ToUpper().Equals(Name.ToUpper()));
+        }
+
+        public bool DeleteCWhiteInclusion(int ID)
+        {
+            try
+            {
+                var data = DB.CWhiteInclusionMsts.FirstOrDefault(x => x.Code == ID);
+                if (data != null)
+                {
+                    data.Active = false;
+                    DB.SaveChanges();
+                }
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public bool InsertOTableInclusionMaster(OTableInclusionViewModel model)
+        {
+            try
+            {
+                if (model.Code != 0)
+                {
+                    var data = DB.OTableInclusionMsts.FirstOrDefault(x => x.Code == model.Code);
+                    if (data != null)
+                    {
+                        data.Name = model.Name.ToUpper();
+                        data.AliasName = model.AliasName.ToUpper();
+                        data.Active = model.Active ?? true;
+                        DB.SaveChanges();
+                    }
+                }
+                else
+                {
+                    var obj = new OTableInclusionMst
+                    {
+                        Active = model.Active,
+                        AliasName = model.AliasName.ToUpper(),
+                        Name = model.Name.ToUpper(),
+                        CompanyCode = 1,
+                        Logid = model.Logid,
+                        Pcid = model.Pcid,
+                        Sdate = DateTime.Now,
+                        SortID = model.SortID
+                    };
+                    DB.OTableInclusionMsts.Add(obj);
+                    DB.SaveChanges();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public bool IsOTableInclusionExist(string Name, int Code)
+        {
+            if (Code > 0)
+                return DB.OTableInclusionMsts.Any(x => x.Code != Code && x.Name.ToUpper().Equals(Name.ToUpper()));
+            else
+                return DB.OTableInclusionMsts.Any(x => x.Name.ToUpper().Equals(Name.ToUpper()));
+        }
+
+        public bool DeleteOTableInclusion(int ID)
+        {
+            try
+            {
+                var data = DB.OTableInclusionMsts.FirstOrDefault(x => x.Code == ID);
+                if (data != null)
+                {
+                    data.Active = false;
+                    DB.SaveChanges();
+                }
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+        public bool InsertOCrownInclusionMaster(OCrownInclusionViewModel model)
+        {
+            try
+            {
+                if (model.Code != 0)
+                {
+                    var data = DB.OCrownInclusionMsts.FirstOrDefault(x => x.Code == model.Code);
+                    if (data != null)
+                    {
+                        data.Name = model.Name.ToUpper();
+                        data.AliasName = model.AliasName.ToUpper();
+                        data.Active = model.Active ?? true;
+                        DB.SaveChanges();
+                    }
+                }
+                else
+                {
+                    var obj = new OCrownInclusionMst
+                    {
+                        Active = model.Active,
+                        AliasName = model.AliasName.ToUpper(),
+                        Name = model.Name.ToUpper(),
+                        CompanyCode = 1,
+                        Logid = model.Logid,
+                        Pcid = model.Pcid,
+                        Sdate = DateTime.Now,
+                        SortID = model.SortID
+                    };
+                    DB.OCrownInclusionMsts.Add(obj);
+                    DB.SaveChanges();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public bool IsOCrownInclusionExist(string Name, int Code)
+        {
+            if (Code > 0)
+                return DB.OCrownInclusionMsts.Any(x => x.Code != Code && x.Name.ToUpper().Equals(Name.ToUpper()));
+            else
+                return DB.OCrownInclusionMsts.Any(x => x.Name.ToUpper().Equals(Name.ToUpper()));
+        }
+
+        public bool DeleteOCrownInclusion(int ID)
+        {
+            try
+            {
+                var data = DB.OCrownInclusionMsts.FirstOrDefault(x => x.Code == ID);
+                if (data != null)
+                {
+                    data.Active = false;
+                    DB.SaveChanges();
+                }
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+        public bool InsertOPavilionInclusionMaster(OPavilionInclusionViewModel model)
+        {
+            try
+            {
+                if (model.Code != 0)
+                {
+                    var data = DB.OPavilionInclusionMsts.FirstOrDefault(x => x.Code == model.Code);
+                    if (data != null)
+                    {
+                        data.Name = model.Name.ToUpper();
+                        data.AliasName = model.AliasName.ToUpper();
+                        data.Active = model.Active ?? true;
+                        DB.SaveChanges();
+                    }
+                }
+                else
+                {
+                    var obj = new OPavilionInclusionMst
+                    {
+                        Active = model.Active,
+                        AliasName = model.AliasName.ToUpper(),
+                        Name = model.Name.ToUpper(),
+                        CompanyCode = 1,
+                        Logid = model.Logid,
+                        Pcid = model.Pcid,
+                        Sdate = DateTime.Now,
+                        SortID = model.SortID
+                    };
+                    DB.OPavilionInclusionMsts.Add(obj);
+                    DB.SaveChanges();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public bool IsOPavilionInclusionExist(string Name, int Code)
+        {
+            if (Code > 0)
+                return DB.OPavilionInclusionMsts.Any(x => x.Code != Code && x.Name.ToUpper().Equals(Name.ToUpper()));
+            else
+                return DB.OPavilionInclusionMsts.Any(x => x.Name.ToUpper().Equals(Name.ToUpper()));
+        }
+
+        public bool DeleteOPavilionInclusion(int ID)
+        {
+            try
+            {
+                var data = DB.OPavilionInclusionMsts.FirstOrDefault(x => x.Code == ID);
+                if (data != null)
+                {
+                    data.Active = false;
+                    DB.SaveChanges();
+                }
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+
+
+
+        public bool InsertSWhiteInclusionMaster(SWhiteInclusionViewModel model)
+        {
+            try
+            {
+                if (model.Code != 0)
+                {
+                    var data = DB.SWhiteInclusionMsts.FirstOrDefault(x => x.Code == model.Code);
+                    if (data != null)
+                    {
+                        data.Name = model.Name.ToUpper();
+                        data.AliasName = model.AliasName.ToUpper();
+                        data.Active = model.Active ?? true;
+                        DB.SaveChanges();
+                    }
+                }
+                else
+                {
+                    var obj = new SWhiteInclusionMst
+                    {
+                        Active = model.Active,
+                        AliasName = model.AliasName.ToUpper(),
+                        Name = model.Name.ToUpper(),
+                        CompanyCode = 1,
+                        Logid = model.Logid,
+                        Pcid = model.Pcid,
+                        Sdate = DateTime.Now,
+                        SortID = model.SortID
+                    };
+                    DB.SWhiteInclusionMsts.Add(obj);
+                    DB.SaveChanges();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public bool IsSWhiteInclusionExist(string Name, int Code)
+        {
+            if (Code > 0)
+                return DB.SWhiteInclusionMsts.Any(x => x.Code != Code && x.Name.ToUpper().Equals(Name.ToUpper()));
+            else
+                return DB.SWhiteInclusionMsts.Any(x => x.Name.ToUpper().Equals(Name.ToUpper()));
+        }
+
+        public bool DeleteSWhiteInclusion(int ID)
+        {
+            try
+            {
+                var data = DB.SWhiteInclusionMsts.FirstOrDefault(x => x.Code == ID);
+                if (data != null)
+                {
+                    data.Active = false;
+                    DB.SaveChanges();
+                }
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
         public bool IsColorExist(string ColorName, int ColorCode)
         {
             if (ColorCode > 0)
@@ -1203,6 +1770,13 @@ namespace BG_Application.Service
             // TODO: uncomment the following line if the finalizer is overridden above.
             GC.SuppressFinalize(this);
         }
+
+       
+
+
+
+
+
         #endregion
     }
 }
