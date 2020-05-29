@@ -755,5 +755,411 @@ namespace BG_API.Controllers
             }
         }
         #endregion
+
+        #region SBlack Inclusion
+        [HttpGet]
+        [Route("side-black-inclusion")]
+        public IHttpActionResult GetAllSBlackInclusionMst()
+        {
+            try
+            {
+                var FColor = _IMaster_Repository.GetAllSideBlackInclusion();
+                return Ok(FColor);
+            }
+            catch (Exception ex)
+            {
+                return NotFound();
+            }
+        }
+        [HttpPost]
+        [Route("save-side-black-inclusion-master")]
+        public IHttpActionResult AddEditSBlackMaster(SBlackInclusionViewModel model)
+        {
+            try
+            {
+                if (!_IMaster_Repository.IsSBlackInclusionExist(model.Name, model.Code))
+                {
+                    bool status = _IMaster_Repository.InsertSBlackInclusionMaster(model);
+                    if (status)
+                        return Ok(model.Code != 0 ? "Successfully updated" : "Successfully added");
+                    else
+                        return BadRequest("Opps! Something problem in your data");
+                }
+                else
+                {
+                    return BadRequest(model.Name + " is already exist");
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Opps! Something went wrong");
+            }
+        }
+        [HttpDelete]
+        [Route("delete-side-black-inclusion-master/{Code}")]
+        public IHttpActionResult DeleteSBlackMaster(int Code)
+        {
+            try
+            {
+                bool status = _IMaster_Repository.DeleteSBlackInclusion(Code);
+                if (status)
+                    return Ok("Successfully deleted");
+                else
+                    return BadRequest("Opps! Something went wrong");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Opps! Something went wrong");
+            }
+        }
+        #endregion
+
+        #region SWhite Inclusion
+        [HttpGet]
+        [Route("side-white-inclusion")]
+        public IHttpActionResult GetAllSWhiteInclusionMst()
+        {
+            try
+            {
+                var FColor = _IMaster_Repository.GetAllSideWhiteInclusion();
+                return Ok(FColor);
+            }
+            catch (Exception ex)
+            {
+                return NotFound();
+            }
+        }
+        [HttpPost]
+        [Route("save-side-white-inclusion-master")]
+        public IHttpActionResult AddEditSWhiteMaster(SWhiteInclusionViewModel model)
+        {
+            try
+            {
+                if (!_IMaster_Repository.IsSWhiteInclusionExist(model.Name, model.Code))
+                {
+                    bool status = _IMaster_Repository.InsertSWhiteInclusionMaster(model);
+                    if (status)
+                        return Ok(model.Code != 0 ? "Successfully updated" : "Successfully added");
+                    else
+                        return BadRequest("Opps! Something problem in your data");
+                }
+                else
+                {
+                    return BadRequest(model.Name + " is already exist");
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Opps! Something went wrong");
+            }
+        }
+        [HttpDelete]
+        [Route("delete-side-white-inclusion-master/{Code}")]
+        public IHttpActionResult DeleteSWhiteMaster(int Code)
+        {
+            try
+            {
+                bool status = _IMaster_Repository.DeleteSWhiteInclusion(Code);
+                if (status)
+                    return Ok("Successfully deleted");
+                else
+                    return BadRequest("Opps! Something went wrong");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Opps! Something went wrong");
+            }
+        }
+        #endregion
+
+        #region CBlack Inclusion
+        [HttpGet]
+        [Route("center-black-inclusion")]
+        public IHttpActionResult GetAllCBlackInclusionMst()
+        {
+            try
+            {
+                var FColor = _IMaster_Repository.GetAllCenterBlackInclusion();
+                return Ok(FColor);
+            }
+            catch (Exception ex)
+            {
+                return NotFound();
+            }
+        }
+        [HttpPost]
+        [Route("save-center-black-inclusion-master")]
+        public IHttpActionResult AddEditCBlackMaster(CBlackInclusionViewModel model)
+        {
+            try
+            {
+                if (!_IMaster_Repository.IsCBlackInclusionExist(model.Name, model.Code))
+                {
+                    bool status = _IMaster_Repository.InsertCBlackInclusionMaster(model);
+                    if (status)
+                        return Ok(model.Code != 0 ? "Successfully updated" : "Successfully added");
+                    else
+                        return BadRequest("Opps! Something problem in your data");
+                }
+                else
+                {
+                    return BadRequest(model.Name + " is already exist");
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Opps! Something went wrong");
+            }
+        }
+        [HttpDelete]
+        [Route("delete-center-black-inclusion-master/{Code}")]
+        public IHttpActionResult DeleteCBlackMaster(int Code)
+        {
+            try
+            {
+                bool status = _IMaster_Repository.DeleteCBlackInclusion(Code);
+                if (status)
+                    return Ok("Successfully deleted");
+                else
+                    return BadRequest("Opps! Something went wrong");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Opps! Something went wrong");
+            }
+        }
+        #endregion
+
+        #region CWhite Inclusion
+        [HttpGet]
+        [Route("center-white-inclusion")]
+        public IHttpActionResult GetAllCWhiteInclusionMst()
+        {
+            try
+            {
+                var FColor = _IMaster_Repository.GetAllCenterWhiteInclusion();
+                return Ok(FColor);
+            }
+            catch (Exception ex)
+            {
+                return NotFound();
+            }
+        }
+        [HttpPost]
+        [Route("save-center-white-inclusion-master")]
+        public IHttpActionResult AddEditCWhiteMaster(CWhiteInclusionViewModel model)
+        {
+            try
+            {
+                if (!_IMaster_Repository.IsCWhiteInclusionExist(model.Name, model.Code))
+                {
+                    bool status = _IMaster_Repository.InsertCWhiteInclusionMaster(model);
+                    if (status)
+                        return Ok(model.Code != 0 ? "Successfully updated" : "Successfully added");
+                    else
+                        return BadRequest("Opps! Something problem in your data");
+                }
+                else
+                {
+                    return BadRequest(model.Name + " is already exist");
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Opps! Something went wrong");
+            }
+        }
+        [HttpDelete]
+        [Route("delete-center-white-inclusion-master/{Code}")]
+        public IHttpActionResult DeleteCWhiteMaster(int Code)
+        {
+            try
+            {
+                bool status = _IMaster_Repository.DeleteCWhiteInclusion(Code);
+                if (status)
+                    return Ok("Successfully deleted");
+                else
+                    return BadRequest("Opps! Something went wrong");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Opps! Something went wrong");
+            }
+        }
+        #endregion
+
+        #region OTable Inclusion
+        [HttpGet]
+        [Route("open-table-inclusion")]
+        public IHttpActionResult GetAllOtableInclusionMst()
+        {
+            try
+            {
+                var FColor = _IMaster_Repository.GetAllOpenTableInclusion();
+                return Ok(FColor);
+            }
+            catch (Exception ex)
+            {
+                return NotFound();
+            }
+        }
+        [HttpPost]
+        [Route("save-opem-table-inclusion-master")]
+        public IHttpActionResult AddEditOtableMaster(OTableInclusionViewModel model)
+        {
+            try
+            {
+                if (!_IMaster_Repository.IsOTableInclusionExist(model.Name, model.Code))
+                {
+                    bool status = _IMaster_Repository.InsertOTableInclusionMaster(model);
+                    if (status)
+                        return Ok(model.Code != 0 ? "Successfully updated" : "Successfully added");
+                    else
+                        return BadRequest("Opps! Something problem in your data");
+                }
+                else
+                {
+                    return BadRequest(model.Name + " is already exist");
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Opps! Something went wrong");
+            }
+        }
+        [HttpDelete]
+        [Route("delete-open-table-inclusion-master/{Code}")]
+        public IHttpActionResult DeleteOtablMaster(int Code)
+        {
+            try
+            {
+                bool status = _IMaster_Repository.DeleteOTableInclusion(Code);
+                if (status)
+                    return Ok("Successfully deleted");
+                else
+                    return BadRequest("Opps! Something went wrong");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Opps! Something went wrong");
+            }
+        }
+        #endregion
+
+        #region OCrown Inclusion
+        [HttpGet]
+        [Route("open-crown-inclusion")]
+        public IHttpActionResult GetAllOCrownInclusionMst()
+        {
+            try
+            {
+                var FColor = _IMaster_Repository.GetAllOpenCrownInclusion();
+                return Ok(FColor);
+            }
+            catch (Exception ex)
+            {
+                return NotFound();
+            }
+        }
+        [HttpPost]
+        [Route("save-opem-crown-inclusion-master")]
+        public IHttpActionResult AddEditOCrownMaster(OCrownInclusionViewModel model)
+        {
+            try
+            {
+                if (!_IMaster_Repository.IsOCrownInclusionExist(model.Name, model.Code))
+                {
+                    bool status = _IMaster_Repository.InsertOCrownInclusionMaster(model);
+                    if (status)
+                        return Ok(model.Code != 0 ? "Successfully updated" : "Successfully added");
+                    else
+                        return BadRequest("Opps! Something problem in your data");
+                }
+                else
+                {
+                    return BadRequest(model.Name + " is already exist");
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Opps! Something went wrong");
+            }
+        }
+        [HttpDelete]
+        [Route("delete-open-crown-inclusion-master/{Code}")]
+        public IHttpActionResult DeleteOCrownMaster(int Code)
+        {
+            try
+            {
+                bool status = _IMaster_Repository.DeleteOCrownInclusion(Code);
+                if (status)
+                    return Ok("Successfully deleted");
+                else
+                    return BadRequest("Opps! Something went wrong");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Opps! Something went wrong");
+            }
+        }
+        #endregion
+
+        #region OCrown Inclusion
+        [HttpGet]
+        [Route("open-pavilion-inclusion")]
+        public IHttpActionResult GetAllOPavilionInclusionMst()
+        {
+            try
+            {
+                var FColor = _IMaster_Repository.GetAllOpenPavilionInclusion();
+                return Ok(FColor);
+            }
+            catch (Exception ex)
+            {
+                return NotFound();
+            }
+        }
+        [HttpPost]
+        [Route("save-opem-pavilion-inclusion-master")]
+        public IHttpActionResult AddEditOPavilionMaster(OPavilionInclusionViewModel model)
+        {
+            try
+            {
+                if (!_IMaster_Repository.IsOPavilionInclusionExist(model.Name, model.Code))
+                {
+                    bool status = _IMaster_Repository.InsertOPavilionInclusionMaster(model);
+                    if (status)
+                        return Ok(model.Code != 0 ? "Successfully updated" : "Successfully added");
+                    else
+                        return BadRequest("Opps! Something problem in your data");
+                }
+                else
+                {
+                    return BadRequest(model.Name + " is already exist");
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Opps! Something went wrong");
+            }
+        }
+        [HttpDelete]
+        [Route("delete-open-pavilion-inclusion-master/{Code}")]
+        public IHttpActionResult DeleteOPavilionMaster(int Code)
+        {
+            try
+            {
+                bool status = _IMaster_Repository.DeleteOPavilionInclusion(Code);
+                if (status)
+                    return Ok("Successfully deleted");
+                else
+                    return BadRequest("Opps! Something went wrong");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Opps! Something went wrong");
+            }
+        }
+        #endregion
     }
 }
