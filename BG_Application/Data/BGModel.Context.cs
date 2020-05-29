@@ -55,5 +55,12 @@ namespace BG_Application.Data
         public virtual DbSet<UserMenuPermissionMst> UserMenuPermissionMsts { get; set; }
         public virtual DbSet<AssignSalesPersonMst> AssignSalesPersonMsts { get; set; }
         public virtual DbSet<BannerMst> BannerMsts { get; set; }
+        public virtual DbSet<CBlackInclusionMst> CBlackInclusionMsts { get; set; }
+        public virtual DbSet<CWhiteInclusionMst> CWhiteInclusionMsts { get; set; }
+        public virtual DbSet<OCrownInclusionMst> OCrownInclusionMsts { get; set; }
+        public virtual DbSet<OPavilionInclusionMst> OPavilionInclusionMsts { get; set; }
+        public virtual DbSet<OTableInclusionMst> OTableInclusionMsts { get; set; }
+        public virtual DbSet<SBlackInclusionMst> SBlackInclusionMsts { get; set; }
+        public virtual DbSet<SWhiteInclusionMst> SWhiteInclusionMsts { get; set; }
     }
 }

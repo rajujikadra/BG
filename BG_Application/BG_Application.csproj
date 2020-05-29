@@ -61,12 +61,14 @@
     <Compile Include="CustomDTO\AssignSalesPersonViewModel.cs" />
     <Compile Include="CustomDTO\BannerViewModel.cs" />
     <Compile Include="CustomDTO\BrokerColumnsViewModel.cs" />
+    <Compile Include="CustomDTO\CBlackInclusionViewModel.cs" />
     <Compile Include="CustomDTO\CertificateViewModel.cs" />
     <Compile Include="CustomDTO\CityViewModel.cs" />
     <Compile Include="CustomDTO\ColorViewModel.cs" />
     <Compile Include="CustomDTO\CompanyViewModel.cs" />
     <Compile Include="CustomDTO\CountryViewModel.cs" />
     <Compile Include="CustomDTO\CutViewModel.cs" />
+    <Compile Include="CustomDTO\CWhiteInclusionViewModel.cs" />
     <Compile Include="CustomDTO\DiamondStockViewModel.cs" />
     <Compile Include="CustomDTO\EnumTypes.cs" />
     <Compile Include="CustomDTO\FancyColorViewModel.cs" />
@@ -75,13 +77,18 @@
     <Compile Include="CustomDTO\HAViewModel.cs" />
     <Compile Include="CustomDTO\HomeViewModel.cs" />
     <Compile Include="CustomDTO\MenuViewModel.cs" />
+    <Compile Include="CustomDTO\OCrownInclusionViewModel.cs" />
+    <Compile Include="CustomDTO\OPavilionInclusionViewModel.cs" />
+    <Compile Include="CustomDTO\OTableInclusionViewModel.cs" />
     <Compile Include="CustomDTO\PartyViewModel.cs" />
     <Compile Include="CustomDTO\PurityViewModel.cs" />
     <Compile Include="CustomDTO\SalesPersonMenuPermissionViewModel.cs" />
+    <Compile Include="CustomDTO\SBlackInclusionViewModel.cs" />
     <Compile Include="CustomDTO\SelectListViewModel.cs" />
     <Compile Include="CustomDTO\ShapViewModel.cs" />
     <Compile Include="CustomDTO\SizeViewModel.cs" />
     <Compile Include="CustomDTO\StateViewModel.cs" />
+    <Compile Include="CustomDTO\SWhiteInclusionViewModel.cs" />
     <Compile Include="CustomDTO\TypeViewModel.cs" />
     <Compile Include="Data\AspNetRole.cs">
       <DependentUpon>BGModel.tt</DependentUpon>
@@ -122,6 +129,9 @@
     <Compile Include="Data\BrokerColumnName.cs">
       <DependentUpon>BGModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\CBlackInclusionMst.cs">
+      <DependentUpon>BGModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\CertificateMst.cs">
       <DependentUpon>BGModel.tt</DependentUpon>
     </Compile>
@@ -138,6 +148,9 @@
       <DependentUpon>BGModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\CutMst.cs">
+      <DependentUpon>BGModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\CWhiteInclusionMst.cs">
       <DependentUpon>BGModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\C__MigrationHistory.cs">
@@ -164,6 +177,15 @@
     <Compile Include="Data\MenuMst.cs">
       <DependentUpon>BGModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\OCrownInclusionMst.cs">
+      <DependentUpon>BGModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\OPavilionInclusionMst.cs">
+      <DependentUpon>BGModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\OTableInclusionMst.cs">
+      <DependentUpon>BGModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\PartyMst.cs">
       <DependentUpon>BGModel.tt</DependentUpon>
     </Compile>
@@ -173,6 +195,9 @@
     <Compile Include="Data\PurityMst.cs">
       <DependentUpon>BGModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\SBlackInclusionMst.cs">
+      <DependentUpon>BGModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\ShapeMst.cs">
       <DependentUpon>BGModel.tt</DependentUpon>
     </Compile>
@@ -180,6 +205,9 @@
       <DependentUpon>BGModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\StateMst.cs">
+      <DependentUpon>BGModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\SWhiteInclusionMst.cs">
       <DependentUpon>BGModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\SymmetryMst.cs">

@@ -51,6 +51,13 @@
         <AssociationConnector Association="BG_DBModel.FK_Customer" />
         <AssociationConnector Association="BG_DBModel.FK_SalesPerson" />
         <EntityTypeShape EntityType="BG_DBModel.BannerMst" Width="1.5" PointX="13.375" PointY="8.75" />
+        <EntityTypeShape EntityType="BG_DBModel.CBlackInclusionMst" Width="1.5" PointX="10.375" PointY="15.75" />
+        <EntityTypeShape EntityType="BG_DBModel.CWhiteInclusionMst" Width="1.5" PointX="12.375" PointY="15.75" />
+        <EntityTypeShape EntityType="BG_DBModel.OCrownInclusionMst" Width="1.5" PointX="14.375" PointY="15.75" />
+        <EntityTypeShape EntityType="BG_DBModel.OPavilionInclusionMst" Width="1.5" PointX="3.375" PointY="16.75" />
+        <EntityTypeShape EntityType="BG_DBModel.OTableInclusionMst" Width="1.5" PointX="5.375" PointY="16.75" />
+        <EntityTypeShape EntityType="BG_DBModel.SBlackInclusionMst" Width="1.5" PointX="7.375" PointY="16.75" />
+        <EntityTypeShape EntityType="BG_DBModel.SWhiteInclusionMst" Width="1.5" PointX="16.375" PointY="8.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
