@@ -213,6 +213,7 @@
     <Compile Include="Common\Config.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\DNAController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="EnumFile\EnumType.cs" />
@@ -1152,6 +1153,7 @@
     <Content Include="Views\Error\Index.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Home\Stock.cshtml" />
+    <Content Include="Views\DNA\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

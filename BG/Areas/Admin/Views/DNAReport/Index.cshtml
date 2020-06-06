@@ -39,7 +39,7 @@
                                 <div class="form-group">
                                     @*<label>Upload H&A Images</label>
                                         <input type="file" class="form-control" accept=".jpg,.png,.jpeg">*@
-                                    @Html.TextBoxFor(model => model.Images, "", new { @type = "file", @class = "form-control", @accept = ".jpg,.png,.jpeg" })
+                                    @Html.TextBoxFor(model => model.Images, "", new { @type = "file", @class = "form-control", @multiple = "multiple", @accept = ".jpg,.png,.jpeg" })
                                     @Html.ValidationMessageFor(model => model.Images, "", new { @class = "text-danger" })
                                 </div>
                             </div>
