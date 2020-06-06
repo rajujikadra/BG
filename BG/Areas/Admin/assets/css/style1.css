@@ -1855,3 +1855,8 @@ a {
     bottom: 41px;
     width: 100%;
 }
+@media (min-width: 768px) and (max-width: 991px) {
+    .mainScrollHeader ul li a {
+        font-size: 13px;
+    }
+}

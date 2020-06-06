@@ -1,0 +1,57 @@
+﻿@model BG.Models.DNAFileViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+
+<div class="main-content">
+    <section class="section">
+        <div class="section-body inquiry-suggestion-section">
+            <div class="row">
+                <div class="col-lg-12 m-auto">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>DNA-Report</h4>
+                        </div>
+                        @using (Html.BeginForm("DNAUpload", "DNAReport", new { area = "admin" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="card-body">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.StoneID)
+                                    @Html.TextBoxFor(model => model.StoneID, "", new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.StoneID, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.PDFFile)
+                                    @*<label>Upload Certy</label>
+                                        <input type="file" class="form-control" accept=".pdf">*@
+                                    @Html.TextBoxFor(model => model.PDFFile, "", new { @type = "file", @class = "form-control", @accept = ".pdf" })
+                                    @Html.ValidationMessageFor(model => model.PDFFile, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @*<label>Upload V360 File</label>
+                                        <input type="file" class="form-control" accept=".json" multiple>*@
+                                    @Html.TextBoxFor(model => model.JSONFile, "", new { @type = "file", @multiple = "multiple", @class = "form-control", @accept = ".json" })
+                                    @Html.ValidationMessageFor(model => model.JSONFile, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @*<label>Upload H&A Images</label>
+                                        <input type="file" class="form-control" accept=".jpg,.png,.jpeg">*@
+                                    @Html.TextBoxFor(model => model.Images, "", new { @type = "file", @class = "form-control", @accept = ".jpg,.png,.jpeg" })
+                                    @Html.ValidationMessageFor(model => model.Images, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="card-footer text-right">
+                                <input type="submit" value="SAVE" class="btn btn-primary mr-1" />
+                                <button class="btn btn-danger" type="reset">Cancel</button>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+

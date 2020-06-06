@@ -206,6 +206,7 @@
     <Compile Include="Areas\Admin\Controllers\CounterController.cs" />
     <Compile Include="Areas\Admin\Controllers\CustomerController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DNAReportController.cs" />
     <Compile Include="Areas\Admin\Controllers\MasterController.cs" />
     <Compile Include="Areas\Admin\Controllers\SalesPersonController.cs" />
     <Compile Include="Areas\Admin\Controllers\StockController.cs" />
@@ -225,6 +226,7 @@
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AuthorizeEntryPermission.cs" />
     <Compile Include="Models\CounterViewModel.cs" />
+    <Compile Include="Models\DNAFileViewModel.cs" />
     <Compile Include="Models\SearchStockViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -1112,6 +1114,7 @@
     <Content Include="Areas\Admin\Views\Counter\_ColumnPermission.cshtml" />
     <Content Include="Areas\Admin\Views\Counter\_MenuPermission.cshtml" />
     <Content Include="Areas\Admin\Views\Banner\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\DNAReport\Index.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\ClientJS\common.js" />
@@ -1153,6 +1156,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="DNAReports\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
