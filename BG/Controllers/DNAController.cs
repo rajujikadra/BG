@@ -57,13 +57,7 @@ namespace BG.Controllers
             Stone.ImageNames.AddRange(PNG_images.Select(c => c.Name).ToList());
             Stone.ImageNames.AddRange(JPEG_images.Select(c => c.Name).ToList());
             List<FileInfo> JSON_FIle = GetFiles(Server.MapPath(@"~/DNAReports/" + StoneID), "json").ToList();
-            foreach(var file in JSON_FIle)
-            {
-                using (StreamReader reader = file.OpenText())
-                {
-                    Stone.JSONString.Add(reader.ReadToEnd());
-                }                
-            }
+           
             return View(Stone);
         }
         public static IEnumerable<FileInfo> GetFiles(string path, string extension)
