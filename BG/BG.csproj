@@ -227,6 +227,7 @@
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AuthorizeEntryPermission.cs" />
     <Compile Include="Models\CounterViewModel.cs" />
+    <Compile Include="Models\DNADisplayViewModel.cs" />
     <Compile Include="Models\DNAFileViewModel.cs" />
     <Compile Include="Models\SearchStockViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -838,6 +839,8 @@
     <Content Include="Areas\Admin\assets\css\app.min.css" />
     <Content Include="Areas\Admin\assets\css\components.css" />
     <Content Include="Areas\Admin\assets\css\custom.css" />
+    <Content Include="Areas\Admin\assets\css\diamond-shap.css" />
+    <Content Include="Areas\Admin\assets\css\magnify.css" />
     <Content Include="Areas\Admin\assets\css\MaterialIcons-Regular.html" />
     <Content Include="Areas\Admin\assets\css\style.css" />
     <Content Include="Areas\Admin\assets\css\style1.css" />
@@ -976,7 +979,10 @@
     <Content Include="Areas\Admin\assets\img\users\user-9.png" />
     <Content Include="Areas\Admin\assets\js\app.min.js" />
     <Content Include="Areas\Admin\assets\js\custom.js" />
+    <Content Include="Areas\Admin\assets\js\diamond-shap.js" />
     <Content Include="Areas\Admin\assets\js\fSelect.js" />
+    <Content Include="Areas\Admin\assets\js\jquery-3.3.1.min.js" />
+    <Content Include="Areas\Admin\assets\js\jquery.magnify.js" />
     <Content Include="Areas\Admin\assets\js\page\advance-table.js" />
     <Content Include="Areas\Admin\assets\js\page\auth-register.js" />
     <Content Include="Areas\Admin\assets\js\page\calendar.js" />

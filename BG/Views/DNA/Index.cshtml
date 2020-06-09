@@ -1,8 +1,191 @@
-﻿
+﻿@model BG.Models.DNADisplayViewModel
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = null;
 }
+<!DOCTYPE html>
+<html lang="en">
+<!-- blog.html  21 Nov 2019 03:50:31 GMT -->
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+    <title>Rudra Infotech - Admin Dashboard Template</title>
+    <link href="~/Areas/Admin/assets/css/diamond-shap.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/assets/css/magnify.css" rel="stylesheet" />
+</head>
 
-<h2>Index</h2>
+
+<body>
+    <div class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="custom-col-w100">
+                    <div class="custom-col-stoneID">
+                        <table class="tblDesign">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        StoneID
+                                    </th>
+                                    <th>
+                                        Carat Weight
+                                    </th>
+                                    <th>
+                                        Color
+                                    </th>
+                                    <th>
+                                        Shape
+                                    </th>
+                                    <th>
+                                        Clarity
+                                    </th>
+                                    <th>
+                                        Cut
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="secRow">
+                                    <td class="data">
+                                        <span>@Model.StoneID</span>
+                                    </td>
+                                    <td class="data">
+                                        <span>@Model.CaratWeight</span>
+                                    </td>
+                                    <td class="data">
+                                        <span>@Model.Color</span>
+                                    </td>
+                                    <td class="data">
+                                        <span>@Model.Shape</span>
+                                    </td>
+                                    <td class="data">
+                                        <span>@Model.Clarity</span>
+                                    </td>
+                                    <td class="data">
+                                        <span>@Model.Cut</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="custom-col-w100">
+                    <div class="custom-col-left">
+                        <div class='Vision360'></div>
+                    </div>
+                    @{
+                        var PDF_Path = "/DNAReports/" + Model.StoneID + "/" + Model.PDFFileName;
+                    }
+                    <div class="custom-col-right">
+                        <iframe src="@PDF_Path" seamless="seamless" class="iframeGIA divGIA" scrolling="no" style="width: 100%; height: 100%;"></iframe>
+                    </div>
+                </div>
+                <div class="custom-col-w100 diamond-zoom-img">
+                    @foreach (var i in Model.ImageNames)
+                    {
+                        <img src="~/DNAReports/@Model.StoneID/@i" id="myBtn">
+                    }
+
+                </div>
+                <h2 class="title-h2">Simillar Items</h2>
+                <div class="custom-col-w100 mt-0 mb-15">
+                    <div class="custom-col-stoneID">
+                        <table class="tblDesign">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        StoneID
+                                    </th>
+                                    <th>
+                                        Carat Weight
+                                    </th>
+                                    <th>
+                                        Color
+                                    </th>
+                                    <th>
+                                        Shape
+                                    </th>
+                                    <th>
+                                        Clarity
+                                    </th>
+                                    <th>
+                                        Cut
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="secRow">
+                                    <td class="data">
+                                        <span>H12D301313</span>
+                                    </td>
+                                    <td class="data">
+                                        <span>5.01</span>
+                                    </td>
+                                    <td class="data">
+                                        <span>I</span>
+                                    </td>
+                                    <td class="data">
+                                        <span>Emerald</span>
+                                    </td>
+                                    <td class="data">
+                                        <span>IF</span>
+                                    </td>
+                                    <td class="data">
+                                        <span>5.01</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="diamond-img-zoom">
+                <img src="assets/img/diamond-img-zoom.jpg" data-magnify-src="assets/img/diamond-img-zoom.jpg">
+            </div>
+        </div>
+    </div>
+    <script src="~/Areas/Admin/assets/js/jquery-3.3.1.min.js"></script>
+    <script src="~/Areas/Admin/assets/js/diamond-shap.js"></script>
+    <script src="~/Areas/Admin/assets/js/jquery.magnify.js"></script>
+    <script>
+        // Get the modal
+        var modal = document.getElementById("myModal");
+        // Get the button that opens the modal
+        var btn = document.getElementById("myBtn");
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+        // When the user clicks the button, open the modal
+        btn.onclick = function () {
+            modal.style.display = "block";
+        }
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+    <script>
+        $(document).ready(function () {
+            // Initiate magnification powers
+            $('.diamond-img-zoom img').magnify();
+        });
+    </script>
+</body>
+</html>
+
+
+
 
