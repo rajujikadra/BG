@@ -53,6 +53,7 @@ namespace BG.Controllers
             List<FileInfo> JPG_images = GetFiles(Server.MapPath(@"~/DNAReports/" + StoneID), "jpg").ToList();
             List<FileInfo> PNG_images = GetFiles(Server.MapPath(@"~/DNAReports/" + StoneID), "png").ToList();
             List<FileInfo> JPEG_images = GetFiles(Server.MapPath(@"~/DNAReports/" + StoneID), "jpeg").ToList();
+            Stone.ImageNames = new List<string>();
             if (JPG_images.Count() > 0 && JPG_images != null)
                 Stone.ImageNames = JPG_images.Select(c => c.Name).ToList();
             if (PNG_images.Count() > 0 && PNG_images != null)
@@ -60,6 +61,7 @@ namespace BG.Controllers
             if (JPEG_images.Count() > 0 && JPEG_images != null)
                 Stone.ImageNames.AddRange(JPEG_images.Select(c => c.Name).ToList());
             List<FileInfo> JSON_FIle = GetFiles(Server.MapPath(@"~/DNAReports/" + StoneID), "json").ToList();
+            Stone.JSONString = new List<string>();
             if (JSON_FIle.Count() > 0 && JSON_FIle != null)
             {
                 foreach (var i in JSON_FIle)

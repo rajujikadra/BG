@@ -186,8 +186,21 @@
             $('.diamond-img-zoom img').magnify();
         });
 
-         
 
+        $(document).ready(function () {
+            var strJSON0 = @Model.JSONString.Count() >= 1 ? @Model.JSONString[0] : "";
+            _strJSON0[0] = strJSON0;
+            var strJSON1 = @Model.JSONString.Count() >= 2 ? @Model.JSONString[1] : "";
+            _strJSON1[0] = strJSON1;
+            var strJSON2 = @Model.JSONString.Count() >= 3 ? @Model.JSONString[2] : "";
+            _strJSON2[0] = strJSON2;
+            var strJSON3 = @Model.JSONString.Count() >= 4 ? @Model.JSONString[3] : "";
+            _strJSON3[0] = strJSON3;
+            var strJSON4 = @Model.JSONString.Count() >= 5 ? @Model.JSONString[4] : "";
+            _strJSON4[0] = strJSON4;
+            var strJSON5 = @Model.JSONString.Count() >= 6 ? @Model.JSONString[5] : "";
+            _strJSON5[0] = strJSON5;
+        });
     </script>
 </body>
 </html>
