@@ -53,11 +53,21 @@ namespace BG.Controllers
             List<FileInfo> JPG_images = GetFiles(Server.MapPath(@"~/DNAReports/" + StoneID), "jpg").ToList();
             List<FileInfo> PNG_images = GetFiles(Server.MapPath(@"~/DNAReports/" + StoneID), "png").ToList();
             List<FileInfo> JPEG_images = GetFiles(Server.MapPath(@"~/DNAReports/" + StoneID), "jpeg").ToList();
-            Stone.ImageNames = JPG_images.Select(c => c.Name).ToList();
-            Stone.ImageNames.AddRange(PNG_images.Select(c => c.Name).ToList());
-            Stone.ImageNames.AddRange(JPEG_images.Select(c => c.Name).ToList());
+            if (JPG_images.Count() > 0 && JPG_images != null)
+                Stone.ImageNames = JPG_images.Select(c => c.Name).ToList();
+            if (PNG_images.Count() > 0 && PNG_images != null)
+                Stone.ImageNames.AddRange(PNG_images.Select(c => c.Name).ToList());
+            if (JPEG_images.Count() > 0 && JPEG_images != null)
+                Stone.ImageNames.AddRange(JPEG_images.Select(c => c.Name).ToList());
             List<FileInfo> JSON_FIle = GetFiles(Server.MapPath(@"~/DNAReports/" + StoneID), "json").ToList();
-           
+            if (JSON_FIle.Count() > 0 && JSON_FIle != null)
+            {
+                foreach (var i in JSON_FIle)
+                {
+                    Stone.JSONString.Add(System.IO.File.ReadAllText(Server.MapPath(@"~/DNAReports/" + StoneID) + "/" + i.Name));
+                }
+            }
+
             return View(Stone);
         }
         public static IEnumerable<FileInfo> GetFiles(string path, string extension)

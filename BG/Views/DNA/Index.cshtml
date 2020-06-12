@@ -114,26 +114,29 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="secRow">
-                                    <td class="data">
-                                        <span>H12D301313</span>
-                                    </td>
-                                    <td class="data">
-                                        <span>5.01</span>
-                                    </td>
-                                    <td class="data">
-                                        <span>I</span>
-                                    </td>
-                                    <td class="data">
-                                        <span>Emerald</span>
-                                    </td>
-                                    <td class="data">
-                                        <span>IF</span>
-                                    </td>
-                                    <td class="data">
-                                        <span>5.01</span>
-                                    </td>
-                                </tr>
+                                @foreach (var item in Model.RelatedStone)
+                                {
+                                    <tr class="secRow">
+                                        <td class="data">
+                                            <span>@item.StoneID</span>
+                                        </td>
+                                        <td class="data">
+                                            <span>@item.CaratWeight</span>
+                                        </td>
+                                        <td class="data">
+                                            <span>@item.Color</span>
+                                        </td>
+                                        <td class="data">
+                                            <span>@item.Shape</span>
+                                        </td>
+                                        <td class="data">
+                                            <span>@item.Clarity</span>
+                                        </td>
+                                        <td class="data">
+                                            <span>@item.Cut</span>
+                                        </td>
+                                    </tr>
+                                }
                             </tbody>
                         </table>
                     </div>
@@ -182,10 +185,9 @@
             // Initiate magnification powers
             $('.diamond-img-zoom img').magnify();
         });
+
+         
+
     </script>
 </body>
 </html>
-
-
-
-
