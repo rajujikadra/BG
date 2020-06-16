@@ -46,6 +46,14 @@ namespace BG.Controllers
                     Shape = DB.ShapeMsts.FirstOrDefault(b => b.ShapeCode == y.ShapeCode).ShapeName,
                     ShapeCode = y.ShapeCode
                 }).ToList();
+                if (Stone.RelatedStone.Count() > 0)
+                {
+                    var removeStone = Stone.RelatedStone.FirstOrDefault(x => x.StoneID.ToLower().Trim().Equals(StoneID.ToLower().Trim()));
+                    if (removeStone != null)
+                    {
+                        Stone.RelatedStone.Remove(removeStone);
+                    }
+                }
             }
             FileInfo pdfFiles = GetFiles(Server.MapPath(@"~/DNAReports/" + StoneID), "pdf").ToList().FirstOrDefault();
             if (pdfFiles != null)
