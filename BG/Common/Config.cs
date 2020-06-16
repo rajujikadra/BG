@@ -30,6 +30,13 @@ namespace BG.Common
         public static readonly string fancy_color_master = "api/master/fancy-color-master";
         public static readonly string fancy_ot_master = "api/master/fancy-ot-master";
         public static readonly string shape_master = "api/master/shap-master";
+        public static readonly string side_black_inclusin_master = "api/master/side-black-inclusion";
+        public static readonly string side_white_inclusin_master = "api/master/side-white-inclusion";
+        public static readonly string center_black_inclusin_master = "api/master/center-black-inclusion";
+        public static readonly string center_white_inclusin_master = "api/master/center-white-inclusion";
+        public static readonly string table_inclusin_master = "api/master/open-table-inclusion";
+        public static readonly string crown_inclusin_master = "api/master/open-crown-inclusion";
+        public static readonly string pavilion_inclusin_master = "api/master/open-pavilion-inclusion";
 
         // Customer API
         public static readonly string new_customers = "api/customer/new";

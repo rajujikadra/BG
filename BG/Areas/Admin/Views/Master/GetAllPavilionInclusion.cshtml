@@ -1,0 +1,58 @@
+﻿@model List<BG_Application.CustomDTO.OPavilionInclusionViewModel>
+@{
+    ViewBag.Title = "Pavilion Inclusion";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+<div class="main-content">
+    <section class="section">
+        <div class="section-body">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Pavilion Inclusion Master</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-hover" id="color-master-table" style="width:100%;">
+                                    <thead>
+                                        <tr>
+                                            <th>Code</th>
+                                            <th>Name</th>
+                                            <th>Alias Name</th>
+                                            <th>Order By</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var C in Model)
+                                        {
+                                            <tr>
+                                                <td>@C.Code</td>
+                                                <td>@C.Name</td>
+                                                <td>@C.AliasName</td>
+                                                <td>@C.SortID</td>
+                                                <td>
+                                                    @{ if (C.Active == true)
+                                                        {
+                                                            <div class="badge badge-success badge-shadow">Active</div>
+                                                        }
+                                                        else
+                                                        {
+                                                            <div class="badge badge-danger badge-shadow">InActive</div>
+                                                        }
+                                                    }
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+

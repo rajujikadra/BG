@@ -215,6 +215,121 @@ namespace BG.Areas.Admin.Controllers
         }
         #endregion
 
+        #region Inclusion Master
+        [Route("side-black-inclusion")]
+        [AuthorizeEntryPermission(Permission = "Side Black Inclusion")]
+        public ActionResult GetAllSideBlackInclusion()
+        {
+            var model = new List<SBlackInclusionViewModel>();
+            using (var httpClient = ApiHelper.GetHttpClient())
+            {
+                var result = httpClient.GetAsync(Config.side_black_inclusin_master).Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var resultContent = result.Content.ReadAsStringAsync().Result;
+                    model = JsonConvert.DeserializeObject<List<SBlackInclusionViewModel>>(resultContent);
+                }
+            }
+            return View(model);
+        }
+        [Route("side-white-inclusion")]
+        [AuthorizeEntryPermission(Permission = "Side White Inclusion")]
+        public ActionResult GetAllSideWhiteInclusion()
+        {
+            var model = new List<SWhiteInclusionViewModel>();
+            using (var httpClient = ApiHelper.GetHttpClient())
+            {
+                var result = httpClient.GetAsync(Config.side_white_inclusin_master).Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var resultContent = result.Content.ReadAsStringAsync().Result;
+                    model = JsonConvert.DeserializeObject<List<SWhiteInclusionViewModel>>(resultContent);
+                }
+            }
+            return View(model);
+        }
+        [Route("center-black-inclusion")]
+        [AuthorizeEntryPermission(Permission = "Center Black Inclusion")]
+        public ActionResult GetAllCenterBlackInclusion()
+        {
+            var model = new List<CBlackInclusionViewModel>();
+            using (var httpClient = ApiHelper.GetHttpClient())
+            {
+                var result = httpClient.GetAsync(Config.center_black_inclusin_master).Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var resultContent = result.Content.ReadAsStringAsync().Result;
+                    model = JsonConvert.DeserializeObject<List<CBlackInclusionViewModel>>(resultContent);
+                }
+            }
+            return View(model);
+        }
+        [Route("center-white-inclusion")]
+        [AuthorizeEntryPermission(Permission = "Center White Inclusion")]
+        public ActionResult GetAllCenterWhiteInclusion()
+        {
+            var model = new List<CWhiteInclusionViewModel>();
+            using (var httpClient = ApiHelper.GetHttpClient())
+            {
+                var result = httpClient.GetAsync(Config.center_white_inclusin_master).Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var resultContent = result.Content.ReadAsStringAsync().Result;
+                    model = JsonConvert.DeserializeObject<List<CWhiteInclusionViewModel>>(resultContent);
+                }
+            }
+            return View(model);
+        }
+        [Route("table-inclusion")]
+        [AuthorizeEntryPermission(Permission = "Table Inclusion")]
+        public ActionResult GetAllTableInclusion()
+        {
+            var model = new List<OTableInclusionViewModel>();
+            using (var httpClient = ApiHelper.GetHttpClient())
+            {
+                var result = httpClient.GetAsync(Config.table_inclusin_master).Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var resultContent = result.Content.ReadAsStringAsync().Result;
+                    model = JsonConvert.DeserializeObject<List<OTableInclusionViewModel>>(resultContent);
+                }
+            }
+            return View(model);
+        }
+        [Route("crown-inclusion")]
+        [AuthorizeEntryPermission(Permission = "Crown Inclusion")]
+        public ActionResult GetAllCrownInclusion()
+        {
+            var model = new List<OCrownInclusionViewModel>();
+            using (var httpClient = ApiHelper.GetHttpClient())
+            {
+                var result = httpClient.GetAsync(Config.crown_inclusin_master).Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var resultContent = result.Content.ReadAsStringAsync().Result;
+                    model = JsonConvert.DeserializeObject<List<OCrownInclusionViewModel>>(resultContent);
+                }
+            }
+            return View(model);
+        }
+        [Route("pavilion-inclusion")]
+        [AuthorizeEntryPermission(Permission = "Pavilion Inclusion")]
+        public ActionResult GetAllPavilionInclusion()
+        {
+            var model = new List<OPavilionInclusionViewModel>();
+            using (var httpClient = ApiHelper.GetHttpClient())
+            {
+                var result = httpClient.GetAsync(Config.pavilion_inclusin_master).Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var resultContent = result.Content.ReadAsStringAsync().Result;
+                    model = JsonConvert.DeserializeObject<List<OPavilionInclusionViewModel>>(resultContent);
+                }
+            }
+            return View(model);
+        }
+        #endregion
+
         #region menu
         [ChildActionOnly]
         public PartialViewResult GetMenu()
