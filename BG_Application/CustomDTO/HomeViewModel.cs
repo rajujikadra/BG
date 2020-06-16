@@ -17,6 +17,13 @@ namespace BG_Application.CustomDTO
         public List<Purity> Clarity { get; set; }
         public List<Certificate> Lab { get; set; }
         public List<HA> Hearts_Arrows { get; set; }
+        public List<SBlackInclusion> SBlack { get; set; }
+        public List<SWhiteInclusion> SWhite { get; set; }
+        public List<CBlackInclusion> CBlack { get; set; }
+        public List<CWhiteInclusion> CWhite { get; set; }
+        public List<TableInclusion> TableInclusion { get; set; }
+        public List<CrownInclusion> CrownInclusion { get; set; }
+        public List<PavilionInclusion> PavilionInclusion { get; set; }
         public List<string> KetToSymbol { get; set; }
         public List<string> Comments { get; set; }
     }
@@ -72,5 +79,47 @@ namespace BG_Application.CustomDTO
         public int HACode { get; set; }
         public string HAName { get; set; }
         public string HAAliasName { get; set; }
+    }
+    public class SBlackInclusion
+    {
+        public int Code { get; set; }
+        public string Name { get; set; }
+        public string AliasName { get; set; }
+    }
+    public class SWhiteInclusion
+    {
+        public int Code { get; set; }
+        public string Name { get; set; }
+        public string AliasName { get; set; }
+    }
+    public class CBlackInclusion
+    {
+        public int Code { get; set; }
+        public string Name { get; set; }
+        public string AliasName { get; set; }
+    }
+    public class CWhiteInclusion
+    {
+        public int Code { get; set; }
+        public string Name { get; set; }
+        public string AliasName { get; set; }
+    }
+    public class TableInclusion
+    {
+        public int Code { get; set; }
+        public string Name { get; set; }
+        public string AliasName { get; set; }
+    }
+    public class CrownInclusion
+    {
+        public int Code { get; set; }
+        public string Name { get; set; }
+        public string AliasName { get; set; }
+    }
+    public class PavilionInclusion
+    {
+        public int Code { get; set; }
+        public string Name { get; set; }
+        public string AliasName { get; set; }
     }
 }

@@ -66,11 +66,53 @@ namespace BG.Controllers
                 SymmetryAliasName = c.SymmetryAliasName,
                 SymmetryName = c.SymmetryName
             }).ToList();
-            model.Hearts_Arrows = DB.HAMsts.Where(x => x.Active == true).Select(c => new HA
+            model.Hearts_Arrows = DB.HAMsts.Where(x => x.Active == true).Select(c => new HA()
             {
                 HAAliasName = c.HAAliasName,
                 HACode = c.HACode,
                 HAName = c.HAName
+            }).ToList();
+            model.SBlack = DB.SBlackInclusionMsts.Where(x => x.Active == true).Select(c => new SBlackInclusion()
+            {
+                Code = c.Code,
+                AliasName = c.AliasName,
+                Name = c.Name
+            }).ToList();
+            model.SWhite = DB.SWhiteInclusionMsts.Where(x => x.Active == true).Select(c => new SWhiteInclusion()
+            {
+                Code = c.Code,
+                AliasName = c.AliasName,
+                Name = c.Name
+            }).ToList();
+            model.CBlack = DB.CBlackInclusionMsts.Where(x => x.Active == true).Select(c => new CBlackInclusion()
+            {
+                Code = c.Code,
+                AliasName = c.AliasName,
+                Name = c.Name
+            }).ToList();
+            model.CWhite = DB.CWhiteInclusionMsts.Where(x => x.Active == true).Select(c => new CWhiteInclusion()
+            {
+                Code = c.Code,
+                AliasName = c.AliasName,
+                Name = c.Name
+            }).ToList();
+            model.TableInclusion = DB.OTableInclusionMsts.Where(x => x.Active == true).Select(c => new TableInclusion()
+            {
+                Code = c.Code,
+                AliasName = c.AliasName,
+                Name = c.Name
+            }).ToList();
+            model.CrownInclusion = DB.OCrownInclusionMsts.Where(x => x.Active == true).Select(c => new CrownInclusion()
+            {
+                Code = c.Code,
+                AliasName = c.AliasName,
+                Name = c.Name
+            }).ToList();
+            model.PavilionInclusion = DB.OPavilionInclusionMsts.Where(x => x.Active == true).Select(c => new PavilionInclusion()
+            {
+                Code = c.Code,
+                AliasName = c.AliasName,
+                Name = c.Name
             }).ToList();
             model.KetToSymbol = DB.DiamondStocks.Select(x => x.KeytoSymbol.Trim()).Distinct().ToList();
             model.Comments = DB.DiamondStocks.Select(x => x.Comments.Trim()).Distinct().ToList();
@@ -144,7 +186,7 @@ namespace BG.Controllers
             {
                 Data.AddRange(Stock.Where(x => model.ReportComment.Contains(x.Comments)).ToList());
             }
-            
+
             return View();
         }
 
