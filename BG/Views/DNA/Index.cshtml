@@ -10,8 +10,8 @@
     string str3 = Model.JSONString.Count() >= 4 ? Model.JSONString[3] : string.Empty;
     string str4 = Model.JSONString.Count() >= 5 ? Model.JSONString[4] : string.Empty;
     string str5 = Model.JSONString.Count() >= 6 ? Model.JSONString[5] : string.Empty;
-    //string str6 = Model.JSONString.Count() >= 7 ? Model.JSONString[6] : string.Empty;
-    //string str7 = Model.JSONString.Count() >= 8 ? Model.JSONString[7] : string.Empty;
+    string str6 = Model.JSONString.Count() >= 7 ? Model.JSONString[6] : string.Empty;
+    string str7 = Model.JSONString.Count() >= 8 ? Model.JSONString[7] : string.Empty;
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -91,7 +91,7 @@
                     </div>
                 </div>
                 <div class="custom-col-w100 diamond-zoom-img">
-                   
+
                     @foreach (var i in Model.ImageNames)
                     {
                         <img src="~/DNAReports/@Model.StoneID/@i" id="myBtn">
@@ -256,17 +256,26 @@
         var STR3 = '@Html.Raw(str3)';
         var STR4 = '@Html.Raw(str4)';
         var STR5 = '@Html.Raw(str5)';
-        @*var STR6 = '@Html.Raw(str6)';
-        var STR7 = '@Html.Raw(str7)';*@
+        var STR6 = '@Html.Raw(str6)';
+        var STR7 = '@Html.Raw(str7)';
+        
+        strJSON0 = STR0 == "" ? strJSON0 : STR0;
+        strJSON1 = STR1 == "" ? strJSON1 : STR1;
+        strJSON2 = STR2 == "" ? strJSON2 : STR2;
+        strJSON3 = STR3 == "" ? strJSON3 : STR3;
+        strJSON4 = STR4 == "" ? strJSON4 : STR4;
+        strJSON5 = STR5 == "" ? strJSON5 : STR5;
+        strJSON6 = STR6 == "" ? strJSON6 : STR6;
+        strJSON7 = STR7 == "" ? strJSON7 : STR7;
 
-        _strJSON0[0] = STR0 == "" ? _strJSON0[0] : STR0;
-        _strJSON1[0] = STR1 == "" ? _strJSON1[0] : STR1;
-        _strJSON2[0] = STR2 == "" ? _strJSON2[0] : STR2;
-        _strJSON3[0] = STR3 == "" ? _strJSON3[0] : STR3;
-        _strJSON4[0] = STR4 == "" ? _strJSON4[0] : STR4;
-        _strJSON5[0] = STR5 == "" ? _strJSON5[0] : STR5;
-        //_strJSON6[0] = STR6 == "" ? _strJSON6[0] : STR6;
-        //_strJSON7[0] = STR7 == "" ? _strJSON7[0] : STR7;
+        _strJSON0[0] = strJSON0; //STR0 == "" ? _strJSON0[0] : STR0;
+        _strJSON1[0] = strJSON1; //STR1 == "" ? _strJSON1[0] : STR1;
+        _strJSON2[0] = strJSON2;  //STR2 == "" ? _strJSON2[0] : STR2;
+        _strJSON3[0] = strJSON3;  //STR3 == "" ? _strJSON3[0] : STR3;
+        _strJSON4[0] = strJSON4;  //STR4 == "" ? _strJSON4[0] : STR4;
+        _strJSON5[0] = strJSON5;  //STR5 == "" ? _strJSON5[0] : STR5;
+        _strJSON6[0] = strJSON6;
+        _strJSON7[0] = strJSON7;
     </script>
 </body>
 </html>
