@@ -37,6 +37,7 @@ namespace BG.Common
         public static readonly string table_inclusin_master = "api/master/open-table-inclusion";
         public static readonly string crown_inclusin_master = "api/master/open-crown-inclusion";
         public static readonly string pavilion_inclusin_master = "api/master/open-pavilion-inclusion";
+        public static readonly string gridle_inclusion_master = "api/master/open-girdle-inclusion";
 
         // Customer API
         public static readonly string new_customers = "api/customer/new";

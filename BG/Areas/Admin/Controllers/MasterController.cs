@@ -333,14 +333,14 @@ namespace BG.Areas.Admin.Controllers
         [AuthorizeEntryPermission(Permission = "Gridle Inclusion")]
         public ActionResult GetAllGridleInclusion()
         {
-            var model = new List<OPavilionInclusionViewModel>();
+            var model = new List<GOInclusionViewModel>();
             using (var httpClient = ApiHelper.GetHttpClient())
             {
-                var result = httpClient.GetAsync(Config.pavilion_inclusin_master).Result;
+                var result = httpClient.GetAsync(Config.gridle_inclusion_master).Result;
                 if (result.IsSuccessStatusCode)
                 {
                     var resultContent = result.Content.ReadAsStringAsync().Result;
-                    model = JsonConvert.DeserializeObject<List<OPavilionInclusionViewModel>>(resultContent);
+                    model = JsonConvert.DeserializeObject<List<GOInclusionViewModel>>(resultContent);
                 }
             }
             return View(model);
