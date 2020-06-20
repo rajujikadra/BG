@@ -20,7 +20,7 @@ namespace BG.Models
         [Display(Name = "Upload V360 File")]
         public HttpPostedFileBase[] JSONFile { get; set; }
 
-        [Required(ErrorMessage = "Please select file.")]
+        //[Required(ErrorMessage = "Please select file.")]
         [Display(Name = "Upload Certy")]
         public HttpPostedFileBase[] PDFFile { get; set; }
     }

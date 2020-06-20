@@ -83,12 +83,13 @@
                     <div class="custom-col-left">
                         <div class='Vision360'></div>
                     </div>
-                    @{
+                    @if (!string.IsNullOrEmpty(Model.PDFFileName))
+                    {
                         var PDF_Path = "/DNAReports/" + Model.StoneID + "/" + Model.PDFFileName;
+                        <div class="custom-col-right">
+                            <iframe src="@PDF_Path" seamless="seamless" class="iframeGIA divGIA" scrolling="no" style="width: 100%; height: 100%;"></iframe>
+                        </div>
                     }
-                    <div class="custom-col-right">
-                        <iframe src="@PDF_Path" seamless="seamless" class="iframeGIA divGIA" scrolling="no" style="width: 100%; height: 100%;"></iframe>
-                    </div>
                 </div>
                 <div class="custom-col-w100 diamond-zoom-img">
 
@@ -258,7 +259,7 @@
         var STR5 = '@Html.Raw(str5)';
         var STR6 = '@Html.Raw(str6)';
         var STR7 = '@Html.Raw(str7)';
-        
+
         strJSON0 = STR0 == "" ? strJSON0 : STR0;
         strJSON1 = STR1 == "" ? strJSON1 : STR1;
         strJSON2 = STR2 == "" ? strJSON2 : STR2;
