@@ -305,6 +305,87 @@ namespace BG_Application.Service
             }).ToList();
         }
 
+        public List<GOInclusionViewModel> GetAllOpenGirdleInclusion()
+        {
+            return DB.OGirdleInclusionMsts.Select(y => new GOInclusionViewModel()
+            {
+                Code = y.Code,
+                Active = y.Active,
+                AliasName = y.AliasName,
+                Name = y.Name,
+                CompanyCode = y.CompanyCode,
+                Logid = y.Logid,
+                Pcid = y.Pcid,
+                Sdate = y.Sdate,
+                SortID = y.SortID
+            }).ToList();
+        }
+
+        public bool InsertOGirdleInclusionMaster(GOInclusionViewModel model)
+        {
+            try
+            {
+                if (model.Code != 0)
+                {
+                    var data = DB.OGirdleInclusionMsts.FirstOrDefault(x => x.Code == model.Code);
+                    if (data != null)
+                    {
+                        data.Name = model.Name.ToUpper();
+                        data.AliasName = model.AliasName.ToUpper();
+                        data.Active = model.Active ?? true;
+                        DB.SaveChanges();
+                    }
+                }
+                else
+                {
+                    var obj = new OGirdleInclusionMst
+                    {
+                        Active = model.Active,
+                        AliasName = model.AliasName.ToUpper(),
+                        Name = model.Name.ToUpper(),
+                        CompanyCode = 1,
+                        Logid = model.Logid,
+                        Pcid = model.Pcid,
+                        Sdate = DateTime.Now,
+                        SortID = model.SortID
+                    };
+                    DB.OGirdleInclusionMsts.Add(obj);
+                    DB.SaveChanges();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public bool IsOGirdleInclusionExist(string Name, int Code)
+        {
+            if (Code > 0)
+                return DB.OGirdleInclusionMsts.Any(x => x.Code != Code && x.Name.ToUpper().Equals(Name.ToUpper()));
+            else
+                return DB.OGirdleInclusionMsts.Any(x => x.Name.ToUpper().Equals(Name.ToUpper()));
+        }
+
+        public bool DeleteOGirdleInclusion(int ID)
+        {
+            try
+            {
+                var data = DB.OGirdleInclusionMsts.FirstOrDefault(x => x.Code == ID);
+                if (data != null)
+                {
+                    data.Active = false;
+                    DB.SaveChanges();
+                }
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
         public List<OPavilionInclusionViewModel> GetAllOpenPavilionInclusion()
         {
             return DB.OPavilionInclusionMsts.Select(y => new OPavilionInclusionViewModel()
@@ -1568,9 +1649,9 @@ namespace BG_Application.Service
                 Star = y.Star,
                 Lower = y.Lower,
                 Milky = y.Milky,
-                TBlack = y.TBlack,
+                CBlack = y.CBlack,
                 SBlack = y.SBlack,
-                TWhite = y.TWhite,
+                CWhite = y.CWhite,
                 SWhite = y.SWhite,
                 HA = y.HA,
                 ResultVerify = y.ResultVerify,
@@ -1581,6 +1662,15 @@ namespace BG_Application.Service
                 Hold = y.Hold,
                 Basket = y.Basket,
                 Inquiry = y.Inquiry,
+                FancyColorCode = y.FancyColorCode,
+                BGM = y.BGM,
+                Diameter = y.Diameter,
+                Ratio = y.Ratio,
+                Table = y.Table,
+                TOInclusion = y.TOInclusion,
+                COInclusion = y.COInclusion,
+                POInclusion = y.POInclusion,
+                GOInclusion = y.GOInclusion,
                 CertificateName = DB.CertificateMsts.FirstOrDefault(c => c.CertificateCode == y.CertificateCode).CertificateName,
                 ShapeName = DB.ShapeMsts.FirstOrDefault(c => c.ShapeCode == y.ShapeCode).ShapeAliasName,
                 Size = DB.SizeMsts.FirstOrDefault(c => c.SizeMstID == y.SizeCode).SizeAlias,
@@ -1589,7 +1679,8 @@ namespace BG_Application.Service
                 Flou = DB.FlouMsts.FirstOrDefault(c => c.FlouCode == y.FlouCode).FlouAliasName,
                 Polish = DB.PolishMsts.FirstOrDefault(c => c.PolishCode == y.PolishCode).PolishAliasName,
                 Purity = DB.PurityMsts.FirstOrDefault(c => c.PurityCode == y.PurityCode).PurityAliasName,
-                Symmetry = DB.SymmetryMsts.FirstOrDefault(c => c.SymmetryCode == y.SymmetryCode).SymmetryAliasName
+                Symmetry = DB.SymmetryMsts.FirstOrDefault(c => c.SymmetryCode == y.SymmetryCode).SymmetryAliasName,
+                FancyColorName = DB.FancyColorMsts.FirstOrDefault(c => c.FancyColorCode == y.FancyColorCode).FancyColorName
             }).ToList();
         }
 
@@ -1607,8 +1698,8 @@ namespace BG_Application.Service
                         Stock.SWhite = model.SWhite;
                         Stock.SymmetryCode = model.SymmetryCode;
                         Stock.TablePer = model.TablePer;
-                        Stock.TBlack = model.TBlack;
-                        Stock.TWhite = model.TWhite;
+                        Stock.CBlack = model.CBlack;
+                        Stock.CWhite = model.CWhite;
                         Stock.VideoLink = model.VideoLink;
                         Stock.Width = model.Width;
                         Stock.Star = model.Star;
@@ -1648,11 +1739,20 @@ namespace BG_Application.Service
                         Stock.ReportNo = model.ReportNo;
                         Stock.ResultVerify = model.ResultVerify;
                         Stock.Sale = model.Sale;
-                       Stock.SAmount = model.SAmount;
+                        Stock.SAmount = model.SAmount;
                         Stock.SBlack = model.SBlack;
                         Stock.ShapeCode = model.ShapeCode;
                         Stock.SPer = model.SPer;
                         Stock.SRate = model.SRate;
+                        Stock.FancyColorCode = model.FancyColorCode;
+                        Stock.BGM = model.BGM;
+                        Stock.Diameter = model.Diameter;
+                        Stock.Ratio = model.Ratio;
+                        Stock.Table = model.Table;
+                        Stock.TOInclusion = model.TOInclusion;
+                        Stock.COInclusion = model.COInclusion;
+                        Stock.POInclusion = model.POInclusion;
+                        Stock.GOInclusion = model.GOInclusion;
                     }
                 }
                 else
@@ -1664,8 +1764,8 @@ namespace BG_Application.Service
                         SWhite = model.SWhite,
                         SymmetryCode = model.SymmetryCode,
                         TablePer = model.TablePer,
-                        TBlack = model.TBlack,
-                        TWhite = model.TWhite,
+                        CBlack = model.CBlack,
+                        CWhite = model.CWhite,
                         VideoLink = model.VideoLink,
                         Width = model.Width,
                         Star = model.Star,
@@ -1709,7 +1809,16 @@ namespace BG_Application.Service
                         SBlack = model.SBlack,
                         ShapeCode = model.ShapeCode,
                         SPer = model.SPer,
-                        SRate = model.SRate
+                        SRate = model.SRate,
+                        FancyColorCode = model.FancyColorCode,
+                        BGM = model.BGM,
+                        Diameter = model.Diameter,
+                        Ratio = model.Ratio,
+                        Table = model.Table,
+                        TOInclusion = model.TOInclusion,
+                        COInclusion = model.COInclusion,
+                        POInclusion = model.POInclusion,
+                        GOInclusion = model.GOInclusion,
                     };
                     DB.DiamondStocks.Add(obj);
                     DB.SaveChanges();
@@ -1770,13 +1879,6 @@ namespace BG_Application.Service
             // TODO: uncomment the following line if the finalizer is overridden above.
             GC.SuppressFinalize(this);
         }
-
-       
-
-
-
-
-
         #endregion
     }
 }

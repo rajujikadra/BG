@@ -98,9 +98,9 @@ namespace BG_Application.Service
                 Star = y.Star,
                 Lower = y.Lower,
                 Milky = y.Milky,
-                TBlack = y.TBlack,
+                CBlack = y.CBlack,
                 SBlack = y.SBlack,
-                TWhite = y.TWhite,
+                CWhite = y.CWhite,
                 SWhite = y.SWhite,
                 HA = y.HA,
                 ResultVerify = y.ResultVerify,
@@ -111,6 +111,15 @@ namespace BG_Application.Service
                 Hold = y.Hold,
                 Basket = y.Basket,
                 Inquiry = y.Inquiry,
+                FancyColorCode = y.FancyColorCode,
+                BGM = y.BGM,
+                Diameter = y.Diameter,
+                Ratio = y.Ratio,
+                Table = y.Table,
+                TOInclusion = y.TOInclusion,
+                COInclusion = y.COInclusion,
+                POInclusion = y.POInclusion,
+                GOInclusion = y.GOInclusion,
                 CertificateName = DB.CertificateMsts.FirstOrDefault(c => c.CertificateCode == y.CertificateCode).CertificateName,
                 ShapeName = DB.ShapeMsts.FirstOrDefault(c => c.ShapeCode == y.ShapeCode).ShapeAliasName,
                 Size = DB.SizeMsts.FirstOrDefault(c => c.SizeMstID == y.SizeCode).SizeAlias,
@@ -119,7 +128,8 @@ namespace BG_Application.Service
                 Flou = DB.FlouMsts.FirstOrDefault(c => c.FlouCode == y.FlouCode).FlouAliasName,
                 Polish = DB.PolishMsts.FirstOrDefault(c => c.PolishCode == y.PolishCode).PolishAliasName,
                 Purity = DB.PurityMsts.FirstOrDefault(c => c.PurityCode == y.PurityCode).PurityAliasName,
-                Symmetry = DB.SymmetryMsts.FirstOrDefault(c => c.SymmetryCode == y.SymmetryCode).SymmetryAliasName
+                Symmetry = DB.SymmetryMsts.FirstOrDefault(c => c.SymmetryCode == y.SymmetryCode).SymmetryAliasName,
+                FancyColorName = DB.FancyColorMsts.FirstOrDefault(c => c.FancyColorCode == y.FancyColorCode).FancyColorName
             }).ToList();
         }
         public string GetUserIdByEmail(string Email)

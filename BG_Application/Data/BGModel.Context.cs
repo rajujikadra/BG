@@ -49,7 +49,6 @@ namespace BG_Application.Data
         public virtual DbSet<CityMst> CityMsts { get; set; }
         public virtual DbSet<PolishMst> PolishMsts { get; set; }
         public virtual DbSet<SymmetryMst> SymmetryMsts { get; set; }
-        public virtual DbSet<DiamondStock> DiamondStocks { get; set; }
         public virtual DbSet<BrokerColumnMappingMst> BrokerColumnMappingMsts { get; set; }
         public virtual DbSet<BrokerColumnName> BrokerColumnNames { get; set; }
         public virtual DbSet<UserMenuPermissionMst> UserMenuPermissionMsts { get; set; }
@@ -62,5 +61,7 @@ namespace BG_Application.Data
         public virtual DbSet<OTableInclusionMst> OTableInclusionMsts { get; set; }
         public virtual DbSet<SBlackInclusionMst> SBlackInclusionMsts { get; set; }
         public virtual DbSet<SWhiteInclusionMst> SWhiteInclusionMsts { get; set; }
+        public virtual DbSet<DiamondStock> DiamondStocks { get; set; }
+        public virtual DbSet<OGirdleInclusionMst> OGirdleInclusionMsts { get; set; }
     }
 }

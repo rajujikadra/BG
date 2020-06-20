@@ -287,11 +287,11 @@ warning 6002: The table/view 'BG_DB.dbo.CompanyMst' does not have a primary key 
           <Property Name="Star" Type="nvarchar" MaxLength="50" />
           <Property Name="Lower" Type="nvarchar" MaxLength="50" />
           <Property Name="Milky" Type="nvarchar" MaxLength="50" />
-          <Property Name="TBlack" Type="nvarchar" MaxLength="50" />
+          <Property Name="CBlack" Type="nvarchar" MaxLength="50" />
           <Property Name="SBlack" Type="nvarchar" MaxLength="50" />
-          <Property Name="TWhite" Type="nvarchar" MaxLength="50" />
+          <Property Name="CWhite" Type="nvarchar" MaxLength="50" />
           <Property Name="SWhite" Type="nvarchar" MaxLength="50" />
-          <Property Name="HA" Type="nvarchar" MaxLength="50" />
+          <Property Name="HA" Type="int" />
           <Property Name="ResultVerify" Type="bit" />
           <Property Name="ReportDate" Type="datetime" />
           <Property Name="Inscription" Type="nvarchar" MaxLength="100" />
@@ -300,6 +300,15 @@ warning 6002: The table/view 'BG_DB.dbo.CompanyMst' does not have a primary key 
           <Property Name="Hold" Type="bit" />
           <Property Name="Basket" Type="bit" />
           <Property Name="Inquiry" Type="bit" />
+          <Property Name="FancyColorCode" Type="int" />
+          <Property Name="BGM" Type="varchar" MaxLength="50" />
+          <Property Name="Diameter" Type="varchar" MaxLength="50" />
+          <Property Name="Ratio" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="Table" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="TOInclusion" Type="int" />
+          <Property Name="COInclusion" Type="int" />
+          <Property Name="POInclusion" Type="int" />
+          <Property Name="GOInclusion" Type="int" />
         </EntityType>
         <EntityType Name="FancyColorMst">
           <Key>
@@ -379,6 +388,20 @@ warning 6002: The table/view 'BG_DB.dbo.CompanyMst' does not have a primary key 
           <Property Name="URL" Type="varchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="OCrownInclusionMst">
+          <Key>
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="Code" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="AliasName" Type="nvarchar" MaxLength="100" />
+          <Property Name="SortID" Type="int" />
+          <Property Name="Logid" Type="int" />
+          <Property Name="Pcid" Type="nvarchar" MaxLength="50" />
+          <Property Name="Sdate" Type="datetime" />
+          <Property Name="CompanyCode" Type="int" />
+          <Property Name="Active" Type="bit" />
+        </EntityType>
+        <EntityType Name="OGirdleInclusionMst">
           <Key>
             <PropertyRef Name="Code" />
           </Key>
@@ -557,13 +580,6 @@ warning 6002: The table/view 'BG_DB.dbo.SizeMst' does not have a primary key def
           <Property Name="CompanyCode" Type="int" />
           <Property Name="Active" Type="bit" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'BG_DB.dbo.TypeMst' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="TypeMst">
-          <Property Name="TypeCode" Type="int" />
-          <Property Name="Type" Type="nvarchar" MaxLength="50" />
-          <Property Name="Active" Type="bit" />
-        </EntityType>-->
         <EntityType Name="UserMenuPermissionMst">
           <Key>
             <PropertyRef Name="ID" />
@@ -811,6 +827,7 @@ warning 6013: The table/view 'BG_DB.dbo.TypeMst' does not have a primary key def
           <EntitySet Name="MainMenuMst" EntityType="Self.MainMenuMst" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MenuMst" EntityType="Self.MenuMst" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OCrownInclusionMst" EntityType="Self.OCrownInclusionMst" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OGirdleInclusionMst" EntityType="Self.OGirdleInclusionMst" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OPavilionInclusionMst" EntityType="Self.OPavilionInclusionMst" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OTableInclusionMst" EntityType="Self.OTableInclusionMst" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PolishMst" EntityType="Self.PolishMst" Schema="dbo" store:Type="Tables" />
@@ -1233,7 +1250,6 @@ warning 6013: The table/view 'BG_DB.dbo.TypeMst' does not have a primary key def
           </AssociationSet>
           <EntitySet Name="PolishMsts" EntityType="BG_DBModel.PolishMst" />
           <EntitySet Name="SymmetryMsts" EntityType="BG_DBModel.SymmetryMst" />
-          <EntitySet Name="DiamondStocks" EntityType="BG_DBModel.DiamondStock" />
           <EntitySet Name="BrokerColumnMappingMsts" EntityType="BG_DBModel.BrokerColumnMappingMst" />
           <EntitySet Name="BrokerColumnNames" EntityType="BG_DBModel.BrokerColumnName" />
           <AssociationSet Name="FK_BrokerUser" Association="BG_DBModel.FK_BrokerUser">
@@ -1278,6 +1294,8 @@ warning 6013: The table/view 'BG_DB.dbo.TypeMst' does not have a primary key def
           <EntitySet Name="OTableInclusionMsts" EntityType="BG_DBModel.OTableInclusionMst" />
           <EntitySet Name="SBlackInclusionMsts" EntityType="BG_DBModel.SBlackInclusionMst" />
           <EntitySet Name="SWhiteInclusionMsts" EntityType="BG_DBModel.SWhiteInclusionMst" />
+          <EntitySet Name="DiamondStocks" EntityType="BG_DBModel.DiamondStock" />
+          <EntitySet Name="OGirdleInclusionMsts" EntityType="BG_DBModel.OGirdleInclusionMst" />
           </EntityContainer>
         <EntityType Name="PartyMst">
           <Key>
@@ -1527,63 +1545,6 @@ warning 6013: The table/view 'BG_DB.dbo.TypeMst' does not have a primary key def
           <Property Name="CompanyCode" Type="Int32" />
           <Property Name="Active" Type="Boolean" />
         </EntityType>
-        <EntityType Name="DiamondStock">
-          <Key>
-            <PropertyRef Name="StockMSTID" />
-          </Key>
-          <Property Name="StockMSTID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="StoneID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Cts" Type="Decimal" Precision="18" Scale="3" />
-          <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ReportNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CertificateCode" Type="Int32" />
-          <Property Name="ShapeCode" Type="Int32" />
-          <Property Name="SizeCode" Type="Int32" />
-          <Property Name="ColorCode" Type="Int32" />
-          <Property Name="PurityCode" Type="Int32" />
-          <Property Name="CutCode" Type="Int32" />
-          <Property Name="PolishCode" Type="Int32" />
-          <Property Name="SymmetryCode" Type="Int32" />
-          <Property Name="FlouCode" Type="Int32" />
-          <Property Name="Rap" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="Disc" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="Asking" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="SPer" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="SRate" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="SAmount" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="Length" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="Width" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="Depth" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="DepthPer" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="TablePer" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="CrownAngle" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="CrownHeight" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="PavAngle" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="PavHeight" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="KeytoSymbol" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="VideoLink" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="EyeClean" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Girdle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Culet" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Star" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Lower" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Milky" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="TBlack" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="SBlack" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="TWhite" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="SWhite" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="HA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ResultVerify" Type="Boolean" />
-          <Property Name="ReportDate" Type="DateTime" Precision="3" />
-          <Property Name="Inscription" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Sale" Type="Boolean" />
-          <Property Name="Broker" Type="Boolean" />
-          <Property Name="Hold" Type="Boolean" />
-          <Property Name="Basket" Type="Boolean" />
-          <Property Name="Inquiry" Type="Boolean" />
-        </EntityType>
         <EntityType Name="BrokerColumnMappingMst">
           <Key>
             <PropertyRef Name="BrokerColMapId" />
@@ -1820,6 +1781,86 @@ warning 6013: The table/view 'BG_DB.dbo.TypeMst' does not have a primary key def
           <Property Name="Active" Type="Boolean" />
         </EntityType>
         <EntityType Name="SWhiteInclusionMst">
+          <Key>
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="Code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AliasName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SortID" Type="Int32" />
+          <Property Name="Logid" Type="Int32" />
+          <Property Name="Pcid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Sdate" Type="DateTime" Precision="3" />
+          <Property Name="CompanyCode" Type="Int32" />
+          <Property Name="Active" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="DiamondStock">
+          <Key>
+            <PropertyRef Name="StockMSTID" />
+          </Key>
+          <Property Name="StockMSTID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StoneID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Cts" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ReportNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CertificateCode" Type="Int32" />
+          <Property Name="ShapeCode" Type="Int32" />
+          <Property Name="SizeCode" Type="Int32" />
+          <Property Name="ColorCode" Type="Int32" />
+          <Property Name="PurityCode" Type="Int32" />
+          <Property Name="CutCode" Type="Int32" />
+          <Property Name="PolishCode" Type="Int32" />
+          <Property Name="SymmetryCode" Type="Int32" />
+          <Property Name="FlouCode" Type="Int32" />
+          <Property Name="Rap" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Disc" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Asking" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="SPer" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="SRate" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="SAmount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Length" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Width" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Depth" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="DepthPer" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="TablePer" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="CrownAngle" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="CrownHeight" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="PavAngle" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="PavHeight" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="KeytoSymbol" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="VideoLink" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="EyeClean" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Girdle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Culet" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Star" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Lower" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Milky" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CBlack" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SBlack" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CWhite" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SWhite" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HA" Type="Int32" />
+          <Property Name="ResultVerify" Type="Boolean" />
+          <Property Name="ReportDate" Type="DateTime" Precision="3" />
+          <Property Name="Inscription" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Sale" Type="Boolean" />
+          <Property Name="Broker" Type="Boolean" />
+          <Property Name="Hold" Type="Boolean" />
+          <Property Name="Basket" Type="Boolean" />
+          <Property Name="Inquiry" Type="Boolean" />
+          <Property Name="FancyColorCode" Type="Int32" />
+          <Property Name="BGM" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Diameter" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Ratio" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Table" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="TOInclusion" Type="Int32" />
+          <Property Name="COInclusion" Type="Int32" />
+          <Property Name="POInclusion" Type="Int32" />
+          <Property Name="GOInclusion" Type="Int32" />
+        </EntityType>
+        <EntityType Name="OGirdleInclusionMst">
           <Key>
             <PropertyRef Name="Code" />
           </Key>
@@ -2210,64 +2251,6 @@ warning 6013: The table/view 'BG_DB.dbo.TypeMst' does not have a primary key def
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="DiamondStocks">
-            <EntityTypeMapping TypeName="BG_DBModel.DiamondStock">
-              <MappingFragment StoreEntitySet="DiamondStock">
-                <ScalarProperty Name="Inquiry" ColumnName="Inquiry" />
-                <ScalarProperty Name="Basket" ColumnName="Basket" />
-                <ScalarProperty Name="Hold" ColumnName="Hold" />
-                <ScalarProperty Name="Broker" ColumnName="Broker" />
-                <ScalarProperty Name="Sale" ColumnName="Sale" />
-                <ScalarProperty Name="Inscription" ColumnName="Inscription" />
-                <ScalarProperty Name="ReportDate" ColumnName="ReportDate" />
-                <ScalarProperty Name="ResultVerify" ColumnName="ResultVerify" />
-                <ScalarProperty Name="HA" ColumnName="HA" />
-                <ScalarProperty Name="SWhite" ColumnName="SWhite" />
-                <ScalarProperty Name="TWhite" ColumnName="TWhite" />
-                <ScalarProperty Name="SBlack" ColumnName="SBlack" />
-                <ScalarProperty Name="TBlack" ColumnName="TBlack" />
-                <ScalarProperty Name="Milky" ColumnName="Milky" />
-                <ScalarProperty Name="Lower" ColumnName="Lower" />
-                <ScalarProperty Name="Star" ColumnName="Star" />
-                <ScalarProperty Name="Culet" ColumnName="Culet" />
-                <ScalarProperty Name="Girdle" ColumnName="Girdle" />
-                <ScalarProperty Name="Comments" ColumnName="Comments" />
-                <ScalarProperty Name="EyeClean" ColumnName="EyeClean" />
-                <ScalarProperty Name="VideoLink" ColumnName="VideoLink" />
-                <ScalarProperty Name="KeytoSymbol" ColumnName="KeytoSymbol" />
-                <ScalarProperty Name="PavHeight" ColumnName="PavHeight" />
-                <ScalarProperty Name="PavAngle" ColumnName="PavAngle" />
-                <ScalarProperty Name="CrownHeight" ColumnName="CrownHeight" />
-                <ScalarProperty Name="CrownAngle" ColumnName="CrownAngle" />
-                <ScalarProperty Name="TablePer" ColumnName="TablePer" />
-                <ScalarProperty Name="DepthPer" ColumnName="DepthPer" />
-                <ScalarProperty Name="Depth" ColumnName="Depth" />
-                <ScalarProperty Name="Width" ColumnName="Width" />
-                <ScalarProperty Name="Length" ColumnName="Length" />
-                <ScalarProperty Name="SAmount" ColumnName="SAmount" />
-                <ScalarProperty Name="SRate" ColumnName="SRate" />
-                <ScalarProperty Name="SPer" ColumnName="SPer" />
-                <ScalarProperty Name="Amount" ColumnName="Amount" />
-                <ScalarProperty Name="Asking" ColumnName="Asking" />
-                <ScalarProperty Name="Disc" ColumnName="Disc" />
-                <ScalarProperty Name="Rap" ColumnName="Rap" />
-                <ScalarProperty Name="FlouCode" ColumnName="FlouCode" />
-                <ScalarProperty Name="SymmetryCode" ColumnName="SymmetryCode" />
-                <ScalarProperty Name="PolishCode" ColumnName="PolishCode" />
-                <ScalarProperty Name="CutCode" ColumnName="CutCode" />
-                <ScalarProperty Name="PurityCode" ColumnName="PurityCode" />
-                <ScalarProperty Name="ColorCode" ColumnName="ColorCode" />
-                <ScalarProperty Name="SizeCode" ColumnName="SizeCode" />
-                <ScalarProperty Name="ShapeCode" ColumnName="ShapeCode" />
-                <ScalarProperty Name="CertificateCode" ColumnName="CertificateCode" />
-                <ScalarProperty Name="ReportNo" ColumnName="ReportNo" />
-                <ScalarProperty Name="Location" ColumnName="Location" />
-                <ScalarProperty Name="Cts" ColumnName="Cts" />
-                <ScalarProperty Name="StoneID" ColumnName="StoneID" />
-                <ScalarProperty Name="StockMSTID" ColumnName="StockMSTID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="BrokerColumnMappingMsts">
             <EntityTypeMapping TypeName="BG_DBModel.BrokerColumnMappingMst">
               <MappingFragment StoreEntitySet="BrokerColumnMappingMst">
@@ -2412,6 +2395,88 @@ warning 6013: The table/view 'BG_DB.dbo.TypeMst' does not have a primary key def
           <EntitySetMapping Name="SWhiteInclusionMsts">
             <EntityTypeMapping TypeName="BG_DBModel.SWhiteInclusionMst">
               <MappingFragment StoreEntitySet="SWhiteInclusionMst">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="Sdate" ColumnName="Sdate" />
+                <ScalarProperty Name="Pcid" ColumnName="Pcid" />
+                <ScalarProperty Name="Logid" ColumnName="Logid" />
+                <ScalarProperty Name="SortID" ColumnName="SortID" />
+                <ScalarProperty Name="AliasName" ColumnName="AliasName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DiamondStocks">
+            <EntityTypeMapping TypeName="BG_DBModel.DiamondStock">
+              <MappingFragment StoreEntitySet="DiamondStock">
+                <ScalarProperty Name="GOInclusion" ColumnName="GOInclusion" />
+                <ScalarProperty Name="POInclusion" ColumnName="POInclusion" />
+                <ScalarProperty Name="COInclusion" ColumnName="COInclusion" />
+                <ScalarProperty Name="TOInclusion" ColumnName="TOInclusion" />
+                <ScalarProperty Name="Table" ColumnName="Table" />
+                <ScalarProperty Name="Ratio" ColumnName="Ratio" />
+                <ScalarProperty Name="Diameter" ColumnName="Diameter" />
+                <ScalarProperty Name="BGM" ColumnName="BGM" />
+                <ScalarProperty Name="FancyColorCode" ColumnName="FancyColorCode" />
+                <ScalarProperty Name="Inquiry" ColumnName="Inquiry" />
+                <ScalarProperty Name="Basket" ColumnName="Basket" />
+                <ScalarProperty Name="Hold" ColumnName="Hold" />
+                <ScalarProperty Name="Broker" ColumnName="Broker" />
+                <ScalarProperty Name="Sale" ColumnName="Sale" />
+                <ScalarProperty Name="Inscription" ColumnName="Inscription" />
+                <ScalarProperty Name="ReportDate" ColumnName="ReportDate" />
+                <ScalarProperty Name="ResultVerify" ColumnName="ResultVerify" />
+                <ScalarProperty Name="HA" ColumnName="HA" />
+                <ScalarProperty Name="SWhite" ColumnName="SWhite" />
+                <ScalarProperty Name="CWhite" ColumnName="CWhite" />
+                <ScalarProperty Name="SBlack" ColumnName="SBlack" />
+                <ScalarProperty Name="CBlack" ColumnName="CBlack" />
+                <ScalarProperty Name="Milky" ColumnName="Milky" />
+                <ScalarProperty Name="Lower" ColumnName="Lower" />
+                <ScalarProperty Name="Star" ColumnName="Star" />
+                <ScalarProperty Name="Culet" ColumnName="Culet" />
+                <ScalarProperty Name="Girdle" ColumnName="Girdle" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="EyeClean" ColumnName="EyeClean" />
+                <ScalarProperty Name="VideoLink" ColumnName="VideoLink" />
+                <ScalarProperty Name="KeytoSymbol" ColumnName="KeytoSymbol" />
+                <ScalarProperty Name="PavHeight" ColumnName="PavHeight" />
+                <ScalarProperty Name="PavAngle" ColumnName="PavAngle" />
+                <ScalarProperty Name="CrownHeight" ColumnName="CrownHeight" />
+                <ScalarProperty Name="CrownAngle" ColumnName="CrownAngle" />
+                <ScalarProperty Name="TablePer" ColumnName="TablePer" />
+                <ScalarProperty Name="DepthPer" ColumnName="DepthPer" />
+                <ScalarProperty Name="Depth" ColumnName="Depth" />
+                <ScalarProperty Name="Width" ColumnName="Width" />
+                <ScalarProperty Name="Length" ColumnName="Length" />
+                <ScalarProperty Name="SAmount" ColumnName="SAmount" />
+                <ScalarProperty Name="SRate" ColumnName="SRate" />
+                <ScalarProperty Name="SPer" ColumnName="SPer" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Asking" ColumnName="Asking" />
+                <ScalarProperty Name="Disc" ColumnName="Disc" />
+                <ScalarProperty Name="Rap" ColumnName="Rap" />
+                <ScalarProperty Name="FlouCode" ColumnName="FlouCode" />
+                <ScalarProperty Name="SymmetryCode" ColumnName="SymmetryCode" />
+                <ScalarProperty Name="PolishCode" ColumnName="PolishCode" />
+                <ScalarProperty Name="CutCode" ColumnName="CutCode" />
+                <ScalarProperty Name="PurityCode" ColumnName="PurityCode" />
+                <ScalarProperty Name="ColorCode" ColumnName="ColorCode" />
+                <ScalarProperty Name="SizeCode" ColumnName="SizeCode" />
+                <ScalarProperty Name="ShapeCode" ColumnName="ShapeCode" />
+                <ScalarProperty Name="CertificateCode" ColumnName="CertificateCode" />
+                <ScalarProperty Name="ReportNo" ColumnName="ReportNo" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Cts" ColumnName="Cts" />
+                <ScalarProperty Name="StoneID" ColumnName="StoneID" />
+                <ScalarProperty Name="StockMSTID" ColumnName="StockMSTID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OGirdleInclusionMsts">
+            <EntityTypeMapping TypeName="BG_DBModel.OGirdleInclusionMst">
+              <MappingFragment StoreEntitySet="OGirdleInclusionMst">
                 <ScalarProperty Name="Active" ColumnName="Active" />
                 <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
                 <ScalarProperty Name="Sdate" ColumnName="Sdate" />

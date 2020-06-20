@@ -1004,7 +1004,7 @@ namespace BG_API.Controllers
             }
         }
         [HttpPost]
-        [Route("save-opem-table-inclusion-master")]
+        [Route("save-open-table-inclusion-master")]
         public IHttpActionResult AddEditOtableMaster(OTableInclusionViewModel model)
         {
             try
@@ -1062,7 +1062,7 @@ namespace BG_API.Controllers
             }
         }
         [HttpPost]
-        [Route("save-opem-crown-inclusion-master")]
+        [Route("save-open-crown-inclusion-master")]
         public IHttpActionResult AddEditOCrownMaster(OCrownInclusionViewModel model)
         {
             try
@@ -1120,7 +1120,7 @@ namespace BG_API.Controllers
             }
         }
         [HttpPost]
-        [Route("save-opem-pavilion-inclusion-master")]
+        [Route("save-open-pavilion-inclusion-master")]
         public IHttpActionResult AddEditOPavilionMaster(OPavilionInclusionViewModel model)
         {
             try
@@ -1150,6 +1150,64 @@ namespace BG_API.Controllers
             try
             {
                 bool status = _IMaster_Repository.DeleteOPavilionInclusion(Code);
+                if (status)
+                    return Ok("Successfully deleted");
+                else
+                    return BadRequest("Opps! Something went wrong");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Opps! Something went wrong");
+            }
+        }
+        #endregion
+
+        #region OGriddle Inclusion
+        [HttpGet]
+        [Route("open-girdle-inclusion")]
+        public IHttpActionResult GetAllOGirdleInclusionMst()
+        {
+            try
+            {
+                var FColor = _IMaster_Repository.GetAllOpenGirdleInclusion();
+                return Ok(FColor);
+            }
+            catch (Exception ex)
+            {
+                return NotFound();
+            }
+        }
+        [HttpPost]
+        [Route("save-open-gridle-inclusion-master")]
+        public IHttpActionResult AddEditOGridleMaster(GOInclusionViewModel model)
+        {
+            try
+            {
+                if (!_IMaster_Repository.IsOGirdleInclusionExist(model.Name, model.Code))
+                {
+                    bool status = _IMaster_Repository.InsertOGirdleInclusionMaster(model);
+                    if (status)
+                        return Ok(model.Code != 0 ? "Successfully updated" : "Successfully added");
+                    else
+                        return BadRequest("Opps! Something problem in your data");
+                }
+                else
+                {
+                    return BadRequest(model.Name + " is already exist");
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Opps! Something went wrong");
+            }
+        }
+        [HttpDelete]
+        [Route("delete-open-gridle-inclusion-master/{Code}")]
+        public IHttpActionResult DeleteOGridleMaster(int Code)
+        {
+            try
+            {
+                bool status = _IMaster_Repository.DeleteOGirdleInclusion(Code);
                 if (status)
                     return Ok("Successfully deleted");
                 else

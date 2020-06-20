@@ -1129,6 +1129,7 @@
     <Content Include="Areas\Admin\Views\Master\GetAllTableInclusion.cshtml" />
     <Content Include="Areas\Admin\Views\Master\GetAllCrownInclusion.cshtml" />
     <Content Include="Areas\Admin\Views\Master\GetAllPavilionInclusion.cshtml" />
+    <Content Include="Areas\Admin\Views\Master\GetAllGridleInclusion.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\ClientJS\common.js" />

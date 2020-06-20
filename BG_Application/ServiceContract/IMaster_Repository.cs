@@ -59,6 +59,11 @@ namespace BG_Application.ServiceContract
         bool IsOPavilionInclusionExist(string Name, int Code);
         bool DeleteOPavilionInclusion(int ID);
 
+        List<GOInclusionViewModel> GetAllOpenGirdleInclusion();
+        bool InsertOGirdleInclusionMaster(GOInclusionViewModel model);
+        bool IsOGirdleInclusionExist(string Name, int Code);
+        bool DeleteOGirdleInclusion(int ID);
+
 
 
         bool InsertStockMaster(DiamondStockViewModel model);

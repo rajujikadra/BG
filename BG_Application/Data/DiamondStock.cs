@@ -53,11 +53,11 @@ namespace BG_Application.Data
         public string Star { get; set; }
         public string Lower { get; set; }
         public string Milky { get; set; }
-        public string TBlack { get; set; }
+        public string CBlack { get; set; }
         public string SBlack { get; set; }
-        public string TWhite { get; set; }
+        public string CWhite { get; set; }
         public string SWhite { get; set; }
-        public string HA { get; set; }
+        public Nullable<int> HA { get; set; }
         public Nullable<bool> ResultVerify { get; set; }
         public Nullable<System.DateTime> ReportDate { get; set; }
         public string Inscription { get; set; }
@@ -66,5 +66,14 @@ namespace BG_Application.Data
         public Nullable<bool> Hold { get; set; }
         public Nullable<bool> Basket { get; set; }
         public Nullable<bool> Inquiry { get; set; }
+        public Nullable<int> FancyColorCode { get; set; }
+        public string BGM { get; set; }
+        public string Diameter { get; set; }
+        public Nullable<decimal> Ratio { get; set; }
+        public Nullable<decimal> Table { get; set; }
+        public Nullable<int> TOInclusion { get; set; }
+        public Nullable<int> COInclusion { get; set; }
+        public Nullable<int> POInclusion { get; set; }
+        public Nullable<int> GOInclusion { get; set; }
     }
 }

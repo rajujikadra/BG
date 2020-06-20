@@ -328,6 +328,23 @@ namespace BG.Areas.Admin.Controllers
             }
             return View(model);
         }
+
+        [Route("gridle-inclusion")]
+        [AuthorizeEntryPermission(Permission = "Gridle Inclusion")]
+        public ActionResult GetAllGridleInclusion()
+        {
+            var model = new List<OPavilionInclusionViewModel>();
+            using (var httpClient = ApiHelper.GetHttpClient())
+            {
+                var result = httpClient.GetAsync(Config.pavilion_inclusin_master).Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var resultContent = result.Content.ReadAsStringAsync().Result;
+                    model = JsonConvert.DeserializeObject<List<OPavilionInclusionViewModel>>(resultContent);
+                }
+            }
+            return View(model);
+        }
         #endregion
 
         #region menu

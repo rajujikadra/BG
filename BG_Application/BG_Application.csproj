@@ -74,6 +74,7 @@
     <Compile Include="CustomDTO\FancyColorViewModel.cs" />
     <Compile Include="CustomDTO\FancyOTViewModel.cs" />
     <Compile Include="CustomDTO\FlouViewModel.cs" />
+    <Compile Include="CustomDTO\GOInclusionViewModel.cs" />
     <Compile Include="CustomDTO\HAViewModel.cs" />
     <Compile Include="CustomDTO\HomeViewModel.cs" />
     <Compile Include="CustomDTO\MenuViewModel.cs" />
@@ -178,6 +179,9 @@
       <DependentUpon>BGModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\OCrownInclusionMst.cs">
+      <DependentUpon>BGModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\OGirdleInclusionMst.cs">
       <DependentUpon>BGModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\OPavilionInclusionMst.cs">
