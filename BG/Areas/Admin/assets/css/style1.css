@@ -635,7 +635,7 @@ button:focus {
 .InclusionBox4, .InclusionBox_active4, .InclusionBox5, .InclusionBox_active5, .InclusionBox6, .InclusionBox_active6,
 .InclusionBox7, .InclusionBox_active7, .InclusionBox8, .InclusionBox_active8,
 .InclusionBox8, .InclusionBox_active8, .InclusionBox9, .InclusionBox_active9, .InclusionBox10, .InclusionBox_active10,
-.InclusionBox11, .InclusionBox_active11, .InclusionBox_activeBlack7, .InclusionBoxBlack7,
+.InclusionBox11, .InclusionBox_active11, .InclusionBox_activeBlack7, .InclusionBoxBlack7, .InclusionBox12, .InclusionBox_active12,
 .InclusionBox_activeBlack8, .InclusionBoxBlack8 {
     cursor: pointer;
     width: auto;
@@ -665,7 +665,7 @@ button:focus {
     .InclusionBox8:hover, .InclusionBox_active8:hover,
     .InclusionBox9:hover, .InclusionBox_active9:hover,
     .InclusionBox10:hover, .InclusionBox_active10:hover,
-    .InclusionBox11:hover, .InclusionBox_active11:hover,
+    .InclusionBox11:hover, .InclusionBox_active11:hover, .InclusionBox12:hover, .InclusionBox_active12:hover,
     .InclusionBoxBlack7:hover, .InclusionBox_activeBlack7:hover,
     .InclusionBox_activeBlack8:hover, .InclusionBoxBlack8:hover {
         background-color: #6777ef;
@@ -971,7 +971,7 @@ button:focus {
         font-size: 11px;
     }
 
-    .InclusionBox1, .InclusionBox_active1, .InclusionBox2, .InclusionBox_active2, .InclusionBox3, .InclusionBox_active3, .InclusionBox4, .InclusionBox_active4, .InclusionBox5, .InclusionBox_active5, .InclusionBox6, .InclusionBox_active6, .InclusionBox7, .InclusionBoxBlack7, .InclusionBox_active7, .InclusionBox_activeBlack7, .InclusionBox8, .InclusionBox_active8, .InclusionBox8, .InclusionBox_activeBlack8, .InclusionBoxBlack8, .InclusionBox_active8, .InclusionBox9, .InclusionBox_active9, .InclusionBox10, .InclusionBox_active10, .InclusionBox11, .InclusionBox_active11,
+    .InclusionBox1, .InclusionBox_active1, .InclusionBox2, .InclusionBox_active2, .InclusionBox3, .InclusionBox_active3, .InclusionBox4, .InclusionBox_active4, .InclusionBox5, .InclusionBox_active5, .InclusionBox6, .InclusionBox_active6, .InclusionBox7, .InclusionBoxBlack7, .InclusionBox_active7, .InclusionBox_activeBlack7, .InclusionBox8, .InclusionBox_active8, .InclusionBox8, .InclusionBox_activeBlack8, .InclusionBoxBlack8, .InclusionBox_active8, .InclusionBox9, .InclusionBox_active9, .InclusionBox10, .InclusionBox_active10, .InclusionBox11, .InclusionBox_active11, .InclusionBox12, .InclusionBox_active12,
     .cut-Symmetry-Polish2 .CSP_box1, .cut-Symmetry-Polish2 .CSP_box_active1, .cut-Symmetry-Polish2 .CSP_box2, .cut-Symmetry-Polish2 .CSP_box_active2, .cut-Symmetry-Polish2 .CSP_box3, .cut-Symmetry-Polish2 .CSP_box_active3,
     .FluorescenceHearts .CSP_box4, .FluorescenceHearts .CSP_box_active4, .FluorescenceHearts .CSP_box5, .FluorescenceHearts .CSP_box_active5, .FluorescenceHearts .CSP_box6, .FluorescenceHearts .CSP_box_active6 {
         margin-bottom: 15px;
@@ -1000,7 +1000,7 @@ button:focus {
         margin-bottom: 10px;
     }
 
-    .InclusionBox1, .InclusionBox_active1, .InclusionBox2, .InclusionBox_active2, .InclusionBox3, .InclusionBox_active3, .InclusionBox4, .InclusionBox_active4, .InclusionBox5, .InclusionBox_active5, .InclusionBox6, .InclusionBox_active6, .InclusionBox7, .InclusionBox_active7, .InclusionBoxBlack7, .InclusionBox_activeBlack7, .InclusionBox8, .InclusionBox_active8, .InclusionBox8, .InclusionBox_activeBlack8, .InclusionBoxBlack8, .InclusionBox_active8, .InclusionBox9, .InclusionBox_active9, .InclusionBox10, .InclusionBox_active10, .InclusionBox11, .InclusionBox_active11,
+    .InclusionBox1, .InclusionBox_active1, .InclusionBox2, .InclusionBox_active2, .InclusionBox3, .InclusionBox_active3, .InclusionBox4, .InclusionBox_active4, .InclusionBox5, .InclusionBox_active5, .InclusionBox6, .InclusionBox_active6, .InclusionBox7, .InclusionBox_active7, .InclusionBoxBlack7, .InclusionBox_activeBlack7, .InclusionBox8, .InclusionBox_active8, .InclusionBox8, .InclusionBox_activeBlack8, .InclusionBoxBlack8, .InclusionBox_active8, .InclusionBox9, .InclusionBox_active9, .InclusionBox10, .InclusionBox_active10, .InclusionBox11, .InclusionBox_active11, .InclusionBox12, .InclusionBox_active12,
     .cut-Symmetry-Polish2 .CSP_box1, .cut-Symmetry-Polish2 .CSP_box_active1, .cut-Symmetry-Polish2 .CSP_box2, .cut-Symmetry-Polish2 .CSP_box_active2, .cut-Symmetry-Polish2 .CSP_box3, .cut-Symmetry-Polish2 .CSP_box_active3,
     .FluorescenceHearts .CSP_box4, .FluorescenceHearts .CSP_box_active4, .FluorescenceHearts .CSP_box5, .FluorescenceHearts .CSP_box_active5, .FluorescenceHearts .CSP_box6, .FluorescenceHearts .CSP_box_active6 {
         margin-bottom: 15px;
@@ -1632,7 +1632,7 @@ button:focus {
     position: relative;
 }
 /*397*/
-.InclusionBox1, .InclusionBox_active1, .InclusionBox2, .InclusionBox_active2, .InclusionBox3, .InclusionBox_active3, .InclusionBox4, .InclusionBox_active4, .InclusionBox5, .InclusionBox_active5, .InclusionBox6, .InclusionBox_active6, .InclusionBox7, .InclusionBox_active7, .InclusionBoxBlack7, .InclusionBox_activeBlack7, .InclusionBox8, .InclusionBox_active8, .InclusionBox_activeBlack8, .InclusionBoxBlack8, .InclusionBox8, .InclusionBox_active8, .InclusionBox9, .InclusionBox_active9, .InclusionBox10, .InclusionBox_active10, .InclusionBox11, .InclusionBox_active11 {
+.InclusionBox1, .InclusionBox_active1, .InclusionBox2, .InclusionBox_active2, .InclusionBox3, .InclusionBox_active3, .InclusionBox4, .InclusionBox_active4, .InclusionBox5, .InclusionBox_active5, .InclusionBox6, .InclusionBox_active6, .InclusionBox7, .InclusionBox_active7, .InclusionBoxBlack7, .InclusionBox_activeBlack7, .InclusionBox8, .InclusionBox_active8, .InclusionBox_activeBlack8, .InclusionBoxBlack8, .InclusionBox8, .InclusionBox_active8, .InclusionBox9, .InclusionBox_active9, .InclusionBox10, .InclusionBox_active10, .InclusionBox11, .InclusionBox_active11, .InclusionBox12, .InclusionBox_active12 {
     position: relative;
 }
 /*429*/

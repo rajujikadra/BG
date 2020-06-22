@@ -114,6 +114,18 @@ namespace BG.Controllers
                 AliasName = c.AliasName,
                 Name = c.Name
             }).ToList();
+            model.GridleInclusion = DB.OGirdleInclusionMsts.Where(x => x.Active == true).Select(c => new GridleInclusion()
+            {
+                Code = c.Code,
+                AliasName = c.AliasName,
+                Name = c.Name
+            }).ToList();
+            model.Size = DB.SizeMsts.Where(x => x.Active == true).Select(y => new Size()
+            {
+                SizeMstID = y.SizeMstID,
+                FromSize = y.FromSize,
+                ToSize = y.ToSize
+            }).ToList();
             model.KetToSymbol = DB.DiamondStocks.Select(x => x.KeytoSymbol.Trim()).Distinct().ToList();
             model.Comments = DB.DiamondStocks.Select(x => x.Comments.Trim()).Distinct().ToList();
             return View(model);

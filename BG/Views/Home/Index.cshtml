@@ -568,7 +568,7 @@
                             <div class="Inclusion_name mt-3">
                                 <p>Eye Clean</p>
                             </div>
-                            <div class="Inclusion_chkBox mt-3">
+                            <div class="Inclusion_chkBox">
                                 <div class="InclusionBox_active3">ALL</div>
                                 <div class="InclusionBox3">Eye Clean(E1)</div>
                                 <div class="InclusionBox3">Semi Eye Clean(E2)</div>
@@ -629,7 +629,7 @@
                             <div class="Inclusion_name mt-3">
                                 <p>Side</p>
                             </div>
-                            <div class="Inclusion_chkBox mt-3">
+                            <div class="Inclusion_chkBox">
                                 <div class="InclusionBox_active7">ALL</div>
                                 @foreach (var I in Model.SWhite)
                                 {
@@ -647,7 +647,7 @@
                             <div class="Inclusion_name mt-3">
                                 <p>Center</p>
                             </div>
-                            <div class="Inclusion_chkBox mt-3">
+                            <div class="Inclusion_chkBox">
                                 <div class="InclusionBox_active8">ALL</div>
                                 @foreach (var I in Model.CWhite)
                                 {
@@ -672,7 +672,7 @@
                             <div class="Inclusion_name mt-3">
                                 <p>Side</p>
                             </div>
-                            <div class="Inclusion_chkBox mt-3">
+                            <div class="Inclusion_chkBox">
                                 <div class="InclusionBox_activeBlack7">ALL</div>
                                 @foreach (var I in Model.SBlack)
                                 {
@@ -690,7 +690,7 @@
                             <div class="Inclusion_name mt-3">
                                 <p>Center</p>
                             </div>
-                            <div class="Inclusion_chkBox mt-3">
+                            <div class="Inclusion_chkBox">
                                 <div class="InclusionBox_activeBlack8">ALL</div>
                                 @foreach (var I in Model.CBlack)
                                 {
@@ -715,7 +715,7 @@
                             <div class="Inclusion_name mt-3">
                                 <p>Table</p>
                             </div>
-                            <div class="Inclusion_chkBox mt-3">
+                            <div class="Inclusion_chkBox">
                                 <div class="InclusionBox_active9">ALL</div>
                                 @foreach (var I in Model.TableInclusion)
                                 {
@@ -731,7 +731,7 @@
                             <div class="Inclusion_name mt-3">
                                 <p>Crown</p>
                             </div>
-                            <div class="Inclusion_chkBox mt-3">
+                            <div class="Inclusion_chkBox">
                                 <div class="InclusionBox_active10">ALL</div>
                                 @foreach (var I in Model.CrownInclusion)
                                 {
@@ -747,7 +747,7 @@
                             <div class="Inclusion_name mt-3">
                                 <p>Pavilion</p>
                             </div>
-                            <div class="Inclusion_chkBox mt-3">
+                            <div class="Inclusion_chkBox">
                                 <div class="InclusionBox_active11">ALL</div>
                                 @foreach (var I in Model.PavilionInclusion)
                                 {
@@ -763,12 +763,16 @@
                             <div class="Inclusion_name mt-3">
                                 <p>Girdle</p>
                             </div>
-                            <div class="Inclusion_chkBox mt-3">
-                                <div class="InclusionBox_active11">ALL</div>
-                                @foreach (var I in Model.PavilionInclusion)
+                            <div class="Inclusion_chkBox">
+                                <div class="InclusionBox_active12">ALL</div>
+                                @foreach (var I in Model.GridleInclusion)
                                 {
-                                    <div id="@I.Code" class="InclusionBox11">@I.Name</div>
+                                    <div id="@I.Code" class="InclusionBox12">@I.Name</div>
                                 }
+                                @*<div class="InclusionBox12">None(None)</div>
+                                <div class="InclusionBox12">Very Small(O1)</div>
+                                <div class="InclusionBox12">Small(O2)</div>
+                                <div class="InclusionBox12">Heavy(O3)</div>*@
                             </div>
                         </div>
                     </div>
@@ -817,7 +821,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="pretty p-default">
-                            <input type="checkbox">
+                            <input type="checkbox" class="SizeAllChk" onclick="SelectUnAll(this,'SizeChk');">
                             <div class="state p-primary">
                                 <label>Select All</label>
                             </div>
@@ -825,334 +829,183 @@
                     </div>
                     <div class="col-md-6">
                         <div class="row mx-0">
-                            <div class="cartPopopChkBox1">
-                                <div class="pretty p-default">
-                                    <input type="checkbox">
-                                    <div class="state p-primary">
-                                        <label>0.01</label>
+                            @foreach (var size in Model.Size)
+                            {
+                                <div class="cartPopopChkBox1">
+                                    <div class="pretty p-default">
+                                        <input class="SizeChk" value="@size.SizeMstID" type="checkbox" data-from="@size.FromSize" data-To="@size.ToSize" data-Id="@size.SizeMstID" id="Size_@size.SizeMstID" onclick="SelectSingleCheckSizeChk('SizeAllChk', 'SizeChk', @size.FromSize, @size.ToSize, @size.SizeMstID);">
+                                        <div class="state p-primary">
+                                            <label>@size.FromSize</label>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="cartPopopChkBox2">
-                                <input type="text" class="form-control">
-                            </div>
-                            <div class="cartPopopChkBox3">
-                                <input type="text" class="form-control" />
-                            </div>
-                            <div class="cartPopopChkBox1">
-                                <div class="pretty p-default">
-                                    <input type="checkbox">
-                                    <div class="state p-primary">
-                                        <label>0.15</label>
-                                    </div>
+                                <div class="cartPopopChkBox2">
+                                    <input type="text" class="form-control" id="FromSize_@size.SizeMstID" readonly />
                                 </div>
-                            </div>
-                            <div class="cartPopopChkBox2">
-                                <input type="text" class="form-control">
-                            </div>
-                            <div class="cartPopopChkBox3">
-                                <input type="text" class="form-control" />
-                            </div>
-                            <div class="cartPopopChkBox1">
-                                <div class="pretty p-default">
-                                    <input type="checkbox">
-                                    <div class="state p-primary">
-                                        <label>0.18</label>
-                                    </div>
+                                <div class="cartPopopChkBox3">
+                                    <input type="text" class="form-control" id="ToSize_@size.SizeMstID" readonly />
                                 </div>
-                            </div>
-                            <div class="cartPopopChkBox2">
-                                <input type="text" class="form-control">
-                            </div>
-                            <div class="cartPopopChkBox3">
-                                <input type="text" class="form-control" />
-                            </div>
-                            <div class="cartPopopChkBox1">
-                                <div class="pretty p-default">
-                                    <input type="checkbox">
-                                    <div class="state p-primary">
-                                        <label>0.23</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="cartPopopChkBox2">
-                                <input type="text" class="form-control">
-                            </div>
-                            <div class="cartPopopChkBox3">
-                                <input type="text" class="form-control" />
-                            </div>
-                            <div class="cartPopopChkBox1">
-                                <div class="pretty p-default">
-                                    <input type="checkbox">
-                                    <div class="state p-primary">
-                                        <label>0.30</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="cartPopopChkBox2">
-                                <input type="text" class="form-control">
-                            </div>
-                            <div class="cartPopopChkBox3">
-                                <input type="text" class="form-control" />
-                            </div>
-                            <div class="cartPopopChkBox1">
-                                <div class="pretty p-default">
-                                    <input type="checkbox">
-                                    <div class="state p-primary">
-                                        <label>0.38</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="cartPopopChkBox2">
-                                <input type="text" class="form-control">
-                            </div>
-                            <div class="cartPopopChkBox3">
-                                <input type="text" class="form-control" />
-                            </div>
-                            <div class="cartPopopChkBox1">
-                                <div class="pretty p-default">
-                                    <input type="checkbox">
-                                    <div class="state p-primary">
-                                        <label>0.40</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="cartPopopChkBox2">
-                                <input type="text" class="form-control">
-                            </div>
-                            <div class="cartPopopChkBox3">
-                                <input type="text" class="form-control" />
-                            </div>
-                            <div class="cartPopopChkBox1">
-                                <div class="pretty p-default">
-                                    <input type="checkbox">
-                                    <div class="state p-primary">
-                                        <label>0.45</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="cartPopopChkBox2">
-                                <input type="text" class="form-control">
-                            </div>
-                            <div class="cartPopopChkBox3">
-                                <input type="text" class="form-control" />
-                            </div>
-                            <div class="cartPopopChkBox1">
-                                <div class="pretty p-default">
-                                    <input type="checkbox">
-                                    <div class="state p-primary">
-                                        <label>0.50</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="cartPopopChkBox2">
-                                <input type="text" class="form-control">
-                            </div>
-                            <div class="cartPopopChkBox3">
-                                <input type="text" class="form-control" />
-                            </div>
-                            <div class="cartPopopChkBox1">
-                                <div class="pretty p-default">
-                                    <input type="checkbox">
-                                    <div class="state p-primary">
-                                        <label>0.60</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="cartPopopChkBox2">
-                                <input type="text" class="form-control">
-                            </div>
-                            <div class="cartPopopChkBox3">
-                                <input type="text" class="form-control" />
-                            </div>
-                            <div class="cartPopopChkBox1">
-                                <div class="pretty p-default">
-                                    <input type="checkbox">
-                                    <div class="state p-primary">
-                                        <label>0.75</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="cartPopopChkBox2">
-                                <input type="text" class="form-control">
-                            </div>
-                            <div class="cartPopopChkBox3">
-                                <input type="text" class="form-control" />
-                            </div>
-                            <div class="cartPopopChkBox1">
-                                <div class="pretty p-default">
-                                    <input type="checkbox">
-                                    <div class="state p-primary">
-                                        <label>0.80</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="cartPopopChkBox2">
-                                <input type="text" class="form-control">
-                            </div>
-                            <div class="cartPopopChkBox3">
-                                <input type="text" class="form-control" />
-                            </div>
+                            }
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="row mx-0">
-                            <div class="cartPopopChkBox1">
-                                <div class="pretty p-default">
-                                    <input type="checkbox">
-                                    <div class="state p-primary">
-                                        <label>0.90</label>
+                    @*<div class="col-md-6">
+                            <div class="row mx-0">
+                                <div class="cartPopopChkBox1">
+                                    <div class="pretty p-default">
+                                        <input type="checkbox">
+                                        <div class="state p-primary">
+                                            <label>0.90</label>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="cartPopopChkBox2">
-                                <input type="text" class="form-control">
-                            </div>
-                            <div class="cartPopopChkBox3">
-                                <input type="text" class="form-control" />
-                            </div>
-                            <div class="cartPopopChkBox1">
-                                <div class="pretty p-default">
-                                    <input type="checkbox">
-                                    <div class="state p-primary">
-                                        <label>1.00</label>
+                                <div class="cartPopopChkBox2">
+                                    <input type="text" class="form-control">
+                                </div>
+                                <div class="cartPopopChkBox3">
+                                    <input type="text" class="form-control" />
+                                </div>
+                                <div class="cartPopopChkBox1">
+                                    <div class="pretty p-default">
+                                        <input type="checkbox">
+                                        <div class="state p-primary">
+                                            <label>1.00</label>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="cartPopopChkBox2">
-                                <input type="text" class="form-control">
-                            </div>
-                            <div class="cartPopopChkBox3">
-                                <input type="text" class="form-control" />
-                            </div>
-                            <div class="cartPopopChkBox1">
-                                <div class="pretty p-default">
-                                    <input type="checkbox">
-                                    <div class="state p-primary">
-                                        <label>1.20</label>
+                                <div class="cartPopopChkBox2">
+                                    <input type="text" class="form-control">
+                                </div>
+                                <div class="cartPopopChkBox3">
+                                    <input type="text" class="form-control" />
+                                </div>
+                                <div class="cartPopopChkBox1">
+                                    <div class="pretty p-default">
+                                        <input type="checkbox">
+                                        <div class="state p-primary">
+                                            <label>1.20</label>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="cartPopopChkBox2">
-                                <input type="text" class="form-control">
-                            </div>
-                            <div class="cartPopopChkBox3">
-                                <input type="text" class="form-control" />
-                            </div>
-                            <div class="cartPopopChkBox1">
-                                <div class="pretty p-default">
-                                    <input type="checkbox">
-                                    <div class="state p-primary">
-                                        <label>1.50</label>
+                                <div class="cartPopopChkBox2">
+                                    <input type="text" class="form-control">
+                                </div>
+                                <div class="cartPopopChkBox3">
+                                    <input type="text" class="form-control" />
+                                </div>
+                                <div class="cartPopopChkBox1">
+                                    <div class="pretty p-default">
+                                        <input type="checkbox">
+                                        <div class="state p-primary">
+                                            <label>1.50</label>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="cartPopopChkBox2">
-                                <input type="text" class="form-control">
-                            </div>
-                            <div class="cartPopopChkBox3">
-                                <input type="text" class="form-control" />
-                            </div>
-                            <div class="cartPopopChkBox1">
-                                <div class="pretty p-default">
-                                    <input type="checkbox">
-                                    <div class="state p-primary">
-                                        <label>1.70</label>
+                                <div class="cartPopopChkBox2">
+                                    <input type="text" class="form-control">
+                                </div>
+                                <div class="cartPopopChkBox3">
+                                    <input type="text" class="form-control" />
+                                </div>
+                                <div class="cartPopopChkBox1">
+                                    <div class="pretty p-default">
+                                        <input type="checkbox">
+                                        <div class="state p-primary">
+                                            <label>1.70</label>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="cartPopopChkBox2">
-                                <input type="text" class="form-control">
-                            </div>
-                            <div class="cartPopopChkBox3">
-                                <input type="text" class="form-control" />
-                            </div>
-                            <div class="cartPopopChkBox1">
-                                <div class="pretty p-default">
-                                    <input type="checkbox">
-                                    <div class="state p-primary">
-                                        <label>2.00</label>
+                                <div class="cartPopopChkBox2">
+                                    <input type="text" class="form-control">
+                                </div>
+                                <div class="cartPopopChkBox3">
+                                    <input type="text" class="form-control" />
+                                </div>
+                                <div class="cartPopopChkBox1">
+                                    <div class="pretty p-default">
+                                        <input type="checkbox">
+                                        <div class="state p-primary">
+                                            <label>2.00</label>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="cartPopopChkBox2">
-                                <input type="text" class="form-control">
-                            </div>
-                            <div class="cartPopopChkBox3">
-                                <input type="text" class="form-control" />
-                            </div>
-                            <div class="cartPopopChkBox1">
-                                <div class="pretty p-default">
-                                    <input type="checkbox">
-                                    <div class="state p-primary">
-                                        <label>3.00</label>
+                                <div class="cartPopopChkBox2">
+                                    <input type="text" class="form-control">
+                                </div>
+                                <div class="cartPopopChkBox3">
+                                    <input type="text" class="form-control" />
+                                </div>
+                                <div class="cartPopopChkBox1">
+                                    <div class="pretty p-default">
+                                        <input type="checkbox">
+                                        <div class="state p-primary">
+                                            <label>3.00</label>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="cartPopopChkBox2">
-                                <input type="text" class="form-control">
-                            </div>
-                            <div class="cartPopopChkBox3">
-                                <input type="text" class="form-control" />
-                            </div>
-                            <div class="cartPopopChkBox1">
-                                <div class="pretty p-default">
-                                    <input type="checkbox">
-                                    <div class="state p-primary">
-                                        <label>4.00</label>
+                                <div class="cartPopopChkBox2">
+                                    <input type="text" class="form-control">
+                                </div>
+                                <div class="cartPopopChkBox3">
+                                    <input type="text" class="form-control" />
+                                </div>
+                                <div class="cartPopopChkBox1">
+                                    <div class="pretty p-default">
+                                        <input type="checkbox">
+                                        <div class="state p-primary">
+                                            <label>4.00</label>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="cartPopopChkBox2">
-                                <input type="text" class="form-control">
-                            </div>
-                            <div class="cartPopopChkBox3">
-                                <input type="text" class="form-control" />
-                            </div>
-                            <div class="cartPopopChkBox1">
-                                <div class="pretty p-default">
-                                    <input type="checkbox">
-                                    <div class="state p-primary">
-                                        <label>5.00</label>
+                                <div class="cartPopopChkBox2">
+                                    <input type="text" class="form-control">
+                                </div>
+                                <div class="cartPopopChkBox3">
+                                    <input type="text" class="form-control" />
+                                </div>
+                                <div class="cartPopopChkBox1">
+                                    <div class="pretty p-default">
+                                        <input type="checkbox">
+                                        <div class="state p-primary">
+                                            <label>5.00</label>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="cartPopopChkBox2">
-                                <input type="text" class="form-control">
-                            </div>
-                            <div class="cartPopopChkBox3">
-                                <input type="text" class="form-control" />
-                            </div>
-                            <div class="cartPopopChkBox1">
-                                <div class="pretty p-default">
-                                    <input type="checkbox">
-                                    <div class="state p-primary">
-                                        <label>7.00</label>
+                                <div class="cartPopopChkBox2">
+                                    <input type="text" class="form-control">
+                                </div>
+                                <div class="cartPopopChkBox3">
+                                    <input type="text" class="form-control" />
+                                </div>
+                                <div class="cartPopopChkBox1">
+                                    <div class="pretty p-default">
+                                        <input type="checkbox">
+                                        <div class="state p-primary">
+                                            <label>7.00</label>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="cartPopopChkBox2">
-                                <input type="text" class="form-control">
-                            </div>
-                            <div class="cartPopopChkBox3">
-                                <input type="text" class="form-control" />
-                            </div>
-                            <div class="cartPopopChkBox1">
-                                <div class="pretty p-default">
-                                    <input type="checkbox">
-                                    <div class="state p-primary">
-                                        <label>10.00</label>
+                                <div class="cartPopopChkBox2">
+                                    <input type="text" class="form-control">
+                                </div>
+                                <div class="cartPopopChkBox3">
+                                    <input type="text" class="form-control" />
+                                </div>
+                                <div class="cartPopopChkBox1">
+                                    <div class="pretty p-default">
+                                        <input type="checkbox">
+                                        <div class="state p-primary">
+                                            <label>10.00</label>
+                                        </div>
                                     </div>
                                 </div>
+                                <div class="cartPopopChkBox2">
+                                    <input type="text" class="form-control">
+                                </div>
+                                <div class="cartPopopChkBox3">
+                                    <input type="text" class="form-control" />
+                                </div>
                             </div>
-                            <div class="cartPopopChkBox2">
-                                <input type="text" class="form-control">
-                            </div>
-                            <div class="cartPopopChkBox3">
-                                <input type="text" class="form-control" />
-                            </div>
-                        </div>
-                    </div>
+                        </div>*@
                 </div>
             </div>
         </div>
@@ -1197,7 +1050,7 @@
                 $(this).addClass('PL_other_Active');
             });
 
-            $(".shapeBtn,.FCBox,.CSP_box,.InclusionBox,.shapeBtn_Lab,.FCBox_Fc,.FCBox_Fc1,.CSP_box1,.CSP_box2,.CSP_box3,.CSP_box4,.CSP_box5,.CSP_box6,.InclusionBox1,.InclusionBox2,.InclusionBox3,.InclusionBox4,.InclusionBox5,.InclusionBox6,.InclusionBox7,.InclusionBox8,.InclusionBox9,.InclusionBox10,.InclusionBox11, .color_shade_box, .InclusionBoxBlack7, .InclusionBoxBlack8").click(function () {
+            $(".shapeBtn,.FCBox,.CSP_box,.InclusionBox,.shapeBtn_Lab,.FCBox_Fc,.FCBox_Fc1,.CSP_box1,.CSP_box2,.CSP_box3,.CSP_box4,.CSP_box5,.CSP_box6,.InclusionBox1,.InclusionBox2,.InclusionBox3,.InclusionBox4,.InclusionBox5,.InclusionBox6,.InclusionBox7,.InclusionBox8,.InclusionBox9,.InclusionBox10,.InclusionBox11, .color_shade_box, .InclusionBoxBlack7, .InclusionBoxBlack8, .InclusionBox12").click(function () {
                 $(this).toggleClass("active_blue_bg");
             });
 
@@ -1800,6 +1653,33 @@
                 }
             });
 
+            $(".InclusionBox_active12").click(function (e) {
+                $(this).toggleClass("active_blue_bg");
+                var childElements = document.getElementsByClassName('InclusionBox12');
+                if ($('.InclusionBox_active12').hasClass('active_blue_bg')) {
+                    for (var i = 0; i < childElements.length; i++) {
+                        childElements[i].classList.add('active_blue_bg');
+                    }
+                }
+                else {
+                    for (var i = 0; i < childElements.length; i++) {
+                        childElements[i].classList.remove('active_blue_bg');
+                    }
+                }
+            });
+
+            $(".InclusionBox12").click(function () {
+                var childElements = document.getElementsByClassName('InclusionBox12').length;
+                var selectedChildElements = document.getElementsByClassName('InclusionBox12 active_blue_bg').length;
+                if (childElements === selectedChildElements) {
+                    $('.InclusionBox_active12').addClass("active_blue_bg");
+                }
+                else {
+                    $('.InclusionBox_active12').removeClass("active_blue_bg");
+                }
+            });
+
+
             $(".color_shade_main").click(function (e) {
                 $(this).toggleClass("active_blue_bg");
                 var childElements = document.getElementsByClassName('color_shade_box');
@@ -1987,6 +1867,11 @@
             var SearchArea = $("#txtPacketSearch").val() != "" ? $("#txtPacketSearch").val().split(",") : null;
             var Radio = $("input[name='searchPackets']:checked").val();
 
+            var SizeChk = [];
+            $('input:checkbox.SizeChk:checked').each(function (e) {
+                SizeChk.push($(this).val());
+            });
+
             var obj = {
                 'Shape': Shape,
                 'CaretFrom': CaretFrom,
@@ -2052,6 +1937,46 @@
                     HoldOn.close();
                 }
             });
+        }
+        function SelectUnAll(event, cls) {
+            if (event.checked) {
+                // Iterate each checkbox
+                $('.' + cls).each(function () {
+                    this.checked = true;
+                    var FromSize = this.getAttribute("data-from");
+                    var ToSize = this.getAttribute("data-To");
+                    var ID = this.getAttribute("data-Id");
+                    $("#FromSize_" + ID).val(FromSize);
+                    $("#ToSize_" + ID).val(ToSize);
+                });
+            } else {
+                $('.' + cls).each(function () {
+                    this.checked = false;
+                    var FromSize = this.getAttribute("data-from");
+                    var ToSize = this.getAttribute("data-To");
+                    var ID = this.getAttribute("data-Id");
+                    $("#FromSize_" + ID).val("");
+                    $("#ToSize_" + ID).val("");
+                });
+            }
+        }
+        function SelectSingleCheckSizeChk(id, cls, FromSize, ToSize, SizeId) {
+            var count = $('input:checkbox.' + cls).length;
+            var checked = $('input:checkbox.' + cls + ':checked').length;
+            if (count === checked) {
+                $('.' + id).prop("checked", true);
+                $("#FromSize_" + SizeId).val(FromSize);
+                $("#ToSize_" + SizeId).val(ToSize);
+            }
+            else {
+                $('.' + id).prop("checked", false);
+                $("#FromSize_" + SizeId).val(FromSize);
+                $("#ToSize_" + SizeId).val(ToSize);
+            }
+            if ($("#Size_" + SizeId).prop('checked') == false) {
+                $("#FromSize_" + SizeId).val("");
+                $("#ToSize_" + SizeId).val("");
+            }
         }
     </script>
 }

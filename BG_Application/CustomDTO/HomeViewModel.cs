@@ -24,6 +24,8 @@ namespace BG_Application.CustomDTO
         public List<TableInclusion> TableInclusion { get; set; }
         public List<CrownInclusion> CrownInclusion { get; set; }
         public List<PavilionInclusion> PavilionInclusion { get; set; }
+        public List<GridleInclusion> GridleInclusion { get; set; }
+        public List<Size> Size { get; set; }
         public List<string> KetToSymbol { get; set; }
         public List<string> Comments { get; set; }
     }
@@ -121,5 +123,17 @@ namespace BG_Application.CustomDTO
         public int Code { get; set; }
         public string Name { get; set; }
         public string AliasName { get; set; }
+    }
+    public class GridleInclusion
+    {
+        public int Code { get; set; }
+        public string Name { get; set; }
+        public string AliasName { get; set; }
+    }
+    public class Size
+    {
+        public int SizeMstID { get; set; }
+        public Nullable<decimal> FromSize { get; set; }
+        public Nullable<decimal> ToSize { get; set; }
     }
 }
