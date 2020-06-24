@@ -61,7 +61,7 @@ namespace BG_Application.Data
         public virtual DbSet<OTableInclusionMst> OTableInclusionMsts { get; set; }
         public virtual DbSet<SBlackInclusionMst> SBlackInclusionMsts { get; set; }
         public virtual DbSet<SWhiteInclusionMst> SWhiteInclusionMsts { get; set; }
-        public virtual DbSet<DiamondStock> DiamondStocks { get; set; }
         public virtual DbSet<OGirdleInclusionMst> OGirdleInclusionMsts { get; set; }
+        public virtual DbSet<DiamondStock> DiamondStocks { get; set; }
     }
 }

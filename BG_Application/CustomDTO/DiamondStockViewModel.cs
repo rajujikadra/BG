@@ -51,15 +51,15 @@ namespace BG_Application.CustomDTO
         public string VideoLink { get; set; }
         public string EyeClean { get; set; }
         public string Comments { get; set; }
-        public string Girdle { get; set; }
-        public string Culet { get; set; }
-        public string Star { get; set; }
-        public string Lower { get; set; }
+        public Nullable<decimal> Girdle { get; set; }
+        public Nullable<decimal> Culet { get; set; }
+        public Nullable<decimal> Star { get; set; }
+        public Nullable<decimal> Lower { get; set; }
         public string Milky { get; set; }
-        public string CBlack { get; set; }
-        public string SBlack { get; set; }
-        public string CWhite { get; set; }
-        public string SWhite { get; set; }
+        public Nullable<int> CBlack { get; set; }
+        public Nullable<int> SBlack { get; set; }
+        public Nullable<int> CWhite { get; set; }
+        public Nullable<int> SWhite { get; set; }
         public int? HA { get; set; }
         public Nullable<bool> ResultVerify { get; set; }
         public Nullable<System.DateTime> ReportDate { get; set; }

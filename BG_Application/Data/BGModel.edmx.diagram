@@ -57,8 +57,8 @@
         <EntityTypeShape EntityType="BG_DBModel.OTableInclusionMst" Width="1.5" PointX="5.375" PointY="16.75" />
         <EntityTypeShape EntityType="BG_DBModel.SBlackInclusionMst" Width="1.5" PointX="7.375" PointY="16.75" />
         <EntityTypeShape EntityType="BG_DBModel.SWhiteInclusionMst" Width="1.5" PointX="16.375" PointY="8.75" />
-        <EntityTypeShape EntityType="BG_DBModel.DiamondStock" Width="1.5" PointX="0.75" PointY="14.75" />
         <EntityTypeShape EntityType="BG_DBModel.OGirdleInclusionMst" Width="1.5" PointX="16.75" PointY="12.75" />
+        <EntityTypeShape EntityType="BG_DBModel.DiamondStock" Width="1.5" PointX="0.75" PointY="14.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

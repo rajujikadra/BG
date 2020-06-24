@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using BG.Models;
+using Microsoft.Ajax.Utilities;
 
 namespace BG.Controllers
 {
@@ -84,6 +85,12 @@ namespace BG.Controllers
                 AliasName = c.AliasName,
                 Name = c.Name
             }).ToList();
+            model.Fluorescence = DB.FlouMsts.Where(x => x.Active == true).Select(c => new Fluorescence()
+            {
+                FlouCode = c.FlouCode,
+                FlouAliasName = c.FlouAliasName,
+                FlouName = c.FlouName
+            }).ToList();
             model.CBlack = DB.CBlackInclusionMsts.Where(x => x.Active == true).Select(c => new CBlackInclusion()
             {
                 Code = c.Code,
@@ -128,6 +135,7 @@ namespace BG.Controllers
             }).ToList();
             model.KetToSymbol = DB.DiamondStocks.Select(x => x.KeytoSymbol.Trim()).Distinct().ToList();
             model.Comments = DB.DiamondStocks.Select(x => x.Comments.Trim()).Distinct().ToList();
+            model.EyeClean = DB.DiamondStocks.Select(x => x.EyeClean.Trim()).Distinct().ToList();
             return View(model);
         }
 
@@ -150,58 +158,262 @@ namespace BG.Controllers
         {
             var Data = new List<DiamondStockViewModel>();
             var Stock = GetStocks();
+            #region Search by SHPAE
             if (model.Shape != null && model.Shape.Count() > 0)
             {
-                Data.AddRange(Stock.Where(x => model.Shape.Contains((int)x.ShapeCode)).ToList());
+                Data.AddRange(Stock.Where(x => x.ShapeCode != null && model.Shape.Contains((int)x.ShapeCode)).ToList());
             }
+            #endregion
+            #region Search by CARET
             if (model.CaretFrom != null && model.CaretTo != null)
             {
                 Data.AddRange(Stock.Where(x => x.Cts >= model.CaretFrom && x.Cts <= model.CaretTo).ToList());
             }
+            #endregion
+            #region Search by PRICE
             if (model.PriceFrom != null && model.PriceTo != null)
             {
                 Data.AddRange(Stock.Where(x => x.Rap >= model.PriceFrom && x.Rap <= model.PriceTo).ToList());
             }
+            #endregion
+            #region Search by RAP OFF
             if (model.RapOffFrom != null && model.RapOffTo != null)
             {
                 Data.AddRange(Stock.Where(x => x.Disc >= model.RapOffFrom && x.Disc <= model.RapOffTo).ToList());
             }
+            #endregion
+            #region Search by MULTISIZE
+            if (model.MultiSize != null && model.MultiSize.Count() > 0)
+            {
+                Data.AddRange(Stock.Where(x => x.SizeCode != null && model.MultiSize.Contains((int)x.SizeCode)).ToList());
+            }
+            #endregion
+            #region Search by COLOR
             if (model.Color != null && model.Color.Count() > 0)
             {
-                Data.AddRange(Stock.Where(x => model.Color.Contains((int)x.ColorCode)).ToList());
+                Data.AddRange(Stock.Where(x => x.ColorCode != null && model.Color.Contains((int)x.ColorCode)).ToList());
             }
+            #endregion
+            #region Search by CLARITY
             if (model.Clarity != null && model.Clarity.Count() > 0)
             {
-                Data.AddRange(Stock.Where(x => model.Clarity.Contains((int)x.PurityCode)).ToList());
+                Data.AddRange(Stock.Where(x => x.PurityCode != null && model.Clarity.Contains((int)x.PurityCode)).ToList());
             }
+            #endregion
+            #region Search by CUT
             if (model.Cut != null && model.Cut.Count() > 0)
             {
-                Data.AddRange(Stock.Where(x => model.Cut.Contains((int)x.CutCode)).ToList());
+                Data.AddRange(Stock.Where(x => x.CutCode != null && model.Cut.Contains((int)x.CutCode)).ToList());
             }
+            #endregion
+            #region Search by POLISH
             if (model.Polish != null && model.Polish.Count() > 0)
             {
-                Data.AddRange(Stock.Where(x => model.Polish.Contains((int)x.PolishCode)).ToList());
+                Data.AddRange(Stock.Where(x => x.PolishCode != null && model.Polish.Contains((int)x.PolishCode)).ToList());
             }
+            #endregion
+            #region Search by SYMMETRY
             if (model.Symmetry != null && model.Symmetry.Count() > 0)
             {
-                Data.AddRange(Stock.Where(x => model.Symmetry.Contains((int)x.SymmetryCode)).ToList());
+                Data.AddRange(Stock.Where(x => x.SymmetryCode != null && model.Symmetry.Contains((int)x.SymmetryCode)).ToList());
             }
+            #endregion
+            #region Search by LAB
             if (model.Lab != null && model.Lab.Count() > 0)
             {
-                Data.AddRange(Stock.Where(x => model.Lab.Contains((int)x.CertificateCode)).ToList());
+                Data.AddRange(Stock.Where(x => x.CertificateCode != null && model.Lab.Contains((int)x.CertificateCode)).ToList());
             }
+            #endregion
+            #region Search by KEY TO SYMBOL
             if (model.KeyToSymbol != null && model.KeyToSymbol.Count() > 0)
             {
                 Data.AddRange(Stock.Where(x => model.KeyToSymbol.Contains(x.KeytoSymbol)).ToList());
             }
+            #endregion
+            #region Search by REPORT COMMENTS
             if (model.ReportComment != null && model.ReportComment.Count() > 0)
             {
                 Data.AddRange(Stock.Where(x => model.ReportComment.Contains(x.Comments)).ToList());
             }
-
+            #endregion
+            #region Search by COLOR SHADE
+            if (model.ColorShade != null && model.ColorShade.Count() > 0)
+            {
+                Data.AddRange(Stock.Where(x => x.FancyColorCode != null && model.ColorShade.Contains((int)x.FancyColorCode)).ToList());
+            }
+            #endregion
+            #region Search by BGM 
+            if (!string.IsNullOrEmpty(model.BGM))
+            {
+                Data.AddRange(Stock.Where(x => !string.IsNullOrEmpty(x.BGM) && x.BGM.Trim().ToLower().Contains(model.BGM.Trim().ToLower())).ToList());
+            }
+            #endregion
+            #region Search by FLUORESCENCE
+            if (model.Fluorescence != null && model.Fluorescence.Count() > 0)
+            {
+                Data.AddRange(Stock.Where(x => x.FlouCode != null && model.Fluorescence.Contains((int)x.FlouCode)).ToList());
+            }
+            #endregion
+            #region Search by HEARTS & ARROWS
+            if (model.HA != null && model.HA.Count() > 0)
+            {
+                Data.AddRange(Stock.Where(x => x.HA != null && model.HA.Contains((int)x.HA)).ToList());
+            }
+            #endregion
+            #region Search by PARAMETERS
+            // Search by DIAMETER
+            if (!string.IsNullOrEmpty(model.DiameterFrom) && model.DiameterFrom != null)
+            {
+                Data.AddRange(Stock.Where(x => !string.IsNullOrEmpty(x.Diameter) && x.Diameter.Trim().ToLower().Contains(model.DiameterFrom.Trim().ToLower())).ToList());
+            }
+            // Search by RATIO
+            if (model.RatioFrom != null && model.RatioTo != null)
+            {
+                Data.AddRange(Stock.Where(x => x.Ratio >= model.RatioFrom && x.Ratio <= model.RatioTo).ToList());
+            }
+            // Search by TOTAL DEPTH
+            if (model.DepthFrom != null && model.DepthTo != null)
+            {
+                Data.AddRange(Stock.Where(x => x.Depth >= model.DepthFrom && x.Depth <= model.DepthTo).ToList());
+            }
+            // Search by TABLE
+            if (model.TableFrom != null && model.TableTo != null)
+            {
+                Data.AddRange(Stock.Where(x => x.Table >= model.TableFrom && x.Table <= model.TableTo).ToList());
+            }
+            // Search by LENGTH
+            if (model.LengthFrom != null && model.LengthTo != null)
+            {
+                Data.AddRange(Stock.Where(x => x.Length >= model.LengthFrom && x.Length <= model.LengthTo).ToList());
+            }
+            // Search by WIDTH
+            if (model.WidthFrom != null && model.WidthTo != null)
+            {
+                Data.AddRange(Stock.Where(x => x.Width >= model.WidthFrom && x.Width <= model.WidthTo).ToList());
+            }
+            // Search by GIRDLE
+            if (model.FromGirdle != null && model.ToGirdle != null)
+            {
+                Data.AddRange(Stock.Where(x => x.Girdle >= model.FromGirdle && x.Girdle <= model.ToGirdle).ToList());
+            }
+            // Search by PAVILION ANGLE
+            if (model.PavilionAngleFrom != null && model.PavilionAngleTo != null)
+            {
+                Data.AddRange(Stock.Where(x => x.PavAngle >= model.PavilionAngleFrom && x.PavAngle <= model.PavilionAngleTo).ToList());
+            }
+            // Search by PAVILION HEIGHT
+            if (model.PavilionHeightFrom != null && model.PavilionHeightTo != null)
+            {
+                Data.AddRange(Stock.Where(x => x.PavHeight >= model.PavilionHeightFrom && x.PavHeight <= model.PavilionHeightTo).ToList());
+            }
+            // Search by CROWN ANGLE
+            if (model.CrownAngleFrom != null && model.CrownAngleTo != null)
+            {
+                Data.AddRange(Stock.Where(x => x.CrownAngle >= model.CrownAngleFrom && x.CrownAngle <= model.CrownAngleTo).ToList());
+            }
+            // Search by CROWN HEIGHT
+            if (model.CrownHeightFrom != null && model.CrownHeightTo != null)
+            {
+                Data.AddRange(Stock.Where(x => x.CrownHeight >= model.CrownHeightFrom && x.CrownHeight <= model.CrownHeightTo).ToList());
+            }
+            // Search by STAR LENGTH
+            if (model.StarLengthFrom != null && model.StarLengthTo != null)
+            {
+                Data.AddRange(Stock.Where(x => x.Star >= model.StarLengthFrom && x.Star <= model.StarLengthTo).ToList());
+            }
+            // Search by LOWER HALF
+            if (model.LowerHalfFrom != null && model.LowerHalfTo != null)
+            {
+                Data.AddRange(Stock.Where(x => x.Lower >= model.LowerHalfFrom && x.Lower <= model.LowerHalfTo).ToList());
+            }
+            // Search by CULET
+            if (model.FromCulet != null && model.ToCulet != null)
+            {
+                Data.AddRange(Stock.Where(x => x.Culet >= model.FromCulet && x.Culet <= model.ToCulet).ToList());
+            }
+            #endregion
+            #region Search by EYE CLEAN
+            if (model.EyeClean != null && model.EyeClean.Count() > 0)
+            {
+                Data.AddRange(Stock.Where(x => !string.IsNullOrEmpty(x.EyeClean) && model.EyeClean.Contains(x.EyeClean)).ToList());
+            }
+            #endregion
+            #region Search by SIDE WHITE INCLUSION
+            if (model.SWhiteInclusion != null && model.SWhiteInclusion.Count() > 0)
+            {
+                Data.AddRange(Stock.Where(x => x.SWhite != null && model.SWhiteInclusion.Contains((int)x.SWhite)).ToList());
+            }
+            #endregion
+            #region Search by CENTER WHITE INCLUSION
+            if (model.CWhiteInclusion != null && model.CWhiteInclusion.Count() > 0)
+            {
+                Data.AddRange(Stock.Where(x => x.CWhite != null && model.CWhiteInclusion.Contains((int)x.CWhite)).ToList());
+            }
+            #endregion
+            #region Search by SIDE BLACK INCLUSION
+            if (model.SBlackInclusion != null && model.SBlackInclusion.Count() > 0)
+            {
+                Data.AddRange(Stock.Where(x => x.SBlack != null && model.SBlackInclusion.Contains((int)x.SBlack)).ToList());
+            }
+            #endregion
+            #region Search by CENTER BLACK INCLUSION
+            if (model.CBlackInclusion != null && model.CBlackInclusion.Count() > 0)
+            {
+                Data.AddRange(Stock.Where(x => x.CBlack != null && model.CBlackInclusion.Contains((int)x.CBlack)).ToList());
+            }
+            #endregion
+            #region Search by TABLE INCLUSION
+            if (model.TableInclusion != null && model.TableInclusion.Count() > 0)
+            {
+                Data.AddRange(Stock.Where(x => x.TOInclusion != null && model.TableInclusion.Contains((int)x.TOInclusion)).ToList());
+            }
+            #endregion 
+            #region Search by CROWN INCLUSION
+            if (model.CrownInclusion != null && model.CrownInclusion.Count() > 0)
+            {
+                Data.AddRange(Stock.Where(x => x.COInclusion != null && model.CrownInclusion.Contains((int)x.COInclusion)).ToList());
+            }
+            #endregion 
+            #region Search by PAVILION INCLUSION
+            if (model.PavilionInclusion != null && model.PavilionInclusion.Count() > 0)
+            {
+                Data.AddRange(Stock.Where(x => x.POInclusion != null && model.PavilionInclusion.Contains((int)x.POInclusion)).ToList());
+            }
+            #endregion 
+            #region Search by GIRDLE INCLUSION
+            if (model.GridleInclusion != null && model.GridleInclusion.Count() > 0)
+            {
+                Data.AddRange(Stock.Where(x => x.GOInclusion != null && model.GridleInclusion.Contains((int)x.GOInclusion)).ToList());
+            }
+            #endregion
+            #region Search by PACKET / CERTIFICATE NO. 
+            if (!string.IsNullOrEmpty(model.Radio))
+            {
+                if (model.Radio.Trim().ToLower().Equals(@"Packet".Trim().ToLower()))
+                {
+                    if (model.SearchArea != null && model.SearchArea.Count() > 0)
+                    {
+                        Data.AddRange(Stock.Where(x => !string.IsNullOrEmpty(x.StoneID) && model.SearchArea.Contains(x.StoneID)).ToList());
+                    }
+                }
+                else if (model.Radio.Trim().ToLower().Equals(@"Certificate".Trim().ToLower()))
+                {
+                    if (model.SearchArea != null && model.SearchArea.Count() > 0)
+                    {
+                        Data.AddRange(Stock.Where(x => !string.IsNullOrEmpty(x.ReportNo) && model.SearchArea.Contains(x.ReportNo)).ToList());
+                    }
+                }
+            }
+            Data = Data.DistinctBy(x => x.StoneID).ToList();
+            if (Data.Count() > 500)
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+            #endregion
             return View();
         }
 
+        #region Get All stocks
         protected List<DiamondStockViewModel> GetStocks()
         {
             var DB = new BG_DBEntities();
@@ -280,6 +492,7 @@ namespace BG.Controllers
                 FancyColorName = DB.FancyColorMsts.FirstOrDefault(c => c.FancyColorCode == y.FancyColorCode).FancyColorName
             }).ToList();
         }
+        #endregion
         //[Route("stock")]
         //public ActionResult Stock()
         //{

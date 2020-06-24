@@ -282,15 +282,15 @@ warning 6002: The table/view 'BG_DB.dbo.CompanyMst' does not have a primary key 
           <Property Name="VideoLink" Type="nvarchar" MaxLength="200" />
           <Property Name="EyeClean" Type="nvarchar" MaxLength="50" />
           <Property Name="Comments" Type="nvarchar(max)" />
-          <Property Name="Girdle" Type="nvarchar" MaxLength="50" />
-          <Property Name="Culet" Type="nvarchar" MaxLength="50" />
-          <Property Name="Star" Type="nvarchar" MaxLength="50" />
-          <Property Name="Lower" Type="nvarchar" MaxLength="50" />
+          <Property Name="Girdle" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="Culet" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="Star" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="Lower" Type="numeric" Precision="18" Scale="2" />
           <Property Name="Milky" Type="nvarchar" MaxLength="50" />
-          <Property Name="CBlack" Type="nvarchar" MaxLength="50" />
-          <Property Name="SBlack" Type="nvarchar" MaxLength="50" />
-          <Property Name="CWhite" Type="nvarchar" MaxLength="50" />
-          <Property Name="SWhite" Type="nvarchar" MaxLength="50" />
+          <Property Name="CBlack" Type="int" />
+          <Property Name="SBlack" Type="int" />
+          <Property Name="CWhite" Type="int" />
+          <Property Name="SWhite" Type="int" />
           <Property Name="HA" Type="int" />
           <Property Name="ResultVerify" Type="bit" />
           <Property Name="ReportDate" Type="datetime" />
@@ -580,6 +580,13 @@ warning 6002: The table/view 'BG_DB.dbo.SizeMst' does not have a primary key def
           <Property Name="CompanyCode" Type="int" />
           <Property Name="Active" Type="bit" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'BG_DB.dbo.TypeMst' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="TypeMst">
+          <Property Name="TypeCode" Type="int" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" />
+          <Property Name="Active" Type="bit" />
+        </EntityType>-->
         <EntityType Name="UserMenuPermissionMst">
           <Key>
             <PropertyRef Name="ID" />
@@ -1294,8 +1301,8 @@ warning 6002: The table/view 'BG_DB.dbo.SizeMst' does not have a primary key def
           <EntitySet Name="OTableInclusionMsts" EntityType="BG_DBModel.OTableInclusionMst" />
           <EntitySet Name="SBlackInclusionMsts" EntityType="BG_DBModel.SBlackInclusionMst" />
           <EntitySet Name="SWhiteInclusionMsts" EntityType="BG_DBModel.SWhiteInclusionMst" />
-          <EntitySet Name="DiamondStocks" EntityType="BG_DBModel.DiamondStock" />
           <EntitySet Name="OGirdleInclusionMsts" EntityType="BG_DBModel.OGirdleInclusionMst" />
+          <EntitySet Name="DiamondStocks" EntityType="BG_DBModel.DiamondStock" />
           </EntityContainer>
         <EntityType Name="PartyMst">
           <Key>
@@ -1794,6 +1801,20 @@ warning 6002: The table/view 'BG_DB.dbo.SizeMst' does not have a primary key def
           <Property Name="CompanyCode" Type="Int32" />
           <Property Name="Active" Type="Boolean" />
         </EntityType>
+        <EntityType Name="OGirdleInclusionMst">
+          <Key>
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="Code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AliasName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SortID" Type="Int32" />
+          <Property Name="Logid" Type="Int32" />
+          <Property Name="Pcid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Sdate" Type="DateTime" Precision="3" />
+          <Property Name="CompanyCode" Type="Int32" />
+          <Property Name="Active" Type="Boolean" />
+        </EntityType>
         <EntityType Name="DiamondStock">
           <Key>
             <PropertyRef Name="StockMSTID" />
@@ -1832,15 +1853,15 @@ warning 6002: The table/view 'BG_DB.dbo.SizeMst' does not have a primary key def
           <Property Name="VideoLink" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="EyeClean" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Girdle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Culet" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Star" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Lower" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Girdle" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Culet" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Star" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Lower" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="Milky" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CBlack" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="SBlack" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CWhite" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="SWhite" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CBlack" Type="Int32" />
+          <Property Name="SBlack" Type="Int32" />
+          <Property Name="CWhite" Type="Int32" />
+          <Property Name="SWhite" Type="Int32" />
           <Property Name="HA" Type="Int32" />
           <Property Name="ResultVerify" Type="Boolean" />
           <Property Name="ReportDate" Type="DateTime" Precision="3" />
@@ -1859,20 +1880,6 @@ warning 6002: The table/view 'BG_DB.dbo.SizeMst' does not have a primary key def
           <Property Name="COInclusion" Type="Int32" />
           <Property Name="POInclusion" Type="Int32" />
           <Property Name="GOInclusion" Type="Int32" />
-        </EntityType>
-        <EntityType Name="OGirdleInclusionMst">
-          <Key>
-            <PropertyRef Name="Code" />
-          </Key>
-          <Property Name="Code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="AliasName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="SortID" Type="Int32" />
-          <Property Name="Logid" Type="Int32" />
-          <Property Name="Pcid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Sdate" Type="DateTime" Precision="3" />
-          <Property Name="CompanyCode" Type="Int32" />
-          <Property Name="Active" Type="Boolean" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -2407,6 +2414,21 @@ warning 6002: The table/view 'BG_DB.dbo.SizeMst' does not have a primary key def
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="OGirdleInclusionMsts">
+            <EntityTypeMapping TypeName="BG_DBModel.OGirdleInclusionMst">
+              <MappingFragment StoreEntitySet="OGirdleInclusionMst">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="Sdate" ColumnName="Sdate" />
+                <ScalarProperty Name="Pcid" ColumnName="Pcid" />
+                <ScalarProperty Name="Logid" ColumnName="Logid" />
+                <ScalarProperty Name="SortID" ColumnName="SortID" />
+                <ScalarProperty Name="AliasName" ColumnName="AliasName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="DiamondStocks">
             <EntityTypeMapping TypeName="BG_DBModel.DiamondStock">
               <MappingFragment StoreEntitySet="DiamondStock">
@@ -2471,21 +2493,6 @@ warning 6002: The table/view 'BG_DB.dbo.SizeMst' does not have a primary key def
                 <ScalarProperty Name="Cts" ColumnName="Cts" />
                 <ScalarProperty Name="StoneID" ColumnName="StoneID" />
                 <ScalarProperty Name="StockMSTID" ColumnName="StockMSTID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="OGirdleInclusionMsts">
-            <EntityTypeMapping TypeName="BG_DBModel.OGirdleInclusionMst">
-              <MappingFragment StoreEntitySet="OGirdleInclusionMst">
-                <ScalarProperty Name="Active" ColumnName="Active" />
-                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
-                <ScalarProperty Name="Sdate" ColumnName="Sdate" />
-                <ScalarProperty Name="Pcid" ColumnName="Pcid" />
-                <ScalarProperty Name="Logid" ColumnName="Logid" />
-                <ScalarProperty Name="SortID" ColumnName="SortID" />
-                <ScalarProperty Name="AliasName" ColumnName="AliasName" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Code" ColumnName="Code" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

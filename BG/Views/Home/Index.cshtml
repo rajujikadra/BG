@@ -16,7 +16,7 @@
                         <li><a href="#basicSearch" class="current-active link">Basic Search</a></li>
                         <li><a href="#searchParameters" class="link">Search By Parameters</a></li>
                         <li><a href="#searchInclusion" class="link">Search By Inclusion</a></li>
-                        <li><a href="#searchPacket" class="link">Search By Packet/List/Certificate No. and Other</a></li>
+                        <li><a href="#searchPacket" class="link">Search By Packet and Certificate No.</a></li>
                     </ul>
                 </div>
             </div>
@@ -312,11 +312,15 @@
                     <h6 class="title_h6">Fluorescence</h6>
                     <div class="cut-Symmetry-Polish2">
                         <div class="CSP_box_active4">All</div>
-                        <div class="CSP_box4">N</div>
-                        <div class="CSP_box4">F</div>
-                        <div class="CSP_box4">M</div>
-                        <div class="CSP_box4">S</div>
-                        <div class="CSP_box4">VH</div>
+                        @foreach (var flou in Model.Fluorescence)
+                        {
+                            <div id="@flou.FlouCode" class="CSP_box4">@flou.FlouName</div>
+                        }
+                        @*<div class="CSP_box4">N</div>
+                            <div class="CSP_box4">F</div>
+                            <div class="CSP_box4">M</div>
+                            <div class="CSP_box4">S</div>
+                            <div class="CSP_box4">VH</div>*@
                     </div>
                 </div>
                 @*<div class="FluorescenceHearts mt-4">
@@ -356,10 +360,10 @@
                             <p>Diameter</p>
                         </div>
                         <div class="Parameters_chkBox mt-3">
-                            <input id="txtFromDiameter" type="text" class="form-control" placeholder="From">
+                            <input id="txtFromDiameter" type="text" class="form-control" placeholder="Diameter">
                         </div>
                         <div class="Parameters_chkBox mt-3">
-                            <input id="txtToDiameter" type="text" class="form-control" placeholder="To">
+                            @*<input id="txtToDiameter" type="text" class="form-control" placeholder="To">*@
                         </div>
                         @*<div class="ParametersCHKBox mt-3">
                                 <div class="pretty p-icon p-smooth">
@@ -428,21 +432,21 @@
                     </div>
                     <div class="row mx-0">
                         <div class="Parameters_name mt-3">
-                            <p>Giridle</p>
+                            <p>Girdle</p>
                         </div>
                         <div class="Parameters_chkBox mt-3">
                             @*<select id="inputState" class="form-control">
                                     <option selected="">ALL</option>
                                     <option>...</option>
                                 </select>*@
-                            <input type="text" class="form-control" placeholder="From">
+                            <input type="text" id="txtFromGirdle" class="form-control" placeholder="From">
                         </div>
                         <div class="Parameters_chkBox mt-3">
                             @*<select id="inputState" class="form-control">
                                     <option selected="">ALL</option>
                                     <option>...</option>
                                 </select>*@
-                            <input type="text" class="form-control" placeholder="To">
+                            <input type="text" id="txtToGirdle" class="form-control" placeholder="To">
                         </div>
                     </div>
                 </div>
@@ -518,16 +522,18 @@
                             <p>Culet</p>
                         </div>
                         <div class="Parameters_chkBox mt-3">
-                            <select id="inputState" class="form-control">
-                                <option selected="">ALL</option>
-                                <option>...</option>
-                            </select>
+                            @*<select id="inputState" class="form-control">
+                                    <option selected="">ALL</option>
+                                    <option>...</option>
+                                </select>*@
+                            <input type="text" id="txtToCulet" class="form-control" placeholder="From">
                         </div>
                         <div class="Parameters_chkBox mt-3">
-                            <select id="inputState" class="form-control">
-                                <option selected="">ALL</option>
-                                <option>...</option>
-                            </select>
+                            @*<select id="inputState" class="form-control">
+                                    <option selected="">ALL</option>
+                                    <option>...</option>
+                                </select>*@
+                            <input type="text" id="txtFromCulet" class="form-control" placeholder="To">
                         </div>
                     </div>
                 </div>
@@ -570,8 +576,12 @@
                             </div>
                             <div class="Inclusion_chkBox">
                                 <div class="InclusionBox_active3">ALL</div>
-                                <div class="InclusionBox3">Eye Clean(E1)</div>
-                                <div class="InclusionBox3">Semi Eye Clean(E2)</div>
+                                @foreach (var I in Model.EyeClean)
+                                {
+                                    <div id="@I" class="InclusionBox3">@I</div>
+                                }
+                                @*<div class="InclusionBox3">Eye Clean(E1)</div>
+                                    <div class="InclusionBox3">Semi Eye Clean(E2)</div>*@
                             </div>
                         </div>
                     </div>
@@ -770,9 +780,9 @@
                                     <div id="@I.Code" class="InclusionBox12">@I.Name</div>
                                 }
                                 @*<div class="InclusionBox12">None(None)</div>
-                                <div class="InclusionBox12">Very Small(O1)</div>
-                                <div class="InclusionBox12">Small(O2)</div>
-                                <div class="InclusionBox12">Heavy(O3)</div>*@
+                                    <div class="InclusionBox12">Very Small(O1)</div>
+                                    <div class="InclusionBox12">Small(O2)</div>
+                                    <div class="InclusionBox12">Heavy(O3)</div>*@
                             </div>
                         </div>
                     </div>
@@ -780,7 +790,7 @@
             </div>
             <div class="row containe_details" id="searchPacket">
                 <div class="col-12">
-                    <h6 class="title_h6">SEARCH BY PACKET/LIST/CERTIFICATE NO. AND OTHER</h6>
+                    <h6 class="title_h6">SEARCH BY PACKET AND CERTIFICATE NO.</h6>
                 </div>
                 <div class="col-md-12 col-lg-12 mt-3">
                     <textarea id="txtPacketSearch" rows="4" class="form-control" placeholder="Enter Number"></textarea>
@@ -1050,7 +1060,7 @@
                 $(this).addClass('PL_other_Active');
             });
 
-            $(".shapeBtn,.FCBox,.CSP_box,.InclusionBox,.shapeBtn_Lab,.FCBox_Fc,.FCBox_Fc1,.CSP_box1,.CSP_box2,.CSP_box3,.CSP_box4,.CSP_box5,.CSP_box6,.InclusionBox1,.InclusionBox2,.InclusionBox3,.InclusionBox4,.InclusionBox5,.InclusionBox6,.InclusionBox7,.InclusionBox8,.InclusionBox9,.InclusionBox10,.InclusionBox11, .color_shade_box, .InclusionBoxBlack7, .InclusionBoxBlack8, .InclusionBox12").click(function () {
+            $(".shapeBtn,.FCBox,.CSP_box,.InclusionBox,.shapeBtn_Lab,.FCBox_Fc,.FCBox_Fc1,.CSP_box1,.CSP_box2,.CSP_box3,.CSP_box4,.CSP_box5,.CSP_box6,.InclusionBox1,.InclusionBox2,.InclusionBox3,.InclusionBox4,.InclusionBox5,.InclusionBox6,.InclusionBox7,.InclusionBox8,.InclusionBox9,.InclusionBox10,.InclusionBox11, .color_shade_box, .InclusionBoxBlack7, .InclusionBoxBlack8, .InclusionBox12, .noBGM").click(function () {
                 $(this).toggleClass("active_blue_bg");
             });
 
@@ -1716,7 +1726,7 @@
             });
         });
 
-        $('#txtFromCaret, #txtToCaret, #txtPriceCaretFrom, #txtPriceCaretFrom, #txtRapFrom, #txtRapTo, #txtFromDiameter, #txtToDiameter, #txtFromRatio, #txtToRatio, #txtFromDepth, #txtToDepth, #txtFromTable, #txtToTable, #txtFromLength, #txtToLength, #txtFromWidth, #txtToWidth, #txtFromPavilionAngle, #txtToPavilionAngle, #txtFromPavilionHeight, #txtToPavilionHeight, #txtFromCrownAngle, #txtToCrownAngle, #txtFromCrownHeight, #txtToCrownHeight, #txtFromStarLength, #txtToStarLength, #txtFromLowerHalf, #txtToLowerHalf').keypress(function (event) {
+        $('#txtFromCaret, #txtToCaret, #txtPriceCaretFrom, #txtPriceCaretFrom, #txtRapFrom, #txtRapTo, #txtFromDiameter, #txtFromRatio, #txtToRatio, #txtFromDepth, #txtToDepth, #txtFromTable, #txtToTable, #txtFromLength, #txtToLength, #txtFromWidth, #txtToWidth, #txtFromPavilionAngle, #txtToPavilionAngle, #txtFromPavilionHeight, #txtToPavilionHeight, #txtFromCrownAngle, #txtToCrownAngle, #txtFromCrownHeight, #txtToCrownHeight, #txtFromStarLength, #txtToStarLength, #txtFromLowerHalf, #txtToLowerHalf, #txtFromGirdle, #txtToGirdle, #txtFromCulet, #txtToCulet').keypress(function (event) {
             return isNumber(event, this)
         });
         function restrictAlphabets(e) {
@@ -1755,7 +1765,7 @@
             RapOffFrom = $("#txtRapFrom").val().trim();
             RapOffTo = $("#txtRapTo").val().trim();
 
-            var MultiSize = $("#txtMultiSize").val().trim() != "" ? $("#txtMultiSize").val().trim().split(",") : null;
+            //var MultiSize = $("#txtMultiSize").val().trim() != "" ? $("#txtMultiSize").val().trim().split(",") : null;
 
             var Color = [];
             //$("#DrdColor").val() == "" ? [] : Color.push($("#DrdColor").val());
@@ -1818,7 +1828,7 @@
 
             var DiameterFrom, DiameterTo;
             DiameterFrom = $("#txtFromDiameter").val().trim();
-            DiameterTo = $("#txtToDiameter").val().trim();
+            DiameterTo = 0; //$("#txtToDiameter").val().trim();
 
             var RatioFrom, RatioTo;
             RatioFrom = $("#txtFromRatio").val().trim();
@@ -1867,11 +1877,66 @@
             var SearchArea = $("#txtPacketSearch").val() != "" ? $("#txtPacketSearch").val().split(",") : null;
             var Radio = $("input[name='searchPackets']:checked").val();
 
-            var SizeChk = [];
+            var MultiSize = [];
             $('input:checkbox.SizeChk:checked').each(function (e) {
-                SizeChk.push($(this).val());
+                MultiSize.push($(this).val());
             });
 
+            var EyeClean = [];
+            $('.InclusionBox3').each(function () {
+                if ($(this).hasClass("active_blue_bg"))
+                    EyeClean.push($(this).attr('id'));
+            });
+            var SWhiteInclusion = [];
+            $('.InclusionBox7').each(function () {
+                if ($(this).hasClass("active_blue_bg"))
+                    SWhiteInclusion.push($(this).attr('id'));
+            });
+            var CWhiteInclusion = [];
+            $('.InclusionBox8').each(function () {
+                if ($(this).hasClass("active_blue_bg"))
+                    CWhiteInclusion.push($(this).attr('id'));
+            });
+            var SBlackInclusion = [];
+            $('.InclusionBoxBlack7').each(function () {
+                if ($(this).hasClass("active_blue_bg"))
+                    SBlackInclusion.push($(this).attr('id'));
+            });
+            var CBlackInclusion = [];
+            $('.InclusionBoxBlack8').each(function () {
+                if ($(this).hasClass("active_blue_bg"))
+                    CBlackInclusion.push($(this).attr('id'));
+            });
+            var TableInclusion = [];
+            $('.InclusionBox9').each(function () {
+                if ($(this).hasClass("active_blue_bg"))
+                    TableInclusion.push($(this).attr('id'));
+            });
+            var PavilionInclusion = [];
+            $('.InclusionBox11').each(function () {
+                if ($(this).hasClass("active_blue_bg"))
+                    PavilionInclusion.push($(this).attr('id'));
+            });
+            var CrownInclusion = [];
+            $('.InclusionBox10').each(function () {
+                if ($(this).hasClass("active_blue_bg"))
+                    CrownInclusion.push($(this).attr('id'));
+            });
+            var GridleInclusion = [];
+            $('.InclusionBox12').each(function () {
+                if ($(this).hasClass("active_blue_bg"))
+                    GridleInclusion.push($(this).attr('id'));
+            });
+
+            var FromGirdle, ToGirdle;
+            FromGirdle = $("#txtFromGirdle").val();
+            ToGirdle = $("#txtToGirdle").val();
+            var FromCulet, ToCulet;
+            FromCulet = $("#txtFromCulet").val();
+            ToCulet = $("#txtToCulet").val();
+
+            var BGM = $(".noBGM").hasClass("active_blue_bg") ? "BGM" : "NO BGM";
+            
             var obj = {
                 'Shape': Shape,
                 'CaretFrom': CaretFrom,
@@ -1890,6 +1955,7 @@
                 'KeyToSymbol': KeyToSymbol,
                 'ReportComment': ReportComment,
                 'ColorShade': ColorShade,
+                'BGM': BGM,
                 'Fluorescence': Fluorescence,
                 'HA': HA,
                 'DiameterFrom': DiameterFrom,
@@ -1917,7 +1983,20 @@
                 'LowerHalfFrom': LowerHalfFrom,
                 'LowerHalfTo': LowerHalfTo,
                 'SearchArea': SearchArea,
-                'Radio': Radio
+                'Radio': Radio,
+                'EyeClean': EyeClean,
+                'SWhiteInclusion': SWhiteInclusion,
+                'CWhiteInclusion': CWhiteInclusion,
+                'SBlackInclusion': SBlackInclusion,
+                'CBlackInclusion': CBlackInclusion,
+                'TableInclusion': TableInclusion,
+                'PavilionInclusion': PavilionInclusion,
+                'CrownInclusion': CrownInclusion,
+                'GridleInclusion': GridleInclusion,
+                'FromGirdle': FromGirdle,
+                'ToGirdle': ToGirdle,
+                'FromCulet': FromCulet,
+                'ToCulet': ToCulet
             };
             $.ajax({
                 url: "/Home/Stock",

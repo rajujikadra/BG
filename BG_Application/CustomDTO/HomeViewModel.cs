@@ -16,6 +16,7 @@ namespace BG_Application.CustomDTO
         public List<FancyColor> FancyColor { get; set; }
         public List<Purity> Clarity { get; set; }
         public List<Certificate> Lab { get; set; }
+        public List<Fluorescence> Fluorescence { get; set; }
         public List<HA> Hearts_Arrows { get; set; }
         public List<SBlackInclusion> SBlack { get; set; }
         public List<SWhiteInclusion> SWhite { get; set; }
@@ -28,6 +29,7 @@ namespace BG_Application.CustomDTO
         public List<Size> Size { get; set; }
         public List<string> KetToSymbol { get; set; }
         public List<string> Comments { get; set; }
+        public List<string> EyeClean { get; set; }
     }
 
     public class Shape
@@ -46,6 +48,12 @@ namespace BG_Application.CustomDTO
     {
         public int FancyColorCode { get; set; }
         public string FancyColorName { get; set; }
+    }
+    public class Fluorescence
+    {
+        public int FlouCode { get; set; }
+        public string FlouName { get; set; }
+        public string FlouAliasName { get; set; }
     }
     public class Cut
     {
