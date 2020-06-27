@@ -409,8 +409,8 @@ namespace BG.Controllers
             {
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
+            return PartialView("_SearchStock", Data);
             #endregion
-            return View();
         }
 
         #region Get All stocks

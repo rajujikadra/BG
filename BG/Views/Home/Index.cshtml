@@ -2010,7 +2010,12 @@
                     HoldOn.close();
                 },
                 success: function (data) {
-
+                    if (data == false) {
+                        swal("Warning", "You can't able to search stone above 500", "warning")
+                    } else {
+                        $("#StockGridDiv").empty();
+                        $("#StockGridDiv").html(data);
+                    }
                 },
                 error: function (data) {
                     HoldOn.close();

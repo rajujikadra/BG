@@ -1168,6 +1168,7 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Home\Stock.cshtml" />
     <Content Include="Views\DNA\Index.cshtml" />
+    <Content Include="Views\Home\_SearchStock.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
