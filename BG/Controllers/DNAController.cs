@@ -9,7 +9,6 @@ using System.Web.Mvc;
 
 namespace BG.Controllers
 {
-    [Authorize]
     public class DNAController : Controller
     {
         // GET: DNA
