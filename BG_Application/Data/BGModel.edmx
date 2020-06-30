@@ -364,6 +364,22 @@ warning 6002: The table/view 'BG_DB.dbo.CompanyMst' does not have a primary key 
           <Property Name="CompanyCode" Type="int" />
           <Property Name="Active" Type="bit" />
         </EntityType>
+        <EntityType Name="InquiryMst">
+          <Key>
+            <PropertyRef Name="InquiryId" />
+          </Key>
+          <Property Name="InquiryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" />
+          <Property Name="InquiryName" Type="nvarchar" MaxLength="500" />
+          <Property Name="CompanyName" Type="nvarchar" MaxLength="250" />
+          <Property Name="CompanyAddress" Type="nvarchar" MaxLength="500" />
+          <Property Name="CountryId" Type="int" />
+          <Property Name="StateId" Type="int" />
+          <Property Name="CityId" Type="int" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" />
+          <Property Name="Comments" Type="nvarchar(max)" />
+          <Property Name="IsResolve" Type="bit" />
+        </EntityType>
         <EntityType Name="MainMenuMst">
           <Key>
             <PropertyRef Name="MainMenuMstID" />
@@ -620,6 +636,18 @@ warning 6013: The table/view 'BG_DB.dbo.TypeMst' does not have a primary key def
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_CityIdInq">
+          <End Role="CityMst" Type="Self.CityMst" Multiplicity="0..1" />
+          <End Role="InquiryMst" Type="Self.InquiryMst" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CityMst">
+              <PropertyRef Name="CityId" />
+            </Principal>
+            <Dependent Role="InquiryMst">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_CompanyCityId">
           <End Role="CityMst" Type="Self.CityMst" Multiplicity="0..1" />
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
@@ -640,6 +668,18 @@ warning 6013: The table/view 'BG_DB.dbo.TypeMst' does not have a primary key def
               <PropertyRef Name="CountryId" />
             </Principal>
             <Dependent Role="StateMst">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CountryIdInq">
+          <End Role="CountryMst" Type="Self.CountryMst" Multiplicity="0..1" />
+          <End Role="InquiryMst" Type="Self.InquiryMst" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CountryMst">
+              <PropertyRef Name="CountryId" />
+            </Principal>
+            <Dependent Role="InquiryMst">
               <PropertyRef Name="CountryId" />
             </Dependent>
           </ReferentialConstraint>
@@ -784,6 +824,18 @@ warning 6013: The table/view 'BG_DB.dbo.TypeMst' does not have a primary key def
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_StateIdInq">
+          <End Role="StateMst" Type="Self.StateMst" Multiplicity="0..1" />
+          <End Role="InquiryMst" Type="Self.InquiryMst" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StateMst">
+              <PropertyRef Name="StateId" />
+            </Principal>
+            <Dependent Role="InquiryMst">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_USer">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
           <End Role="UserMenuPermissionMst" Type="Self.UserMenuPermissionMst" Multiplicity="*" />
@@ -805,6 +857,18 @@ warning 6013: The table/view 'BG_DB.dbo.TypeMst' does not have a primary key def
             </Principal>
             <Dependent Role="AspNetUsers">
               <PropertyRef Name="UserCityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserID">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="InquiryMst" Type="Self.InquiryMst" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InquiryMst">
+              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -831,6 +895,7 @@ warning 6013: The table/view 'BG_DB.dbo.TypeMst' does not have a primary key def
           <EntitySet Name="FancyOTMst" EntityType="Self.FancyOTMst" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FlouMst" EntityType="Self.FlouMst" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HAMst" EntityType="Self.HAMst" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InquiryMst" EntityType="Self.InquiryMst" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MainMenuMst" EntityType="Self.MainMenuMst" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MenuMst" EntityType="Self.MenuMst" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OCrownInclusionMst" EntityType="Self.OCrownInclusionMst" Schema="dbo" store:Type="Tables" />
@@ -922,6 +987,10 @@ warning 6013: The table/view 'BG_DB.dbo.TypeMst' does not have a primary key def
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="BrokerColumnMappingMst" EntitySet="BrokerColumnMappingMst" />
           </AssociationSet>
+          <AssociationSet Name="FK_CityIdInq" Association="Self.FK_CityIdInq">
+            <End Role="CityMst" EntitySet="CityMst" />
+            <End Role="InquiryMst" EntitySet="InquiryMst" />
+          </AssociationSet>
           <AssociationSet Name="FK_CompanyCityId" Association="Self.FK_CompanyCityId">
             <End Role="CityMst" EntitySet="CityMst" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -929,6 +998,10 @@ warning 6013: The table/view 'BG_DB.dbo.TypeMst' does not have a primary key def
           <AssociationSet Name="FK_CountryId" Association="Self.FK_CountryId">
             <End Role="CountryMst" EntitySet="CountryMst" />
             <End Role="StateMst" EntitySet="StateMst" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CountryIdInq" Association="Self.FK_CountryIdInq">
+            <End Role="CountryMst" EntitySet="CountryMst" />
+            <End Role="InquiryMst" EntitySet="InquiryMst" />
           </AssociationSet>
           <AssociationSet Name="FK_CreatedBy" Association="Self.FK_CreatedBy">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -974,6 +1047,10 @@ warning 6013: The table/view 'BG_DB.dbo.TypeMst' does not have a primary key def
             <End Role="StateMst" EntitySet="StateMst" />
             <End Role="CityMst" EntitySet="CityMst" />
           </AssociationSet>
+          <AssociationSet Name="FK_StateIdInq" Association="Self.FK_StateIdInq">
+            <End Role="StateMst" EntitySet="StateMst" />
+            <End Role="InquiryMst" EntitySet="InquiryMst" />
+          </AssociationSet>
           <AssociationSet Name="FK_USer" Association="Self.FK_USer">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="UserMenuPermissionMst" EntitySet="UserMenuPermissionMst" />
@@ -981,6 +1058,10 @@ warning 6013: The table/view 'BG_DB.dbo.TypeMst' does not have a primary key def
           <AssociationSet Name="FK_UserCityId" Association="Self.FK_UserCityId">
             <End Role="CityMst" EntitySet="CityMst" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserID" Association="Self.FK_UserID">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="InquiryMst" EntitySet="InquiryMst" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -1303,6 +1384,23 @@ warning 6013: The table/view 'BG_DB.dbo.TypeMst' does not have a primary key def
           <EntitySet Name="SWhiteInclusionMsts" EntityType="BG_DBModel.SWhiteInclusionMst" />
           <EntitySet Name="OGirdleInclusionMsts" EntityType="BG_DBModel.OGirdleInclusionMst" />
           <EntitySet Name="DiamondStocks" EntityType="BG_DBModel.DiamondStock" />
+          <EntitySet Name="InquiryMsts" EntityType="BG_DBModel.InquiryMst" />
+          <AssociationSet Name="FK_UserID" Association="BG_DBModel.FK_UserID">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="InquiryMst" EntitySet="InquiryMsts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CityIdInq" Association="BG_DBModel.FK_CityIdInq">
+            <End Role="CityMst" EntitySet="CityMsts" />
+            <End Role="InquiryMst" EntitySet="InquiryMsts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CountryIdInq" Association="BG_DBModel.FK_CountryIdInq">
+            <End Role="CountryMst" EntitySet="CountryMsts" />
+            <End Role="InquiryMst" EntitySet="InquiryMsts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StateIdInq" Association="BG_DBModel.FK_StateIdInq">
+            <End Role="StateMst" EntitySet="StateMsts" />
+            <End Role="InquiryMst" EntitySet="InquiryMsts" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="PartyMst">
           <Key>
@@ -1377,6 +1475,7 @@ warning 6013: The table/view 'BG_DB.dbo.TypeMst' does not have a primary key def
           <Property Name="CountryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Active" Type="Boolean" />
           <NavigationProperty Name="StateMsts" Relationship="BG_DBModel.FK_CountrtId" FromRole="CountryMst" ToRole="StateMst" />
+          <NavigationProperty Name="InquiryMsts" Relationship="BG_DBModel.FK_CountryIdInq" FromRole="CountryMst" ToRole="InquiryMst" />
         </EntityType>
         <EntityType Name="StateMst">
           <Key>
@@ -1388,6 +1487,7 @@ warning 6013: The table/view 'BG_DB.dbo.TypeMst' does not have a primary key def
           <Property Name="Active" Type="Boolean" />
           <NavigationProperty Name="CountryMst" Relationship="BG_DBModel.FK_CountrtId" FromRole="StateMst" ToRole="CountryMst" />
           <NavigationProperty Name="CityMsts" Relationship="BG_DBModel.FK_State" FromRole="StateMst" ToRole="CityMst" />
+          <NavigationProperty Name="InquiryMsts" Relationship="BG_DBModel.FK_StateIdInq" FromRole="StateMst" ToRole="InquiryMst" />
         </EntityType>
         <Association Name="FK_CountrtId">
           <End Type="BG_DBModel.CountryMst" Role="CountryMst" Multiplicity="0..1" />
@@ -1443,6 +1543,7 @@ warning 6013: The table/view 'BG_DB.dbo.TypeMst' does not have a primary key def
           <NavigationProperty Name="AssignSalesPersonMsts1" Relationship="BG_DBModel.FK_Customer" FromRole="AspNetUser" ToRole="AssignSalesPersonMst" />
           <NavigationProperty Name="AssignSalesPersonMsts2" Relationship="BG_DBModel.FK_SalesPerson" FromRole="AspNetUser" ToRole="AssignSalesPersonMst" />
           <Property Name="RegisterDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="InquiryMsts" Relationship="BG_DBModel.FK_UserID" FromRole="AspNetUser" ToRole="InquiryMst" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Type="BG_DBModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
@@ -1487,6 +1588,7 @@ warning 6013: The table/view 'BG_DB.dbo.TypeMst' does not have a primary key def
           <NavigationProperty Name="AspNetUsers" Relationship="BG_DBModel.FK_CompanyCityId" FromRole="CityMst" ToRole="AspNetUser" />
           <NavigationProperty Name="AspNetUsers1" Relationship="BG_DBModel.FK_UserCityId" FromRole="CityMst" ToRole="AspNetUser" />
           <NavigationProperty Name="StateMst" Relationship="BG_DBModel.FK_State" FromRole="CityMst" ToRole="StateMst" />
+          <NavigationProperty Name="InquiryMsts" Relationship="BG_DBModel.FK_CityIdInq" FromRole="CityMst" ToRole="InquiryMst" />
         </EntityType>
         <Association Name="FK_CompanyCityId">
           <End Type="BG_DBModel.CityMst" Role="CityMst" Multiplicity="0..1" />
@@ -1881,6 +1983,74 @@ warning 6013: The table/view 'BG_DB.dbo.TypeMst' does not have a primary key def
           <Property Name="POInclusion" Type="Int32" />
           <Property Name="GOInclusion" Type="Int32" />
         </EntityType>
+        <EntityType Name="InquiryMst">
+          <Key>
+            <PropertyRef Name="InquiryId" />
+          </Key>
+          <Property Name="InquiryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="InquiryName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CountryId" Type="Int32" />
+          <Property Name="StateId" Type="Int32" />
+          <Property Name="CityId" Type="Int32" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="BG_DBModel.FK_UserID" FromRole="InquiryMst" ToRole="AspNetUser" />
+          <NavigationProperty Name="CityMst" Relationship="BG_DBModel.FK_CityIdInq" FromRole="InquiryMst" ToRole="CityMst" />
+          <NavigationProperty Name="CountryMst" Relationship="BG_DBModel.FK_CountryIdInq" FromRole="InquiryMst" ToRole="CountryMst" />
+          <NavigationProperty Name="StateMst" Relationship="BG_DBModel.FK_StateIdInq" FromRole="InquiryMst" ToRole="StateMst" />
+          <Property Name="IsResolve" Type="Boolean" />
+        </EntityType>
+        <Association Name="FK_UserID">
+          <End Type="BG_DBModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
+          <End Type="BG_DBModel.InquiryMst" Role="InquiryMst" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InquiryMst">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CityIdInq">
+          <End Type="BG_DBModel.CityMst" Role="CityMst" Multiplicity="0..1" />
+          <End Type="BG_DBModel.InquiryMst" Role="InquiryMst" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CityMst">
+              <PropertyRef Name="CityId" />
+            </Principal>
+            <Dependent Role="InquiryMst">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CountryIdInq">
+          <End Type="BG_DBModel.CountryMst" Role="CountryMst" Multiplicity="0..1" />
+          <End Type="BG_DBModel.InquiryMst" Role="InquiryMst" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CountryMst">
+              <PropertyRef Name="CountryId" />
+            </Principal>
+            <Dependent Role="InquiryMst">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StateIdInq">
+          <End Type="BG_DBModel.StateMst" Role="StateMst" Multiplicity="0..1" />
+          <End Type="BG_DBModel.InquiryMst" Role="InquiryMst" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StateMst">
+              <PropertyRef Name="StateId" />
+            </Principal>
+            <Dependent Role="InquiryMst">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2493,6 +2663,23 @@ warning 6013: The table/view 'BG_DB.dbo.TypeMst' does not have a primary key def
                 <ScalarProperty Name="Cts" ColumnName="Cts" />
                 <ScalarProperty Name="StoneID" ColumnName="StoneID" />
                 <ScalarProperty Name="StockMSTID" ColumnName="StockMSTID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InquiryMsts">
+            <EntityTypeMapping TypeName="BG_DBModel.InquiryMst">
+              <MappingFragment StoreEntitySet="InquiryMst">
+                <ScalarProperty Name="IsResolve" ColumnName="IsResolve" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="CompanyAddress" ColumnName="CompanyAddress" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="InquiryName" ColumnName="InquiryName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="InquiryId" ColumnName="InquiryId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

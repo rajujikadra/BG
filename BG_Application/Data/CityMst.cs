@@ -19,6 +19,7 @@ namespace BG_Application.Data
         {
             this.AspNetUsers = new HashSet<AspNetUser>();
             this.AspNetUsers1 = new HashSet<AspNetUser>();
+            this.InquiryMsts = new HashSet<InquiryMst>();
         }
     
         public int CityId { get; set; }
@@ -31,5 +32,7 @@ namespace BG_Application.Data
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetUser> AspNetUsers1 { get; set; }
         public virtual StateMst StateMst { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<InquiryMst> InquiryMsts { get; set; }
     }
 }

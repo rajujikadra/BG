@@ -25,6 +25,7 @@ namespace BG_Application.Data
             this.AssignSalesPersonMsts = new HashSet<AssignSalesPersonMst>();
             this.AssignSalesPersonMsts1 = new HashSet<AssignSalesPersonMst>();
             this.AssignSalesPersonMsts2 = new HashSet<AssignSalesPersonMst>();
+            this.InquiryMsts = new HashSet<InquiryMst>();
         }
     
         public string Id { get; set; }
@@ -74,5 +75,7 @@ namespace BG_Application.Data
         public virtual ICollection<AssignSalesPersonMst> AssignSalesPersonMsts1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AssignSalesPersonMst> AssignSalesPersonMsts2 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<InquiryMst> InquiryMsts { get; set; }
     }
 }

@@ -18,6 +18,7 @@ namespace BG_Application.Data
         public StateMst()
         {
             this.CityMsts = new HashSet<CityMst>();
+            this.InquiryMsts = new HashSet<InquiryMst>();
         }
     
         public int StateId { get; set; }
@@ -28,5 +29,7 @@ namespace BG_Application.Data
         public virtual CountryMst CountryMst { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CityMst> CityMsts { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<InquiryMst> InquiryMsts { get; set; }
     }
 }

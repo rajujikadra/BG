@@ -1,4 +1,4 @@
-﻿
+﻿@model BG_Application.CustomDTO.InquiryViewModel
 @{
     ViewBag.Title = "Inquiry";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -8,62 +8,190 @@
         <div class="section-body mt-4 inquiry-suggestion-section">
             <div class="row">
                 <div class="col-lg-12 m-auto">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4>Inquiry</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="form-group">
-                                <label>Name</label>
-                                <input type="text" class="form-control">
+                    @using (Ajax.BeginForm("Index", "Inquiry", null, new AjaxOptions { HttpMethod = "POST", OnSuccess = "InquiryFormSuccess", OnFailure = "Failed", }, new { @id = "formInquiry", @class = "needs-validation", @autocomplete = "off" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>Inquiry</h4>
                             </div>
-                            <div class="form-group">
-                                <label>Company Name</label>
-                                <input type="text" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label>Company Address</label>
-                                <input type="text" class="form-control">
-                            </div>
-                            <div class="form-row">
-                                <div class="col-md-4">
-                                    <label>Country</label>
-                                    <input type="text" class="form-control">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    @Html.LabelFor(x => x.InquiryName)
+                                    @Html.TextBoxFor(m => m.InquiryName, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.InquiryName, "", new { @class = "text-danger" })
                                 </div>
-                                <div class="col-md-4">
-                                    <label>State</label>
-                                    <input type="text" class="form-control">
+                                <div class="form-group">
+                                    @Html.LabelFor(x => x.CompanyName)
+                                    @Html.TextBoxFor(m => m.CompanyName, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.CompanyName, "", new { @class = "text-danger" })
                                 </div>
-                                <div class="col-md-4">
-                                    <label>City</label>
-                                    <input type="text" class="form-control">
+                                <div class="form-group">
+                                    @Html.LabelFor(x => x.CompanyAddress)
+                                    @Html.TextBoxFor(m => m.CompanyAddress, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.CompanyAddress, "", new { @class = "text-danger" })
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="form-check">
-                                    <div class="custom-control custom-radio d-inline-block">
-                                        <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input">
-                                        <label class="custom-control-label" for="customRadio3">Inquiry</label>
+                                <div class="form-row">
+                                    <div class="col-md-4">
+                                        @Html.LabelFor(x => x.CountryId)
+                                        @Html.DropDownListFor(m => m.CountryId, new SelectList(ViewBag.Country, "CountryId", "CountryName"), "--Select country--", new { @class = "form-control", @onchange = "SelectCountry(this, 'UserCountry');" })
+                                        @Html.ValidationMessageFor(m => m.CountryId, "", new { @class = "text-danger" })
                                     </div>
-                                    <div class="custom-control custom-radio d-inline-block ml-3">
-                                        <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
-                                        <label class="custom-control-label" for="customRadio2">Suggestion</label>
+                                    <div class="col-md-4">
+                                        @Html.LabelFor(x => x.StateId)
+                                        @Html.DropDownListFor(m => m.StateId, new SelectList(ViewBag.State, "Value", "Text"), "--Select state--", new { @class = "form-control", @disabled = "disabled", @onchange = "SelectState(this, 'UserState');" })
+                                        @Html.ValidationMessageFor(m => m.StateId, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-4">
+                                        @Html.LabelFor(x => x.CityId)
+                                        @Html.DropDownListFor(m => m.CityId, new SelectList(ViewBag.City, "Value", "Text"), "--Select city--", new { @class = "form-control", @disabled = "disabled" })
+                                        @Html.ValidationMessageFor(m => m.CityId, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <div class="form-check">
+                                        <div class="custom-control custom-radio d-inline-block">
+                                            @Html.RadioButtonFor(m => m.Type, "Inquiry", new { @id = "rdbInquiry", @class = "custom-control-input" })
+                                            @*<input type="radio" value="Inquiry" checked id="Inquiry" name="Type" class="custom-control-input">*@
+                                            <label class="custom-control-label" for="rdbInquiry">Inquiry</label>
+                                        </div>
+                                        <div class="custom-control custom-radio d-inline-block ml-3">
+                                            @Html.RadioButtonFor(m => m.Type, "Suggestion", new { @id = "rdbSuggestion", @class = "custom-control-input" })
+                                            @*<input type="radio" value="Suggestion" id="Suggestion" name="Type" class="custom-control-input">*@
+                                            <label class="custom-control-label" for="rdbSuggestion">Suggestion</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(x => x.Comments)
+                                    @Html.TextAreaFor(m => m.Comments, new { @class = "form-control", @rows = "7" })
+                                    @Html.ValidationMessageFor(m => m.Comments, "", new { @class = "text-danger" })
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label>Textarea</label>
-                                <textarea class="form-control" rows="7"></textarea>
+                            <div class="card-footer text-right">
+                                <button class="btn btn-primary mr-1" type="button" id="btnInquirySave">Submit</button>
+                                <button class="btn btn-secondary" type="reset">Reset</button>
                             </div>
                         </div>
-                        <div class="card-footer text-right">
-                            <button class="btn btn-primary mr-1" type="submit">Submit</button>
-                            <button class="btn btn-secondary" type="reset">Reset</button>
-                        </div>
-                    </div>
+                    }
                 </div>
             </div>
         </div>
     </section>
 </div>
+@section scripts{
+    <script type="text/javascript">
+        function SelectCountry(e, DrdName) {
+            $.ajax({
+                url: "/Account/GetStates",
+                method: "GET",
+                data: { 'CountryId': e.value },
+                contentType: 'application/json',
+                beforeSend: function () {
+                    HoldOn.open();
+                },
+                complete: function () {
+                    HoldOn.close();
+                },
+                success: function (data) {
+                    if (data.length > 0) {
+                        $("#StateId").empty();
+                        $("#StateId").append($("<option>--Select State--</option>"))
+                        $("#CityId").empty();
+                        $("#CityId").append($("<option>--Select City--</option>"))
+                        $.each(data, function (index, value) {
+                            $("#StateId").append($("<option></option>").val(this.StateId).html(this.StateName));
+                        });
+                        $("#StateId").removeAttr("disabled");
+                    }
+                },
+                error: function (data) {
+                    $('.loader').hide();
+                    $("#btnclose").click();
+                }
+            });
+        }
+
+        function SelectState(e, DrdName) {
+            $.ajax({
+                url: "/Account/GetCity",
+                method: "GET",
+                data: { 'StateId': e.value },
+                contentType: 'application/json',
+                beforeSend: function () {
+                    HoldOn.open();
+                },
+                complete: function () {
+                    HoldOn.close();
+                },
+                success: function (data) {
+                    if (data.length > 0) {
+                        $("#CityId").empty();
+                        $("#CityId").append($("<option>--Select City--</option>"))
+                        $.each(data, function (index, value) {
+                            $("#CityId").append($("<option></option>").val(this.CityId).html(this.CityName));
+                        });
+                        $("#CityId").removeAttr("disabled");
+                    }
+                },
+                error: function (data) {
+                    $('.loader').hide();
+                    $("#btnclose").click();
+                }
+            });
+        }
+
+        function formValidate(form) {
+            form.removeData("validator");
+            form.removeData("unobtrusiveValidation");
+            $.validator.unobtrusive.parse(form);
+            if (!form.valid())
+                return false;
+            else
+                return true;
+        }
+
+        $("#btnInquirySave").on('click', function () {
+            var form = $('#formInquiry');
+            if (formValidate(form) === false) {
+                return false;
+            }
+            var formData = objectifyForm(form.serializeArray());
+            HoldOn.open();
+            $.ajax({
+                url: "/Inquiry/Index",
+                method: "POST",
+                data: JSON.stringify(formData),
+                contentType: 'application/json',
+                success: function (data) {
+                    if (data == true) {
+                        $("#formInquiry")[0].reset();
+                        swal({
+                            title: "Success",
+                            text: "Your inquiry has been successfully posted.",
+                            icon: "success"
+                        }).then(function (willDelete) {
+                            if (willDelete) {
+                                window.location.reload();
+                            }
+                        });
+                    } else if (data.StatusCode == 404) {
+                        swal("Error", "Opps! Some problem there", "error");
+                    }
+                    HoldOn.close();
+                },
+                error: function (data) {
+                    HoldOn.close();
+                }
+            });
+        });
+        function objectifyForm(formArray) {//serialize data function
+            var returnArray = {};
+            for (var i = 0; i < formArray.length; i++) {
+                returnArray[formArray[i]['name']] = formArray[i]['value'];
+            }
+            return returnArray;
+        }
+    </script>
+}
 

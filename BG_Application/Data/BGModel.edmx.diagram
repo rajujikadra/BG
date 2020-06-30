@@ -59,6 +59,11 @@
         <EntityTypeShape EntityType="BG_DBModel.SWhiteInclusionMst" Width="1.5" PointX="16.375" PointY="8.75" />
         <EntityTypeShape EntityType="BG_DBModel.OGirdleInclusionMst" Width="1.5" PointX="16.75" PointY="12.75" />
         <EntityTypeShape EntityType="BG_DBModel.DiamondStock" Width="1.5" PointX="0.75" PointY="14.75" />
+        <EntityTypeShape EntityType="BG_DBModel.InquiryMst" Width="1.5" PointX="25.375" PointY="4.125" />
+        <AssociationConnector Association="BG_DBModel.FK_UserID" />
+        <AssociationConnector Association="BG_DBModel.FK_CityIdInq" />
+        <AssociationConnector Association="BG_DBModel.FK_CountryIdInq" />
+        <AssociationConnector Association="BG_DBModel.FK_StateIdInq" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

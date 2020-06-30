@@ -77,6 +77,7 @@
     <Compile Include="CustomDTO\GOInclusionViewModel.cs" />
     <Compile Include="CustomDTO\HAViewModel.cs" />
     <Compile Include="CustomDTO\HomeViewModel.cs" />
+    <Compile Include="CustomDTO\InquiryViewModel.cs" />
     <Compile Include="CustomDTO\MenuViewModel.cs" />
     <Compile Include="CustomDTO\OCrownInclusionViewModel.cs" />
     <Compile Include="CustomDTO\OPavilionInclusionViewModel.cs" />
@@ -170,6 +171,9 @@
       <DependentUpon>BGModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\HAMst.cs">
+      <DependentUpon>BGModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\InquiryMst.cs">
       <DependentUpon>BGModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\MainMenuMst.cs">
