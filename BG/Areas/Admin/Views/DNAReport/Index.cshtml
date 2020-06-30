@@ -31,14 +31,12 @@
                                     @Html.ValidationMessageFor(model => model.PDFFile, "", new { @class = "text-danger" })
                                 </div>
                                 <div class="form-group">
-                                    @*<label>Upload V360 File</label>
-                                        <input type="file" class="form-control" accept=".json" multiple>*@
+                                    @Html.LabelFor(model => model.JSONFile)
                                     @Html.TextBoxFor(model => model.JSONFile, "", new { @type = "file", @multiple = "multiple", @class = "form-control", @accept = ".json" })
                                     @Html.ValidationMessageFor(model => model.JSONFile, "", new { @class = "text-danger" })
                                 </div>
                                 <div class="form-group">
-                                    @*<label>Upload H&A Images</label>
-                                        <input type="file" class="form-control" accept=".jpg,.png,.jpeg">*@
+                                    @Html.LabelFor(model => model.Images)
                                     @Html.TextBoxFor(model => model.Images, "", new { @type = "file", @class = "form-control", @multiple = "multiple", @accept = ".jpg,.png,.jpeg" })
                                     @Html.ValidationMessageFor(model => model.Images, "", new { @class = "text-danger" })
                                 </div>

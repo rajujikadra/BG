@@ -12,12 +12,12 @@ namespace BG.Models
         [Display(Name = "Stone ID")]
         public string StoneID { get; set; }
 
-        [Required(ErrorMessage = "Please select file.")]
-        [Display(Name = "Upload H&A Images")]
+        //[Required(ErrorMessage = "Please select file.")]
+        [Display(Name = "Upload Images")]
         public HttpPostedFileBase[] Images { get; set; }
 
-        [Required(ErrorMessage = "Please select file.")]
-        [Display(Name = "Upload V360 File")]
+        //[Required(ErrorMessage = "Please select file.")]
+        [Display(Name = "Upload JSON File")]
         public HttpPostedFileBase[] JSONFile { get; set; }
 
         //[Required(ErrorMessage = "Please select file.")]
