@@ -163,12 +163,14 @@
                                             @foreach (var S in Model)
                                             {
                                                 string class_tr = "";
-                                                
+                                                int NewArrival = 0;
+                                                System.TimeSpan? diffResult = DateTime.Now.AddDays(2) - S.UploadedDate;
+                                                NewArrival = diffResult.Value.Days;
                                                 if (S.Hold == true)
                                                 {
                                                     class_tr = "bg-danger text-white";
                                                 }
-                                                else if (S.Basket == true)
+                                                else if (NewArrival <= 2)
                                                 {
                                                     class_tr = "bg-green text-white";
                                                 }
@@ -179,7 +181,7 @@
                                                 <tr class="@class_tr">
                                                     <td>
                                                         <div class="custom-checkbox custom-control">
-                                                            <input data-cts="@S.Cts" data-amount="@S.Amount" data-rap="@S.Rap" type="checkbox" data-checkboxes="mygroup" class="custom-control-input diamond-chk" @((S.Hold == true || S.Basket == true) ? "disabled" : "") id="checkbox'@S.StockMSTID'">
+                                                            <input data-cts="@S.Cts" data-amount="@S.Amount" data-rap="@S.Rap" type="checkbox" data-checkboxes="mygroup" class="custom-control-input diamond-chk" @((S.Hold == true) ? "disabled" : "") id="checkbox'@S.StockMSTID'">
                                                             <label for="checkbox'@S.StockMSTID'" class="custom-control-label">&nbsp;</label>
                                                         </div>
                                                     </td>

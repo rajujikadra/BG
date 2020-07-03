@@ -79,5 +79,6 @@ namespace BG_Application.CustomDTO
         public Nullable<int> POInclusion { get; set; }
         public Nullable<int> GOInclusion { get; set; }
         public string FancyColorName { get; set; }
+        public Nullable<DateTime> UploadedDate { get; set; }
     }
 }

@@ -309,6 +309,7 @@ warning 6002: The table/view 'BG_DB.dbo.CompanyMst' does not have a primary key 
           <Property Name="COInclusion" Type="int" />
           <Property Name="POInclusion" Type="int" />
           <Property Name="GOInclusion" Type="int" />
+          <Property Name="UploadedDate" Type="datetime" />
         </EntityType>
         <EntityType Name="FancyColorMst">
           <Key>
@@ -596,13 +597,6 @@ warning 6002: The table/view 'BG_DB.dbo.SizeMst' does not have a primary key def
           <Property Name="CompanyCode" Type="int" />
           <Property Name="Active" Type="bit" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'BG_DB.dbo.TypeMst' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="TypeMst">
-          <Property Name="TypeCode" Type="int" />
-          <Property Name="Type" Type="nvarchar" MaxLength="50" />
-          <Property Name="Active" Type="bit" />
-        </EntityType>-->
         <EntityType Name="UserMenuPermissionMst">
           <Key>
             <PropertyRef Name="ID" />
@@ -1982,6 +1976,7 @@ warning 6013: The table/view 'BG_DB.dbo.TypeMst' does not have a primary key def
           <Property Name="COInclusion" Type="Int32" />
           <Property Name="POInclusion" Type="Int32" />
           <Property Name="GOInclusion" Type="Int32" />
+          <Property Name="UploadedDate" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="InquiryMst">
           <Key>
@@ -2602,6 +2597,7 @@ warning 6013: The table/view 'BG_DB.dbo.TypeMst' does not have a primary key def
           <EntitySetMapping Name="DiamondStocks">
             <EntityTypeMapping TypeName="BG_DBModel.DiamondStock">
               <MappingFragment StoreEntitySet="DiamondStock">
+                <ScalarProperty Name="UploadedDate" ColumnName="UploadedDate" />
                 <ScalarProperty Name="GOInclusion" ColumnName="GOInclusion" />
                 <ScalarProperty Name="POInclusion" ColumnName="POInclusion" />
                 <ScalarProperty Name="COInclusion" ColumnName="COInclusion" />

@@ -75,5 +75,6 @@ namespace BG_Application.Data
         public Nullable<int> COInclusion { get; set; }
         public Nullable<int> POInclusion { get; set; }
         public Nullable<int> GOInclusion { get; set; }
+        public Nullable<System.DateTime> UploadedDate { get; set; }
     }
 }

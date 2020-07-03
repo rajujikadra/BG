@@ -90,7 +90,8 @@ namespace BG_Application.Service
                 Polish = DB.PolishMsts.FirstOrDefault(c => c.PolishCode == y.PolishCode).PolishAliasName,
                 Purity = DB.PurityMsts.FirstOrDefault(c => c.PurityCode == y.PurityCode).PurityAliasName,
                 Symmetry = DB.SymmetryMsts.FirstOrDefault(c => c.SymmetryCode == y.SymmetryCode).SymmetryAliasName,
-                FancyColorName = DB.FancyColorMsts.FirstOrDefault(c => c.FancyColorCode == y.FancyColorCode).FancyColorName
+                FancyColorName = DB.FancyColorMsts.FirstOrDefault(c => c.FancyColorCode == y.FancyColorCode).FancyColorName,
+                UploadedDate = y.UploadedDate
             }).ToList();
         }
 
