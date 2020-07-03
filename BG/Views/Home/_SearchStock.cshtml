@@ -163,18 +163,19 @@
                                             @foreach (var S in Model)
                                             {
                                                 string class_tr = "";
+                                                
                                                 if (S.Hold == true)
                                                 {
-                                                    class_tr = "bg-secondary";
+                                                    class_tr = "bg-danger text-white";
                                                 }
                                                 else if (S.Basket == true)
                                                 {
-                                                    class_tr = "bg-success";
+                                                    class_tr = "bg-green text-white";
                                                 }
-                                                else if (S.Inquiry == true)
-                                                {
-                                                    class_tr = "bg-primary";
-                                                }
+                                                //else if (S.Inquiry == true)
+                                                //{
+                                                //    class_tr = "bg-primary";
+                                                //}
                                                 <tr class="@class_tr">
                                                     <td>
                                                         <div class="custom-checkbox custom-control">
@@ -659,7 +660,7 @@
             "colReorder": true,
             lengthMenu: [100, 200, 500],
             "columnDefs": [
-                { "sortable": false, "targets": [0, 1, 2] }
+                //{ "sortable": false, "targets": [0, 1, 2] }
             ],
             order: [[1, "asc"]], //column indexes is zero based
             dom: 'Bfrtip',
@@ -668,6 +669,7 @@
     });
 
     $(".diamond-chk").on('click', function () {
+        HoldOn.open();
         var CTS = 0;
         var Amount = 0;
         var RAP = 0;
@@ -682,5 +684,6 @@
         $("#lblAvgRateCt").empty().text(CTS > 0 ? Amount / CTS : 0);
         $("#lblSumOfAmount").empty().text(Amount);
         $("#lblAvgRap").empty().text(CTS > 0 ? RAP / CTS : 0);
+        HoldOn.close();
     });
 </script>
