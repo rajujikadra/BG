@@ -1,19 +1,39 @@
 ﻿@model List<BG_Application.CustomDTO.DiamondStockViewModel>
-    <section class="section">
-        <div class="section-body result1Tbl">
-            <div class="row">
-                <div class="col-12">
-                    <div class="selectedStone_area">
-                        <h1>Selected Stone</h1>
-                        <div class="selectedStone_btn">
-                            <button>Compare</button>
-                            <button>Add Note</button>
-                            <button>Add to Basket</button>
-                            <button>View Request</button>
-                            <button class="selectedStoneActiveBtn">Confirm</button>
+<section class="section">
+    <div class="section-body result1Tbl">
+        <div class="row">
+            <div class="col-12">
+                <div class="selectedStone_area">
+                    <h1>Selected Stone</h1>
+                    <div class="selectedStone_btn">
+                        <button>Compare</button>
+                        <button>Add Note</button>
+                        <button>Add to Basket</button>
+                        <button>View Request</button>
+                        <button class="selectedStoneActiveBtn">Confirm</button>
+                    </div>
+                    <div class="selectedStone_rating_area">
+                        <div class="stone_number">
+                            <h5 id="lblNoOfSelection">0</h5>
+                            <p>No Of Selection</p>
                         </div>
-                        <div class="selectedStone_rating_area">
-                            <div class="stone_number">
+                        <div class="stone_number">
+                            <h5 id="lblSumOfCarat">0</h5>
+                            <p>Sum Of Carat</p>
+                        </div>
+                        <div class="stone_number">
+                            <h5 id="lblAvgRateCt">0</h5>
+                            <p>Avg Rate/ct</p>
+                        </div>
+                        <div class="stone_number">
+                            <h5 id="lblSumOfAmount">0</h5>
+                            <p>Sum Of Amount</p>
+                        </div>
+                        <div class="stone_number">
+                            <h5 id="lblAvgRap">0</h5>
+                            <p>Avg Rap</p>
+                        </div>
+                        @*<div class="stone_number">
                                 <h5>1</h5>
                                 <p>Scores</p>
                             </div>
@@ -65,71 +85,155 @@
                             <div class="stone_number">
                                 <h5>$75.20</h5>
                                 <p>Com. Rs</p>
-                            </div>
-                        </div>
+                            </div>*@
                     </div>
                 </div>
-                <div class="col-12">
-                    <div class="selectedStone_inner_tbl">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="search-btn">
+            </div>
+            <div class="col-12">
+                <div class="selectedStone_inner_tbl">
+                    <div class="row">
+                        <div class="col-12">
+                            @*<div class="search-btn">
                                     <input type="search" class="form-control" placeholder="Search grid" />
                                     <i class="fas fa-search"></i>
-                                </div>
-                                <div class="selectedStone_title_right">
-                                    <ul>
-                                        <li><a>Bid To Buy</a></li>
-                                        <li><a>Under Business Process</a></li>
-                                        <li><a>New Arrival</a></li>
-                                        <li class="mr-2"><a>Recently Uploaded</a></li>
-                                        <li><a><i class="fas fa-download"></i></a></li>
-                                        <li><a><i class="far fa-envelope"></i></a></li>
-                                        <li><a><i class="fas fa-recycle"></i></a></li>
-                                    </ul>
-                                </div>
+                                </div>*@
+                            <div class="selectedStone_title_right">
+                                <ul>
+                                    <li><a>Bid To Buy</a></li>
+                                    <li><a>Under Business Process</a></li>
+                                    <li><a>New Arrival</a></li>
+                                    <li class="mr-2"><a>Recently Uploaded</a></li>
+                                    <li><a><i class="fas fa-download"></i></a></li>
+                                    <li><a><i class="far fa-envelope"></i></a></li>
+                                    <li><a><i class="fas fa-recycle"></i></a></li>
+                                </ul>
                             </div>
-                            <div class="col-12">
-                                <div class="selectedStone_Main_Tbl">
-                                    <div style="overflow-x:auto;">
-                                        <table>
-                                            <thead>
-                                                <tr>
-                                                    <th class="text-center">
-                                                        <div class="pretty p-icon p-smooth selectgrid_checkBox">
-                                                            <input type="checkbox">
-                                                            <div class="state p-success">
-                                                                <i class="icon fa fa-check"></i>
-                                                                <label></label>
-                                                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="selectedStone_Main_Tbl">
+                                <div style="overflow-x:auto;">
+                                    <table id="stock-master-table">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                                <th>StoneID</th>
+                                                <th>CTS</th>
+                                                <th>Location</th>
+                                                <th>ReportNo</th>
+                                                <th>Certificate</th>
+                                                <th>Shape</th>
+                                                <th>Size</th>
+                                                <th>Color</th>
+                                                <th>Purity</th>
+                                                <th>Cut</th>
+                                                <th>Polish</th>
+                                                <th>Symmetry</th>
+                                                <th>Flou</th>
+                                                <th>RAP</th>
+                                                <th>Discount</th>
+                                                <th>Asking</th>
+                                                <th>Amount</th>
+                                                <th>S.Per(%)</th>
+                                                <th>S.Rate</th>
+                                                <th>S.Amt</th>
+                                                <th>Length</th>
+                                                <th>Width</th>
+                                                <th>Depth</th>
+                                                <th>DepthPer</th>
+                                                <th>TablePer</th>
+                                                <th>Crown Angle</th>
+                                                <th>Crown Height</th>
+                                                <th>Pav. Angle</th>
+                                                <th>Pav. Height</th>
+                                                <th>Key To Symbol</th>
+                                                <th>Eye Clean</th>
+                                                <th>Girdle</th>
+                                                <th>Culet</th>
+                                                <th>Star</th>
+                                                <th>Lower</th>
+                                                <th>Milky</th>
+                                                <th>HA</th>
+                                                <th>Inscription</th>
+                                                <th>Comment</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var S in Model)
+                                            {
+                                                string class_tr = "";
+                                                if (S.Hold == true)
+                                                {
+                                                    class_tr = "bg-secondary";
+                                                }
+                                                else if (S.Basket == true)
+                                                {
+                                                    class_tr = "bg-success";
+                                                }
+                                                else if (S.Inquiry == true)
+                                                {
+                                                    class_tr = "bg-primary";
+                                                }
+                                                <tr class="@class_tr">
+                                                    <td>
+                                                        <div class="custom-checkbox custom-control">
+                                                            <input data-cts="@S.Cts" data-amount="@S.Amount" data-rap="@S.Rap" type="checkbox" data-checkboxes="mygroup" class="custom-control-input diamond-chk" @((S.Hold == true || S.Basket == true) ? "disabled" : "") id="checkbox'@S.StockMSTID'">
+                                                            <label for="checkbox'@S.StockMSTID'" class="custom-control-label">&nbsp;</label>
                                                         </div>
-                                                    </th>
-                                                    <th>Stone ID <i class="fas fa-arrow-right pl-1"></i></th>
-                                                    <th>Cert</th>
-                                                    <th>Shape</th>
-                                                    <th>Clarity</th>
-                                                    <th>Color</th>
-                                                    <th>Caret</th>
-                                                    <th>S/ct</th>
-                                                    <th>OFF%</th>
-                                                    <th>Amount</th>
-                                                    <th>Cut</th>
-                                                    <th>Pol</th>
-                                                    <th>Sym</th>
-                                                    <th>Fluor</th>
-                                                    <th>Measurement</th>
-                                                    <th>D/R</th>
-                                                    <th>TAB</th>
-                                                    <th>TD</th>
-                                                    <th>Shd</th>
-                                                    <th>Lust</th>
-                                                    <th>TW</th>
-                                                    <th>5W</th>
-                                                    <th>TB</th>
+                                                    </td>
+                                                    <td>
+                                                        <a target="_blank" href="https://www.gia.edu/report-check?reportno=@S.ReportNo">
+                                                            <i class="fas fa-certificate"></i>
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <a target="_blank" href="@S.VideoLink">
+                                                            <i class="fas fa-video"></i>
+                                                        </a>
+                                                    </td>
+                                                    <td>@S.StoneID</td>
+                                                    <td>@S.Cts</td>
+                                                    <td>@S.Location</td>
+                                                    <td>@S.ReportNo</td>
+                                                    <td>@S.CertificateName</td>
+                                                    <td>@S.ShapeName</td>
+                                                    <td>@S.Size</td>
+                                                    <td>@S.ColorName</td>
+                                                    <td>@S.Purity</td>
+                                                    <td>@S.Cut</td>
+                                                    <td>@S.Polish</td>
+                                                    <td>@S.Symmetry</td>
+                                                    <td>@S.Flou</td>
+                                                    <td>@S.Rap</td>
+                                                    <td>@S.Disc</td>
+                                                    <td>@S.Asking</td>
+                                                    <td>@S.Amount</td>
+                                                    <td>@S.SPer</td>
+                                                    <td>@S.SRate</td>
+                                                    <td>@S.SAmount</td>
+                                                    <td>@S.Length</td>
+                                                    <td>@S.Width</td>
+                                                    <td>@S.Depth</td>
+                                                    <td>@S.DepthPer</td>
+                                                    <td>@S.TablePer</td>
+                                                    <td>@S.CrownAngle</td>
+                                                    <td>@S.CrownHeight</td>
+                                                    <td>@S.PavAngle</td>
+                                                    <td>@S.PavHeight</td>
+                                                    <td>@S.KeytoSymbol</td>
+                                                    <td>@S.EyeClean</td>
+                                                    <td>@S.Girdle</td>
+                                                    <td>@S.Culet</td>
+                                                    <td>@S.Star</td>
+                                                    <td>@S.Lower</td>
+                                                    <td>@S.Milky</td>
+                                                    <td>@S.HA</td>
+                                                    <td>@S.Inscription</td>
+                                                    <td>@S.Comments</td>
                                                 </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
+                                            }
+                                            @*<tr>
                                                     <td class="text-center">
                                                         <div class="pretty p-icon p-smooth selectgrid_checkBox">
                                                             <input type="checkbox">
@@ -524,11 +628,11 @@
                                                     <td>N</td>
                                                     <td>FG</td>
                                                     <td>OL</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div class="pagination">
+                                                </tr>*@
+                                        </tbody>
+                                    </table>
+                                </div>
+                                @*<div class="pagination">
                                         <a href="#">&laquo;</a>
                                         <a href="#">1</a>
                                         <a href="#" class="active">2</a>
@@ -537,12 +641,46 @@
                                         <a href="#">5</a>
                                         <a href="#">6</a>
                                         <a href="#">&raquo;</a>
-                                    </div>
-                                </div>
+                                    </div>*@
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#stock-master-table').DataTable({
+            "sScrollX": "100%",
+            "sScrollXInner": "110%",
+            "bScrollCollapse": true,
+            "colReorder": true,
+            lengthMenu: [100, 200, 500],
+            "columnDefs": [
+                { "sortable": false, "targets": [0, 1, 2] }
+            ],
+            order: [[1, "asc"]], //column indexes is zero based
+            dom: 'Bfrtip',
+            buttons: ['copy', 'csv', 'excel']
+        });
+    });
+
+    $(".diamond-chk").on('click', function () {
+        var CTS = 0;
+        var Amount = 0;
+        var RAP = 0;
+        var Selected_Stone = $('input:checkbox.diamond-chk:checked').length;
+        $("#lblNoOfSelection").empty().text(Selected_Stone);
+        $('input:checkbox.diamond-chk:checked').each(function (e) {
+            CTS = CTS + parseInt($(this).attr("data-cts"));
+            Amount = Amount + parseInt($(this).attr("data-amount"));
+            RAP = RAP + parseInt($(this).attr("data-rap"));
+        });
+        $("#lblSumOfCarat").empty().text(CTS);
+        $("#lblAvgRateCt").empty().text(CTS > 0 ? Amount / CTS : 0);
+        $("#lblSumOfAmount").empty().text(Amount);
+        $("#lblAvgRap").empty().text(CTS > 0 ? RAP / CTS : 0);
+    });
+</script>
