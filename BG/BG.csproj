@@ -887,6 +887,7 @@
     <Content Include="Areas\Admin\assets\img\cards\mastercard.png" />
     <Content Include="Areas\Admin\assets\img\cards\paypal.png" />
     <Content Include="Areas\Admin\assets\img\cards\visa.png" />
+    <Content Include="Areas\Admin\assets\img\diamond-img-zoom.jpg" />
     <Content Include="Areas\Admin\assets\img\favicon.ico" />
     <Content Include="Areas\Admin\assets\img\image-64.png" />
     <Content Include="Areas\Admin\assets\img\image-gallery\1.png" />

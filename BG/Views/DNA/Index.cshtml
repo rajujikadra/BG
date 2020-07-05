@@ -92,13 +92,14 @@
                     }
                 </div>
                 <div class="custom-col-w100 diamond-zoom-img">
-
                     @foreach (var i in Model.ImageNames)
                     {
                         <img src="~/DNAReports/@Model.StoneID/@i" id="myBtn">
                     }
-
                 </div>
+                @*<div class="custom-col-w100 diamond-zoom-img">
+                        <img src="https://s4.v360.in/images/company/256/imaged/H12D301313/still.jpg" id="myBtn">
+                    </div>*@
                 <h2 class="title-h2">Simillar Items</h2>
                 <div class="custom-col-w100 mt-0 mb-15">
                     <div class="custom-col-stoneID">
@@ -157,17 +158,18 @@
         </div>
     </div>
     <!-- The Modal -->
-    <div id="myModal" class="modal">
-
-        <!-- Modal content -->
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <div class="diamond-img-zoom">
-                <img src="assets/img/diamond-img-zoom.jpg" data-magnify-src="assets/img/diamond-img-zoom.jpg">
+    @foreach (var i in Model.ImageNames)
+    {
+        <div id="myModal" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <div class="diamond-img-zoom">
+                    <img src="~/DNAReports/@Model.StoneID/@i" data-magnify-src="~/DNAReports/@Model.StoneID/@i">
+                </div>
             </div>
         </div>
-    </div>
-
+    }
 
     <script src="~/Areas/Admin/assets/js/jquery-3.3.1.min.js"></script>
     <script src="~/Areas/Admin/assets/js/diamond-shap.js"></script>
