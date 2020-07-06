@@ -20,8 +20,33 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
     <title>BG - Vision360</title>
+    <link rel="stylesheet" type="text/css" href="~/Areas/Admin/assets/css/bootstrap.min.css">
     <link href="~/Areas/Admin/assets/css/diamond-shap.css" rel="stylesheet" />
     <link href="~/Areas/Admin/assets/css/magnify.css" rel="stylesheet" />
+    <style type="text/css">
+        .modal-backdrop.show {
+            display: none;
+        }
+
+        .modal-body button {
+            background-color: #6777ef;
+            opacity: 1;
+        }
+
+            .modal-body button:hover {
+                opacity: 1 !important;
+                color: #fff;
+            }
+
+            .modal-body button:focus {
+                outline: none;
+                box-shadow: none;
+            }
+
+        .diamond-zoom-img > img {
+            margin: 0px 5px;
+        }
+    </style>
 </head>
 
 
@@ -91,13 +116,16 @@
                         </div>
                     }
                 </div>
+                @{ int count = 0; }
                 <div class="custom-col-w100 diamond-zoom-img">
                     @foreach (var i in Model.ImageNames)
                     {
-                        <img src="~/DNAReports/@Model.StoneID/@i" id="myBtn">
+                        count++;
+                        <img src="~/DNAReports/@Model.StoneID/@i" class="img-fluid" alt="" data-toggle="modal" data-target="#ImgZoomModal@(count)" />
+                        @*<img src="~/DNAReports/@Model.StoneID/@i" id="myBtn">*@
                     }
                 </div>
-              
+
                 <h2 class="title-h2">Simillar Items</h2>
                 <div class="custom-col-w100 mt-0 mb-15">
                     <div class="custom-col-stoneID">
@@ -156,50 +184,35 @@
         </div>
     </div>
     <!-- The Modal -->
+    @{ int IMGcount = 0; }
     @foreach (var i in Model.ImageNames)
     {
-        <div id="myModal" class="modal">
-            <!-- Modal content -->
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <div class="diamond-img-zoom">
-                    <img src="~/DNAReports/@Model.StoneID/@i" data-magnify-src="~/DNAReports/@Model.StoneID/@i">
+        IMGcount++;
+        <div class="modal fade diamon-shap-modal" id="ImgZoomModal@(IMGcount)" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content p-0">
+                    <div class="modal-body">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <div class="diamond-img-zoom">
+                            <img src="~/DNAReports/@Model.StoneID/@i" data-magnify-src="~/DNAReports/@Model.StoneID/@i" />
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     }
+    <!-- //The Modal -->
 
     <script src="~/Areas/Admin/assets/js/jquery-3.3.1.min.js"></script>
-    <script src="~/Areas/Admin/assets/js/diamond-shap.js"></script>
+    <script src="~/Areas/Admin/assets/js/bootstrap.min.js"></script>
     <script src="~/Areas/Admin/assets/js/jquery.magnify.js"></script>
-    <script>
-        // Get the modal
-        var modal = document.getElementById("myModal");
-        // Get the button that opens the modal
-        var btn = document.getElementById("myBtn");
-        // Get the <span> element that closes the modal
-        var span = document.getElementsByClassName("close")[0];
-        // When the user clicks the button, open the modal
-        btn.onclick = function () {
-            modal.style.display = "block";
-        }
-        // When the user clicks on <span> (x), close the modal
-        span.onclick = function () {
-            modal.style.display = "none";
-        }
-        // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function (event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
+    <script src="~/Areas/Admin/assets/js/diamond-shap.js"></script>
 
-    </script>
+    <script src="~/Areas/Admin/assets/js/MagnifyPage.js"></script>
     <script>
-        $(document).ready(function () {
-            // Initiate magnification powers
-            $('.diamond-img-zoom img').magnify();
-        });
+
         $(document).ready(function () {
             $('.Vision360').Vision360({
                 isOffline: 1,
@@ -277,6 +290,7 @@
         _strJSON5[0] = strJSON5;  //STR5 == "" ? _strJSON5[0] : STR5;
         _strJSON6[0] = strJSON6;
         _strJSON7[0] = strJSON7;
+
     </script>
 </body>
 </html>

@@ -91,11 +91,12 @@
     font-weight: 500;
     font-size: 16px;
 }
-.frameContainerslider ~ .buttons{margin-top: 15px;}
+.frameContainerslider ~ .buttons{margin-top: 15px; height:auto !important;}
 .diamond-zoom-img{text-align: center; padding: 7px;}
 .diamond-zoom-img > img{width: 125px; height: 125px; border-radius:3px; cursor: pointer;}
-@media (max-width:1199px){
-	.custom-col-left,.custom-col-right{
+.divbtnpos{display:block !important;}
+@media (max-width:1199px) {
+    .custom-col-left,.custom-col-right{
 		width: 100%;
 	}
 	.custom-col-w100{padding: 0px 15px;}
