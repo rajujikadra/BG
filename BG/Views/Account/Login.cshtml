@@ -171,7 +171,15 @@
 </html>
 
 <script type="text/javascript">
+    $('body').keypress(function (e) {
+        if (e.which == 13) {
+            Login();
+        }
+    });
     $("#btnLogin").on('click', function () {
+        Login();
+    });
+    function Login() {
         var form = $('#formLogin');
         if (formValidate(form) === false) {
             return false;
@@ -183,7 +191,6 @@
             data: form.serialize(),
             success: function (data) {
                 if (data.StatusCode == 200) {
-                    debugger;
                     location.href = data.Messages[1];
                 } else if (data.StatusCode == 404) {
                     swal("Error", data.Messages.join(), "error");
@@ -196,7 +203,7 @@
             }
         });
         return true;
-    });
+    }
     function LoginFormSuccess(response) {
         var data = response;
     }
