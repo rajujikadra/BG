@@ -1936,6 +1936,18 @@
             ToCulet = $("#txtToCulet").val();
 
             var BGM = $(".noBGM").hasClass("active_blue_bg") ? "BGM" : "NO BGM";
+            if (Shape.length <= 0) {
+                swal("Warning", "Please select shap", "warning");
+                return false;
+            }
+            else if (CaretFrom == "" || CaretTo == "") {
+                swal("Warning", "Please enter caret from and caret to values", "warning");
+                return false;
+            }
+            else if (PriceFrom == "" || PriceTo == "") {
+                swal("Warning", "Please enter price from and price to values", "warning");
+                return false;
+            }
             
             var obj = {
                 'Shape': Shape,
