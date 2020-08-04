@@ -1258,13 +1258,13 @@ button:focus {
 
             .result1Tbl .selectedStone_inner_tbl .selectedStone_title_right ul li:nth-child(1) a::before {
                 content: '';
-                border-left: 2px solid #a96d42;
+                border-left: 2px solid #fc544b;
                 margin: 0px 10px;
             }
 
             .result1Tbl .selectedStone_inner_tbl .selectedStone_title_right ul li:nth-child(2) a::before {
                 content: '';
-                border-left: 2px solid red;
+                border-left: 2px solid #59bf70;
                 margin: 0px 10px;
             }
 
